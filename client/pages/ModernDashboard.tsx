@@ -223,14 +223,14 @@ function RecoveryProgressChart() {
             </div>
           ))}
         </div>
-        <div className="flex justify-center space-x-6 pt-4 border-t border-white/20">
+        <div className="flex justify-center space-x-6 pt-4 border-t border-gray-200">
           <div className="flex items-center">
             <div className="w-3 h-3 bg-gradient-to-r from-[#2C8780] to-[#72F1DC] rounded-full mr-2 shadow-soft" />
-            <span className="text-sm text-white font-medium">Recovered</span>
+            <span className="text-sm text-gray-700 font-medium">Recovered</span>
           </div>
           <div className="flex items-center">
             <div className="w-3 h-3 bg-gradient-to-r from-[#B2CAC9] to-[#E8F2FD] rounded-full mr-2 shadow-soft" />
-            <span className="text-sm text-white font-medium">Pending</span>
+            <span className="text-sm text-gray-700 font-medium">Pending</span>
           </div>
         </div>
       </CardContent>
