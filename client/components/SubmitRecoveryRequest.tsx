@@ -100,7 +100,7 @@ export function SubmitRecoveryRequest() {
           {/* Row 1: Full Name and Email */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-white mb-2 flex items-center">
+              <label className="block text-sm font-medium text-[#2C8780] mb-2 flex items-center">
                 <User className="mr-2 h-4 w-4" />
                 Full Name
               </label>
@@ -109,7 +109,7 @@ export function SubmitRecoveryRequest() {
                 required
                 value={formData.fullName}
                 onChange={(e) => handleInputChange('fullName', e.target.value)}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:bg-white/20 focus:border-white/40 transition-all duration-200"
+                className="w-full px-4 py-3 bg-white/50 border border-gray-300 rounded-xl text-[#1D1D2C] placeholder-gray-500 focus:bg-white/70 focus:border-[#2C8780] transition-all duration-200"
                 placeholder="Enter your full name"
               />
             </div>
