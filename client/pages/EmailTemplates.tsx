@@ -290,6 +290,11 @@ function EmailTemplateCard({ template }: { template: EmailTemplate }) {
 
 export function EmailTemplates() {
   const [selectedCategory, setSelectedCategory] = useState('all');
+
+  // Initialize EmailJS
+  useEffect(() => {
+    initEmailJS();
+  }, []);
   const [searchTerm, setSearchTerm] = useState('');
 
   const filteredTemplates = mockTemplates.filter(template => {
