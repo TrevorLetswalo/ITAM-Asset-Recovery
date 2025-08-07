@@ -7,9 +7,25 @@ const EMAILJS_CONFIG = {
   publicKey: 'public_xxx'
 };
 
+// Check if EmailJS is properly configured
+const isEmailJSConfigured = () => {
+  return EMAILJS_CONFIG.serviceId !== 'service_xxx' &&
+         EMAILJS_CONFIG.templateId !== 'template_recovery' &&
+         EMAILJS_CONFIG.publicKey !== 'public_xxx';
+};
+
 // Initialize EmailJS
 export const initEmailJS = () => {
-  emailjs.init(EMAILJS_CONFIG.publicKey);
+  if (isEmailJSConfigured()) {
+    try {
+      emailjs.init(EMAILJS_CONFIG.publicKey);
+      console.log('EmailJS initialized successfully');
+    } catch (error) {
+      console.warn('Failed to initialize EmailJS:', error);
+    }
+  } else {
+    console.log('EmailJS running in mock mode - update configuration in lib/emailjs.ts');
+  }
 };
 
 // Email template data interface
