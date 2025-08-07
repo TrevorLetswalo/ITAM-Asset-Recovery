@@ -89,11 +89,11 @@ export function SubmitRecoveryRequest() {
   return (
     <Card className="glass-card">
       <CardHeader>
-        <CardTitle className="text-xl font-bold text-white flex items-center">
-          <FileText className="mr-3 h-6 w-6 text-[#72F1DC]" />
+        <CardTitle className="text-xl font-bold text-[#1D1D2C] flex items-center">
+          <FileText className="mr-3 h-6 w-6 text-[#2C8780]" />
           Submit Recovery Request
         </CardTitle>
-        <p className="text-white/80">Fill out the form below to request asset recovery</p>
+        <p className="text-gray-700">Fill out the form below to request asset recovery</p>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
