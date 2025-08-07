@@ -246,11 +246,11 @@ export function Reports() {
           <p className="text-[#2C8780]">Comprehensive insights and performance metrics</p>
         </div>
         <div className="flex space-x-3">
-          <Button className="macos-button text-[#1D1D2C]">
+          <Button onClick={handleRefreshAll} className="macos-button text-[#1D1D2C]">
             <RefreshCw className="mr-2 h-4 w-4" />
             Refresh All
           </Button>
-          <Button className="bg-gradient-to-r from-[#2C8780] to-[#72F1DC] text-white hover:scale-105 transition-all duration-300" style={{
+          <Button onClick={handleBulkExport} className="bg-gradient-to-r from-[#2C8780] to-[#72F1DC] text-white hover:scale-105 transition-all duration-300" style={{
             boxShadow: '0 4px 12px rgba(44, 135, 128, 0.3)'
           }}>
             <Download className="mr-2 h-4 w-4" />
