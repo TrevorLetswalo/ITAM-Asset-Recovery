@@ -338,10 +338,10 @@ function SlaComplianceDonut() {
             </svg>
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center">
-                <span className="text-3xl font-bold font-poppins text-white">
+                <span className="text-3xl font-bold font-poppins text-[#1D1D2C]">
                   <AnimatedCounter value={compliance} suffix="%" />
                 </span>
-                <p className="text-xs text-white/80 font-medium">Compliant</p>
+                <p className="text-xs text-[#2C8780] font-medium">Compliant</p>
               </div>
             </div>
           </div>
