@@ -288,7 +288,7 @@ export function SlaBreaches() {
         reason: 'SLA Breach - Immediate action required',
         ticketId: `SLA-${asset.id}`
       });
-      alert(`Reminder email sent to ${asset.user_name}`);
+      alert(`✅ Reminder email sent to ${asset.user_name} (Check console for details)`);
     } catch (error) {
       console.error('Error sending reminder:', error);
       alert('Failed to send reminder email. Please try again.');
