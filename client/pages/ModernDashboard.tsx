@@ -262,10 +262,10 @@ function AssetTypeChart() {
           {chartData.map((item, index) => (
             <div key={item.name} className="group">
               <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-medium text-gray-700">{item.name}</span>
+                <span className="text-sm font-medium text-white">{item.name}</span>
                 <div className="flex items-center space-x-2">
-                  <span className="text-sm font-semibold text-gray-900">{item.value}</span>
-                  <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                  <span className="text-sm font-semibold text-white">{item.value}</span>
+                  <span className="text-xs text-white bg-white/20 px-2 py-1 rounded-full">
                     {item.percentage}%
                   </span>
                 </div>
