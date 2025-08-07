@@ -1,46 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   /**
-   * Tailwind CSS theme
-   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
-   * A different format will require also updating the theme in tailwind.config.ts.
-  */
+   * Modern IT Asset Recovery Design System
+   * Enhanced with glassmorphism, gradients, and premium typography
+   */
   :root {
-    /* IT Asset Recovery Theme - Light Mode */
-    --background: 208 100% 97%; /* #E8F2FD */
-    --foreground: 220 25% 15%; /* Dark text */
+    /* Modern Color Palette - Light Mode */
+    --background: 208 100% 97%; /* #E8F2FD - Light Ice Blue */
+    --foreground: 220 25% 15%; /* #1D1D2C - Deep Blue-Black */
 
-    --card: 0 0% 100%; /* #FFFFFF */
+    --card: 0 0% 100%; /* Pure white with glassmorphism overlay */
     --card-foreground: 220 25% 15%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 220 25% 15%;
 
-    --primary: 220 25% 15%; /* #1D1D2C */
+    --primary: 220 25% 15%; /* #1D1D2C - Deep Blue-Black */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 180 20% 70%; /* #B2CAC9 */
+    --secondary: 180 20% 70%; /* #B2CAC9 - Soft Sage */
     --secondary-foreground: 220 25% 15%;
 
-    --muted: 208 40% 85%;
+    --muted: 208 40% 92%;
     --muted-foreground: 220 15% 45%;
 
-    --accent: 174 57% 35%; /* #2C8780 */
+    --accent: 174 57% 35%; /* #2C8780 - Modern Teal */
     --accent-foreground: 0 0% 100%;
+
+    --highlight: 174 75% 65%; /* #72F1DC - Electric Mint */
+    --highlight-foreground: 220 25% 15%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 208 30% 85%;
+    --border: 208 30% 88%;
     --input: 208 30% 90%;
     --ring: 174 57% 35%;
 
-    --radius: 0.75rem;
+    --radius: 1rem; /* xl rounded corners */
 
-    /* Sidebar colors - matching primary dark theme */
+    /* Glassmorphism Variables */
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+    /* Sidebar colors - Enhanced with glassmorphism */
     --sidebar-background: 220 25% 15%; /* #1D1D2C */
     --sidebar-foreground: 0 0% 95%;
     --sidebar-primary: 174 57% 35%; /* #2C8780 */
