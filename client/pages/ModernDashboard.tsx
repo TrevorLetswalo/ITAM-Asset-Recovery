@@ -489,7 +489,7 @@ export function ModernDashboard() {
                           {asset.status}
                         </span>
                       </td>
-                      <td className="py-3 text-sm text-white">{asset.recovery_age}d</td>
+                      <td className="py-3 text-sm text-[#1D1D2C]">{asset.recovery_age}d</td>
                       <td className="py-3">
                         {asset.recovery_age > 30 ? (
                           <TrendingUp className="h-4 w-4 text-red-400" />
