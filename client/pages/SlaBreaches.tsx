@@ -330,7 +330,7 @@ export function SlaBreaches() {
           <p className="text-[#2C8780]">Critical alerts and breach management dashboard</p>
         </div>
         <div className="flex space-x-3">
-          <Button className="macos-button text-[#1D1D2C]">
+          <Button onClick={handleExportReport} className="macos-button text-[#1D1D2C]">
             <Download className="mr-2 h-4 w-4" />
             Export Report
           </Button>
