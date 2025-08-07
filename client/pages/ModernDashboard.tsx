@@ -293,24 +293,24 @@ function SlaComplianceDonut() {
   const strokeDashoffset = circumference - (compliance / 100) * circumference;
 
   return (
-    <Card className="glass-card shadow-medium">
+    <Card className="chart-container">
       <CardHeader className="pb-4">
         <CardTitle className="text-lg font-poppins font-semibold text-gray-900 flex items-center">
           <CheckCircle className="mr-2 h-5 w-5 text-recovery-accent" />
           SLA Compliance
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="flex items-center justify-center">
-          <div className="relative w-32 h-32">
-            <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 100 100">
+      <CardContent className="flex-1 flex flex-col items-center justify-center">
+        <div className="relative">
+          <div className="relative w-36 h-36 mb-4">
+            <svg className="w-36 h-36 transform -rotate-90 drop-shadow-lg" viewBox="0 0 100 100">
               {/* Background circle */}
               <circle
                 cx="50"
                 cy="50"
                 r="45"
                 stroke="currentColor"
-                strokeWidth="8"
+                strokeWidth="6"
                 fill="transparent"
                 className="text-gray-200"
               />
@@ -320,12 +320,12 @@ function SlaComplianceDonut() {
                 cy="50"
                 r="45"
                 stroke="url(#gradient)"
-                strokeWidth="8"
+                strokeWidth="6"
                 fill="transparent"
                 strokeDasharray={strokeDasharray}
                 strokeDashoffset={strokeDashoffset}
                 strokeLinecap="round"
-                className="transition-all duration-2000 ease-out"
+                className="transition-all duration-2000 ease-out drop-shadow-sm"
               />
               <defs>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -336,18 +336,29 @@ function SlaComplianceDonut() {
             </svg>
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center">
-                <span className="text-2xl font-bold font-poppins text-gray-900">
+                <span className="text-3xl font-bold font-poppins text-gray-900">
                   <AnimatedCounter value={compliance} suffix="%" />
                 </span>
-                <p className="text-xs text-gray-500">Compliant</p>
+                <p className="text-xs text-gray-500 font-medium">Compliant</p>
               </div>
             </div>
           </div>
-        </div>
-        <div className="mt-4 text-center">
-          <p className="text-sm text-gray-600">
-            {allMockAssets.filter(a => a.sla_stage !== 'Breach').length} of {allMockAssets.length} assets on track
-          </p>
+
+          <div className="text-center bg-gray-50 rounded-2xl p-4 shadow-soft">
+            <p className="text-sm text-gray-600 font-medium">
+              {allMockAssets.filter(a => a.sla_stage !== 'Breach').length} of {allMockAssets.length} assets on track
+            </p>
+            <div className="flex items-center justify-center mt-2 space-x-4 text-xs">
+              <div className="flex items-center">
+                <div className="w-2 h-2 bg-green-500 rounded-full mr-1" />
+                <span className="text-gray-500">On Track</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-2 h-2 bg-red-500 rounded-full mr-1" />
+                <span className="text-gray-500">Breach</span>
+              </div>
+            </div>
+          </div>
         </div>
       </CardContent>
     </Card>
