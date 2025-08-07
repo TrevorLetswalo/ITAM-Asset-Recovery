@@ -113,12 +113,14 @@ const breachTrends = [
   { month: 'Mar', breaches: 25, resolved: 17, pending: 8 },
 ];
 
-function BreachAlertCard({ 
-  alert, 
-  asset 
-}: { 
-  alert: BreachAlert; 
+function BreachAlertCard({
+  alert,
+  asset,
+  onSendReminder
+}: {
+  alert: BreachAlert;
   asset: typeof allMockAssets[0];
+  onSendReminder: (asset: any) => void;
 }) {
   const priorityConfig = PRIORITY_LEVELS[alert.riskLevel];
   const Icon = priorityConfig.icon;
