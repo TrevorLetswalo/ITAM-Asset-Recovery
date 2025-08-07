@@ -462,12 +462,12 @@ export function ModernDashboard() {
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-white/20">
-                    <th className="text-left py-3 text-sm font-medium text-white/80">Asset</th>
-                    <th className="text-left py-3 text-sm font-medium text-white/80">User</th>
-                    <th className="text-left py-3 text-sm font-medium text-white/80">Status</th>
-                    <th className="text-left py-3 text-sm font-medium text-white/80">Days</th>
-                    <th className="text-left py-3 text-sm font-medium text-white/80">Trend</th>
+                  <tr className="border-b border-gray-200">
+                    <th className="text-left py-3 text-sm font-medium text-[#2C8780]">Asset</th>
+                    <th className="text-left py-3 text-sm font-medium text-[#2C8780]">User</th>
+                    <th className="text-left py-3 text-sm font-medium text-[#2C8780]">Status</th>
+                    <th className="text-left py-3 text-sm font-medium text-[#2C8780]">Days</th>
+                    <th className="text-left py-3 text-sm font-medium text-[#2C8780]">Trend</th>
                   </tr>
                 </thead>
                 <tbody>
