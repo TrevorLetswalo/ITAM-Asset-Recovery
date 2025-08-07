@@ -179,7 +179,7 @@ export function SubmitRecoveryRequest() {
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-white mb-2 flex items-center">
+              <label className="block text-sm font-medium text-[#2C8780] mb-2 flex items-center">
                 <Calendar className="mr-2 h-4 w-4" />
                 Date of Return
               </label>
@@ -188,7 +188,7 @@ export function SubmitRecoveryRequest() {
                 required
                 value={formData.dateOfReturn}
                 onChange={(e) => handleInputChange('dateOfReturn', e.target.value)}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:bg-white/20 focus:border-white/40 transition-all duration-200"
+                className="w-full px-4 py-3 bg-white/50 border border-gray-300 rounded-xl text-[#1D1D2C] focus:bg-white/70 focus:border-[#2C8780] transition-all duration-200"
               />
             </div>
           </div>
