@@ -251,6 +251,11 @@ function BreachTrendsChart() {
 export function SlaBreaches() {
   const [severityFilter, setSeverityFilter] = useState('all');
   const [riskFilter, setRiskFilter] = useState('all');
+
+  // Initialize EmailJS
+  useEffect(() => {
+    initEmailJS();
+  }, []);
   
   const breachAlerts = useMemo(() => generateBreachAlerts(), []);
   const breachedAssets = useMemo(() => 
