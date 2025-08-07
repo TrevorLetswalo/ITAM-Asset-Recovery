@@ -114,7 +114,84 @@
     @apply border-border;
   }
 
+  html {
+    font-feature-settings: "cv11", "ss01";
+    font-variation-settings: "opsz" 32;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter antialiased;
+    background: linear-gradient(135deg, #E8F2FD 0%, #F0F8FF 50%, #E8F2FD 100%);
+    min-height: 100vh;
+  }
+
+  /* Typography Scale */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins font-semibold;
+  }
+
+  h1 { @apply text-3xl lg:text-4xl tracking-tight; }
+  h2 { @apply text-2xl lg:text-3xl tracking-tight; }
+  h3 { @apply text-xl lg:text-2xl; }
+  h4 { @apply text-lg lg:text-xl; }
+  h5 { @apply text-base lg:text-lg; }
+  h6 { @apply text-sm lg:text-base; }
+}
+
+@layer components {
+  /* Glassmorphism Effects */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glass-card {
+    @apply glass rounded-xl;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .glass-nav {
+    @apply glass;
+    background: rgba(29, 29, 44, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Modern Shadows */
+  .shadow-soft {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  .shadow-medium {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.12);
+  }
+
+  .shadow-strong {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.16);
+  }
+
+  /* Gradient Backgrounds */
+  .bg-gradient-modern {
+    background: linear-gradient(135deg, #E8F2FD 0%, #72F1DC 100%);
+  }
+
+  .bg-gradient-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+  }
+
+  /* Compact Elements */
+  .compact-card {
+    @apply p-4 rounded-xl shadow-soft glass-card;
+  }
+
+  .compact-kpi {
+    @apply compact-card hover:shadow-medium transition-all duration-300;
   }
 }
