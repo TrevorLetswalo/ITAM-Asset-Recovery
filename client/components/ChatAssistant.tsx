@@ -110,7 +110,8 @@ export default function ChatAssistant({ className = "" }: ChatAssistantProps) {
       <div className={`fixed bottom-6 right-6 z-50 ${className}`}>
         <button
           onClick={() => setIsOpen(true)}
-          className="group relative p-4 bg-white/20 border border-white/30 backdrop-blur-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-white/30"
+          className="group relative p-4 bg-white/20 border border-white/30 backdrop-blur-lg rounded-full transition-all duration-300 hover:bg-white/30"
+          style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}}
         >
           <MessageCircle className="w-6 h-6 text-[#2C8780]" />
           <div className="absolute -top-2 -right-2 w-3 h-3 bg-[#72F1DC] rounded-full animate-pulse"></div>
@@ -121,9 +122,9 @@ export default function ChatAssistant({ className = "" }: ChatAssistantProps) {
 
   return (
     <div className={`fixed bottom-6 right-6 z-50 ${className}`}>
-      <div className={`bg-white/20 border border-white/30 backdrop-blur-lg rounded-2xl shadow-xl transition-all duration-300 ${
+      <div className={`bg-white/20 border border-white/30 backdrop-blur-lg rounded-2xl transition-all duration-300 ${
         isMinimized ? 'w-80 h-14' : 'w-96 h-[600px]'
-      }`}>
+      }`} style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}}>
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-white/20">
           <div className="flex items-center space-x-3">
@@ -162,7 +163,7 @@ export default function ChatAssistant({ className = "" }: ChatAssistantProps) {
                     <button
                       key={index}
                       onClick={() => handleQuestionClick(question)}
-                      className="text-left text-xs p-2 bg-white/30 hover:bg-white/40 rounded-lg transition-colors text-[#1D1D2C] border border-white/20"
+                      className="text-left text-xs p-2 bg-white/20 backdrop-blur-lg hover:bg-white/30 rounded-lg transition-colors text-[#1D1D2C] border border-white/30"
                     >
                       {question}
                     </button>
@@ -197,7 +198,7 @@ export default function ChatAssistant({ className = "" }: ChatAssistantProps) {
               
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-white/40 border border-white/30 rounded-lg p-3">
+                  <div className="bg-white/20 backdrop-blur-lg border border-white/30 rounded-lg p-3">
                     <div className="flex space-x-1">
                       <div className="w-2 h-2 bg-[#2C8780] rounded-full animate-bounce"></div>
                       <div className="w-2 h-2 bg-[#2C8780] rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
@@ -217,13 +218,13 @@ export default function ChatAssistant({ className = "" }: ChatAssistantProps) {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder="Type your message..."
-                  className="flex-1 px-3 py-2 bg-white/50 border border-white/30 rounded-xl text-[#1D1D2C] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#2C8780] focus:border-transparent text-sm"
+                  className="flex-1 px-3 py-2 bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl text-[#1D1D2C] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#2C8780] focus:border-transparent text-sm"
                   disabled={isLoading}
                 />
                 <button
                   type="submit"
                   disabled={!inputValue.trim() || isLoading}
-                  className="px-3 py-2 bg-[#2C8780] text-white rounded-xl hover:bg-[#2C8780]/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="px-3 py-2 bg-gradient-to-r from-[#2C8780] to-[#72F1DC] text-white rounded-xl hover:from-[#2C8780]/90 hover:to-[#72F1DC]/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   <Send className="w-4 h-4" />
                 </button>
