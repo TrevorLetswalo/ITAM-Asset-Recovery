@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { 
-  TrendingUp, 
+import {
+  TrendingUp,
   TrendingDown,
-  AlertTriangle, 
-  CheckCircle, 
+  AlertTriangle,
+  CheckCircle,
   FileText,
   ArrowUp,
   ArrowDown,
@@ -14,7 +14,8 @@ import {
   Zap,
   Users,
   Calendar,
-  RefreshCw
+  RefreshCw,
+  Upload
 } from 'lucide-react';
 import { getDashboardStats, getRecoveryByType, getSlaComplianceRate, allMockAssets } from '@shared/mock-assets';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
