@@ -273,6 +273,44 @@ export function SlaBreaches() {
     });
   }, [breachAlerts, severityFilter, riskFilter]);
 
+  const handleExportReport = () => {
+    exportSLABreaches(breachedAssets);
+  };
+
+  const handleSendReminder = async (asset: any) => {
+    try {
+      await sendReminderEmail({
+        name: asset.user_name,
+        email: `${asset.user_name.toLowerCase().replace(' ', '.')}@company.com`,
+        assetTag: asset.asset_tag,
+        reason: 'SLA Breach - Immediate action required',
+        ticketId: `SLA-${asset.id}`
+      });
+      alert(`Reminder email sent to ${asset.user_name}`);
+    } catch (error) {
+      console.error('Error sending reminder:', error);
+      alert('Failed to send reminder email. Please try again.');
+    }
+  };
+
+  const handleBulkEscalate = async () => {
+    try {
+      const recipients = breachedAssets.map(asset => ({
+        name: asset.user_name,
+        email: `${asset.user_name.toLowerCase().replace(' ', '.')}@company.com`,
+        assetTag: asset.asset_tag,
+        reason: 'SLA Breach Escalation - Management intervention required',
+        ticketId: `ESC-${asset.id}`
+      }));
+
+      await sendBulkEmails(recipients);
+      alert(`Escalation emails sent to ${recipients.length} users`);
+    } catch (error) {
+      console.error('Error sending bulk escalation:', error);
+      alert('Failed to send escalation emails. Please try again.');
+    }
+  };
+
   const stats = useMemo(() => {
     const total = breachAlerts.length;
     const extreme = breachAlerts.filter(a => a.riskLevel === 'Extreme').length;
