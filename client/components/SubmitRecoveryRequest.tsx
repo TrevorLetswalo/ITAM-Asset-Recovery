@@ -151,15 +151,15 @@ export function SubmitRecoveryRequest() {
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-white mb-2">Recovery Type</label>
+              <label className="block text-sm font-medium text-[#2C8780] mb-2">Recovery Type</label>
               <select
                 value={formData.recoveryType}
                 onChange={(e) => handleInputChange('recoveryType', e.target.value as 'Exit' | 'Swap' | 'Loaner')}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:bg-white/20 focus:border-white/40 transition-all duration-200"
+                className="w-full px-4 py-3 bg-white/50 border border-gray-300 rounded-xl text-[#1D1D2C] focus:bg-white/70 focus:border-[#2C8780] transition-all duration-200"
               >
-                <option value="Exit" className="bg-gray-800 text-white">Exit (Permanent return)</option>
-                <option value="Swap" className="bg-gray-800 text-white">Swap (Exchange)</option>
-                <option value="Loaner" className="bg-gray-800 text-white">Loaner (Temporary return)</option>
+                <option value="Exit" className="bg-white text-[#1D1D2C]">Exit (Permanent return)</option>
+                <option value="Swap" className="bg-white text-[#1D1D2C]">Swap (Exchange)</option>
+                <option value="Loaner" className="bg-white text-[#1D1D2C]">Loaner (Temporary return)</option>
               </select>
             </div>
           </div>
