@@ -64,6 +64,14 @@ export const sendRecoveryConfirmation = async (templateData: EmailTemplateData):
 
 // Send reminder email
 export const sendReminderEmail = async (templateData: EmailTemplateData): Promise<void> => {
+  if (!isEmailJSConfigured()) {
+    // Mock implementation for demo purposes
+    console.log('MOCK: Reminder email would be sent to:', templateData.email);
+    console.log('MOCK: Asset Tag:', templateData.assetTag, 'Reason:', templateData.reason);
+    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
+    return;
+  }
+
   try {
     await emailjs.send(
       EMAILJS_CONFIG.serviceId,
