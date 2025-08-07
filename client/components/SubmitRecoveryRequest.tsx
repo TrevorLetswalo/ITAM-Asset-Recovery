@@ -167,13 +167,13 @@ export function SubmitRecoveryRequest() {
           {/* Row 3: Serial/Asset Tag and Date */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-white mb-2">Serial/Asset Tag</label>
+              <label className="block text-sm font-medium text-[#2C8780] mb-2">Serial/Asset Tag</label>
               <input
                 type="text"
                 required
                 value={formData.serialAssetTag}
                 onChange={(e) => handleInputChange('serialAssetTag', e.target.value)}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:bg-white/20 focus:border-white/40 transition-all duration-200"
+                className="w-full px-4 py-3 bg-white/50 border border-gray-300 rounded-xl text-[#1D1D2C] placeholder-gray-500 focus:bg-white/70 focus:border-[#2C8780] transition-all duration-200"
                 placeholder="e.g. LAP-001234 or SN123456789"
               />
             </div>
