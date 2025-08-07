@@ -118,6 +118,20 @@ export const sendBulkEmails = async (recipients: EmailTemplateData[]): Promise<v
 
 // Send test email
 export const sendTestEmail = async (testEmail: string = 'trevorleb@live.com'): Promise<void> => {
+  if (!isEmailJSConfigured()) {
+    // Mock implementation for demo purposes
+    console.log('MOCK: Test email would be sent to:', testEmail);
+    console.log('MOCK: Test template data:', {
+      name: 'Test User',
+      email: testEmail,
+      assetTag: 'TEST-001',
+      reason: 'Test email template validation',
+      ticketId: 'TEST-123456'
+    });
+    await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate network delay
+    return;
+  }
+
   try {
     const testData = {
       name: 'Test User',
