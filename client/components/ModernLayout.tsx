@@ -207,7 +207,7 @@ export function ModernLayout({ children }: LayoutProps) {
       {/* Main content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Enhanced Top Navigation */}
-        <header className="bg-white/20 backdrop-blur-lg border-b border-white/30 h-20 flex items-center justify-between px-6 rounded-none" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}}>
+        <header className="h-20 flex items-center justify-between px-6">
           {/* Left Section */}
           <div className="flex items-center space-x-4">
             {/* Mobile menu button */}
