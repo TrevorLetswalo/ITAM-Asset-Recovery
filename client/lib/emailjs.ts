@@ -40,6 +40,14 @@ export interface EmailTemplateData {
 
 // Send recovery ticket confirmation email
 export const sendRecoveryConfirmation = async (templateData: EmailTemplateData): Promise<void> => {
+  if (!isEmailJSConfigured()) {
+    // Mock implementation for demo purposes
+    console.log('MOCK: Recovery confirmation email would be sent to:', templateData.email);
+    console.log('MOCK: Template data:', templateData);
+    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
+    return;
+  }
+
   try {
     await emailjs.send(
       EMAILJS_CONFIG.serviceId,
