@@ -59,8 +59,23 @@ export const generateTicketId = (): string => {
 
 // Submit recovery ticket to Firestore
 export const submitRecoveryTicket = async (ticketData: Omit<RecoveryTicket, 'timestamp' | 'ticketId' | 'status'>): Promise<string> => {
+  const ticketId = generateTicketId();
+
+  if (!isFirebaseConfigured() || !db) {
+    // Mock implementation for demo purposes
+    console.log('MOCK: Recovery ticket would be saved to Firestore:');
+    console.log('MOCK: Ticket ID:', ticketId);
+    console.log('MOCK: Ticket Data:', {
+      ...ticketData,
+      ticketId,
+      timestamp: new Date().toISOString(),
+      status: 'pending'
+    });
+    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
+    return ticketId;
+  }
+
   try {
-    const ticketId = generateTicketId();
     const ticket: RecoveryTicket = {
       ...ticketData,
       ticketId,
@@ -69,6 +84,7 @@ export const submitRecoveryTicket = async (ticketData: Omit<RecoveryTicket, 'tim
     };
 
     await addDoc(collection(db, 'recoveryTickets'), ticket);
+    console.log('Recovery ticket submitted successfully:', ticketId);
     return ticketId;
   } catch (error) {
     console.error('Error submitting recovery ticket:', error);
