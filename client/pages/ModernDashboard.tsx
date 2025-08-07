@@ -63,7 +63,7 @@ function AnimatedCounter({
   return <span>{prefix}{count}{suffix}</span>;
 }
 
-// Modern Compact KPI Card component
+// Modern Compact KPI Card component with Sparkline
 interface CompactKpiCardProps {
   title: string;
   value: number;
@@ -72,55 +72,94 @@ interface CompactKpiCardProps {
   trendValue?: string;
   colorClass?: string;
   description?: string;
+  sparklineData?: number[];
+  statusTag?: string;
 }
 
-function CompactKpiCard({ 
-  title, 
-  value, 
-  icon: Icon, 
-  trend, 
-  trendValue, 
+function CompactKpiCard({
+  title,
+  value,
+  icon: Icon,
+  trend,
+  trendValue,
   colorClass = "text-recovery-accent",
-  description 
+  description,
+  sparklineData = [20, 25, 18, 30, 28, 35, 32],
+  statusTag
 }: CompactKpiCardProps) {
+  const getIconBg = () => {
+    if (colorClass.includes('blue')) return 'bg-gradient-to-br from-blue-50 to-blue-100 text-blue-600';
+    if (colorClass.includes('red')) return 'bg-gradient-to-br from-red-50 to-red-100 text-red-600';
+    if (colorClass.includes('green')) return 'bg-gradient-to-br from-green-50 to-green-100 text-green-600';
+    return 'bg-gradient-to-br from-recovery-accent/10 to-recovery-accent/20 text-recovery-accent';
+  };
+
   return (
-    <Card className="compact-kpi group">
+    <Card className="compact-kpi group relative overflow-hidden">
       <CardContent className="p-6">
-        <div className="flex items-center justify-between mb-4">
+        {/* Header with Icon and Trend */}
+        <div className="flex items-start justify-between mb-4">
           <div className={cn(
-            "w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110",
-            colorClass.includes('blue') ? 'bg-blue-100 text-blue-600' :
-            colorClass.includes('red') ? 'bg-red-100 text-red-600' :
-            colorClass.includes('green') ? 'bg-green-100 text-green-600' :
-            'bg-recovery-accent/10 text-recovery-accent'
+            "w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-soft",
+            getIconBg()
           )}>
             <Icon className="h-6 w-6" />
           </div>
+
           {trend && trendValue && (
             <div className={cn(
-              "flex items-center space-x-1 px-2 py-1 rounded-full text-xs font-medium",
-              trend === 'up' 
-                ? 'bg-green-100 text-green-700' 
-                : 'bg-red-100 text-red-700'
+              "flex items-center space-x-1 px-3 py-1.5 rounded-full text-xs font-semibold shadow-soft",
+              trend === 'up'
+                ? 'bg-gradient-to-r from-green-50 to-green-100 text-green-700 border border-green-200'
+                : 'bg-gradient-to-r from-red-50 to-red-100 text-red-700 border border-red-200'
             )}>
               {trend === 'up' ? (
-                <ArrowUp className="h-3 w-3" />
+                <TrendingUp className="h-3 w-3" />
               ) : (
-                <ArrowDown className="h-3 w-3" />
+                <TrendingDown className="h-3 w-3" />
               )}
               <span>{trendValue}</span>
             </div>
           )}
         </div>
-        
-        <div className="space-y-1">
+
+        {/* Title and Value */}
+        <div className="space-y-2 mb-4">
           <p className="text-sm font-medium text-gray-600">{title}</p>
           <p className="text-3xl font-bold font-poppins text-gray-900 tracking-tight">
             <AnimatedCounter value={value} />
           </p>
-          {description && (
-            <p className="text-xs text-gray-500">{description}</p>
+        </div>
+
+        {/* Sparkline and Status */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            {sparklineData && sparklineData.length > 1 && (
+              <div className="opacity-80 group-hover:opacity-100 transition-opacity">
+                <Sparkline data={sparklineData} trend={trend} />
+              </div>
+            )}
+            {description && (
+              <p className="text-xs text-gray-500">{description}</p>
+            )}
+          </div>
+
+          {statusTag && (
+            <div className={cn(
+              "px-2 py-1 rounded-lg text-xs font-medium",
+              statusTag === 'Improving' ? 'bg-green-100 text-green-700' :
+              statusTag === 'In Breach' ? 'bg-red-100 text-red-700' :
+              statusTag === 'Stable' ? 'bg-blue-100 text-blue-700' :
+              'bg-gray-100 text-gray-700'
+            )}>
+              {statusTag}
+            </div>
           )}
+        </div>
+
+        {/* Subtle background pattern */}
+        <div className="absolute top-0 right-0 w-32 h-32 opacity-5 pointer-events-none">
+          <Icon className="w-full h-full" />
         </div>
       </CardContent>
     </Card>
