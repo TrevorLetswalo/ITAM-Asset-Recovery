@@ -57,6 +57,23 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // IT Asset Recovery Console Theme
+        'recovery-primary': '#1D1D2C',
+        'recovery-accent': '#2C8780',
+        'recovery-soft': '#72F1DC',
+        'recovery-bg': '#E8F2FD',
+        'recovery-secondary': '#B2CAC9',
+        'recovery-white': '#FFFFFF',
+        'recovery-dark': {
+          DEFAULT: '#1D1D2C',
+          light: '#2A2A3E',
+        },
+        'sla': {
+          'green': '#10B981',
+          'yellow': '#F59E0B',
+          'orange': '#F97316',
+          'red': '#EF4444',
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
