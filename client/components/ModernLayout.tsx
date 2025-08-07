@@ -85,7 +85,7 @@ export function ModernLayout({ children }: LayoutProps) {
   };
 
   return (
-    <div className="h-screen flex overflow-hidden bg-gradient-to-br from-recovery-bg via-blue-50 to-recovery-bg">
+    <div className="h-screen flex overflow-hidden">
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div 
