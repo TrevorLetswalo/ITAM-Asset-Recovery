@@ -73,8 +73,25 @@ export function SubmitRecoveryRequest() {
 
   if (submitted) {
     return (
-      <div className="bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl p-8 text-center" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}}>
-        <div className="w-16 h-16 bg-gradient-to-br from-[#2C8780] to-[#72F1DC] rounded-full flex items-center justify-center mx-auto mb-4" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.3)'}}>
+      <div 
+        className="p-8 text-center rounded-2xl transition-all duration-500 ease-out" 
+        style={{
+          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
+          border: '1px solid rgba(255, 255, 255, 0.4)',
+          borderTop: '1px solid rgba(255, 255, 255, 0.6)',
+          borderLeft: '1px solid rgba(255, 255, 255, 0.6)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          boxShadow: '0 8px 32px rgba(114, 241, 220, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)'
+        }}
+      >
+        <div 
+          className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" 
+          style={{
+            background: 'linear-gradient(135deg, #2C8780 0%, #72F1DC 100%)',
+            boxShadow: '0 8px 24px rgba(44, 135, 128, 0.3)'
+          }}
+        >
           <Send className="h-8 w-8 text-white" />
         </div>
         <h3 className="text-xl font-medium text-[#1D1D2C] mb-2">Request Submitted Successfully!</h3>
@@ -84,7 +101,26 @@ export function SubmitRecoveryRequest() {
   }
 
   return (
-    <div className="bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl p-6" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}}>
+    <div 
+      className="p-6 rounded-2xl transition-all duration-500 ease-out cursor-pointer" 
+      style={{
+        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
+        border: '1px solid rgba(255, 255, 255, 0.4)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.6)',
+        borderLeft: '1px solid rgba(255, 255, 255, 0.6)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        boxShadow: '0 8px 32px rgba(114, 241, 220, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)'
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-4px) scale(1.01)';
+        e.currentTarget.style.boxShadow = '0 16px 48px rgba(114, 241, 220, 0.2), 0 4px 16px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.4)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'translateY(0) scale(1)';
+        e.currentTarget.style.boxShadow = '0 8px 32px rgba(114, 241, 220, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+      }}
+    >
       <div className="mb-6">
         <h2 className="text-xl font-medium text-[#1D1D2C] flex items-center">
           <FileText className="mr-3 h-6 w-6 text-[#2C8780]" />
@@ -106,8 +142,13 @@ export function SubmitRecoveryRequest() {
               required
               value={formData.fullName}
               onChange={(e) => handleInputChange('fullName', e.target.value)}
-              className="w-full px-4 py-3 bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent transition-all duration-200"
-              style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.1)'}}
+              className="w-full px-4 py-3 text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-xl transition-all duration-300"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.4)',
+                backdropFilter: 'blur(15px)',
+                boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+              }}
               placeholder="Enter your full name"
             />
           </div>
@@ -122,8 +163,13 @@ export function SubmitRecoveryRequest() {
               required
               value={formData.email}
               onChange={(e) => handleInputChange('email', e.target.value)}
-              className="w-full px-4 py-3 bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent transition-all duration-200"
-              style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.1)'}}
+              className="w-full px-4 py-3 text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-xl transition-all duration-300"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.4)',
+                backdropFilter: 'blur(15px)',
+                boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+              }}
               placeholder="Enter your email address"
             />
           </div>
@@ -140,8 +186,13 @@ export function SubmitRecoveryRequest() {
               required
               value={formData.assetType}
               onChange={(e) => handleInputChange('assetType', e.target.value)}
-              className="w-full px-4 py-3 bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl text-[#1D1D2C] focus:ring-2 focus:ring-[#2C8780] focus:border-transparent transition-all duration-200"
-              style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.1)'}}
+              className="w-full px-4 py-3 text-[#1D1D2C] focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-xl transition-all duration-300"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.4)',
+                backdropFilter: 'blur(15px)',
+                boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+              }}
             >
               <option value="" className="bg-white text-[#1D1D2C]">Select asset type</option>
               {assetTypes.map(type => (
@@ -155,8 +206,13 @@ export function SubmitRecoveryRequest() {
             <select
               value={formData.recoveryType}
               onChange={(e) => handleInputChange('recoveryType', e.target.value as 'Exit' | 'Swap' | 'Loaner')}
-              className="w-full px-4 py-3 bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl text-[#1D1D2C] focus:ring-2 focus:ring-[#2C8780] focus:border-transparent transition-all duration-200"
-              style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.1)'}}
+              className="w-full px-4 py-3 text-[#1D1D2C] focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-xl transition-all duration-300"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.4)',
+                backdropFilter: 'blur(15px)',
+                boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+              }}
             >
               <option value="Exit" className="bg-white text-[#1D1D2C]">Exit (Permanent return)</option>
               <option value="Swap" className="bg-white text-[#1D1D2C]">Swap (Exchange)</option>
@@ -174,8 +230,13 @@ export function SubmitRecoveryRequest() {
               required
               value={formData.serialAssetTag}
               onChange={(e) => handleInputChange('serialAssetTag', e.target.value)}
-              className="w-full px-4 py-3 bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent transition-all duration-200"
-              style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.1)'}}
+              className="w-full px-4 py-3 text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-xl transition-all duration-300"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.4)',
+                backdropFilter: 'blur(15px)',
+                boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+              }}
               placeholder="e.g. LAP-001234 or SN123456789"
             />
           </div>
@@ -190,8 +251,13 @@ export function SubmitRecoveryRequest() {
               required
               value={formData.dateOfReturn}
               onChange={(e) => handleInputChange('dateOfReturn', e.target.value)}
-              className="w-full px-4 py-3 bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl text-[#1D1D2C] focus:ring-2 focus:ring-[#2C8780] focus:border-transparent transition-all duration-200"
-              style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.1)'}}
+              className="w-full px-4 py-3 text-[#1D1D2C] focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-xl transition-all duration-300"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.4)',
+                backdropFilter: 'blur(15px)',
+                boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+              }}
             />
           </div>
         </div>
@@ -206,8 +272,13 @@ export function SubmitRecoveryRequest() {
             rows={4}
             value={formData.comments}
             onChange={(e) => handleInputChange('comments', e.target.value)}
-            className="w-full px-4 py-3 bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent transition-all duration-200 resize-none"
-            style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.1)'}}
+            className="w-full px-4 py-3 text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-xl transition-all duration-300 resize-none"
+            style={{
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+              border: '1px solid rgba(255, 255, 255, 0.4)',
+              backdropFilter: 'blur(15px)',
+              boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+            }}
             placeholder="Any additional information or special instructions..."
           />
         </div>
@@ -217,8 +288,11 @@ export function SubmitRecoveryRequest() {
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="px-8 py-3 bg-gradient-to-r from-[#2C8780] to-[#72F1DC] hover:from-[#2C8780]/90 hover:to-[#72F1DC]/90 text-white font-semibold rounded-full transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-            style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.3)'}}
+            className="px-8 py-3 text-white font-semibold rounded-full transition-all duration-300 disabled:opacity-50 hover:scale-105"
+            style={{
+              background: 'linear-gradient(135deg, #2C8780 0%, #72F1DC 100%)',
+              boxShadow: '0 8px 24px rgba(114, 241, 220, 0.3), 0 4px 12px rgba(44, 135, 128, 0.2)'
+            }}
           >
             {isSubmitting ? (
               <>
