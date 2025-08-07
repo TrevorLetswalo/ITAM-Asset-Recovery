@@ -23,6 +23,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { cn } from '@/lib/utils';
 import { TestEmailRequest, TestEmailResponse } from '@shared/email-api';
+import { sendTestEmail as sendEmailJSTest, initEmailJS } from '@/lib/emailjs';
 
 // Enhanced 3D Glass Container Component
 interface Glass3DContainerProps {
