@@ -361,6 +361,8 @@ export function EmailTemplates() {
   const [selectedTemplate, setSelectedTemplate] = useState<EmailTemplate | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [activeTab, setActiveTab] = useState<string>('all');
+  const [sendingTestEmail, setSendingTestEmail] = useState<string | null>(null);
+  const [testEmailStatus, setTestEmailStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
   const getTypeColor = (type: string) => {
     switch (type) {
