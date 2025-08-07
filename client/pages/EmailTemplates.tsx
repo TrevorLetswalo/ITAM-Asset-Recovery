@@ -171,55 +171,14 @@ function EmailTemplateCard({ template }: { template: EmailTemplate }) {
   const sendTestEmail = async () => {
     setIsSending(true);
     setSendResult(null);
-    
+
     try {
-      const testRequest: TestEmailRequest = {
-        to: 'trevdadodon@gmail.com',
-        subject: template.subject.replace(/\{\{(\w+)\}\}/g, (match, key) => {
-          const sampleData: Record<string, string> = {
-            user_name: 'Trevor Letswalo',
-            asset_tag: 'LAP-001234',
-            serial_number: 'SN123456789',
-            asset_type: 'MacBook Pro 16"',
-            recovery_type: 'Exit',
-            recovery_age: '15',
-            sla_due_date: '2024-03-15',
-            status: 'Pending',
-            support_email: 'it-support@company.com',
-            support_phone: '(555) 123-4567'
-          };
-          return sampleData[key] || match;
-        }),
-        content: editedContent.replace(/\{\{(\w+)\}\}/g, (match, key) => {
-          const sampleData: Record<string, string> = {
-            user_name: 'Trevor Letswalo',
-            asset_tag: 'LAP-001234',
-            serial_number: 'SN123456789',
-            asset_type: 'MacBook Pro 16"',
-            recovery_type: 'Exit',
-            recovery_age: '15',
-            sla_due_date: 'March 15, 2024',
-            status: 'Pending',
-            support_email: 'it-support@company.com',
-            support_phone: '(555) 123-4567'
-          };
-          return sampleData[key] || match;
-        }),
-        templateId: template.id
-      };
-
-      const response = await fetch('/api/email/test', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(testRequest),
-      });
-
-      const result: TestEmailResponse = await response.json();
-      setSendResult(result.success ? 'Email sent successfully!' : `Failed to send: ${result.error}`);
+      // Use EmailJS to send test email to trevorleb@live.com
+      await sendEmailJSTest('trevorleb@live.com');
+      setSendResult('Test email sent successfully to trevorleb@live.com!');
     } catch (error) {
-      setSendResult('Error sending email. Please try again.');
+      console.error('Error sending test email:', error);
+      setSendResult('Error sending test email. Please try again.');
     } finally {
       setIsSending(false);
     }
