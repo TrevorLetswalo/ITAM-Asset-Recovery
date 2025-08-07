@@ -235,7 +235,7 @@ function SecuritySettings() {
                 <p className="text-xs text-[#2C8780]">Manage API keys and permissions</p>
               </div>
             </div>
-            <Button size="sm" className="macos-button text-[#2C8780]">
+            <Button size="sm" onClick={handleManageKeys} className="macos-button text-[#2C8780]">
               Manage Keys
             </Button>
           </div>
