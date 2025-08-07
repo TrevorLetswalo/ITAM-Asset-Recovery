@@ -186,12 +186,12 @@ function BreachAlertCard({
               <Mail className="mr-1 h-3 w-3" />
               Send Reminder
             </Button>
-            <Button size="sm" className="macos-button text-[#2C8780] text-xs">
+            <Button size="sm" onClick={handleCallUser} className="macos-button text-[#2C8780] text-xs">
               <Phone className="mr-1 h-3 w-3" />
               Call User
             </Button>
           </div>
-          <Button size="sm" className="text-red-600 hover:text-red-700 bg-red-100/50 hover:bg-red-100/70 border border-red-200/50 backdrop-blur-lg text-xs">
+          <Button size="sm" onClick={handleEscalate} className="text-red-600 hover:text-red-700 bg-red-100/50 hover:bg-red-100/70 border border-red-200/50 backdrop-blur-lg text-xs">
             <Zap className="mr-1 h-3 w-3" />
             Escalate
           </Button>
