@@ -150,6 +150,7 @@ function EmailTemplateCard({ template }: { template: EmailTemplate }) {
   const [editedContent, setEditedContent] = useState(template.content);
   const [isSending, setIsSending] = useState(false);
   const [sendResult, setSendResult] = useState<string | null>(null);
+  const [showPreview, setShowPreview] = useState(false);
 
   const getTypeColor = (type: string) => {
     switch (type) {
