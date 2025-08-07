@@ -297,8 +297,8 @@ function SlaComplianceDonut() {
   return (
     <Card className="chart-container">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-poppins font-semibold text-gray-900 flex items-center">
-          <CheckCircle className="mr-2 h-5 w-5 text-recovery-accent" />
+        <CardTitle className="text-lg font-poppins font-semibold text-white flex items-center">
+          <CheckCircle className="mr-2 h-5 w-5 text-[#72F1DC]" />
           SLA Compliance
         </CardTitle>
       </CardHeader>
