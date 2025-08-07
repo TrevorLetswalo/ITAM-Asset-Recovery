@@ -24,6 +24,8 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { cn } from '@/lib/utils';
+import { exportSLABreaches } from '@/lib/exportUtils';
+import { sendReminderEmail, sendBulkEmails, initEmailJS } from '@/lib/emailjs';
 
 // Enhanced 3D Glass Container Component
 interface Glass3DContainerProps {
