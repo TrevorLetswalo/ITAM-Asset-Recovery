@@ -187,11 +187,11 @@ function RecoveryProgressChart() {
     <Card className="chart-container">
       <CardHeader className="pb-4">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-lg font-poppins font-semibold text-gray-900 flex items-center">
-            <BarChart3 className="mr-2 h-5 w-5 text-recovery-accent" />
+          <CardTitle className="text-lg font-poppins font-semibold text-white flex items-center">
+            <BarChart3 className="mr-2 h-5 w-5 text-[#72F1DC]" />
             Recovery Progress
           </CardTitle>
-          <Badge variant="outline" className="text-xs shadow-soft">Last 7 Days</Badge>
+          <Badge variant="outline" className="text-xs text-white border-white/20 bg-white/10">Last 7 Days</Badge>
         </div>
       </CardHeader>
       <CardContent className="flex-1 flex flex-col">
