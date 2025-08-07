@@ -169,6 +169,18 @@ function EmailTemplateCard({ template }: { template: EmailTemplate }) {
     }
   };
 
+  const handlePreview = () => {
+    setShowPreview(true);
+  };
+
+  const handleSave = () => {
+    // In a real app, this would save to the backend
+    console.log('Saving template:', template.name);
+    console.log('Updated content:', editedContent);
+    setIsEditing(false);
+    alert(`✅ Template "${template.name}" saved successfully!`);
+  };
+
   const sendTestEmail = async () => {
     setIsSending(true);
     setSendResult(null);
