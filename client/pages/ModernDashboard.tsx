@@ -472,14 +472,14 @@ export function ModernDashboard() {
                 </thead>
                 <tbody>
                   {allMockAssets.slice(0, 5).map((asset, index) => (
-                    <tr key={asset.id} className="border-b border-white/10 hover:bg-white/5 transition-colors">
+                    <tr key={asset.id} className="border-b border-gray-100 hover:bg-white/30 transition-colors">
                       <td className="py-3">
                         <div>
-                          <p className="text-sm font-medium text-white">{asset.asset_tag}</p>
-                          <p className="text-xs text-white/60">{asset.asset_type}</p>
+                          <p className="text-sm font-medium text-[#1D1D2C]">{asset.asset_tag}</p>
+                          <p className="text-xs text-gray-600">{asset.asset_type}</p>
                         </div>
                       </td>
-                      <td className="py-3 text-sm text-white">{asset.user_name}</td>
+                      <td className="py-3 text-sm text-[#1D1D2C]">{asset.user_name}</td>
                       <td className="py-3">
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                           asset.status === 'Completed' ? 'bg-green-500/20 text-green-300' :
