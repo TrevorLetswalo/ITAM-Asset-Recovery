@@ -258,7 +258,7 @@ function EmailTemplateCard({ template }: { template: EmailTemplate }) {
           </div>
           <div className="flex space-x-2">
             {isEditing && (
-              <Button size="sm" className="macos-button text-[#2C8780]">
+              <Button size="sm" onClick={handleSave} className="macos-button text-[#2C8780]">
                 <Save className="h-3 w-3 mr-1" />
                 Save Changes
               </Button>
