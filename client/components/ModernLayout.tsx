@@ -282,6 +282,9 @@ export function ModernLayout({ children }: LayoutProps) {
           </div>
         </main>
       </div>
+
+      {/* Floating Chat Assistant */}
+      <ChatAssistant />
     </div>
   );
 }
