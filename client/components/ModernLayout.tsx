@@ -114,7 +114,7 @@ export function ModernLayout({ children }: LayoutProps) {
                   <h1 className="text-white font-poppins font-semibold text-lg tracking-tight">
                     Asset Recovery
                   </h1>
-                  <p className="text-gray-300 text-xs">IT Management Console</p>
+                  <p className="text-gray-200 text-xs">IT Management Console</p>
                 </div>
               )}
             </div>
@@ -136,13 +136,13 @@ export function ModernLayout({ children }: LayoutProps) {
                     "hover:bg-white/10 hover:backdrop-blur-lg hover:scale-[1.02]",
                     isActive
                       ? "bg-gradient-to-r from-recovery-accent to-recovery-highlight text-white shadow-medium scale-[1.02]"
-                      : "text-gray-300 hover:text-white",
+                      : "text-white hover:text-gray-100",
                     item.highlight && !isActive ? "bg-recovery-highlight/20 border border-recovery-highlight/30" : ""
                   )}
                 >
                   <Icon className={cn(
                     "flex-shrink-0 h-5 w-5 transition-colors",
-                    isActive ? "text-white" : "text-gray-400 group-hover:text-white"
+                    isActive ? "text-white" : "text-gray-200 group-hover:text-white"
                   )} />
                   
                   {!sidebarCollapsed && (
@@ -158,7 +158,7 @@ export function ModernLayout({ children }: LayoutProps) {
                         </div>
                         <p className={cn(
                           "text-xs mt-0.5 transition-colors",
-                          isActive ? "text-white/80" : "text-gray-400 group-hover:text-gray-300"
+                          isActive ? "text-white/80" : "text-gray-200 group-hover:text-gray-100"
                         )}>
                           {item.description}
                         </p>
@@ -175,16 +175,16 @@ export function ModernLayout({ children }: LayoutProps) {
             {!sidebarCollapsed ? (
               <div className="space-y-3">
                 <div className="glass-card p-3 rounded-lg">
-                  <div className="text-xs text-gray-300 text-center">
+                  <div className="text-xs text-white text-center">
                     <span className="block font-medium">v1.0.0</span>
-                    <span className="text-gray-400">IT Asset Recovery Console</span>
+                    <span className="text-gray-200">IT Asset Recovery Console</span>
                   </div>
                 </div>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => setSidebarCollapsed(true)}
-                  className="w-full text-gray-300 hover:text-white hover:bg-white/10"
+                  className="w-full text-white hover:text-gray-100 hover:bg-white/10"
                 >
                   <Menu className="h-4 w-4 mr-2" />
                   Collapse
@@ -195,7 +195,7 @@ export function ModernLayout({ children }: LayoutProps) {
                 variant="ghost"
                 size="sm"
                 onClick={() => setSidebarCollapsed(false)}
-                className="w-full text-gray-300 hover:text-white hover:bg-white/10"
+                className="w-full text-white hover:text-gray-100 hover:bg-white/10"
               >
                 <Menu className="h-4 w-4" />
               </Button>
