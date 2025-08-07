@@ -1,632 +1,339 @@
 import React, { useState } from 'react';
 import { 
   Settings as SettingsIcon, 
-  Save, 
-  RefreshCw, 
+  Bell, 
   Mail, 
-  Clock, 
-  AlertTriangle,
-  Users,
-  Bell,
-  Shield,
-  Database,
-  Palette,
-  Globe,
+  Shield, 
+  Users, 
+  Clock,
+  Save,
+  RefreshCw,
   Key,
-  Zap,
-  CheckCircle
+  Database,
+  Globe,
+  Smartphone
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Separator } from '@/components/ui/separator';
 
-interface SettingsState {
-  emailCadence: {
-    initial: number;
-    followUp: number;
-    escalation: number;
-    finalWarning: number;
-  };
-  autoEscalation: {
-    enabled: boolean;
-    thresholdDays: number;
-    skipWeekends: boolean;
-  };
-  assetThresholds: {
-    highValue: number;
-    criticalAge: number;
-    riskAlertAge: number;
-  };
-  notifications: {
-    emailNotifications: boolean;
-    slackIntegration: boolean;
-    pushNotifications: boolean;
-    dailyDigest: boolean;
-    weeklyReport: boolean;
-  };
-  security: {
-    twoFactorAuth: boolean;
-    sessionTimeout: number;
-    ipWhitelist: string[];
-    auditLogging: boolean;
-  };
-  integrations: {
-    activeDirectory: boolean;
-    serviceNow: boolean;
-    jira: boolean;
-    slack: boolean;
-  };
-  system: {
-    timezone: string;
-    dateFormat: string;
-    language: string;
-    theme: 'light' | 'dark' | 'auto';
-  };
+// Enhanced 3D Glass Container Component
+interface Glass3DContainerProps {
+  children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
-function SettingsSection({ 
-  title, 
-  description, 
-  icon: Icon, 
-  children 
-}: {
-  title: string;
-  description: string;
-  icon: React.ElementType;
-  children: React.ReactNode;
-}) {
+function Glass3DContainer({ children, className = "", style = {} }: Glass3DContainerProps) {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center">
-          <Icon className="mr-2 h-5 w-5 text-recovery-accent" />
-          {title}
-        </CardTitle>
-        <p className="text-sm text-gray-600">{description}</p>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        {children}
-      </CardContent>
-    </Card>
-  );
-}
-
-function FormField({ 
-  label, 
-  description, 
-  children 
-}: {
-  label: string;
-  description?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="space-y-2">
-      <div>
-        <label className="text-sm font-medium text-gray-900">{label}</label>
-        {description && <p className="text-xs text-gray-500">{description}</p>}
-      </div>
+    <div 
+      className={`p-6 rounded-2xl transition-all duration-500 ease-out cursor-pointer ${className}`}
+      style={{
+        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
+        border: '1px solid rgba(255, 255, 255, 0.4)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.6)',
+        borderLeft: '1px solid rgba(255, 255, 255, 0.6)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        boxShadow: '0 8px 32px rgba(114, 241, 220, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+        ...style
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-4px) scale(1.01)';
+        e.currentTarget.style.boxShadow = '0 16px 48px rgba(114, 241, 220, 0.2), 0 4px 16px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.4)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'translateY(0) scale(1)';
+        e.currentTarget.style.boxShadow = '0 8px 32px rgba(114, 241, 220, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+      }}
+    >
       {children}
     </div>
   );
 }
 
-export function Settings() {
-  const [settings, setSettings] = useState<SettingsState>({
-    emailCadence: {
-      initial: 0,
-      followUp: 7,
-      escalation: 14,
-      finalWarning: 21
-    },
-    autoEscalation: {
-      enabled: true,
-      thresholdDays: 30,
-      skipWeekends: true
-    },
-    assetThresholds: {
-      highValue: 2500,
-      criticalAge: 45,
-      riskAlertAge: 60
-    },
-    notifications: {
-      emailNotifications: true,
-      slackIntegration: false,
-      pushNotifications: true,
-      dailyDigest: true,
-      weeklyReport: true
-    },
-    security: {
-      twoFactorAuth: true,
-      sessionTimeout: 480,
-      ipWhitelist: [],
-      auditLogging: true
-    },
-    integrations: {
-      activeDirectory: true,
-      serviceNow: false,
-      jira: false,
-      slack: true
-    },
-    system: {
-      timezone: 'America/New_York',
-      dateFormat: 'MM/DD/YYYY',
-      language: 'en-US',
-      theme: 'light'
-    }
+function GeneralSettings() {
+  const [settings, setSettings] = useState({
+    organizationName: 'IT Asset Management',
+    timezone: 'UTC-05:00 (Eastern Time)',
+    language: 'English (US)',
+    dateFormat: 'MM/DD/YYYY',
+    autoRefresh: true,
+    defaultView: 'Dashboard'
   });
 
-  const [hasChanges, setHasChanges] = useState(false);
+  return (
+    <div className="space-y-6">
+      <Glass3DContainer>
+        <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">Organization Settings</h3>
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-[#2C8780] mb-2">Organization Name</label>
+            <input
+              type="text"
+              value={settings.organizationName}
+              onChange={(e) => setSettings({ ...settings, organizationName: e.target.value })}
+              className="w-full px-4 py-2 text-[#1D1D2C] focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-lg transition-all duration-300"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.4)',
+                backdropFilter: 'blur(15px)',
+                boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
+              }}
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-[#2C8780] mb-2">Timezone</label>
+              <select
+                value={settings.timezone}
+                onChange={(e) => setSettings({ ...settings, timezone: e.target.value })}
+                className="w-full px-4 py-2 text-[#1D1D2C] focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-lg transition-all duration-300"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                  border: '1px solid rgba(255, 255, 255, 0.4)',
+                  backdropFilter: 'blur(15px)',
+                  boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
+                }}
+              >
+                <option value="UTC-05:00 (Eastern Time)">UTC-05:00 (Eastern Time)</option>
+                <option value="UTC-06:00 (Central Time)">UTC-06:00 (Central Time)</option>
+                <option value="UTC-07:00 (Mountain Time)">UTC-07:00 (Mountain Time)</option>
+                <option value="UTC-08:00 (Pacific Time)">UTC-08:00 (Pacific Time)</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-[#2C8780] mb-2">Language</label>
+              <select
+                value={settings.language}
+                onChange={(e) => setSettings({ ...settings, language: e.target.value })}
+                className="w-full px-4 py-2 text-[#1D1D2C] focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-lg transition-all duration-300"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                  border: '1px solid rgba(255, 255, 255, 0.4)',
+                  backdropFilter: 'blur(15px)',
+                  boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
+                }}
+              >
+                <option value="English (US)">English (US)</option>
+                <option value="English (UK)">English (UK)</option>
+                <option value="Spanish">Spanish</option>
+                <option value="French">French</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </Glass3DContainer>
 
-  const updateSetting = (section: keyof SettingsState, key: string, value: any) => {
-    setSettings(prev => ({
-      ...prev,
-      [section]: {
-        ...prev[section],
-        [key]: value
-      }
-    }));
-    setHasChanges(true);
-  };
+      <Glass3DContainer>
+        <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">Display Preferences</h3>
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <label className="text-sm font-medium text-[#1D1D2C]">Auto-refresh Dashboard</label>
+              <p className="text-xs text-[#2C8780]">Automatically refresh data every 5 minutes</p>
+            </div>
+            <button
+              onClick={() => setSettings({ ...settings, autoRefresh: !settings.autoRefresh })}
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                settings.autoRefresh ? 'bg-[#2C8780]' : 'bg-white/30'
+              }`}
+              style={{
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255, 255, 255, 0.4)'
+              }}
+            >
+              <span
+                className={`inline-block h-4 w-4 transform rounded-full bg-white transition ${
+                  settings.autoRefresh ? 'translate-x-6' : 'translate-x-1'
+                }`}
+                style={{ boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}
+              />
+            </button>
+          </div>
+        </div>
+      </Glass3DContainer>
+    </div>
+  );
+}
 
-  const saveSettings = () => {
-    // In a real app, this would save to the backend
-    console.log('Saving settings:', settings);
-    setHasChanges(false);
-    // Add success notification here
-  };
-
-  const resetSettings = () => {
-    // Reset to defaults or reload from server
-    setHasChanges(false);
-  };
+function NotificationSettings() {
+  const [notifications, setNotifications] = useState({
+    emailAlerts: true,
+    smsAlerts: false,
+    browserNotifications: true,
+    slaBreach: true,
+    escalationAlerts: true,
+    weeklyReports: true
+  });
 
   return (
-    <div className="p-6">
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Settings</h1>
-            <p className="text-gray-600">Configure system settings and preferences for the Asset Recovery Console</p>
+    <div className="space-y-6">
+      <Glass3DContainer>
+        <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">Alert Preferences</h3>
+        <div className="space-y-4">
+          {[
+            { key: 'emailAlerts', label: 'Email Alerts', description: 'Receive email notifications for important events' },
+            { key: 'smsAlerts', label: 'SMS Alerts', description: 'Receive text messages for critical alerts' },
+            { key: 'browserNotifications', label: 'Browser Notifications', description: 'Show desktop notifications' },
+            { key: 'slaBreach', label: 'SLA Breach Alerts', description: 'Immediate alerts when SLAs are breached' },
+            { key: 'escalationAlerts', label: 'Escalation Notifications', description: 'Alerts when cases are escalated' },
+            { key: 'weeklyReports', label: 'Weekly Reports', description: 'Receive weekly summary reports' }
+          ].map((item) => (
+            <div key={item.key} className="flex items-center justify-between">
+              <div>
+                <label className="text-sm font-medium text-[#1D1D2C]">{item.label}</label>
+                <p className="text-xs text-[#2C8780]">{item.description}</p>
+              </div>
+              <button
+                onClick={() => setNotifications({ ...notifications, [item.key]: !notifications[item.key as keyof typeof notifications] })}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  notifications[item.key as keyof typeof notifications] ? 'bg-[#2C8780]' : 'bg-white/30'
+                }`}
+                style={{
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255, 255, 255, 0.4)'
+                }}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition ${
+                    notifications[item.key as keyof typeof notifications] ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                  style={{ boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}
+                />
+              </button>
+            </div>
+          ))}
+        </div>
+      </Glass3DContainer>
+    </div>
+  );
+}
+
+function SecuritySettings() {
+  return (
+    <div className="space-y-6">
+      <Glass3DContainer>
+        <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">Authentication & Security</h3>
+        <div className="space-y-4">
+          <div className="flex items-center justify-between p-4 rounded-lg border border-white/20 bg-white/20 backdrop-blur-lg">
+            <div className="flex items-center space-x-3">
+              <Key className="h-5 w-5 text-[#2C8780]" />
+              <div>
+                <p className="text-sm font-medium text-[#1D1D2C]">Two-Factor Authentication</p>
+                <p className="text-xs text-[#2C8780]">Add an extra layer of security</p>
+              </div>
+            </div>
+            <Badge className="bg-green-100/50 text-green-700 border-green-200/50">Enabled</Badge>
           </div>
-          <div className="flex space-x-3">
-            {hasChanges && (
-              <Badge variant="outline" className="text-orange-600 border-orange-200">
-                Unsaved Changes
-              </Badge>
-            )}
-            <Button variant="outline" onClick={resetSettings}>
-              <RefreshCw className="mr-2 h-4 w-4" />
-              Reset
+
+          <div className="flex items-center justify-between p-4 rounded-lg border border-white/20 bg-white/20 backdrop-blur-lg">
+            <div className="flex items-center space-x-3">
+              <Shield className="h-5 w-5 text-[#2C8780]" />
+              <div>
+                <p className="text-sm font-medium text-[#1D1D2C]">API Access</p>
+                <p className="text-xs text-[#2C8780]">Manage API keys and permissions</p>
+              </div>
+            </div>
+            <Button size="sm" className="macos-button text-[#2C8780]">
+              Manage Keys
             </Button>
-            <Button 
-              onClick={saveSettings}
-              disabled={!hasChanges}
-              className="bg-recovery-accent hover:bg-recovery-accent/90"
-            >
-              <Save className="mr-2 h-4 w-4" />
-              Save Changes
+          </div>
+
+          <div className="flex items-center justify-between p-4 rounded-lg border border-white/20 bg-white/20 backdrop-blur-lg">
+            <div className="flex items-center space-x-3">
+              <Users className="h-5 w-5 text-[#2C8780]" />
+              <div>
+                <p className="text-sm font-medium text-[#1D1D2C]">User Permissions</p>
+                <p className="text-xs text-[#2C8780]">Configure role-based access control</p>
+              </div>
+            </div>
+            <Button size="sm" className="macos-button text-[#2C8780]">
+              Manage Roles
             </Button>
           </div>
         </div>
+      </Glass3DContainer>
+    </div>
+  );
+}
+
+export function Settings() {
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-3xl font-light text-[#1D1D2C] mb-2">Settings</h1>
+          <p className="text-[#2C8780]">Configure your IT Asset Recovery Console preferences</p>
+        </div>
+        <div className="flex space-x-3">
+          <Button className="macos-button text-[#1D1D2C]">
+            <RefreshCw className="mr-2 h-4 w-4" />
+            Reset to Defaults
+          </Button>
+          <Button className="bg-gradient-to-r from-[#2C8780] to-[#72F1DC] text-white hover:scale-105 transition-all duration-300" style={{
+            boxShadow: '0 4px 12px rgba(44, 135, 128, 0.3)'
+          }}>
+            <Save className="mr-2 h-4 w-4" />
+            Save Changes
+          </Button>
+        </div>
       </div>
 
-      <Tabs defaultValue="recovery" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-6">
-          <TabsTrigger value="recovery">Recovery</TabsTrigger>
-          <TabsTrigger value="notifications">Notifications</TabsTrigger>
-          <TabsTrigger value="security">Security</TabsTrigger>
-          <TabsTrigger value="integrations">Integrations</TabsTrigger>
-          <TabsTrigger value="system">System</TabsTrigger>
-          <TabsTrigger value="users">Users</TabsTrigger>
-        </TabsList>
+      {/* Settings Tabs */}
+      <Tabs defaultValue="general" className="space-y-6">
+        <Glass3DContainer className="p-0">
+          <TabsList className="w-full p-1 grid grid-cols-3" style={{
+            background: 'transparent',
+            border: 'none'
+          }}>
+            <TabsTrigger 
+              value="general" 
+              className="data-[state=active]:bg-white/30 data-[state=active]:text-[#1D1D2C] text-[#2C8780] rounded-xl transition-all duration-300"
+              style={{
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}
+            >
+              <SettingsIcon className="mr-2 h-4 w-4" />
+              General
+            </TabsTrigger>
+            <TabsTrigger 
+              value="notifications" 
+              className="data-[state=active]:bg-white/30 data-[state=active]:text-[#1D1D2C] text-[#2C8780] rounded-xl transition-all duration-300"
+              style={{
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}
+            >
+              <Bell className="mr-2 h-4 w-4" />
+              Notifications
+            </TabsTrigger>
+            <TabsTrigger 
+              value="security" 
+              className="data-[state=active]:bg-white/30 data-[state=active]:text-[#1D1D2C] text-[#2C8780] rounded-xl transition-all duration-300"
+              style={{
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}
+            >
+              <Shield className="mr-2 h-4 w-4" />
+              Security
+            </TabsTrigger>
+          </TabsList>
+        </Glass3DContainer>
 
-        <TabsContent value="recovery" className="space-y-6">
-          {/* Email Cadence Settings */}
-          <SettingsSection
-            title="Recovery Email Cadence"
-            description="Configure the timing intervals for automated recovery emails"
-            icon={Mail}
-          >
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <FormField 
-                label="Initial Email"
-                description="Days after asset becomes recoverable"
-              >
-                <input
-                  type="number"
-                  value={settings.emailCadence.initial}
-                  onChange={(e) => updateSetting('emailCadence', 'initial', parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-                  min="0"
-                  max="30"
-                />
-              </FormField>
-              
-              <FormField 
-                label="Follow-Up Email"
-                description="Days after initial email"
-              >
-                <input
-                  type="number"
-                  value={settings.emailCadence.followUp}
-                  onChange={(e) => updateSetting('emailCadence', 'followUp', parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-                  min="1"
-                  max="30"
-                />
-              </FormField>
-              
-              <FormField 
-                label="Escalation Email"
-                description="Days after follow-up email"
-              >
-                <input
-                  type="number"
-                  value={settings.emailCadence.escalation}
-                  onChange={(e) => updateSetting('emailCadence', 'escalation', parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-                  min="1"
-                  max="60"
-                />
-              </FormField>
-              
-              <FormField 
-                label="Final Warning"
-                description="Days after escalation email"
-              >
-                <input
-                  type="number"
-                  value={settings.emailCadence.finalWarning}
-                  onChange={(e) => updateSetting('emailCadence', 'finalWarning', parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-                  min="1"
-                  max="90"
-                />
-              </FormField>
-            </div>
-          </SettingsSection>
-
-          {/* Auto-Escalation Settings */}
-          <SettingsSection
-            title="Auto-Escalation Controls"
-            description="Configure automatic escalation rules and thresholds"
-            icon={AlertTriangle}
-          >
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <FormField 
-                  label="Enable Auto-Escalation"
-                  description="Automatically escalate overdue recoveries"
-                >
-                  <div></div>
-                </FormField>
-                <Switch
-                  checked={settings.autoEscalation.enabled}
-                  onCheckedChange={(checked) => updateSetting('autoEscalation', 'enabled', checked)}
-                />
-              </div>
-              
-              <Separator />
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <FormField 
-                  label="Escalation Threshold"
-                  description="Days before auto-escalation triggers"
-                >
-                  <input
-                    type="number"
-                    value={settings.autoEscalation.thresholdDays}
-                    onChange={(e) => updateSetting('autoEscalation', 'thresholdDays', parseInt(e.target.value))}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-                    min="1"
-                    max="180"
-                    disabled={!settings.autoEscalation.enabled}
-                  />
-                </FormField>
-                
-                <FormField 
-                  label="Skip Weekends"
-                  description="Don't count weekends in escalation timing"
-                >
-                  <Switch
-                    checked={settings.autoEscalation.skipWeekends}
-                    onCheckedChange={(checked) => updateSetting('autoEscalation', 'skipWeekends', checked)}
-                    disabled={!settings.autoEscalation.enabled}
-                  />
-                </FormField>
-              </div>
-            </div>
-          </SettingsSection>
-
-          {/* Asset Thresholds */}
-          <SettingsSection
-            title="Asset Age & Value Thresholds"
-            description="Set thresholds for asset categorization and risk alerts"
-            icon={Clock}
-          >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <FormField 
-                label="High-Value Asset Threshold"
-                description="Dollar amount to classify as high-value"
-              >
-                <div className="relative">
-                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
-                  <input
-                    type="number"
-                    value={settings.assetThresholds.highValue}
-                    onChange={(e) => updateSetting('assetThresholds', 'highValue', parseInt(e.target.value))}
-                    className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-                    min="0"
-                  />
-                </div>
-              </FormField>
-              
-              <FormField 
-                label="Critical Age Threshold"
-                description="Days to mark as critical recovery"
-              >
-                <input
-                  type="number"
-                  value={settings.assetThresholds.criticalAge}
-                  onChange={(e) => updateSetting('assetThresholds', 'criticalAge', parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-                  min="1"
-                  max="365"
-                />
-              </FormField>
-              
-              <FormField 
-                label="Risk Alert Threshold"
-                description="Days to trigger security risk alert"
-              >
-                <input
-                  type="number"
-                  value={settings.assetThresholds.riskAlertAge}
-                  onChange={(e) => updateSetting('assetThresholds', 'riskAlertAge', parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-                  min="1"
-                  max="365"
-                />
-              </FormField>
-            </div>
-          </SettingsSection>
+        <TabsContent value="general">
+          <GeneralSettings />
         </TabsContent>
 
-        <TabsContent value="notifications" className="space-y-6">
-          <SettingsSection
-            title="Notification Preferences"
-            description="Configure how and when you receive notifications"
-            icon={Bell}
-          >
-            <div className="space-y-4">
-              {Object.entries(settings.notifications).map(([key, value]) => (
-                <div key={key} className="flex items-center justify-between">
-                  <FormField 
-                    label={key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
-                    description={
-                      key === 'emailNotifications' ? 'Receive email notifications for important events' :
-                      key === 'slackIntegration' ? 'Send notifications to configured Slack channels' :
-                      key === 'pushNotifications' ? 'Browser push notifications for urgent alerts' :
-                      key === 'dailyDigest' ? 'Daily summary of recovery activities' :
-                      'Weekly comprehensive recovery report'
-                    }
-                  >
-                    <div></div>
-                  </FormField>
-                  <Switch
-                    checked={value}
-                    onCheckedChange={(checked) => updateSetting('notifications', key, checked)}
-                  />
-                </div>
-              ))}
-            </div>
-          </SettingsSection>
+        <TabsContent value="notifications">
+          <NotificationSettings />
         </TabsContent>
 
-        <TabsContent value="security" className="space-y-6">
-          <SettingsSection
-            title="Security Settings"
-            description="Configure security policies and access controls"
-            icon={Shield}
-          >
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <FormField 
-                  label="Two-Factor Authentication"
-                  description="Require 2FA for all user accounts"
-                >
-                  <div></div>
-                </FormField>
-                <Switch
-                  checked={settings.security.twoFactorAuth}
-                  onCheckedChange={(checked) => updateSetting('security', 'twoFactorAuth', checked)}
-                />
-              </div>
-              
-              <Separator />
-              
-              <FormField 
-                label="Session Timeout"
-                description="Minutes of inactivity before auto-logout"
-              >
-                <select
-                  value={settings.security.sessionTimeout}
-                  onChange={(e) => updateSetting('security', 'sessionTimeout', parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-                >
-                  <option value={60}>1 hour</option>
-                  <option value={240}>4 hours</option>
-                  <option value={480}>8 hours</option>
-                  <option value={720}>12 hours</option>
-                  <option value={1440}>24 hours</option>
-                </select>
-              </FormField>
-              
-              <div className="flex items-center justify-between">
-                <FormField 
-                  label="Audit Logging"
-                  description="Log all user actions for security auditing"
-                >
-                  <div></div>
-                </FormField>
-                <Switch
-                  checked={settings.security.auditLogging}
-                  onCheckedChange={(checked) => updateSetting('security', 'auditLogging', checked)}
-                />
-              </div>
-            </div>
-          </SettingsSection>
-        </TabsContent>
-
-        <TabsContent value="integrations" className="space-y-6">
-          <SettingsSection
-            title="System Integrations"
-            description="Connect with external systems and services"
-            icon={Zap}
-          >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {Object.entries(settings.integrations).map(([key, value]) => (
-                <Card key={key} className={`p-4 ${value ? 'border-green-200 bg-green-50' : 'border-gray-200'}`}>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${value ? 'bg-green-100' : 'bg-gray-100'}`}>
-                        {value ? (
-                          <CheckCircle className="h-5 w-5 text-green-600" />
-                        ) : (
-                          <Database className="h-5 w-5 text-gray-500" />
-                        )}
-                      </div>
-                      <div>
-                        <h3 className="font-medium text-gray-900">
-                          {key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
-                        </h3>
-                        <p className="text-sm text-gray-500">
-                          {value ? 'Connected' : 'Not Connected'}
-                        </p>
-                      </div>
-                    </div>
-                    <Switch
-                      checked={value}
-                      onCheckedChange={(checked) => updateSetting('integrations', key, checked)}
-                    />
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </SettingsSection>
-        </TabsContent>
-
-        <TabsContent value="system" className="space-y-6">
-          <SettingsSection
-            title="System Preferences"
-            description="Configure regional and display preferences"
-            icon={Globe}
-          >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormField 
-                label="Timezone"
-                description="System timezone for all dates and times"
-              >
-                <select
-                  value={settings.system.timezone}
-                  onChange={(e) => updateSetting('system', 'timezone', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-                >
-                  <option value="America/New_York">Eastern Time (EST/EDT)</option>
-                  <option value="America/Chicago">Central Time (CST/CDT)</option>
-                  <option value="America/Denver">Mountain Time (MST/MDT)</option>
-                  <option value="America/Los_Angeles">Pacific Time (PST/PDT)</option>
-                  <option value="UTC">UTC</option>
-                </select>
-              </FormField>
-              
-              <FormField 
-                label="Date Format"
-                description="How dates are displayed throughout the system"
-              >
-                <select
-                  value={settings.system.dateFormat}
-                  onChange={(e) => updateSetting('system', 'dateFormat', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-                >
-                  <option value="MM/DD/YYYY">MM/DD/YYYY</option>
-                  <option value="DD/MM/YYYY">DD/MM/YYYY</option>
-                  <option value="YYYY-MM-DD">YYYY-MM-DD</option>
-                </select>
-              </FormField>
-              
-              <FormField 
-                label="Language"
-                description="System display language"
-              >
-                <select
-                  value={settings.system.language}
-                  onChange={(e) => updateSetting('system', 'language', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-                >
-                  <option value="en-US">English (US)</option>
-                  <option value="en-GB">English (UK)</option>
-                  <option value="es-ES">Spanish</option>
-                  <option value="fr-FR">French</option>
-                  <option value="de-DE">German</option>
-                </select>
-              </FormField>
-              
-              <FormField 
-                label="Theme"
-                description="Visual appearance preference"
-              >
-                <select
-                  value={settings.system.theme}
-                  onChange={(e) => updateSetting('system', 'theme', e.target.value as 'light' | 'dark' | 'auto')}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-                >
-                  <option value="light">Light</option>
-                  <option value="dark">Dark</option>
-                  <option value="auto">Auto (System)</option>
-                </select>
-              </FormField>
-            </div>
-          </SettingsSection>
-        </TabsContent>
-
-        <TabsContent value="users" className="space-y-6">
-          <SettingsSection
-            title="User Management"
-            description="Manage user roles and permissions"
-            icon={Users}
-          >
-            <div className="text-center py-8">
-              <Users className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">User Management</h3>
-              <p className="text-gray-600 mb-6">
-                User role and permission management would be implemented here with features like:
-              </p>
-              <div className="max-w-md mx-auto text-left space-y-2 text-sm text-gray-600">
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-recovery-accent rounded-full mr-3" />
-                  Role-based access control (Admin, Manager, Analyst)
-                </div>
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-recovery-accent rounded-full mr-3" />
-                  Department-based asset visibility
-                </div>
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-recovery-accent rounded-full mr-3" />
-                  User invitation and onboarding
-                </div>
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-recovery-accent rounded-full mr-3" />
-                  Permission granularity controls
-                </div>
-              </div>
-            </div>
-          </SettingsSection>
+        <TabsContent value="security">
+          <SecuritySettings />
         </TabsContent>
       </Tabs>
     </div>
