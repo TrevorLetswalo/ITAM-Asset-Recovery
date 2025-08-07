@@ -306,7 +306,7 @@ export function SlaBreaches() {
       }));
 
       await sendBulkEmails(recipients);
-      alert(`Escalation emails sent to ${recipients.length} users`);
+      alert(`✅ Escalation emails sent to ${recipients.length} users (Check console for details)`);
     } catch (error) {
       console.error('Error sending bulk escalation:', error);
       alert('Failed to send escalation emails. Please try again.');
