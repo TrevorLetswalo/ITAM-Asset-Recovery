@@ -88,8 +88,18 @@ export const sendReminderEmail = async (templateData: EmailTemplateData): Promis
 
 // Send bulk emails
 export const sendBulkEmails = async (recipients: EmailTemplateData[]): Promise<void> => {
+  if (!isEmailJSConfigured()) {
+    // Mock implementation for demo purposes
+    console.log('MOCK: Bulk escalation emails would be sent to:', recipients.length, 'recipients');
+    recipients.forEach((recipient, index) => {
+      console.log(`MOCK: Email ${index + 1} - To: ${recipient.email}, Asset: ${recipient.assetTag}`);
+    });
+    await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate network delay
+    return;
+  }
+
   try {
-    const promises = recipients.map(recipient => 
+    const promises = recipients.map(recipient =>
       emailjs.send(
         EMAILJS_CONFIG.serviceId,
         'template_escalation',
@@ -97,7 +107,7 @@ export const sendBulkEmails = async (recipients: EmailTemplateData[]): Promise<v
         EMAILJS_CONFIG.publicKey
       )
     );
-    
+
     await Promise.all(promises);
     console.log('Bulk emails sent successfully');
   } catch (error) {
