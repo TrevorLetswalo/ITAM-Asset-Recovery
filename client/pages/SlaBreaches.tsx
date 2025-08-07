@@ -453,7 +453,7 @@ export function SlaBreaches() {
           {filteredAlerts.map((alert) => {
             const asset = breachedAssets.find(a => a.id === alert.assetId);
             return asset ? (
-              <BreachAlertCard key={alert.id} alert={alert} asset={asset} />
+              <BreachAlertCard key={alert.id} alert={alert} asset={asset} onSendReminder={handleSendReminder} />
             ) : null;
           })}
         </div>
