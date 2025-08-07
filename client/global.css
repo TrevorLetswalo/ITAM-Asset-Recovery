@@ -120,51 +120,64 @@
   }
 
   body {
-    @apply bg-background text-foreground font-inter antialiased;
-    background: linear-gradient(to bottom, #ffffff 0%, #e6f4fd 40%, #c3e0f7 100%);
+    @apply text-foreground font-inter antialiased;
+    /* macOS 2026 gradient background */
+    background: linear-gradient(to bottom right, #E8F2FD 0%, #B2CAC9 50%, #72F1DC 100%);
     min-height: 100vh;
     background-attachment: fixed;
-    /* Add subtle abstract wave overlay */
+    /* Add subtle abstract overlay for depth */
     background-image:
-      radial-gradient(ellipse at top left, rgba(255,255,255,0.1) 0%, transparent 50%),
-      radial-gradient(ellipse at bottom right, rgba(44,135,128,0.05) 0%, transparent 50%);
+      radial-gradient(ellipse at top left, rgba(255,255,255,0.2) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(44,135,128,0.1) 0%, transparent 50%);
   }
 
-  /* Typography Scale */
+  /* macOS 2026 Typography - Light & Readable */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-poppins font-semibold;
+    @apply font-inter font-medium;
+    color: #1D1D2C;
   }
 
-  h1 { @apply text-3xl lg:text-4xl tracking-tight; }
-  h2 { @apply text-2xl lg:text-3xl tracking-tight; }
-  h3 { @apply text-xl lg:text-2xl; }
-  h4 { @apply text-lg lg:text-xl; }
-  h5 { @apply text-base lg:text-lg; }
-  h6 { @apply text-sm lg:text-base; }
+  h1 { @apply text-3xl lg:text-4xl tracking-tight font-light; }
+  h2 { @apply text-2xl lg:text-3xl tracking-tight font-light; }
+  h3 { @apply text-xl lg:text-2xl font-normal; }
+  h4 { @apply text-lg lg:text-xl font-normal; }
+  h5 { @apply text-base lg:text-lg font-medium; }
+  h6 { @apply text-sm lg:text-base font-medium; }
+
+  /* Body text for excellent readability */
+  p, span, div {
+    color: #1D1D2C;
+  }
+
+  /* Secondary text labels */
+  .text-secondary {
+    color: #2C8780;
+  }
 }
 
 @layer components {
-  /* Glassmorphism Effects */
+  /* Permanent Glassmorphism Effects - macOS 2026 */
   .glass {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--glass-shadow);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 30px rgba(114, 241, 220, 0.2);
   }
 
   .glass-card {
-    @apply rounded-xl shadow-md;
+    @apply rounded-xl;
     background: rgba(255, 255, 255, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 30px rgba(114, 241, 220, 0.2);
     transition: all 0.3s ease;
   }
 
   .glass-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 40px rgba(114, 241, 220, 0.4);
   }
 
   .glass-nav {
@@ -212,9 +225,19 @@
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
   }
 
-  /* Compact Elements */
+  /* macOS 2026 Container Styles */
+  .macos-container {
+    @apply max-w-screen-xl mx-auto p-6;
+  }
+
+  /* Permanent Glassmorphism Components */
   .compact-card {
-    @apply p-6 rounded-xl glass-card;
+    @apply p-6 rounded-xl;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 30px rgba(114, 241, 220, 0.2);
   }
 
   .compact-kpi {
@@ -223,6 +246,7 @@
 
   .compact-kpi:hover {
     transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 40px rgba(114, 241, 220, 0.4);
   }
 
   /* Sparkline styles */
@@ -256,10 +280,20 @@
     transform: translateY(-1px);
   }
 
-  /* Chart container equal sizing */
+  /* Chart container with permanent glassmorphism */
   .chart-container {
-    @apply glass-card p-6;
+    @apply p-6 rounded-xl;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 30px rgba(114, 241, 220, 0.2);
     min-height: 320px;
+    height: 320px; /* Fixed height for consistency */
+  }
+
+  .chart-container:hover {
+    box-shadow: 0 8px 40px rgba(114, 241, 220, 0.4);
   }
 
   /* Custom scrollbar - macOS style */
