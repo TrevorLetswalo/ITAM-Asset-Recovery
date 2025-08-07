@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { 
-  LayoutDashboard, 
-  Queue, 
-  AlertTriangle, 
-  Mail, 
-  BarChart3, 
+import {
+  LayoutDashboard,
+  List,
+  AlertTriangle,
+  Mail,
+  BarChart3,
   Settings,
   Search,
   Bell,
