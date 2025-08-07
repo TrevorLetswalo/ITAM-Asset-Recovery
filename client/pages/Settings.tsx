@@ -287,11 +287,11 @@ export function Settings() {
           <p className="text-[#2C8780]">Configure your IT Asset Recovery Console preferences</p>
         </div>
         <div className="flex space-x-3">
-          <Button className="macos-button text-[#1D1D2C]">
+          <Button onClick={handleResetToDefaults} className="macos-button text-[#1D1D2C]">
             <RefreshCw className="mr-2 h-4 w-4" />
             Reset to Defaults
           </Button>
-          <Button className="bg-gradient-to-r from-[#2C8780] to-[#72F1DC] text-white hover:scale-105 transition-all duration-300" style={{
+          <Button onClick={handleSaveChanges} className="bg-gradient-to-r from-[#2C8780] to-[#72F1DC] text-white hover:scale-105 transition-all duration-300" style={{
             boxShadow: '0 4px 12px rgba(44, 135, 128, 0.3)'
           }}>
             <Save className="mr-2 h-4 w-4" />
