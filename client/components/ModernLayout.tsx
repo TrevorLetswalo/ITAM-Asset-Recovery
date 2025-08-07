@@ -149,7 +149,7 @@ export function ModernLayout({ children }: LayoutProps) {
                     <>
                       <div className="ml-3 flex-1">
                         <div className="flex items-center justify-between">
-                          <span className="font-medium">{item.name}</span>
+                          <span className="font-medium text-white">{item.name}</span>
                           {item.badge && (
                             <Badge className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
                               {item.badge}
