@@ -248,27 +248,29 @@ function AssetTypeChart() {
   ];
 
   return (
-    <Card className="glass-card shadow-medium">
+    <Card className="chart-container">
       <CardHeader className="pb-4">
         <CardTitle className="text-lg font-poppins font-semibold text-gray-900 flex items-center">
           <PieChart className="mr-2 h-5 w-5 text-recovery-accent" />
           Assets by Type
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex-1 flex flex-col justify-center">
         <div className="space-y-6">
           {chartData.map((item, index) => (
             <div key={item.name} className="group">
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between mb-3">
                 <span className="text-sm font-medium text-gray-700">{item.name}</span>
                 <div className="flex items-center space-x-2">
                   <span className="text-sm font-semibold text-gray-900">{item.value}</span>
-                  <span className="text-xs text-gray-500">({item.percentage}%)</span>
+                  <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                    {item.percentage}%
+                  </span>
                 </div>
               </div>
-              <div className="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
+              <div className="w-full bg-gray-100 rounded-full h-4 overflow-hidden shadow-soft">
                 <div
-                  className={`h-3 rounded-full ${item.color} transition-all duration-1000 ease-out group-hover:scale-x-105 transform-gpu`}
+                  className={`h-4 rounded-full ${item.color} transition-all duration-1000 ease-out group-hover:scale-x-105 transform-gpu shadow-inner`}
                   style={{
                     width: `${item.percentage}%`,
                     animationDelay: `${index * 200}ms`,
