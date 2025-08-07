@@ -515,40 +515,39 @@ export function ModernDashboard() {
         <RecoveryProgressChart />
       </div>
 
-      {/* Recent Activity and SLA Compliance Row - Equal sizing */}
+      {/* Recent Activity and SLA Compliance Row - Fixed alignment and sizing */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Enhanced Recent Activity Section */}
-        <Glass3DCard style={{ minHeight: '420px', height: '420px' }}>
-          <div className="pb-4">
+        <Glass3DCard className="flex flex-col h-[420px]">
+          <div className="flex-shrink-0 pb-4 border-b border-white/10">
             <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
               <Clock className="mr-2 h-5 w-5 text-[#2C8780]" />
               Recent Activity
             </h3>
           </div>
-          <div className="flex-1 overflow-hidden">
+          <div className="flex-1 overflow-hidden pt-2">
             <div className="h-full overflow-y-auto">
               <table className="w-full">
-                <thead>
-                  <tr className="border-b border-white/20 sticky top-0 bg-white/10 backdrop-blur-lg">
-                    <th className="text-left py-3 text-sm font-medium text-[#2C8780]">Asset</th>
-                    <th className="text-left py-3 text-sm font-medium text-[#2C8780]">User</th>
-                    <th className="text-left py-3 text-sm font-medium text-[#2C8780]">Status</th>
-                    <th className="text-left py-3 text-sm font-medium text-[#2C8780]">Days</th>
-                    <th className="text-left py-3 text-sm font-medium text-[#2C8780]">Trend</th>
+                <thead className="sticky top-0 z-10">
+                  <tr className="border-b border-white/20 bg-white/10 backdrop-blur-lg">
+                    <th className="text-left py-2 text-xs font-medium text-[#2C8780]">Asset</th>
+                    <th className="text-left py-2 text-xs font-medium text-[#2C8780]">User</th>
+                    <th className="text-left py-2 text-xs font-medium text-[#2C8780]">Status</th>
+                    <th className="text-left py-2 text-xs font-medium text-[#2C8780]">Days</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {allMockAssets.slice(0, 8).map((asset, index) => (
-                    <tr key={asset.id} className="border-b border-white/10 hover:bg-white/10 transition-colors">
-                      <td className="py-3">
+                  {allMockAssets.slice(0, 6).map((asset, index) => (
+                    <tr key={asset.id} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                      <td className="py-2.5">
                         <div>
-                          <p className="text-sm font-medium text-[#1D1D2C]">{asset.asset_tag}</p>
-                          <p className="text-xs text-[#2C8780]">{asset.asset_type}</p>
+                          <p className="text-sm font-medium text-[#1D1D2C] truncate">{asset.asset_tag}</p>
+                          <p className="text-xs text-[#2C8780] truncate">{asset.asset_type}</p>
                         </div>
                       </td>
-                      <td className="py-3 text-sm text-[#1D1D2C]">{asset.user_name}</td>
-                      <td className="py-3">
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium backdrop-blur-lg border ${
+                      <td className="py-2.5 text-sm text-[#1D1D2C] truncate max-w-[80px]">{asset.user_name}</td>
+                      <td className="py-2.5">
+                        <span className={`px-2 py-1 rounded-lg text-xs font-medium backdrop-blur-lg border ${
                           asset.status === 'Completed' ? 'bg-green-100/50 text-green-700 border-green-200/30' :
                           asset.sla_stage === 'Breach' ? 'bg-red-100/50 text-red-700 border-red-200/30' :
                           'bg-blue-100/50 text-blue-700 border-blue-200/30'
@@ -556,16 +555,7 @@ export function ModernDashboard() {
                           {asset.status}
                         </span>
                       </td>
-                      <td className="py-3 text-sm text-[#1D1D2C]">{asset.recovery_age}d</td>
-                      <td className="py-3">
-                        {asset.recovery_age > 30 ? (
-                          <TrendingUp className="h-4 w-4 text-red-400" />
-                        ) : asset.recovery_age > 14 ? (
-                          <TrendingDown className="h-4 w-4 text-yellow-400" />
-                        ) : (
-                          <TrendingDown className="h-4 w-4 text-green-400" />
-                        )}
-                      </td>
+                      <td className="py-2.5 text-sm text-[#1D1D2C]">{asset.recovery_age}d</td>
                     </tr>
                   ))}
                 </tbody>
@@ -574,24 +564,24 @@ export function ModernDashboard() {
           </div>
         </Glass3DCard>
 
-        {/* SLA Compliance Card - Enhanced and same size */}
-        <Glass3DCard style={{ minHeight: '420px', height: '420px' }}>
-          <div className="pb-4">
+        {/* SLA Compliance Card - Fixed layout */}
+        <Glass3DCard className="flex flex-col h-[420px]">
+          <div className="flex-shrink-0 pb-4 border-b border-white/10">
             <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
               <CheckCircle className="mr-2 h-5 w-5 text-[#2C8780]" />
               SLA Compliance
             </h3>
           </div>
-          <div className="flex-1 flex flex-col items-center justify-center">
-            {/* Main donut chart */}
-            <div className="relative mb-6">
-              <div className="relative w-44 h-44 mb-4">
-                <svg className="w-44 h-44 transform -rotate-90 drop-shadow-lg" viewBox="0 0 100 100">
+          <div className="flex-1 flex flex-col items-center justify-center pt-4">
+            {/* Main donut chart - centered */}
+            <div className="flex flex-col items-center justify-center mb-4">
+              <div className="relative w-32 h-32 mb-3">
+                <svg className="w-32 h-32 transform -rotate-90 drop-shadow-lg" viewBox="0 0 100 100">
                   {/* Background circle */}
                   <circle
                     cx="50"
                     cy="50"
-                    r="42"
+                    r="40"
                     stroke="currentColor"
                     strokeWidth="8"
                     fill="transparent"
@@ -601,15 +591,15 @@ export function ModernDashboard() {
                   <circle
                     cx="50"
                     cy="50"
-                    r="42"
+                    r="40"
                     stroke="url(#gradient)"
                     strokeWidth="8"
                     fill="transparent"
-                    strokeDasharray={2 * Math.PI * 42}
-                    strokeDashoffset={2 * Math.PI * 42 - (slaCompliance / 100) * 2 * Math.PI * 42}
+                    strokeDasharray={2 * Math.PI * 40}
+                    strokeDashoffset={2 * Math.PI * 40 - (slaCompliance / 100) * 2 * Math.PI * 40}
                     strokeLinecap="round"
                     className="transition-all duration-2000 ease-out drop-shadow-sm"
-                    style={{ filter: 'drop-shadow(0 0 8px rgba(44, 135, 128, 0.4))' }}
+                    style={{ filter: 'drop-shadow(0 0 6px rgba(44, 135, 128, 0.4))' }}
                   />
                   <defs>
                     <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -620,49 +610,49 @@ export function ModernDashboard() {
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <span className="text-4xl font-light text-[#1D1D2C]">
+                    <span className="text-2xl font-light text-[#1D1D2C]">
                       <AnimatedCounter value={slaCompliance} suffix="%" />
                     </span>
-                    <p className="text-sm text-[#2C8780] font-medium">Compliant</p>
+                    <p className="text-xs text-[#2C8780] font-medium">Compliant</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Compliance stats */}
-            <div className="w-full space-y-4">
-              <div className="bg-white/50 backdrop-blur-lg rounded-2xl p-4 border border-white/30" style={{
+            {/* Compliance stats - properly spaced */}
+            <div className="w-full space-y-3 px-2">
+              <div className="bg-white/50 backdrop-blur-lg rounded-xl p-3 border border-white/30" style={{
                 boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
               }}>
-                <p className="text-sm text-[#1D1D2C] font-medium text-center mb-3">
+                <p className="text-xs text-[#1D1D2C] font-medium text-center mb-2">
                   {allMockAssets.filter(a => a.sla_stage !== 'Breach').length} of {allMockAssets.length} assets on track
                 </p>
-                <div className="flex items-center justify-center space-x-6 text-xs">
+                <div className="flex items-center justify-center space-x-4 text-xs">
                   <div className="flex items-center">
-                    <div className="w-3 h-3 bg-green-500 rounded-full mr-2" style={{
-                      boxShadow: '0 0 6px rgba(34, 197, 94, 0.5)'
+                    <div className="w-2 h-2 bg-green-500 rounded-full mr-1.5" style={{
+                      boxShadow: '0 0 4px rgba(34, 197, 94, 0.5)'
                     }} />
                     <span className="text-[#1D1D2C] font-medium">On Track</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-3 h-3 bg-red-500 rounded-full mr-2" style={{
-                      boxShadow: '0 0 6px rgba(239, 68, 68, 0.5)'
+                    <div className="w-2 h-2 bg-red-500 rounded-full mr-1.5" style={{
+                      boxShadow: '0 0 4px rgba(239, 68, 68, 0.5)'
                     }} />
                     <span className="text-[#1D1D2C] font-medium">Breach</span>
                   </div>
                 </div>
               </div>
 
-              {/* Additional SLA metrics */}
-              <div className="grid grid-cols-2 gap-3">
-                <div className="bg-white/30 backdrop-blur-lg rounded-xl p-3 border border-white/20 text-center">
-                  <div className="text-lg font-light text-[#1D1D2C]">
+              {/* Additional SLA metrics - compact */}
+              <div className="grid grid-cols-2 gap-2">
+                <div className="bg-white/30 backdrop-blur-lg rounded-lg p-2.5 border border-white/20 text-center">
+                  <div className="text-base font-light text-[#1D1D2C]">
                     {Math.round((allMockAssets.filter(a => a.recovery_age <= 14).length / allMockAssets.length) * 100)}%
                   </div>
                   <div className="text-xs text-[#2C8780]">≤ 14 Days</div>
                 </div>
-                <div className="bg-white/30 backdrop-blur-lg rounded-xl p-3 border border-white/20 text-center">
-                  <div className="text-lg font-light text-[#1D1D2C]">
+                <div className="bg-white/30 backdrop-blur-lg rounded-lg p-2.5 border border-white/20 text-center">
+                  <div className="text-base font-light text-[#1D1D2C]">
                     {allMockAssets.filter(a => a.sla_stage === 'Breach').length}
                   </div>
                   <div className="text-xs text-[#2C8780]">In Breach</div>
