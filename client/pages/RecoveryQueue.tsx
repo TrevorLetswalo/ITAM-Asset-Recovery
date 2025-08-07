@@ -328,8 +328,8 @@ export function RecoveryQueue() {
               <option value="Loaner">Loaner</option>
             </select>
 
-            <Button 
-              onClick={exportToCSV} 
+            <Button
+              onClick={handleExportCSV}
               className="macos-button text-[#1D1D2C] flex items-center"
             >
               <Download className="mr-2 h-4 w-4" />
