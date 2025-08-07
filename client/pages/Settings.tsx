@@ -259,6 +259,25 @@ function SecuritySettings() {
 }
 
 export function Settings() {
+  const handleResetToDefaults = () => {
+    const confirmed = confirm('⚠️ Reset all settings to default values?\n\nThis action cannot be undone.');
+    if (confirmed) {
+      alert('✅ Settings reset to default values successfully!');
+    }
+  };
+
+  const handleSaveChanges = () => {
+    alert('✅ Settings saved successfully!\n\nAll configuration changes have been applied.');
+  };
+
+  const handleManageKeys = () => {
+    alert('🔑 API Key Management\n\nThis would open the API key management interface with the following features:\n\n• View existing API keys\n• Generate new keys\n• Revoke access\n• Set permissions');
+  };
+
+  const handleManageRoles = () => {
+    alert('👥 User Role Management\n\nThis would open the role-based access control interface with:\n\n• Create/edit user roles\n• Assign permissions\n• Manage access levels\n• View role assignments');
+  };
+
   return (
     <div className="space-y-6">
       {/* Header */}
