@@ -377,17 +377,17 @@ export function ModernDashboard() {
       {/* Enhanced Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-poppins font-bold text-white mb-2">
+          <h1 className="text-3xl font-poppins font-bold text-[#1D1D2C] mb-2">
             IT Asset Recovery Dashboard
           </h1>
-          <p className="text-white/80">Monitor and manage asset recovery operations with real-time insights</p>
+          <p className="text-gray-700">Monitor and manage asset recovery operations with real-time insights</p>
         </div>
         <div className="flex space-x-3">
-          <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
+          <Button variant="outline" size="sm" className="bg-white/30 border-gray-300 text-gray-700 hover:bg-white/50">
             <Calendar className="mr-2 h-4 w-4" />
             Last 30 Days
           </Button>
-          <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
+          <Button variant="outline" size="sm" className="bg-white/30 border-gray-300 text-gray-700 hover:bg-white/50">
             <RefreshCw className="mr-2 h-4 w-4" />
             Refresh
           </Button>
