@@ -636,9 +636,18 @@ export function EmailTemplates() {
                       </DialogContent>
                     </Dialog>
                     
-                    <Button variant="outline" size="sm">
-                      <Send className="mr-2 h-4 w-4" />
-                      Test Send
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => sendTestEmail(template)}
+                      disabled={sendingTestEmail === template.id}
+                    >
+                      {sendingTestEmail === template.id ? (
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      ) : (
+                        <Send className="mr-2 h-4 w-4" />
+                      )}
+                      {sendingTestEmail === template.id ? 'Sending...' : 'Test Send'}
                     </Button>
                   </div>
                 </CardContent>
