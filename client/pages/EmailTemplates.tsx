@@ -295,6 +295,44 @@ export function EmailTemplates() {
   useEffect(() => {
     initEmailJS();
   }, []);
+
+  const handleExportTemplates = () => {
+    const templateData = mockEmailTemplates.map(template => ({
+      'Template Name': template.name,
+      'Category': template.category,
+      'Type': template.type,
+      'Subject': template.subject,
+      'Content': template.content,
+      'Last Modified': template.lastModified,
+      'Usage Count': template.usageCount
+    }));
+
+    const csvRows = [];
+    const headers = Object.keys(templateData[0]);
+    csvRows.push(headers.join(","));
+
+    for (const row of templateData) {
+      const values = headers.map(header => `"${(row as any)[header] ?? ''}"`);
+      csvRows.push(values.join(","));
+    }
+
+    const csvContent = csvRows.join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `email_templates_${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleNewTemplate = () => {
+    const templateName = prompt('Enter template name:');
+    if (templateName) {
+      alert(`Creating new template: "${templateName}"\n\nThis would open a template editor in a full application.`);
+    }
+  };
   const [searchTerm, setSearchTerm] = useState('');
 
   const filteredTemplates = mockTemplates.filter(template => {
