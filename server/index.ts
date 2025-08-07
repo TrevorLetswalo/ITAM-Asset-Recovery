@@ -25,5 +25,8 @@ export function createServer() {
   app.post("/api/email/test", sendTestEmail);
   app.get("/api/email/history", getEmailHistory);
 
+  // Chat API routes
+  app.use("/api", chatRouter);
+
   return app;
 }
