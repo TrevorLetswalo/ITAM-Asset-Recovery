@@ -10,11 +10,21 @@ interface SelfServiceReturnCenterProps {
 }
 
 export default function SelfServiceReturnCenter({ className = "" }: SelfServiceReturnCenterProps) {
-  const [ticketId, setTicketId] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [assetTag, setAssetTag] = useState('');
   const [serialNumber, setSerialNumber] = useState('');
+  const [reason, setReason] = useState('');
   const [recoveryType, setRecoveryType] = useState('');
   const [comments, setComments] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionSuccess, setSubmissionSuccess] = useState(false);
+  const [generatedTicketId, setGeneratedTicketId] = useState('');
+
+  // Initialize EmailJS
+  useEffect(() => {
+    initEmailJS();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
