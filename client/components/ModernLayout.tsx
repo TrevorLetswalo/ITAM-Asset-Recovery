@@ -284,7 +284,7 @@ export function ModernLayout({ children }: LayoutProps) {
 
             {/* Profile Dropdown */}
             <div className="relative">
-              <Button variant="ghost" size="sm" className="flex items-center space-x-2 text-[#1D1D2C] hover:text-[#2C8780] bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl">
+              <Button variant="ghost" size="sm" onClick={handleProfileMenu} className="flex items-center space-x-2 text-[#1D1D2C] hover:text-[#2C8780] bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl">
                 <div className="w-8 h-8 bg-gradient-to-br from-recovery-accent to-recovery-highlight rounded-xl flex items-center justify-center shadow-soft">
                   <User className="h-4 w-4 text-white" />
                 </div>
