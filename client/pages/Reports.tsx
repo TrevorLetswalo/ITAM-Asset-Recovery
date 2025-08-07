@@ -192,11 +192,11 @@ function ReportCard({ report }: { report: ReportCard }) {
           </div>
         </div>
         <div className="flex space-x-2">
-          <Button size="sm" className="macos-button text-[#2C8780]">
+          <Button size="sm" onClick={handleViewReport} className="macos-button text-[#2C8780]">
             <Eye className="h-3 w-3 mr-1" />
             View
           </Button>
-          <Button size="sm" className="macos-button text-[#2C8780]">
+          <Button size="sm" onClick={handleExportReport} className="macos-button text-[#2C8780]">
             <Download className="h-3 w-3 mr-1" />
             Export
           </Button>
