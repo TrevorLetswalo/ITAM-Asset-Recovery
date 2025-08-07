@@ -457,11 +457,11 @@ export function ModernDashboard() {
           <p className="text-[#2C8780]">Monitor and manage asset recovery operations with real-time insights</p>
         </div>
         <div className="flex space-x-3">
-          <Button variant="outline" size="sm" className="macos-button text-[#1D1D2C]">
+          <Button variant="outline" size="sm" onClick={handleDateRangeChange} className="macos-button text-[#1D1D2C]">
             <Calendar className="mr-2 h-4 w-4" />
             Last 30 Days
           </Button>
-          <Button variant="outline" size="sm" className="macos-button text-[#1D1D2C]">
+          <Button variant="outline" size="sm" onClick={handleRefreshDashboard} className="macos-button text-[#1D1D2C]">
             <RefreshCw className="mr-2 h-4 w-4" />
             Refresh
           </Button>
