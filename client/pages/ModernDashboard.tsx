@@ -128,8 +128,8 @@ function CompactKpiCard({
 
         {/* Title and Value */}
         <div className="space-y-2 mb-4">
-          <p className="text-sm font-medium text-gray-600">{title}</p>
-          <p className="text-3xl font-bold font-poppins text-gray-900 tracking-tight">
+          <p className="text-sm font-medium text-white/80">{title}</p>
+          <p className="text-3xl font-bold font-poppins text-white tracking-tight">
             <AnimatedCounter value={value} />
           </p>
         </div>
