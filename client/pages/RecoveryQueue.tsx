@@ -233,7 +233,7 @@ export function RecoveryQueue() {
         reason: `Asset recovery reminder - ${asset.recovery_type}`,
         ticketId: `REM-${asset.id}`
       });
-      alert(`Reminder email sent to ${asset.user_name}`);
+      alert(`✅ Reminder email sent to ${asset.user_name} (Check console for details)`);
     } catch (error) {
       console.error('Error sending email:', error);
       alert('Failed to send reminder email. Please try again.');
