@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
 import { sendTestEmail, getEmailHistory } from "./routes/email";
+import chatRouter from "./routes/chat";
 
 export function createServer() {
   const app = express();
