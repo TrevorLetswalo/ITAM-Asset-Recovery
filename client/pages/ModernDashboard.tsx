@@ -200,7 +200,7 @@ function RecoveryProgressChart() {
               <div className="w-full flex flex-col items-center space-y-1 mb-3">
                 {/* Recovered bar */}
                 <div
-                  className="w-7 bg-gradient-to-t from-recovery-accent to-recovery-highlight rounded-t-xl transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-medium"
+                  className="w-7 bg-gradient-to-t from-[#2C8780] to-[#72F1DC] rounded-t-xl transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-medium"
                   style={{
                     height: `${(data.recovered / maxValue) * 100}px`,
                     animationDelay: `${index * 150}ms`,
@@ -208,7 +208,7 @@ function RecoveryProgressChart() {
                 />
                 {/* Pending bar */}
                 <div
-                  className="w-7 bg-gradient-to-t from-recovery-secondary to-recovery-secondary/70 rounded-b-xl transition-all duration-1000 ease-out hover:scale-105"
+                  className="w-7 bg-gradient-to-t from-[#B2CAC9] to-[#E8F2FD] rounded-b-xl transition-all duration-1000 ease-out hover:scale-105"
                   style={{
                     height: `${(data.pending / maxValue) * 60}px`,
                     animationDelay: `${index * 150}ms`,
