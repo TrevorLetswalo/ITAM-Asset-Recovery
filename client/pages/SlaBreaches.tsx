@@ -122,6 +122,16 @@ function BreachAlertCard({
   asset: typeof allMockAssets[0];
   onSendReminder: (asset: any) => void;
 }) {
+  const handleCallUser = () => {
+    alert(`📞 Calling ${asset.user_name}\n\nPhone: ${asset.user_name.toLowerCase().replace(' ', '.')}@company.com\nAsset: ${asset.asset_tag}\n\nThis would initiate a phone call or open the dialer application.`);
+  };
+
+  const handleEscalate = () => {
+    const confirmed = confirm(`⚠️ Escalate ${asset.asset_tag} to management?\n\nThis will:\n• Notify management team\n• Create high-priority ticket\n• Schedule follow-up actions\n\nContinue?`);
+    if (confirmed) {
+      alert(`🚨 Asset ${asset.asset_tag} escalated successfully!\n\nManagement has been notified and a high-priority ticket has been created.`);
+    }
+  };
   const priorityConfig = PRIORITY_LEVELS[alert.riskLevel];
   const Icon = priorityConfig.icon;
 
