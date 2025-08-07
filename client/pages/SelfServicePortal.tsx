@@ -627,7 +627,7 @@ export function SelfServicePortal() {
         </TabsList>
 
         <TabsContent value="submit">
-          <SubmitReturnForm />
+          <SelfServiceReturnCenter />
         </TabsContent>
 
         <TabsContent value="track">
