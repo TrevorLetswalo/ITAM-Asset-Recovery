@@ -62,16 +62,24 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // IT Asset Recovery Console Theme
-        'recovery-primary': '#1D1D2C',
-        'recovery-accent': '#2C8780',
-        'recovery-soft': '#72F1DC',
-        'recovery-bg': '#E8F2FD',
-        'recovery-secondary': '#B2CAC9',
-        'recovery-white': '#FFFFFF',
-        'recovery-dark': {
-          DEFAULT: '#1D1D2C',
-          light: '#2A2A3E',
+        // Modern IT Asset Recovery Design System
+        'recovery': {
+          'primary': '#1D1D2C',      // Deep Blue-Black
+          'accent': '#2C8780',       // Modern Teal
+          'secondary': '#B2CAC9',    // Soft Sage
+          'bg': '#E8F2FD',          // Light Ice Blue
+          'highlight': '#72F1DC',    // Electric Mint
+          'white': '#FFFFFF',
+          'dark': {
+            DEFAULT: '#1D1D2C',
+            light: '#2A2A3E',
+            deep: '#0F0F17',
+          },
+        },
+        'glass': {
+          'white': 'rgba(255, 255, 255, 0.1)',
+          'border': 'rgba(255, 255, 255, 0.2)',
+          'dark': 'rgba(0, 0, 0, 0.2)',
         },
         'sla': {
           'green': '#10B981',
