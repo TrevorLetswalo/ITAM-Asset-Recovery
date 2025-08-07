@@ -207,7 +207,7 @@ export function ModernLayout({ children }: LayoutProps) {
       {/* Main content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Enhanced Top Navigation */}
-        <header className="glass-card border-b border-glass-border h-20 flex items-center justify-between px-6 shadow-soft">
+        <header className="bg-white/20 backdrop-blur-lg border-b border-white/30 h-20 flex items-center justify-between px-6 rounded-none" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}}>
           {/* Left Section */}
           <div className="flex items-center space-x-4">
             {/* Mobile menu button */}
@@ -220,13 +220,14 @@ export function ModernLayout({ children }: LayoutProps) {
               <Menu className="h-5 w-5" />
             </Button>
 
-            {/* Enhanced Search */}
+            {/* Enhanced Search with permanent glassmorphism */}
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#2C8780]" />
               <input
                 type="text"
                 placeholder="Search tickets, users, asset tags..."
-                className="w-80 pl-12 pr-4 py-3 bg-white/50 backdrop-blur-sm border border-white/20 rounded-xl focus:ring-2 focus:ring-recovery-accent focus:border-transparent shadow-soft transition-all duration-200 focus:shadow-medium"
+                className="w-80 pl-12 pr-4 py-3 bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent transition-all duration-200"
+                style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}}
               />
             </div>
           </div>
@@ -238,7 +239,7 @@ export function ModernLayout({ children }: LayoutProps) {
               variant="ghost"
               size="sm"
               onClick={toggleDarkMode}
-              className="relative text-gray-600 hover:text-gray-900"
+              className="relative text-[#2C8780] hover:text-[#1D1D2C] bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl"
             >
               {darkMode ? (
                 <Sun className="h-5 w-5" />
@@ -248,10 +249,10 @@ export function ModernLayout({ children }: LayoutProps) {
             </Button>
 
             {/* Notifications */}
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className="relative text-gray-600 hover:text-gray-900"
+            <Button
+              variant="ghost"
+              size="sm"
+              className="relative text-[#2C8780] hover:text-[#1D1D2C] bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl"
             >
               <Bell className="h-5 w-5" />
               <span className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs rounded-full flex items-center justify-center shadow-medium">
@@ -261,23 +262,23 @@ export function ModernLayout({ children }: LayoutProps) {
 
             {/* Profile Dropdown */}
             <div className="relative">
-              <Button variant="ghost" size="sm" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900">
+              <Button variant="ghost" size="sm" className="flex items-center space-x-2 text-[#1D1D2C] hover:text-[#2C8780] bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl">
                 <div className="w-8 h-8 bg-gradient-to-br from-recovery-accent to-recovery-highlight rounded-xl flex items-center justify-center shadow-soft">
                   <User className="h-4 w-4 text-white" />
                 </div>
                 <div className="hidden md:block text-left">
-                  <span className="text-sm font-medium">Trevor Letswalo</span>
-                  <span className="text-xs text-gray-500 block">Administrator</span>
+                  <span className="text-sm font-medium text-[#1D1D2C]">Trevor Letswalo</span>
+                  <span className="text-xs text-[#2C8780] block">Administrator</span>
                 </div>
-                <ChevronDown className="h-4 w-4" />
+                <ChevronDown className="h-4 w-4 text-[#2C8780]" />
               </Button>
             </div>
           </div>
         </header>
 
-        {/* Page content with enhanced styling */}
+        {/* Page content with macOS 2026 container constraints */}
         <main className="flex-1 overflow-auto">
-          <div className="h-full">
+          <div className="macos-container min-h-full">
             {children}
           </div>
         </main>
