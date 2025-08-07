@@ -366,47 +366,6 @@ function SlaComplianceDonut() {
   );
 }
 
-// Self-Service Quick Actions
-function SelfServiceActions() {
-  const quickActions = [
-    { title: 'Submit Return', icon: Zap, color: 'bg-green-500', description: 'Report asset return' },
-    { title: 'Track Status', icon: Activity, color: 'bg-blue-500', description: 'Check return progress' },
-    { title: 'Get Help', icon: Users, color: 'bg-purple-500', description: 'Contact support' },
-  ];
-
-  return (
-    <Card className="glass-card shadow-medium">
-      <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-poppins font-semibold text-gray-900 flex items-center">
-          <Zap className="mr-2 h-5 w-5 text-recovery-accent" />
-          Self-Service Portal
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="grid grid-cols-1 gap-3">
-          {quickActions.map((action, index) => {
-            const Icon = action.icon;
-            return (
-              <Button
-                key={action.title}
-                variant="outline"
-                className="p-4 h-auto flex items-center space-x-3 hover:shadow-medium transition-all duration-200 border-gray-200 hover:border-recovery-accent/30"
-              >
-                <div className={`w-10 h-10 ${action.color} rounded-lg flex items-center justify-center text-white shadow-soft`}>
-                  <Icon className="h-5 w-5" />
-                </div>
-                <div className="flex-1 text-left">
-                  <p className="font-medium text-gray-900">{action.title}</p>
-                  <p className="text-xs text-gray-500">{action.description}</p>
-                </div>
-              </Button>
-            );
-          })}
-        </div>
-      </CardContent>
-    </Card>
-  );
-}
 
 export function ModernDashboard() {
   const stats = getDashboardStats();
