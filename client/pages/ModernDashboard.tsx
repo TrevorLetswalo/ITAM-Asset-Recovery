@@ -182,34 +182,34 @@ function RecoveryProgressChart() {
   const maxValue = Math.max(...progressData.map(d => d.recovered + d.pending));
 
   return (
-    <Card className="glass-card shadow-medium">
+    <Card className="chart-container">
       <CardHeader className="pb-4">
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg font-poppins font-semibold text-gray-900 flex items-center">
             <BarChart3 className="mr-2 h-5 w-5 text-recovery-accent" />
             Recovery Progress
           </CardTitle>
-          <Badge variant="outline" className="text-xs">Last 7 Days</Badge>
+          <Badge variant="outline" className="text-xs shadow-soft">Last 7 Days</Badge>
         </div>
       </CardHeader>
-      <CardContent>
-        <div className="h-48 flex items-end justify-between space-x-3">
+      <CardContent className="flex-1 flex flex-col">
+        <div className="flex-1 flex items-end justify-between space-x-3 mb-4" style={{ minHeight: '180px' }}>
           {progressData.map((data, index) => (
             <div key={data.day} className="flex flex-col items-center flex-1 group">
               <div className="w-full flex flex-col items-center space-y-1 mb-3">
                 {/* Recovered bar */}
                 <div
-                  className="w-8 bg-gradient-to-t from-recovery-accent to-recovery-highlight rounded-t-lg transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-medium"
+                  className="w-7 bg-gradient-to-t from-recovery-accent to-recovery-highlight rounded-t-xl transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-medium"
                   style={{
-                    height: `${(data.recovered / maxValue) * 120}px`,
+                    height: `${(data.recovered / maxValue) * 100}px`,
                     animationDelay: `${index * 150}ms`,
                   }}
                 />
                 {/* Pending bar */}
                 <div
-                  className="w-8 bg-gradient-to-t from-recovery-secondary to-recovery-secondary/70 rounded-b-lg transition-all duration-1000 ease-out hover:scale-105"
+                  className="w-7 bg-gradient-to-t from-recovery-secondary to-recovery-secondary/70 rounded-b-xl transition-all duration-1000 ease-out hover:scale-105"
                   style={{
-                    height: `${(data.pending / maxValue) * 80}px`,
+                    height: `${(data.pending / maxValue) * 60}px`,
                     animationDelay: `${index * 150}ms`,
                   }}
                 />
@@ -221,13 +221,13 @@ function RecoveryProgressChart() {
             </div>
           ))}
         </div>
-        <div className="flex justify-center space-x-6 mt-6 pt-4 border-t border-gray-100">
+        <div className="flex justify-center space-x-6 pt-4 border-t border-gray-100">
           <div className="flex items-center">
-            <div className="w-3 h-3 bg-gradient-to-r from-recovery-accent to-recovery-highlight rounded mr-2" />
+            <div className="w-3 h-3 bg-gradient-to-r from-recovery-accent to-recovery-highlight rounded-full mr-2 shadow-soft" />
             <span className="text-sm text-gray-600 font-medium">Recovered</span>
           </div>
           <div className="flex items-center">
-            <div className="w-3 h-3 bg-recovery-secondary rounded mr-2" />
+            <div className="w-3 h-3 bg-recovery-secondary rounded-full mr-2 shadow-soft" />
             <span className="text-sm text-gray-600 font-medium">Pending</span>
           </div>
         </div>
