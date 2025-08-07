@@ -11,11 +11,29 @@ const firebaseConfig = {
   appId: "YOUR_APP_ID"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// Check if Firebase is properly configured
+const isFirebaseConfigured = () => {
+  return firebaseConfig.apiKey !== "YOUR_API_KEY" &&
+         firebaseConfig.projectId !== "YOUR_PROJECT_ID";
+};
 
-// Initialize Firestore
-export const db = getFirestore(app);
+// Initialize Firebase (only if properly configured)
+let app: any = null;
+let db: any = null;
+
+if (isFirebaseConfigured()) {
+  try {
+    app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+    console.log('Firebase initialized successfully');
+  } catch (error) {
+    console.warn('Failed to initialize Firebase:', error);
+  }
+} else {
+  console.log('Firebase running in mock mode - update configuration in lib/firebase.ts');
+}
+
+export { db };
 
 // Recovery ticket interface
 export interface RecoveryTicket {
