@@ -1,27 +1,61 @@
 import React, { useState, useMemo } from 'react';
 import { Search, Filter, Download, Eye, Mail, AlertCircle } from 'lucide-react';
 import { allMockAssets, type AssetRecord } from '@shared/mock-assets';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
+
+// Enhanced 3D Glass Container Component
+interface Glass3DContainerProps {
+  children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+function Glass3DContainer({ children, className = "", style = {} }: Glass3DContainerProps) {
+  return (
+    <div 
+      className={`p-6 rounded-2xl transition-all duration-500 ease-out cursor-pointer ${className}`}
+      style={{
+        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
+        border: '1px solid rgba(255, 255, 255, 0.4)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.6)',
+        borderLeft: '1px solid rgba(255, 255, 255, 0.6)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        boxShadow: '0 8px 32px rgba(114, 241, 220, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+        ...style
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-4px) scale(1.01)';
+        e.currentTarget.style.boxShadow = '0 16px 48px rgba(114, 241, 220, 0.2), 0 4px 16px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.4)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'translateY(0) scale(1)';
+        e.currentTarget.style.boxShadow = '0 8px 32px rgba(114, 241, 220, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
 // Asset Detail Modal Component
 function AssetDetailModal({ asset }: { asset: AssetRecord }) {
   const getSlaStageColor = (stage: string) => {
     switch (stage) {
       case 'Initial':
-        return 'bg-sla-green text-white';
+        return 'bg-green-100/50 text-green-700 border-green-200/50';
       case 'Follow-Up':
-        return 'bg-sla-yellow text-white';
+        return 'bg-yellow-100/50 text-yellow-700 border-yellow-200/50';
       case 'Escalation':
-        return 'bg-sla-orange text-white';
+        return 'bg-orange-100/50 text-orange-700 border-orange-200/50';
       case 'Final Warning':
-        return 'bg-sla-red text-white';
+        return 'bg-red-100/50 text-red-700 border-red-200/50';
       case 'Breach':
-        return 'bg-red-600 text-white';
+        return 'bg-red-100/50 text-red-700 border-red-200/50';
       default:
-        return 'bg-gray-500 text-white';
+        return 'bg-gray-100/50 text-gray-700 border-gray-200/50';
     }
   };
 
@@ -32,104 +66,94 @@ function AssetDetailModal({ asset }: { asset: AssetRecord }) {
   ];
 
   return (
-    <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+    <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto" style={{
+      background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
+      border: '1px solid rgba(255, 255, 255, 0.4)',
+      backdropFilter: 'blur(20px)',
+      boxShadow: '0 12px 40px rgba(114, 241, 220, 0.2)'
+    }}>
       <DialogHeader>
-        <DialogTitle className="text-xl font-semibold">Asset Details - {asset.asset_tag}</DialogTitle>
+        <DialogTitle className="text-xl font-semibold text-[#1D1D2C]">Asset Details - {asset.asset_tag}</DialogTitle>
       </DialogHeader>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Asset Information */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">Asset Information</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
+        <Glass3DContainer>
+          <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">Asset Information</h3>
+          <div className="space-y-3">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-sm font-medium text-gray-600">Asset Tag</label>
-                <p className="font-semibold">{asset.asset_tag}</p>
+                <label className="text-sm font-medium text-[#2C8780]">Asset Tag</label>
+                <p className="font-semibold text-[#1D1D2C]">{asset.asset_tag}</p>
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-600">Serial Number</label>
-                <p className="font-semibold">{asset.serial_number}</p>
+                <label className="text-sm font-medium text-[#2C8780]">Serial Number</label>
+                <p className="font-semibold text-[#1D1D2C]">{asset.serial_number}</p>
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-600">Asset Type</label>
-                <p>{asset.asset_type}</p>
+                <label className="text-sm font-medium text-[#2C8780]">Asset Type</label>
+                <p className="text-[#1D1D2C]">{asset.asset_type}</p>
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-600">Location</label>
-                <p>{asset.location}</p>
+                <label className="text-sm font-medium text-[#2C8780]">Location</label>
+                <p className="text-[#1D1D2C]">{asset.location}</p>
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-600">Recovery Type</label>
-                <p>{asset.recovery_type}</p>
+                <label className="text-sm font-medium text-[#2C8780]">Recovery Type</label>
+                <p className="text-[#1D1D2C]">{asset.recovery_type}</p>
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-600">Priority</label>
-                <Badge variant="outline">{asset.priority}</Badge>
+                <label className="text-sm font-medium text-[#2C8780]">Priority</label>
+                <Badge className="bg-white/50 text-[#1D1D2C] border-white/30">{asset.priority}</Badge>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </Glass3DContainer>
 
         {/* User & Status Information */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">User & Status</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
+        <Glass3DContainer>
+          <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">User & Status</h3>
+          <div className="space-y-3">
             <div className="grid grid-cols-1 gap-4">
               <div>
-                <label className="text-sm font-medium text-gray-600">User</label>
-                <p className="font-semibold">{asset.user_name}</p>
-                <p className="text-sm text-gray-500">{asset.user_email}</p>
+                <label className="text-sm font-medium text-[#2C8780]">User</label>
+                <p className="font-semibold text-[#1D1D2C]">{asset.user_name}</p>
+                <p className="text-sm text-[#2C8780]">{asset.user_email}</p>
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-600">Assigned To</label>
-                <p>{asset.assigned_to}</p>
+                <label className="text-sm font-medium text-[#2C8780]">Assigned To</label>
+                <p className="text-[#1D1D2C]">{asset.assigned_to}</p>
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-600">SLA Stage</label>
-                <Badge className={getSlaStageColor(asset.sla_stage)}>{asset.sla_stage}</Badge>
+                <label className="text-sm font-medium text-[#2C8780]">SLA Stage</label>
+                <Badge className={`${getSlaStageColor(asset.sla_stage)} backdrop-blur-lg border`}>{asset.sla_stage}</Badge>
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-600">Days in Recovery</label>
-                <p className="font-semibold text-lg">{asset.recovery_age} days</p>
-              </div>
-              <div>
-                <label className="text-sm font-medium text-gray-600">SLA Due Date</label>
-                <p className={asset.sla_stage === 'Breach' ? 'text-red-600 font-semibold' : ''}>
-                  {asset.sla_due_date}
-                </p>
+                <label className="text-sm font-medium text-[#2C8780]">Days in Recovery</label>
+                <p className="font-semibold text-lg text-[#1D1D2C]">{asset.recovery_age} days</p>
               </div>
             </div>
-          </CardContent>
-        </Card>
-      </div>
+          </div>
+        </Glass3DContainer>
 
-      {/* Email History */}
-      <Card className="mt-6">
-        <CardHeader>
-          <CardTitle className="text-lg flex items-center">
-            <Mail className="mr-2 h-5 w-5" />
-            Email History ({asset.email_count} emails)
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
+        {/* Email History */}
+        <Glass3DContainer className="lg:col-span-2">
+          <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">Email Communication History</h3>
           <div className="space-y-3">
             {mockEmailHistory.map((email, index) => (
-              <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                <div>
-                  <p className="font-medium">{email.subject}</p>
-                  <p className="text-sm text-gray-600">{email.type} • {email.date}</p>
+              <div key={index} className="p-3 rounded-lg border border-white/20 bg-white/20 backdrop-blur-lg">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <p className="font-medium text-[#1D1D2C]">{email.subject}</p>
+                    <p className="text-sm text-[#2C8780]">{email.type} • {email.date}</p>
+                  </div>
+                  <Badge className="bg-green-100/50 text-green-700 border-green-200/50">{email.status}</Badge>
                 </div>
-                <Badge variant="outline">{email.status}</Badge>
               </div>
             ))}
           </div>
-        </CardContent>
-      </Card>
+        </Glass3DContainer>
+      </div>
     </DialogContent>
   );
 }
@@ -140,52 +164,54 @@ export function RecoveryQueue() {
   const [filterSlaStage, setFilterSlaStage] = useState('all');
   const [filterRecoveryType, setFilterRecoveryType] = useState('all');
 
-  const filteredAssets = useMemo(() => {
-    return allMockAssets.filter((asset) => {
-      const matchesSearch = 
-        asset.asset_tag.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        asset.serial_number.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        asset.user_name.toLowerCase().includes(searchTerm.toLowerCase());
-      
-      const matchesStatus = filterStatus === 'all' || asset.status === filterStatus;
-      const matchesSlaStage = filterSlaStage === 'all' || asset.sla_stage === filterSlaStage;
-      const matchesRecoveryType = filterRecoveryType === 'all' || asset.recovery_type === filterRecoveryType;
-      
-      return matchesSearch && matchesStatus && matchesSlaStage && matchesRecoveryType;
-    });
-  }, [searchTerm, filterStatus, filterSlaStage, filterRecoveryType]);
-
   const getSlaStageColor = (stage: string) => {
     switch (stage) {
       case 'Initial':
-        return 'bg-sla-green text-white';
+        return 'bg-green-100/50 text-green-700 border-green-200/50';
       case 'Follow-Up':
-        return 'bg-sla-yellow text-white';
+        return 'bg-yellow-100/50 text-yellow-700 border-yellow-200/50';
       case 'Escalation':
-        return 'bg-sla-orange text-white';
+        return 'bg-orange-100/50 text-orange-700 border-orange-200/50';
       case 'Final Warning':
-        return 'bg-sla-red text-white';
+        return 'bg-red-100/50 text-red-700 border-red-200/50';
       case 'Breach':
-        return 'bg-red-600 text-white animate-pulse';
+        return 'bg-red-100/50 text-red-700 border-red-200/50';
       default:
-        return 'bg-gray-500 text-white';
+        return 'bg-gray-100/50 text-gray-700 border-gray-200/50';
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Completed':
-        return 'text-green-600 bg-green-100';
-      case 'Breach':
-        return 'text-red-600 bg-red-100';
-      case 'Escalated':
-        return 'text-orange-600 bg-orange-100';
+        return 'bg-green-100/50 text-green-700 border-green-200/50';
       case 'In Progress':
-        return 'text-blue-600 bg-blue-100';
+        return 'bg-blue-100/50 text-blue-700 border-blue-200/50';
+      case 'Pending':
+        return 'bg-yellow-100/50 text-yellow-700 border-yellow-200/50';
+      case 'Escalated':
+        return 'bg-orange-100/50 text-orange-700 border-orange-200/50';
+      case 'Breach':
+        return 'bg-red-100/50 text-red-700 border-red-200/50';
       default:
-        return 'text-gray-600 bg-gray-100';
+        return 'bg-gray-100/50 text-gray-700 border-gray-200/50';
     }
   };
+
+  const filteredAssets = useMemo(() => {
+    return allMockAssets.filter(asset => {
+      const matchesSearch = searchTerm === '' || 
+        asset.asset_tag.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        asset.serial_number.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        asset.user_name.toLowerCase().includes(searchTerm.toLowerCase());
+
+      const matchesStatus = filterStatus === 'all' || asset.status === filterStatus;
+      const matchesSlaStage = filterSlaStage === 'all' || asset.sla_stage === filterSlaStage;
+      const matchesRecoveryType = filterRecoveryType === 'all' || asset.recovery_type === filterRecoveryType;
+
+      return matchesSearch && matchesStatus && matchesSlaStage && matchesRecoveryType;
+    });
+  }, [searchTerm, filterStatus, filterSlaStage, filterRecoveryType]);
 
   const exportToCSV = () => {
     const headers = ['Asset Tag', 'Serial Number', 'Type', 'SLA Stage', 'Days in Recovery', 'Status', 'User', 'Location'];
@@ -194,7 +220,7 @@ export function RecoveryQueue() {
       ...filteredAssets.map(asset => [
         asset.asset_tag,
         asset.serial_number,
-        asset.recovery_type,
+        asset.asset_type,
         asset.sla_stage,
         asset.recovery_age,
         asset.status,
@@ -215,159 +241,190 @@ export function RecoveryQueue() {
   };
 
   return (
-    <div className="p-6">
+    <div className="space-y-6">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Recovery Queue</h1>
-        <p className="text-gray-600">Manage and track all asset recovery operations</p>
+      <div>
+        <h1 className="text-3xl font-light text-[#1D1D2C] mb-2">Recovery Queue</h1>
+        <p className="text-[#2C8780]">Manage and track all asset recovery operations</p>
       </div>
 
       {/* Search and Filters */}
-      <Card className="mb-6">
-        <CardContent className="p-6">
-          <div className="flex flex-col lg:flex-row gap-4">
-            {/* Search */}
-            <div className="flex-1">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search by asset tag, serial number, or user..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-                />
-              </div>
-            </div>
-
-            {/* Filters */}
-            <div className="flex gap-4">
-              <select
-                value={filterStatus}
-                onChange={(e) => setFilterStatus(e.target.value)}
-                className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-              >
-                <option value="all">All Status</option>
-                <option value="Pending">Pending</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Escalated">Escalated</option>
-                <option value="Breach">Breach</option>
-                <option value="Completed">Completed</option>
-              </select>
-
-              <select
-                value={filterSlaStage}
-                onChange={(e) => setFilterSlaStage(e.target.value)}
-                className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-              >
-                <option value="all">All SLA Stages</option>
-                <option value="Initial">Initial</option>
-                <option value="Follow-Up">Follow-Up</option>
-                <option value="Escalation">Escalation</option>
-                <option value="Final Warning">Final Warning</option>
-                <option value="Breach">Breach</option>
-              </select>
-
-              <select
-                value={filterRecoveryType}
-                onChange={(e) => setFilterRecoveryType(e.target.value)}
-                className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-              >
-                <option value="all">All Types</option>
-                <option value="Exit">Exit</option>
-                <option value="Swap">Swap</option>
-                <option value="Loaner">Loaner</option>
-              </select>
-
-              <Button onClick={exportToCSV} variant="outline" className="flex items-center">
-                <Download className="mr-2 h-4 w-4" />
-                Export CSV
-              </Button>
+      <Glass3DContainer>
+        <div className="flex flex-col lg:flex-row gap-4">
+          {/* Search */}
+          <div className="flex-1">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#2C8780]" />
+              <input
+                type="text"
+                placeholder="Search by asset tag, serial number, or user..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-lg transition-all duration-300"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                  border: '1px solid rgba(255, 255, 255, 0.4)',
+                  backdropFilter: 'blur(15px)',
+                  boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
+                }}
+              />
             </div>
           </div>
-        </CardContent>
-      </Card>
+
+          {/* Filters */}
+          <div className="flex gap-4">
+            <select
+              value={filterStatus}
+              onChange={(e) => setFilterStatus(e.target.value)}
+              className="px-3 py-2 text-[#1D1D2C] focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-lg transition-all duration-300"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.4)',
+                backdropFilter: 'blur(15px)',
+                boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
+              }}
+            >
+              <option value="all">All Status</option>
+              <option value="Pending">Pending</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Escalated">Escalated</option>
+              <option value="Breach">Breach</option>
+              <option value="Completed">Completed</option>
+            </select>
+
+            <select
+              value={filterSlaStage}
+              onChange={(e) => setFilterSlaStage(e.target.value)}
+              className="px-3 py-2 text-[#1D1D2C] focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-lg transition-all duration-300"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.4)',
+                backdropFilter: 'blur(15px)',
+                boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
+              }}
+            >
+              <option value="all">All SLA Stages</option>
+              <option value="Initial">Initial</option>
+              <option value="Follow-Up">Follow-Up</option>
+              <option value="Escalation">Escalation</option>
+              <option value="Final Warning">Final Warning</option>
+              <option value="Breach">Breach</option>
+            </select>
+
+            <select
+              value={filterRecoveryType}
+              onChange={(e) => setFilterRecoveryType(e.target.value)}
+              className="px-3 py-2 text-[#1D1D2C] focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-lg transition-all duration-300"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.4)',
+                backdropFilter: 'blur(15px)',
+                boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
+              }}
+            >
+              <option value="all">All Types</option>
+              <option value="Exit">Exit</option>
+              <option value="Swap">Swap</option>
+              <option value="Loaner">Loaner</option>
+            </select>
+
+            <Button 
+              onClick={exportToCSV} 
+              className="macos-button text-[#1D1D2C] flex items-center"
+            >
+              <Download className="mr-2 h-4 w-4" />
+              Export CSV
+            </Button>
+          </div>
+        </div>
+      </Glass3DContainer>
 
       {/* Results Summary */}
-      <div className="mb-4">
-        <p className="text-gray-600">
+      <div>
+        <p className="text-[#2C8780]">
           Showing {filteredAssets.length} of {allMockAssets.length} assets
         </p>
       </div>
 
       {/* Table */}
-      <Card>
-        <CardContent className="p-0">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50 border-b">
-                <tr>
-                  <th className="text-left px-6 py-4 font-medium text-gray-900">Asset Tag</th>
-                  <th className="text-left px-6 py-4 font-medium text-gray-900">Serial Number</th>
-                  <th className="text-left px-6 py-4 font-medium text-gray-900">Type</th>
-                  <th className="text-left px-6 py-4 font-medium text-gray-900">SLA Stage</th>
-                  <th className="text-left px-6 py-4 font-medium text-gray-900">Days in Recovery</th>
-                  <th className="text-left px-6 py-4 font-medium text-gray-900">Status</th>
-                  <th className="text-left px-6 py-4 font-medium text-gray-900">User</th>
-                  <th className="text-left px-6 py-4 font-medium text-gray-900">Actions</th>
+      <Glass3DContainer className="p-0">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="border-b border-white/20">
+              <tr>
+                <th className="text-left px-6 py-4 font-medium text-[#2C8780]">Asset Tag</th>
+                <th className="text-left px-6 py-4 font-medium text-[#2C8780]">Serial Number</th>
+                <th className="text-left px-6 py-4 font-medium text-[#2C8780]">Type</th>
+                <th className="text-left px-6 py-4 font-medium text-[#2C8780]">SLA Stage</th>
+                <th className="text-left px-6 py-4 font-medium text-[#2C8780]">Days in Recovery</th>
+                <th className="text-left px-6 py-4 font-medium text-[#2C8780]">Status</th>
+                <th className="text-left px-6 py-4 font-medium text-[#2C8780]">User</th>
+                <th className="text-left px-6 py-4 font-medium text-[#2C8780]">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/10">
+              {filteredAssets.map((asset) => (
+                <tr key={asset.id} className="hover:bg-white/10 transition-colors">
+                  <td className="px-6 py-4">
+                    <div className="font-medium text-[#1D1D2C]">{asset.asset_tag}</div>
+                    <div className="text-sm text-[#2C8780]">{asset.asset_type}</div>
+                  </td>
+                  <td className="px-6 py-4 text-sm text-[#1D1D2C]">{asset.serial_number}</td>
+                  <td className="px-6 py-4">
+                    <Badge className="bg-white/50 text-[#1D1D2C] border-white/30">{asset.recovery_type}</Badge>
+                  </td>
+                  <td className="px-6 py-4">
+                    <Badge className={`${getSlaStageColor(asset.sla_stage)} backdrop-blur-lg border`}>
+                      {asset.sla_stage}
+                      {asset.sla_stage === 'Breach' && <AlertCircle className="ml-1 h-3 w-3" />}
+                    </Badge>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className={`font-semibold ${asset.recovery_age > 30 ? 'text-red-600' : asset.recovery_age > 14 ? 'text-orange-600' : 'text-[#1D1D2C]'}`}>
+                      {asset.recovery_age}
+                    </span>
+                    <span className="text-sm text-[#2C8780] ml-1">days</span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <Badge className={`${getStatusColor(asset.status)} backdrop-blur-lg border`}>
+                      {asset.status}
+                    </Badge>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="text-sm">
+                      <div className="font-medium text-[#1D1D2C]">{asset.user_name}</div>
+                      <div className="text-[#2C8780]">{asset.location}</div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex space-x-2">
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button 
+                            size="sm" 
+                            className="text-[#2C8780] hover:text-[#1D1D2C] bg-white/30 hover:bg-white/50 border border-white/30 backdrop-blur-lg"
+                          >
+                            <Eye className="mr-1 h-3 w-3" />
+                            View
+                          </Button>
+                        </DialogTrigger>
+                        <AssetDetailModal asset={asset} />
+                      </Dialog>
+                      <Button 
+                        size="sm" 
+                        className="text-[#2C8780] hover:text-[#1D1D2C] bg-white/30 hover:bg-white/50 border border-white/30 backdrop-blur-lg"
+                      >
+                        <Mail className="mr-1 h-3 w-3" />
+                        Email
+                      </Button>
+                    </div>
+                  </td>
                 </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {filteredAssets.map((asset) => (
-                  <tr key={asset.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4">
-                      <div className="font-medium text-gray-900">{asset.asset_tag}</div>
-                      <div className="text-sm text-gray-500">{asset.asset_type}</div>
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{asset.serial_number}</td>
-                    <td className="px-6 py-4">
-                      <Badge variant="secondary">{asset.recovery_type}</Badge>
-                    </td>
-                    <td className="px-6 py-4">
-                      <Badge className={getSlaStageColor(asset.sla_stage)}>
-                        {asset.sla_stage}
-                        {asset.sla_stage === 'Breach' && <AlertCircle className="ml-1 h-3 w-3" />}
-                      </Badge>
-                    </td>
-                    <td className="px-6 py-4">
-                      <span className={`font-semibold ${asset.recovery_age > 30 ? 'text-red-600' : asset.recovery_age > 14 ? 'text-orange-600' : 'text-gray-900'}`}>
-                        {asset.recovery_age}
-                      </span>
-                      <span className="text-sm text-gray-500 ml-1">days</span>
-                    </td>
-                    <td className="px-6 py-4">
-                      <Badge className={getStatusColor(asset.status)}>
-                        {asset.status}
-                      </Badge>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="text-sm">
-                        <div className="font-medium text-gray-900">{asset.user_name}</div>
-                        <div className="text-gray-500">{asset.location}</div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex space-x-2">
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <Button variant="ghost" size="sm">
-                              <Eye className="h-4 w-4" />
-                            </Button>
-                          </DialogTrigger>
-                          <AssetDetailModal asset={asset} />
-                        </Dialog>
-                        <Button variant="ghost" size="sm">
-                          <Mail className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </CardContent>
-      </Card>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Glass3DContainer>
     </div>
   );
 }
