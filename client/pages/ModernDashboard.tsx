@@ -442,7 +442,9 @@ export function ModernDashboard() {
           trend="down"
           trendValue="5.2%"
           colorClass="text-blue-600"
-          description="Assets in recovery process"
+          description="Recovery in progress"
+          sparklineData={[45, 42, 48, 44, 40, 38, 35]}
+          statusTag="Improving"
         />
         <CompactKpiCard
           title="SLA Breach Count"
@@ -451,7 +453,9 @@ export function ModernDashboard() {
           trend="up"
           trendValue="12.4%"
           colorClass="text-red-600"
-          description="Critical attention required"
+          description="Needs attention"
+          sparklineData={[2, 3, 4, 5, 6, 8, 10]}
+          statusTag="In Breach"
         />
         <CompactKpiCard
           title="Recovered This Month"
@@ -460,16 +464,20 @@ export function ModernDashboard() {
           trend="up"
           trendValue="8.1%"
           colorClass="text-green-600"
-          description="Successfully recovered"
+          description="Successfully returned"
+          sparklineData={[10, 12, 15, 18, 22, 25, 28]}
+          statusTag="Improving"
         />
         <CompactKpiCard
           title="Open Exit Tickets"
           value={stats.openExitTickets}
-          icon={TrendingUp}
+          icon={Activity}
           trend="down"
           trendValue="3.6%"
           colorClass="text-recovery-accent"
-          description="Exit process pending"
+          description="Exit processing"
+          sparklineData={[20, 18, 16, 15, 14, 13, 12]}
+          statusTag="Stable"
         />
       </div>
 
