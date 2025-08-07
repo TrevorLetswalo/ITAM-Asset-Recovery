@@ -215,31 +215,29 @@ export function RecoveryQueue() {
     });
   }, [searchTerm, filterStatus, filterSlaStage, filterRecoveryType]);
 
-  const exportToCSV = () => {
-    const headers = ['Asset Tag', 'Serial Number', 'Type', 'SLA Stage', 'Days in Recovery', 'Status', 'User', 'Location'];
-    const csvContent = [
-      headers.join(','),
-      ...filteredAssets.map(asset => [
-        asset.asset_tag,
-        asset.serial_number,
-        asset.asset_type,
-        asset.sla_stage,
-        asset.recovery_age,
-        asset.status,
-        asset.user_name,
-        asset.location
-      ].join(','))
-    ].join('\n');
+  // Initialize EmailJS
+  useEffect(() => {
+    initEmailJS();
+  }, []);
 
-    const blob = new Blob([csvContent], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'recovery-queue.csv';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
+  const handleExportCSV = () => {
+    exportRecoveryQueue(filteredAssets);
+  };
+
+  const handleSendEmail = async (asset: AssetRecord) => {
+    try {
+      await sendReminderEmail({
+        name: asset.user_name,
+        email: `${asset.user_name.toLowerCase().replace(' ', '.')}@company.com`,
+        assetTag: asset.asset_tag,
+        reason: `Asset recovery reminder - ${asset.recovery_type}`,
+        ticketId: `REM-${asset.id}`
+      });
+      alert(`Reminder email sent to ${asset.user_name}`);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Failed to send reminder email. Please try again.');
+    }
   };
 
   return (
