@@ -127,6 +127,36 @@ const mockReports: ReportCard[] = [
 
 function ReportCard({ report }: { report: ReportCard }) {
   const Icon = report.icon;
+
+  const handleViewReport = () => {
+    alert(`📊 Opening report: "${report.name}"\n\nThis would display the full report data in a detailed view.`);
+  };
+
+  const handleExportReport = () => {
+    // Mock report data export
+    const reportContent = {
+      'Report Name': report.name,
+      'Category': report.category,
+      'Generated': new Date().toLocaleString(),
+      'Data': 'Sample report data would be exported here...'
+    };
+
+    const csvRows = [];
+    const headers = Object.keys(reportContent);
+    csvRows.push(headers.join(","));
+    const values = headers.map(header => `"${(reportContent as any)[header] ?? ''}"`);
+    csvRows.push(values.join(","));
+
+    const csvContent = csvRows.join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${report.name.toLowerCase().replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
   
   const getCategoryColor = (category: string) => {
     switch (category) {
