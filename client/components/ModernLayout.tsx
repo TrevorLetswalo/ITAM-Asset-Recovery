@@ -273,6 +273,7 @@ export function ModernLayout({ children }: LayoutProps) {
             <Button
               variant="ghost"
               size="sm"
+              onClick={handleNotifications}
               className="relative text-[#2C8780] hover:text-[#1D1D2C] bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl"
             >
               <Bell className="h-5 w-5" />
