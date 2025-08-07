@@ -133,7 +133,7 @@ export function SubmitRecoveryRequest() {
           {/* Row 2: Asset Type and Recovery Type */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-white mb-2 flex items-center">
+              <label className="block text-sm font-medium text-[#2C8780] mb-2 flex items-center">
                 <FileText className="mr-2 h-4 w-4" />
                 Asset Type
               </label>
@@ -141,11 +141,11 @@ export function SubmitRecoveryRequest() {
                 required
                 value={formData.assetType}
                 onChange={(e) => handleInputChange('assetType', e.target.value)}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:bg-white/20 focus:border-white/40 transition-all duration-200"
+                className="w-full px-4 py-3 bg-white/50 border border-gray-300 rounded-xl text-[#1D1D2C] focus:bg-white/70 focus:border-[#2C8780] transition-all duration-200"
               >
-                <option value="" className="bg-gray-800 text-white">Select asset type</option>
+                <option value="" className="bg-white text-[#1D1D2C]">Select asset type</option>
                 {assetTypes.map(type => (
-                  <option key={type} value={type} className="bg-gray-800 text-white">{type}</option>
+                  <option key={type} value={type} className="bg-white text-[#1D1D2C]">{type}</option>
                 ))}
               </select>
             </div>
