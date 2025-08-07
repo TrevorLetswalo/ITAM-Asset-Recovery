@@ -278,16 +278,6 @@ function EmailTemplateCard({ template }: { template: EmailTemplate }) {
           )}
         </div>
 
-        <div>
-          <label className="text-sm font-medium text-[#2C8780]">Available Variables</label>
-          <div className="flex flex-wrap gap-2 mt-2">
-            {template.variables.map((variable) => (
-              <code key={variable} className="px-2 py-1 text-xs bg-white/30 text-[#1D1D2C] rounded border border-white/30 backdrop-blur-lg">
-                {`{{${variable}}}`}
-              </code>
-            ))}
-          </div>
-        </div>
 
         <div className="flex justify-between items-center pt-4 border-t border-white/20">
           <div className="text-xs text-[#2C8780]">
