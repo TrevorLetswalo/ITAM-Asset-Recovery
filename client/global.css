@@ -172,17 +172,32 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  /* Modern Shadows */
+  /* macOS-inspired Shadows */
   .shadow-soft {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.08);
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.08),
+      0 1px 2px rgba(0, 0, 0, 0.04);
   }
 
   .shadow-medium {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.12);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.06),
+      0 2px 8px rgba(0, 0, 0, 0.08),
+      0 1px 1px rgba(255, 255, 255, 0.5) inset;
   }
 
   .shadow-strong {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.16);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.08),
+      0 4px 16px rgba(0, 0, 0, 0.06),
+      0 1px 1px rgba(255, 255, 255, 0.6) inset;
+  }
+
+  .shadow-macos {
+    box-shadow:
+      0 0.3px 0.9px rgba(0, 0, 0, 0.1),
+      0 1.6px 3.6px rgba(0, 0, 0, 0.06),
+      0 8px 16px rgba(0, 0, 0, 0.04);
   }
 
   /* Gradient Backgrounds */
