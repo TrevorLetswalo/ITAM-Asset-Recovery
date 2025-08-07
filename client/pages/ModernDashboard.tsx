@@ -65,7 +65,46 @@ function AnimatedCounter({
   return <span>{prefix}{count}{suffix}</span>;
 }
 
-// Modern Compact KPI Card component with Sparkline
+// Enhanced 3D Glass Card Component
+interface Glass3DCardProps {
+  children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+function Glass3DCard({ children, className = "", style = {} }: Glass3DCardProps) {
+  return (
+    <div 
+      className={`p-6 rounded-2xl transition-all duration-500 ease-out cursor-pointer ${className}`}
+      style={{
+        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
+        border: '1px solid rgba(255, 255, 255, 0.4)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.6)',
+        borderLeft: '1px solid rgba(255, 255, 255, 0.6)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        boxShadow: '0 8px 32px rgba(114, 241, 220, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+        ...style
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-8px) scale(1.02)';
+        e.currentTarget.style.boxShadow = '0 20px 60px rgba(114, 241, 220, 0.25), 0 8px 24px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.4)';
+        e.currentTarget.style.borderTop = '1px solid rgba(255, 255, 255, 0.8)';
+        e.currentTarget.style.borderLeft = '1px solid rgba(255, 255, 255, 0.8)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'translateY(0) scale(1)';
+        e.currentTarget.style.boxShadow = '0 8px 32px rgba(114, 241, 220, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+        e.currentTarget.style.borderTop = '1px solid rgba(255, 255, 255, 0.6)';
+        e.currentTarget.style.borderLeft = '1px solid rgba(255, 255, 255, 0.6)';
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+// Modern Compact KPI Card component with enhanced 3D effects
 interface CompactKpiCardProps {
   title: string;
   value: number;
@@ -90,81 +129,84 @@ function CompactKpiCard({
   statusTag
 }: CompactKpiCardProps) {
   const getIconBg = () => {
-    if (colorClass.includes('blue')) return 'bg-gradient-to-br from-blue-50 to-blue-100 text-blue-600';
-    if (colorClass.includes('red')) return 'bg-gradient-to-br from-red-50 to-red-100 text-red-600';
-    if (colorClass.includes('green')) return 'bg-gradient-to-br from-green-50 to-green-100 text-green-600';
-    return 'bg-gradient-to-br from-[#2C8780]/10 to-[#2C8780]/20 text-[#2C8780]';
+    if (colorClass.includes('blue')) return 'from-blue-400/20 to-blue-600/20 text-blue-600';
+    if (colorClass.includes('red')) return 'from-red-400/20 to-red-600/20 text-red-600';
+    if (colorClass.includes('green')) return 'from-green-400/20 to-green-600/20 text-green-600';
+    return 'from-[#2C8780]/20 to-[#72F1DC]/20 text-[#2C8780]';
   };
 
   return (
-    <div className="bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl p-6 group relative overflow-hidden hover:shadow-[0_8px_40px_rgba(114,241,220,0.4)] transition-all duration-300" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}}>
-      <div>
-        {/* Header with Icon and Trend */}
-        <div className="flex items-start justify-between mb-4">
+    <Glass3DCard className="group relative overflow-hidden">
+      {/* Header with Icon and Trend */}
+      <div className="flex items-start justify-between mb-4">
+        <div className={cn(
+          "w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 bg-gradient-to-br border border-white/30",
+          getIconBg()
+        )} style={{
+          backdropFilter: 'blur(10px)',
+          boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1)'
+        }}>
+          <Icon className="h-6 w-6" />
+        </div>
+
+        {trend && trendValue && (
           <div className={cn(
-            "w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110",
-            getIconBg()
-          )} style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.1)'}}>
-            <Icon className="h-6 w-6" />
-          </div>
-
-          {trend && trendValue && (
-            <div className={cn(
-              "flex items-center space-x-1 px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-lg",
-              trend === 'up'
-                ? 'bg-green-100/50 text-green-700 border border-green-200/50'
-                : 'bg-red-100/50 text-red-700 border border-red-200/50'
-            )} style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.1)'}}>
-              {trend === 'up' ? (
-                <TrendingUp className="h-3 w-3" />
-              ) : (
-                <TrendingDown className="h-3 w-3" />
-              )}
-              <span>{trendValue}</span>
-            </div>
-          )}
-        </div>
-
-        {/* Title and Value */}
-        <div className="space-y-2 mb-4">
-          <p className="text-sm font-medium text-[#2C8780]">{title}</p>
-          <p className="text-3xl font-light text-[#1D1D2C] tracking-tight">
-            <AnimatedCounter value={value} />
-          </p>
-        </div>
-
-        {/* Sparkline and Status */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            {sparklineData && sparklineData.length > 1 && (
-              <div className="opacity-80 group-hover:opacity-100 transition-opacity">
-                <Sparkline data={sparklineData} trend={trend} />
-              </div>
+            "flex items-center space-x-1 px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-lg border",
+            trend === 'up'
+              ? 'bg-green-100/50 text-green-700 border-green-200/50'
+              : 'bg-red-100/50 text-red-700 border-red-200/50'
+          )} style={{
+            boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
+          }}>
+            {trend === 'up' ? (
+              <TrendingUp className="h-3 w-3" />
+            ) : (
+              <TrendingDown className="h-3 w-3" />
             )}
-            {description && (
-              <p className="text-xs text-[#2C8780]">{description}</p>
-            )}
+            <span>{trendValue}</span>
           </div>
-
-          {statusTag && (
-            <div className={cn(
-              "px-2 py-1 rounded-lg text-xs font-medium backdrop-blur-lg",
-              statusTag === 'Improving' ? 'bg-green-100/50 text-green-700' :
-              statusTag === 'In Breach' ? 'bg-red-100/50 text-red-700' :
-              statusTag === 'Stable' ? 'bg-blue-100/50 text-blue-700' :
-              'bg-gray-100/50 text-gray-700'
-            )}>
-              {statusTag}
-            </div>
-          )}
-        </div>
-
-        {/* Subtle background pattern */}
-        <div className="absolute top-0 right-0 w-32 h-32 opacity-5 pointer-events-none">
-          <Icon className="w-full h-full" />
-        </div>
+        )}
       </div>
-    </div>
+
+      {/* Title and Value */}
+      <div className="space-y-2 mb-4">
+        <p className="text-sm font-medium text-[#2C8780]">{title}</p>
+        <p className="text-3xl font-light text-[#1D1D2C] tracking-tight">
+          <AnimatedCounter value={value} />
+        </p>
+      </div>
+
+      {/* Sparkline and Status */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-3">
+          {sparklineData && sparklineData.length > 1 && (
+            <div className="opacity-80 group-hover:opacity-100 transition-opacity">
+              <Sparkline data={sparklineData} trend={trend} />
+            </div>
+          )}
+          {description && (
+            <p className="text-xs text-[#2C8780]">{description}</p>
+          )}
+        </div>
+
+        {statusTag && (
+          <div className={cn(
+            "px-2 py-1 rounded-lg text-xs font-medium backdrop-blur-lg border",
+            statusTag === 'Improving' ? 'bg-green-100/50 text-green-700 border-green-200/30' :
+            statusTag === 'In Breach' ? 'bg-red-100/50 text-red-700 border-red-200/30' :
+            statusTag === 'Stable' ? 'bg-blue-100/50 text-blue-700 border-blue-200/30' :
+            'bg-gray-100/50 text-gray-700 border-gray-200/30'
+          )}>
+            {statusTag}
+          </div>
+        )}
+      </div>
+
+      {/* Enhanced 3D background pattern */}
+      <div className="absolute top-0 right-0 w-32 h-32 opacity-[0.03] pointer-events-none">
+        <Icon className="w-full h-full" />
+      </div>
+    </Glass3DCard>
   );
 }
 
@@ -183,14 +225,16 @@ function RecoveryProgressChart() {
   const maxValue = Math.max(...progressData.map(d => d.recovered + d.pending));
 
   return (
-    <div className="bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl p-6 hover:shadow-[0_8px_40px_rgba(114,241,220,0.4)] transition-all duration-300" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)', minHeight: '320px', height: '320px'}}>
+    <Glass3DCard style={{ minHeight: '320px', height: '320px' }}>
       <div className="pb-4">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
             <BarChart3 className="mr-2 h-5 w-5 text-[#2C8780]" />
             Recovery Progress
           </h3>
-          <div className="text-xs text-[#2C8780] border border-white/30 bg-white/20 backdrop-blur-lg px-2 py-1 rounded-lg">Last 7 Days</div>
+          <div className="text-xs text-[#2C8780] border border-white/30 bg-white/20 backdrop-blur-lg px-2 py-1 rounded-lg">
+            Last 7 Days
+          </div>
         </div>
       </div>
       <div className="flex-1 flex flex-col">
@@ -198,20 +242,24 @@ function RecoveryProgressChart() {
           {progressData.map((data, index) => (
             <div key={data.day} className="flex flex-col items-center flex-1 group">
               <div className="w-full flex flex-col items-center space-y-1 mb-3">
-                {/* Recovered bar */}
+                {/* Recovered bar with enhanced 3D effect */}
                 <div
-                  className="w-7 bg-gradient-to-t from-[#2C8780] to-[#72F1DC] rounded-t-xl transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-medium"
+                  className="w-7 rounded-t-xl transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-lg"
                   style={{
+                    background: 'linear-gradient(to top, #2C8780, #72F1DC)',
                     height: `${(data.recovered / maxValue) * 100}px`,
                     animationDelay: `${index * 150}ms`,
+                    boxShadow: '0 4px 12px rgba(44, 135, 128, 0.3)',
                   }}
                 />
-                {/* Pending bar */}
+                {/* Pending bar with enhanced 3D effect */}
                 <div
-                  className="w-7 bg-gradient-to-t from-[#B2CAC9] to-[#E8F2FD] rounded-b-xl transition-all duration-1000 ease-out hover:scale-105"
+                  className="w-7 rounded-b-xl transition-all duration-1000 ease-out hover:scale-105"
                   style={{
+                    background: 'linear-gradient(to top, #B2CAC9, #E8F2FD)',
                     height: `${(data.pending / maxValue) * 60}px`,
                     animationDelay: `${index * 150}ms`,
+                    boxShadow: '0 4px 12px rgba(178, 202, 201, 0.3)',
                   }}
                 />
               </div>
@@ -224,32 +272,36 @@ function RecoveryProgressChart() {
         </div>
         <div className="flex justify-center space-x-6 pt-4 border-t border-white/20">
           <div className="flex items-center">
-            <div className="w-3 h-3 bg-gradient-to-r from-[#2C8780] to-[#72F1DC] rounded-full mr-2" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}} />
+            <div className="w-3 h-3 bg-gradient-to-r from-[#2C8780] to-[#72F1DC] rounded-full mr-2" style={{
+              boxShadow: '0 2px 8px rgba(44, 135, 128, 0.3)'
+            }} />
             <span className="text-sm text-[#1D1D2C] font-medium">Recovered</span>
           </div>
           <div className="flex items-center">
-            <div className="w-3 h-3 bg-gradient-to-r from-[#B2CAC9] to-[#E8F2FD] rounded-full mr-2" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}} />
+            <div className="w-3 h-3 bg-gradient-to-r from-[#B2CAC9] to-[#E8F2FD] rounded-full mr-2" style={{
+              boxShadow: '0 2px 8px rgba(178, 202, 201, 0.3)'
+            }} />
             <span className="text-sm text-[#1D1D2C] font-medium">Pending</span>
           </div>
         </div>
       </div>
-    </div>
+    </Glass3DCard>
   );
 }
 
-// Horizontal Bar Chart for Asset Types
+// Enhanced Asset Type Chart
 function AssetTypeChart() {
   const data = getRecoveryByType();
   const total = data.exit + data.swap + data.loaner;
 
   const chartData = [
-    { name: 'Exit', value: data.exit, color: 'bg-gradient-to-r from-[#2C8780] to-[#2C8780]', percentage: Math.round((data.exit / total) * 100) },
-    { name: 'Swap', value: data.swap, color: 'bg-gradient-to-r from-[#72F1DC] to-[#72F1DC]', percentage: Math.round((data.swap / total) * 100) },
-    { name: 'Loaner', value: data.loaner, color: 'bg-gradient-to-r from-[#1D1D2C] to-[#4A4A5A]', percentage: Math.round((data.loaner / total) * 100) },
+    { name: 'Exit', value: data.exit, color: 'from-[#2C8780] to-[#2C8780]', percentage: Math.round((data.exit / total) * 100) },
+    { name: 'Swap', value: data.swap, color: 'from-[#72F1DC] to-[#72F1DC]', percentage: Math.round((data.swap / total) * 100) },
+    { name: 'Loaner', value: data.loaner, color: 'from-[#1D1D2C] to-[#4A4A5A]', percentage: Math.round((data.loaner / total) * 100) },
   ];
 
   return (
-    <div className="bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl p-6 hover:shadow-[0_8px_40px_rgba(114,241,220,0.4)] transition-all duration-300" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)', minHeight: '320px', height: '320px'}}>
+    <Glass3DCard style={{ minHeight: '320px', height: '320px' }}>
       <div className="pb-4">
         <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
           <PieChart className="mr-2 h-5 w-5 text-[#2C8780]" />
@@ -264,17 +316,20 @@ function AssetTypeChart() {
                 <span className="text-sm font-medium text-[#1D1D2C]">{item.name}</span>
                 <div className="flex items-center space-x-2">
                   <span className="text-sm font-semibold text-[#1D1D2C]">{item.value}</span>
-                  <span className="text-xs text-[#2C8780] bg-white/50 backdrop-blur-lg px-2 py-1 rounded-full">
+                  <span className="text-xs text-[#2C8780] bg-white/50 backdrop-blur-lg px-2 py-1 rounded-full border border-white/30">
                     {item.percentage}%
                   </span>
                 </div>
               </div>
-              <div className="w-full bg-white/30 backdrop-blur-lg rounded-full h-4 overflow-hidden" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.1)'}}>
+              <div className="w-full bg-white/30 backdrop-blur-lg rounded-full h-4 overflow-hidden border border-white/20" style={{
+                boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1), inset 0 2px 4px rgba(255, 255, 255, 0.1)'
+              }}>
                 <div
-                  className={`h-4 rounded-full ${item.color} transition-all duration-1000 ease-out group-hover:scale-x-105 transform-gpu`}
+                  className={`h-4 rounded-full bg-gradient-to-r ${item.color} transition-all duration-1000 ease-out group-hover:scale-x-105 transform-gpu`}
                   style={{
                     width: `${item.percentage}%`,
                     animationDelay: `${index * 200}ms`,
+                    boxShadow: '0 2px 6px rgba(44, 135, 128, 0.3)'
                   }}
                 />
               </div>
@@ -282,11 +337,11 @@ function AssetTypeChart() {
           ))}
         </div>
       </div>
-    </div>
+    </Glass3DCard>
   );
 }
 
-// SLA Compliance Donut Chart
+// Enhanced SLA Compliance Donut Chart
 function SlaComplianceDonut() {
   const compliance = getSlaComplianceRate();
   const circumference = 2 * Math.PI * 45;
@@ -294,7 +349,7 @@ function SlaComplianceDonut() {
   const strokeDashoffset = circumference - (compliance / 100) * circumference;
 
   return (
-    <div className="bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl p-6 hover:shadow-[0_8px_40px_rgba(114,241,220,0.4)] transition-all duration-300" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)', minHeight: '320px', height: '320px'}}>
+    <Glass3DCard style={{ minHeight: '320px', height: '320px' }}>
       <div className="pb-4">
         <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
           <CheckCircle className="mr-2 h-5 w-5 text-[#2C8780]" />
@@ -327,6 +382,7 @@ function SlaComplianceDonut() {
                 strokeDashoffset={strokeDashoffset}
                 strokeLinecap="round"
                 className="transition-all duration-2000 ease-out drop-shadow-sm"
+                style={{ filter: 'drop-shadow(0 0 6px rgba(44, 135, 128, 0.3))' }}
               />
               <defs>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -345,27 +401,32 @@ function SlaComplianceDonut() {
             </div>
           </div>
 
-          <div className="text-center bg-white/50 backdrop-blur-lg rounded-2xl p-4 border border-white/30" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.1)'}}>
+          <div className="text-center bg-white/50 backdrop-blur-lg rounded-2xl p-4 border border-white/30" style={{
+            boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+          }}>
             <p className="text-sm text-[#1D1D2C] font-medium">
               {allMockAssets.filter(a => a.sla_stage !== 'Breach').length} of {allMockAssets.length} assets on track
             </p>
             <div className="flex items-center justify-center mt-2 space-x-4 text-xs">
               <div className="flex items-center">
-                <div className="w-2 h-2 bg-green-500 rounded-full mr-1" />
+                <div className="w-2 h-2 bg-green-500 rounded-full mr-1" style={{
+                  boxShadow: '0 0 4px rgba(34, 197, 94, 0.5)'
+                }} />
                 <span className="text-[#1D1D2C]">On Track</span>
               </div>
               <div className="flex items-center">
-                <div className="w-2 h-2 bg-red-500 rounded-full mr-1" />
+                <div className="w-2 h-2 bg-red-500 rounded-full mr-1" style={{
+                  boxShadow: '0 0 4px rgba(239, 68, 68, 0.5)'
+                }} />
                 <span className="text-[#1D1D2C]">Breach</span>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </Glass3DCard>
   );
 }
-
 
 export function ModernDashboard() {
   const stats = getDashboardStats();
@@ -373,7 +434,7 @@ export function ModernDashboard() {
 
   return (
     <div className="space-y-6">
-      {/* Enhanced Header */}
+      {/* Enhanced Header without background */}
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-light text-[#1D1D2C] mb-2">
@@ -382,18 +443,18 @@ export function ModernDashboard() {
           <p className="text-[#2C8780]">Monitor and manage asset recovery operations with real-time insights</p>
         </div>
         <div className="flex space-x-3">
-          <Button variant="outline" size="sm" className="bg-white/20 backdrop-blur-lg border border-white/30 text-[#1D1D2C] hover:bg-white/30" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}}>
+          <Button variant="outline" size="sm" className="macos-button text-[#1D1D2C]">
             <Calendar className="mr-2 h-4 w-4" />
             Last 30 Days
           </Button>
-          <Button variant="outline" size="sm" className="bg-white/20 backdrop-blur-lg border border-white/30 text-[#1D1D2C] hover:bg-white/30" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}}>
+          <Button variant="outline" size="sm" className="macos-button text-[#1D1D2C]">
             <RefreshCw className="mr-2 h-4 w-4" />
             Refresh
           </Button>
         </div>
       </div>
 
-      {/* Compact KPI Cards */}
+      {/* Enhanced KPI Cards with 3D effects */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <CompactKpiCard
           title="Total Assets Pending"
@@ -441,7 +502,7 @@ export function ModernDashboard() {
         />
       </div>
 
-      {/* 2-Column Charts Layout */}
+      {/* 2-Column Charts Layout with enhanced 3D effects */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <AssetTypeChart />
         <RecoveryProgressChart />
@@ -449,8 +510,8 @@ export function ModernDashboard() {
 
       {/* Recent Activity and SLA Compliance Row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Recent Activity Section */}
-        <div className="bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl p-6 lg:col-span-2 hover:shadow-[0_8px_40px_rgba(114,241,220,0.4)] transition-all duration-300" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}}>
+        {/* Enhanced Recent Activity Section */}
+        <Glass3DCard className="lg:col-span-2">
           <div className="pb-4">
             <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
               <Clock className="mr-2 h-5 w-5 text-[#2C8780]" />
@@ -471,7 +532,7 @@ export function ModernDashboard() {
                 </thead>
                 <tbody>
                   {allMockAssets.slice(0, 5).map((asset, index) => (
-                    <tr key={asset.id} className="border-b border-white/10 hover:bg-white/20 transition-colors">
+                    <tr key={asset.id} className="border-b border-white/10 hover:bg-white/10 transition-colors">
                       <td className="py-3">
                         <div>
                           <p className="text-sm font-medium text-[#1D1D2C]">{asset.asset_tag}</p>
@@ -480,10 +541,10 @@ export function ModernDashboard() {
                       </td>
                       <td className="py-3 text-sm text-[#1D1D2C]">{asset.user_name}</td>
                       <td className="py-3">
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium backdrop-blur-lg ${
-                          asset.status === 'Completed' ? 'bg-green-100/50 text-green-700' :
-                          asset.sla_stage === 'Breach' ? 'bg-red-100/50 text-red-700' :
-                          'bg-blue-100/50 text-blue-700'
+                        <span className={`px-2 py-1 rounded-full text-xs font-medium backdrop-blur-lg border ${
+                          asset.status === 'Completed' ? 'bg-green-100/50 text-green-700 border-green-200/30' :
+                          asset.sla_stage === 'Breach' ? 'bg-red-100/50 text-red-700 border-red-200/30' :
+                          'bg-blue-100/50 text-blue-700 border-blue-200/30'
                         }`}>
                           {asset.status}
                         </span>
@@ -504,7 +565,7 @@ export function ModernDashboard() {
               </table>
             </div>
           </div>
-        </div>
+        </Glass3DCard>
 
         {/* SLA Compliance Card */}
         <SlaComplianceDonut />
