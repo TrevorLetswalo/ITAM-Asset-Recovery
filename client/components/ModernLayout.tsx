@@ -85,6 +85,27 @@ export function ModernLayout({ children }: LayoutProps) {
     document.documentElement.classList.toggle('dark');
   };
 
+  const handleNotifications = () => {
+    alert('🔔 Notifications Center\n\nRecent notifications:\n\n• 3 SLA breaches require attention\n• New asset recovery request submitted\n• System backup completed\n• 2 pending approvals');
+  };
+
+  const handleProfileMenu = () => {
+    const options = ['View Profile', 'Account Settings', 'Change Password', 'Sign Out'];
+    const selectedOption = prompt(`Profile Menu:\n\n${options.map((opt, idx) => `${idx + 1}. ${opt}`).join('\n')}\n\nEnter number (1-4):`);
+
+    if (selectedOption && selectedOption >= '1' && selectedOption <= '4') {
+      const selected = options[parseInt(selectedOption) - 1];
+      if (selected === 'Sign Out') {
+        const confirmed = confirm('Are you sure you want to sign out?');
+        if (confirmed) {
+          alert('✅ Successfully signed out!');
+        }
+      } else {
+        alert(`📝 Opening: ${selected}\n\nThis would navigate to the ${selected.toLowerCase()} page.`);
+      }
+    }
+  };
+
   return (
     <div className="h-screen flex overflow-hidden">
       {/* Mobile sidebar overlay */}
