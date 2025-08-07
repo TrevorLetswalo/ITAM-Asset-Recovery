@@ -29,17 +29,47 @@ export default function SelfServiceReturnCenter({ className = "" }: SelfServiceR
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      // Reset form
-      setTicketId('');
+    setSubmissionSuccess(false);
+
+    try {
+      // Submit to Firebase Firestore
+      const ticketId = await submitRecoveryTicket({
+        name,
+        email,
+        assetTag,
+        reason: reason || recoveryType,
+        serialNumber,
+        recoveryType,
+        comments
+      });
+
+      setGeneratedTicketId(ticketId);
+
+      // Send confirmation email via EmailJS
+      await sendRecoveryConfirmation({
+        name,
+        email,
+        assetTag,
+        reason: reason || recoveryType,
+        ticketId
+      });
+
+      // Reset form and show success
+      setName('');
+      setEmail('');
+      setAssetTag('');
       setSerialNumber('');
+      setReason('');
       setRecoveryType('');
       setComments('');
-      alert('Return request submitted successfully!');
-    }, 2000);
+      setSubmissionSuccess(true);
+
+    } catch (error) {
+      console.error('Error submitting recovery request:', error);
+      alert('Failed to submit recovery request. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
