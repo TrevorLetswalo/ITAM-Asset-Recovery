@@ -213,7 +213,7 @@ export function SubmitRecoveryRequest() {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="px-8 py-3 bg-[#2C8780] hover:bg-[#2C8780]/90 text-white font-medium rounded-xl transition-all duration-200 hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-8 py-3 bg-[#2C8780] hover:bg-[#2C8780]/90 text-white font-medium rounded-full transition-all duration-200 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
                 <>
