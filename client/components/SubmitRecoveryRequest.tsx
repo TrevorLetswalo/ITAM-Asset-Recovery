@@ -79,8 +79,8 @@ export function SubmitRecoveryRequest() {
           <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
             <Send className="h-8 w-8 text-white" />
           </div>
-          <h3 className="text-xl font-bold text-white mb-2">Request Submitted Successfully!</h3>
-          <p className="text-white/80">Your recovery request has been submitted. You will receive a confirmation email shortly.</p>
+          <h3 className="text-xl font-bold text-[#1D1D2C] mb-2">Request Submitted Successfully!</h3>
+          <p className="text-gray-700">Your recovery request has been submitted. You will receive a confirmation email shortly.</p>
         </CardContent>
       </Card>
     );
