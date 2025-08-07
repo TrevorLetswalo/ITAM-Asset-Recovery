@@ -21,6 +21,7 @@ import {
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { cn } from '@/lib/utils';
+import ChatAssistant from './ChatAssistant';
 
 interface LayoutProps {
   children: React.ReactNode;
