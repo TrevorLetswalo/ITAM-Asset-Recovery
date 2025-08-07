@@ -515,21 +515,21 @@ export function ModernDashboard() {
         <RecoveryProgressChart />
       </div>
 
-      {/* Recent Activity and SLA Compliance Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* Recent Activity and SLA Compliance Row - Equal sizing */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Enhanced Recent Activity Section */}
-        <Glass3DCard className="lg:col-span-2">
+        <Glass3DCard style={{ minHeight: '420px', height: '420px' }}>
           <div className="pb-4">
             <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
               <Clock className="mr-2 h-5 w-5 text-[#2C8780]" />
               Recent Activity
             </h3>
           </div>
-          <div>
-            <div className="overflow-x-auto">
+          <div className="flex-1 overflow-hidden">
+            <div className="h-full overflow-y-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-white/20">
+                  <tr className="border-b border-white/20 sticky top-0 bg-white/10 backdrop-blur-lg">
                     <th className="text-left py-3 text-sm font-medium text-[#2C8780]">Asset</th>
                     <th className="text-left py-3 text-sm font-medium text-[#2C8780]">User</th>
                     <th className="text-left py-3 text-sm font-medium text-[#2C8780]">Status</th>
@@ -538,7 +538,7 @@ export function ModernDashboard() {
                   </tr>
                 </thead>
                 <tbody>
-                  {allMockAssets.slice(0, 5).map((asset, index) => (
+                  {allMockAssets.slice(0, 8).map((asset, index) => (
                     <tr key={asset.id} className="border-b border-white/10 hover:bg-white/10 transition-colors">
                       <td className="py-3">
                         <div>
@@ -574,8 +574,103 @@ export function ModernDashboard() {
           </div>
         </Glass3DCard>
 
-        {/* SLA Compliance Card */}
-        <SlaComplianceDonut />
+        {/* SLA Compliance Card - Enhanced and same size */}
+        <Glass3DCard style={{ minHeight: '420px', height: '420px' }}>
+          <div className="pb-4">
+            <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
+              <CheckCircle className="mr-2 h-5 w-5 text-[#2C8780]" />
+              SLA Compliance
+            </h3>
+          </div>
+          <div className="flex-1 flex flex-col items-center justify-center">
+            {/* Main donut chart */}
+            <div className="relative mb-6">
+              <div className="relative w-44 h-44 mb-4">
+                <svg className="w-44 h-44 transform -rotate-90 drop-shadow-lg" viewBox="0 0 100 100">
+                  {/* Background circle */}
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="42"
+                    stroke="currentColor"
+                    strokeWidth="8"
+                    fill="transparent"
+                    className="text-white/20"
+                  />
+                  {/* Progress circle */}
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="42"
+                    stroke="url(#gradient)"
+                    strokeWidth="8"
+                    fill="transparent"
+                    strokeDasharray={2 * Math.PI * 42}
+                    strokeDashoffset={2 * Math.PI * 42 - (slaCompliance / 100) * 2 * Math.PI * 42}
+                    strokeLinecap="round"
+                    className="transition-all duration-2000 ease-out drop-shadow-sm"
+                    style={{ filter: 'drop-shadow(0 0 8px rgba(44, 135, 128, 0.4))' }}
+                  />
+                  <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#2C8780" />
+                      <stop offset="100%" stopColor="#72F1DC" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <span className="text-4xl font-light text-[#1D1D2C]">
+                      <AnimatedCounter value={slaCompliance} suffix="%" />
+                    </span>
+                    <p className="text-sm text-[#2C8780] font-medium">Compliant</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Compliance stats */}
+            <div className="w-full space-y-4">
+              <div className="bg-white/50 backdrop-blur-lg rounded-2xl p-4 border border-white/30" style={{
+                boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+              }}>
+                <p className="text-sm text-[#1D1D2C] font-medium text-center mb-3">
+                  {allMockAssets.filter(a => a.sla_stage !== 'Breach').length} of {allMockAssets.length} assets on track
+                </p>
+                <div className="flex items-center justify-center space-x-6 text-xs">
+                  <div className="flex items-center">
+                    <div className="w-3 h-3 bg-green-500 rounded-full mr-2" style={{
+                      boxShadow: '0 0 6px rgba(34, 197, 94, 0.5)'
+                    }} />
+                    <span className="text-[#1D1D2C] font-medium">On Track</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-3 h-3 bg-red-500 rounded-full mr-2" style={{
+                      boxShadow: '0 0 6px rgba(239, 68, 68, 0.5)'
+                    }} />
+                    <span className="text-[#1D1D2C] font-medium">Breach</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Additional SLA metrics */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-white/30 backdrop-blur-lg rounded-xl p-3 border border-white/20 text-center">
+                  <div className="text-lg font-light text-[#1D1D2C]">
+                    {Math.round((allMockAssets.filter(a => a.recovery_age <= 14).length / allMockAssets.length) * 100)}%
+                  </div>
+                  <div className="text-xs text-[#2C8780]">≤ 14 Days</div>
+                </div>
+                <div className="bg-white/30 backdrop-blur-lg rounded-xl p-3 border border-white/20 text-center">
+                  <div className="text-lg font-light text-[#1D1D2C]">
+                    {allMockAssets.filter(a => a.sla_stage === 'Breach').length}
+                  </div>
+                  <div className="text-xs text-[#2C8780]">In Breach</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Glass3DCard>
       </div>
 
       {/* Self-Service Return Center */}
