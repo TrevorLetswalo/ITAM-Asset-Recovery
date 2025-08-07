@@ -212,7 +212,7 @@ function EmailTemplateCard({ template }: { template: EmailTemplate }) {
           </div>
         </div>
         <div className="flex space-x-2">
-          <Button size="sm" className="macos-button text-[#2C8780]">
+          <Button size="sm" onClick={handlePreview} className="macos-button text-[#2C8780]">
             <Eye className="h-3 w-3 mr-1" />
             Preview
           </Button>
