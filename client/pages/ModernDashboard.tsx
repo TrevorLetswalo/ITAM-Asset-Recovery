@@ -481,47 +481,96 @@ export function ModernDashboard() {
         />
       </div>
 
-      {/* Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-        <div className="xl:col-span-2">
-          <RecoveryProgressChart />
-        </div>
-        <div className="space-y-6">
-          <AssetTypeChart />
-        </div>
+      {/* Mid Row - Equal-sized Charts */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <RecoveryProgressChart />
+        <AssetTypeChart />
       </div>
 
-      {/* Bottom Section */}
+      {/* Lower Row - Three Column Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <SlaComplianceDonut />
-        <SelfServiceActions />
-        
+
         {/* Recent Activity Timeline */}
-        <Card className="glass-card shadow-medium">
+        <Card className="chart-container">
           <CardHeader className="pb-4">
             <CardTitle className="text-lg font-poppins font-semibold text-gray-900 flex items-center">
               <Clock className="mr-2 h-5 w-5 text-recovery-accent" />
               Recent Activity
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {allMockAssets.slice(0, 4).map((asset, index) => (
-                <div key={asset.id} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                  <div className={`w-2 h-2 rounded-full ${
+          <CardContent className="flex-1">
+            <div className="space-y-3 max-h-64 overflow-y-auto custom-scrollbar">
+              {allMockAssets.slice(0, 6).map((asset, index) => (
+                <div key={asset.id} className="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-50 transition-all duration-200 group">
+                  <div className={`w-2.5 h-2.5 rounded-full shadow-sm ${
                     asset.status === 'Completed' ? 'bg-green-500' :
                     asset.sla_stage === 'Breach' ? 'bg-red-500' :
                     'bg-blue-500'
                   }`} />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate">{asset.asset_tag}</p>
+                    <p className="text-sm font-medium text-gray-900 truncate group-hover:text-recovery-accent transition-colors">
+                      {asset.asset_tag}
+                    </p>
                     <p className="text-xs text-gray-500">{asset.user_name}</p>
                   </div>
-                  <Badge variant="outline" className="text-xs">
-                    {asset.recovery_age}d
-                  </Badge>
+                  <div className="flex flex-col items-end">
+                    <Badge variant="outline" className="text-xs shadow-soft mb-1">
+                      {asset.recovery_age}d
+                    </Badge>
+                    <span className={`text-xs px-2 py-0.5 rounded-full ${
+                      asset.status === 'Completed' ? 'bg-green-100 text-green-700' :
+                      asset.sla_stage === 'Breach' ? 'bg-red-100 text-red-700' :
+                      'bg-blue-100 text-blue-700'
+                    }`}>
+                      {asset.status}
+                    </span>
+                  </div>
                 </div>
               ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Quick Access - macOS style */}
+        <Card className="chart-container">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-lg font-poppins font-semibold text-gray-900 flex items-center">
+              <Zap className="mr-2 h-5 w-5 text-recovery-accent" />
+              Quick Access
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="flex-1">
+            <div className="space-y-3">
+              <Button className="macos-button w-full justify-start text-left p-4 h-auto">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center text-white shadow-soft mr-3">
+                  <Upload className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="font-medium text-gray-900">New Request</p>
+                  <p className="text-xs text-gray-500">Submit asset return</p>
+                </div>
+              </Button>
+
+              <Button className="macos-button w-full justify-start text-left p-4 h-auto">
+                <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center text-white shadow-soft mr-3">
+                  <AlertTriangle className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="font-medium text-gray-900">SLA Breach Tracker</p>
+                  <p className="text-xs text-gray-500">Monitor overdue items</p>
+                </div>
+              </Button>
+
+              <Button className="macos-button w-full justify-start text-left p-4 h-auto">
+                <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center text-white shadow-soft mr-3">
+                  <BarChart3 className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="font-medium text-gray-900">Reports</p>
+                  <p className="text-xs text-gray-500">Analytics & insights</p>
+                </div>
+              </Button>
             </div>
           </CardContent>
         </Card>
