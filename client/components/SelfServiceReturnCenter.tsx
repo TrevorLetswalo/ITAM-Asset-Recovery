@@ -106,52 +106,124 @@ export default function SelfServiceReturnCenter({ className = "" }: SelfServiceR
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Ticket ID */}
-          <div>
-            <label htmlFor="ticketId" className="block text-sm font-medium text-[#1D1D2C] mb-2">
-              Ticket ID
-            </label>
-            <input
-              type="text"
-              id="ticketId"
-              value={ticketId}
-              onChange={(e) => setTicketId(e.target.value)}
-              placeholder="e.g., TKT-12345"
-              className="w-full px-4 py-3 text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-xl transition-all duration-300"
-              style={{
-                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
-                border: '1px solid rgba(255, 255, 255, 0.4)',
-                backdropFilter: 'blur(15px)',
-                boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
-              }}
-              required
-            />
+      {submissionSuccess ? (
+        <div className="text-center py-8">
+          <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{
+            background: 'linear-gradient(135deg, #2C8780 0%, #72F1DC 100%)',
+            boxShadow: '0 8px 24px rgba(114, 241, 220, 0.3)'
+          }}>
+            <CheckCircle className="w-8 h-8 text-white" />
+          </div>
+          <h3 className="text-xl font-medium text-[#1D1D2C] mb-2">Request Submitted Successfully!</h3>
+          <p className="text-[#2C8780] mb-4">
+            Your recovery request has been submitted. Ticket ID: <strong>{generatedTicketId}</strong>
+          </p>
+          <p className="text-sm text-[#2C8780] mb-6">
+            A confirmation email has been sent to your email address with the details.
+          </p>
+          <Button
+            onClick={() => setSubmissionSuccess(false)}
+            className="text-white font-semibold rounded-xl px-6 py-3"
+            style={{
+              background: 'linear-gradient(135deg, #2C8780 0%, #72F1DC 100%)',
+              boxShadow: '0 8px 24px rgba(114, 241, 220, 0.3)'
+            }}
+          >
+            Submit Another Request
+          </Button>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Name */}
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-[#1D1D2C] mb-2">
+                Full Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your full name"
+                className="w-full px-4 py-3 text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-xl transition-all duration-300"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                  border: '1px solid rgba(255, 255, 255, 0.4)',
+                  backdropFilter: 'blur(15px)',
+                  boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                }}
+                required
+              />
+            </div>
+
+            {/* Email */}
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-[#1D1D2C] mb-2">
+                Email Address
+              </label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="your.email@company.com"
+                className="w-full px-4 py-3 text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-xl transition-all duration-300"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                  border: '1px solid rgba(255, 255, 255, 0.4)',
+                  backdropFilter: 'blur(15px)',
+                  boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                }}
+                required
+              />
+            </div>
           </div>
 
-          {/* Serial Number */}
-          <div>
-            <label htmlFor="serialNumber" className="block text-sm font-medium text-[#1D1D2C] mb-2">
-              Serial Number
-            </label>
-            <input
-              type="text"
-              id="serialNumber"
-              value={serialNumber}
-              onChange={(e) => setSerialNumber(e.target.value)}
-              placeholder="Device serial number"
-              className="w-full px-4 py-3 text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-xl transition-all duration-300"
-              style={{
-                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
-                border: '1px solid rgba(255, 255, 255, 0.4)',
-                backdropFilter: 'blur(15px)',
-                boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
-              }}
-              required
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Asset Tag */}
+            <div>
+              <label htmlFor="assetTag" className="block text-sm font-medium text-[#1D1D2C] mb-2">
+                Asset Tag
+              </label>
+              <input
+                type="text"
+                id="assetTag"
+                value={assetTag}
+                onChange={(e) => setAssetTag(e.target.value)}
+                placeholder="e.g., LP-12345"
+                className="w-full px-4 py-3 text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-xl transition-all duration-300"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                  border: '1px solid rgba(255, 255, 255, 0.4)',
+                  backdropFilter: 'blur(15px)',
+                  boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                }}
+                required
+              />
+            </div>
+
+            {/* Serial Number */}
+            <div>
+              <label htmlFor="serialNumber" className="block text-sm font-medium text-[#1D1D2C] mb-2">
+                Serial Number
+              </label>
+              <input
+                type="text"
+                id="serialNumber"
+                value={serialNumber}
+                onChange={(e) => setSerialNumber(e.target.value)}
+                placeholder="Device serial number"
+                className="w-full px-4 py-3 text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-xl transition-all duration-300"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                  border: '1px solid rgba(255, 255, 255, 0.4)',
+                  backdropFilter: 'blur(15px)',
+                  boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                }}
+              />
+            </div>
           </div>
-        </div>
 
         {/* Recovery Type */}
         <div>
@@ -239,29 +311,30 @@ export default function SelfServiceReturnCenter({ className = "" }: SelfServiceR
           </div>
         </div>
 
-        {/* Submit Button */}
-        <Button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full md:w-auto text-white font-semibold rounded-xl px-6 py-3 transition-all duration-300 disabled:opacity-50 hover:scale-105"
-          style={{
-            background: 'linear-gradient(135deg, #2C8780 0%, #72F1DC 100%)',
-            boxShadow: '0 8px 24px rgba(114, 241, 220, 0.3), 0 4px 12px rgba(44, 135, 128, 0.2)'
-          }}
-        >
-          {isSubmitting ? (
-            <>
-              <Upload className="w-4 h-4 mr-2 animate-spin" />
-              Submitting...
-            </>
-          ) : (
-            <>
-              <Send className="w-4 h-4 mr-2" />
-              Submit Return
-            </>
-          )}
-        </Button>
-      </form>
+          {/* Submit Button */}
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full md:w-auto text-white font-semibold rounded-xl px-6 py-3 transition-all duration-300 disabled:opacity-50 hover:scale-105"
+            style={{
+              background: 'linear-gradient(135deg, #2C8780 0%, #72F1DC 100%)',
+              boxShadow: '0 8px 24px rgba(114, 241, 220, 0.3), 0 4px 12px rgba(44, 135, 128, 0.2)'
+            }}
+          >
+            {isSubmitting ? (
+              <>
+                <Upload className="w-4 h-4 mr-2 animate-spin" />
+                Submitting...
+              </>
+            ) : (
+              <>
+                <Send className="w-4 h-4 mr-2" />
+                Submit Return
+              </>
+            )}
+          </Button>
+        </form>
+      )}
     </div>
   );
 }
