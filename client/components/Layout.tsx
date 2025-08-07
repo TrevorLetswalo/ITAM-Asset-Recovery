@@ -22,7 +22,7 @@ interface LayoutProps {
 
 const sidebarItems = [
   { name: 'Dashboard', path: '/', icon: LayoutDashboard },
-  { name: 'Recovery Queue', path: '/recovery-queue', icon: Queue },
+  { name: 'Recovery Queue', path: '/recovery-queue', icon: List },
   { name: 'SLA Breaches', path: '/sla-breaches', icon: AlertTriangle },
   { name: 'Email Templates', path: '/email-templates', icon: Mail },
   { name: 'Reports', path: '/reports', icon: BarChart3 },
