@@ -121,9 +121,13 @@
 
   body {
     @apply bg-background text-foreground font-inter antialiased;
-    background: linear-gradient(to bottom right, #E8F2FD 0%, #B2CAC9 50%, #2C8780 100%);
+    background: linear-gradient(to bottom, #ffffff 0%, #e6f4fd 40%, #c3e0f7 100%);
     min-height: 100vh;
     background-attachment: fixed;
+    /* Add subtle abstract wave overlay */
+    background-image:
+      radial-gradient(ellipse at top left, rgba(255,255,255,0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(44,135,128,0.05) 0%, transparent 50%);
   }
 
   /* Typography Scale */
