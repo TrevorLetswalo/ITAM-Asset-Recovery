@@ -248,7 +248,7 @@ function SecuritySettings() {
                 <p className="text-xs text-[#2C8780]">Configure role-based access control</p>
               </div>
             </div>
-            <Button size="sm" className="macos-button text-[#2C8780]">
+            <Button size="sm" onClick={handleManageRoles} className="macos-button text-[#2C8780]">
               Manage Roles
             </Button>
           </div>
