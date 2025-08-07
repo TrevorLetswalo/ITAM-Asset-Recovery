@@ -94,10 +94,10 @@ export function ModernLayout({ children }: LayoutProps) {
         />
       )}
 
-      {/* Enhanced Sidebar */}
+      {/* Enhanced Sidebar - Sticky */}
       <div className={cn(
         "fixed inset-y-0 left-0 z-50 transform transition-all duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0",
-        "glass-nav border-r border-glass-border",
+        "glass-nav border-r border-glass-border lg:sticky lg:top-0 lg:h-screen",
         sidebarOpen ? "translate-x-0" : "-translate-x-full",
         sidebarCollapsed ? "w-20" : "w-72"
       )}>
