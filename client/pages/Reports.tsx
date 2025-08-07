@@ -129,14 +129,23 @@ function ReportCard({ report }: { report: ReportCard }) {
   const Icon = report.icon;
 
   const handleViewReport = () => {
+    if (!report || !report.name) {
+      alert('❌ Report data not available');
+      return;
+    }
     alert(`📊 Opening report: "${report.name}"\n\nThis would display the full report data in a detailed view.`);
   };
 
   const handleExportReport = () => {
+    if (!report || !report.name) {
+      alert('❌ Report data not available for export');
+      return;
+    }
+
     // Mock report data export
     const reportContent = {
-      'Report Name': report.name,
-      'Category': report.category,
+      'Report Name': report.name || 'Unknown Report',
+      'Category': report.category || 'Unknown Category',
       'Generated': new Date().toLocaleString(),
       'Data': 'Sample report data would be exported here...'
     };
@@ -153,7 +162,8 @@ function ReportCard({ report }: { report: ReportCard }) {
 
     const link = document.createElement("a");
     link.href = url;
-    link.download = `${report.name.toLowerCase().replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.csv`;
+    const safeName = (report.name || 'report').toLowerCase().replace(/\s+/g, '_');
+    link.download = `${safeName}_${new Date().toISOString().split('T')[0]}.csv`;
     link.click();
     URL.revokeObjectURL(url);
   };
