@@ -1,9 +1,11 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Search, Filter, Download, Eye, Mail, AlertCircle } from 'lucide-react';
 import { allMockAssets, type AssetRecord } from '@shared/mock-assets';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
+import { exportRecoveryQueue } from '@/lib/exportUtils';
+import { sendReminderEmail, initEmailJS } from '@/lib/emailjs';
 
 // Enhanced 3D Glass Container Component
 interface Glass3DContainerProps {
