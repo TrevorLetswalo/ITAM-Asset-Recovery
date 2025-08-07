@@ -121,14 +121,13 @@
 
   body {
     @apply text-foreground font-inter antialiased;
-    /* macOS 2026 gradient background */
-    background: linear-gradient(to bottom right, #E8F2FD 0%, #B2CAC9 50%, #72F1DC 100%);
+    /* Enhanced macOS 2026 gradient background with depth */
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%),
+      linear-gradient(45deg, rgba(114,241,220,0.05) 0%, transparent 30%),
+      linear-gradient(to bottom right, #E8F2FD 0%, #B2CAC9 50%, #72F1DC 100%);
     min-height: 100vh;
     background-attachment: fixed;
-    /* Add subtle abstract overlay for depth */
-    background-image:
-      radial-gradient(ellipse at top left, rgba(255,255,255,0.2) 0%, transparent 50%),
-      radial-gradient(ellipse at bottom right, rgba(44,135,128,0.1) 0%, transparent 50%);
   }
 
   /* macOS 2026 Typography - Light & Readable */
@@ -156,28 +155,43 @@
 }
 
 @layer components {
-  /* Permanent Glassmorphism Effects - macOS 2026 */
+  /* Enhanced 3D Glassmorphism Effects */
   .glass {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 30px rgba(114, 241, 220, 0.2);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    border-left: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow:
+      0 8px 32px rgba(114, 241, 220, 0.15),
+      0 2px 8px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 
   .glass-card {
     @apply rounded-xl;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 4px 30px rgba(114, 241, 220, 0.2);
-    transition: all 0.3s ease;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    border-left: 1px solid rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow:
+      0 8px 32px rgba(114, 241, 220, 0.15),
+      0 2px 8px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .glass-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 40px rgba(114, 241, 220, 0.4);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow:
+      0 20px 60px rgba(114, 241, 220, 0.25),
+      0 8px 24px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    border-left: 1px solid rgba(255, 255, 255, 0.8);
   }
 
   .glass-nav {
@@ -230,14 +244,20 @@
     @apply max-w-screen-xl mx-auto p-6;
   }
 
-  /* Permanent Glassmorphism Components */
+  /* Enhanced 3D Glassmorphism Components */
   .compact-card {
     @apply p-6 rounded-xl;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 4px 30px rgba(114, 241, 220, 0.2);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    border-left: 1px solid rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow:
+      0 8px 32px rgba(114, 241, 220, 0.15),
+      0 2px 8px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .compact-kpi {
@@ -245,8 +265,13 @@
   }
 
   .compact-kpi:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 8px 40px rgba(114, 241, 220, 0.4);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow:
+      0 20px 60px rgba(114, 241, 220, 0.25),
+      0 8px 24px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    border-left: 1px solid rgba(255, 255, 255, 0.8);
   }
 
   /* Sparkline styles */
@@ -266,34 +291,59 @@
     stroke-linejoin: round;
   }
 
-  /* macOS-style buttons */
+  /* Enhanced 3D macOS-style buttons */
   .macos-button {
-    @apply rounded-xl px-4 py-2 font-medium transition-all duration-200;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    @apply rounded-xl px-4 py-2 font-medium;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    border-left: 1px solid rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow:
+      0 4px 16px rgba(114, 241, 220, 0.1),
+      0 1px 4px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .macos-button:hover {
-    background: rgba(255, 255, 255, 1);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    transform: translateY(-1px);
+    transform: translateY(-4px) scale(1.05);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.2) 100%);
+    box-shadow:
+      0 8px 24px rgba(114, 241, 220, 0.2),
+      0 4px 12px rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    border-left: 1px solid rgba(255, 255, 255, 0.8);
   }
 
-  /* Chart container with permanent glassmorphism */
+  /* Enhanced 3D Chart container */
   .chart-container {
     @apply p-6 rounded-xl;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 4px 30px rgba(114, 241, 220, 0.2);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    border-left: 1px solid rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow:
+      0 8px 32px rgba(114, 241, 220, 0.15),
+      0 2px 8px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
     min-height: 320px;
-    height: 320px; /* Fixed height for consistency */
+    height: 320px;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .chart-container:hover {
-    box-shadow: 0 8px 40px rgba(114, 241, 220, 0.4);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow:
+      0 20px 60px rgba(114, 241, 220, 0.25),
+      0 8px 24px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    border-left: 1px solid rgba(255, 255, 255, 0.8);
   }
 
   /* Custom scrollbar - macOS style */
