@@ -211,10 +211,48 @@
 
   /* Compact Elements */
   .compact-card {
-    @apply p-4 rounded-xl shadow-soft glass-card;
+    @apply p-6 rounded-2xl shadow-macos glass-card;
   }
 
   .compact-kpi {
-    @apply compact-card hover:shadow-medium transition-all duration-300;
+    @apply compact-card hover:shadow-strong transition-all duration-300 hover:scale-[1.02];
+    background: rgba(255, 255, 255, 0.85);
+  }
+
+  /* Sparkline styles */
+  .sparkline {
+    height: 20px;
+    width: 60px;
+  }
+
+  .sparkline svg {
+    overflow: visible;
+  }
+
+  .sparkline path {
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* macOS-style buttons */
+  .macos-button {
+    @apply rounded-xl px-4 py-2 font-medium transition-all duration-200;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .macos-button:hover {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+  }
+
+  /* Chart container equal sizing */
+  .chart-container {
+    @apply glass-card shadow-medium;
+    min-height: 320px;
   }
 }
