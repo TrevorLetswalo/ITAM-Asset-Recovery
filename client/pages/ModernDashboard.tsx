@@ -442,99 +442,78 @@ export function ModernDashboard() {
         />
       </div>
 
-      {/* Mid Row - Equal-sized Charts */}
+      {/* 2-Column Charts Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <RecoveryProgressChart />
         <AssetTypeChart />
+        <RecoveryProgressChart />
       </div>
 
-      {/* Lower Row - Three Column Layout */}
+      {/* Recent Activity and SLA Compliance Row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <SlaComplianceDonut />
-
-        {/* Recent Activity Timeline */}
-        <Card className="chart-container">
+        {/* Recent Activity Section */}
+        <Card className="glass-card lg:col-span-2">
           <CardHeader className="pb-4">
-            <CardTitle className="text-lg font-poppins font-semibold text-gray-900 flex items-center">
-              <Clock className="mr-2 h-5 w-5 text-recovery-accent" />
+            <CardTitle className="text-lg font-poppins font-semibold text-white flex items-center">
+              <Clock className="mr-2 h-5 w-5 text-[#72F1DC]" />
               Recent Activity
             </CardTitle>
           </CardHeader>
-          <CardContent className="flex-1">
-            <div className="space-y-3 max-h-64 overflow-y-auto custom-scrollbar">
-              {allMockAssets.slice(0, 6).map((asset, index) => (
-                <div key={asset.id} className="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-50 transition-all duration-200 group">
-                  <div className={`w-2.5 h-2.5 rounded-full shadow-sm ${
-                    asset.status === 'Completed' ? 'bg-green-500' :
-                    asset.sla_stage === 'Breach' ? 'bg-red-500' :
-                    'bg-blue-500'
-                  }`} />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate group-hover:text-recovery-accent transition-colors">
-                      {asset.asset_tag}
-                    </p>
-                    <p className="text-xs text-gray-500">{asset.user_name}</p>
-                  </div>
-                  <div className="flex flex-col items-end">
-                    <Badge variant="outline" className="text-xs shadow-soft mb-1">
-                      {asset.recovery_age}d
-                    </Badge>
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${
-                      asset.status === 'Completed' ? 'bg-green-100 text-green-700' :
-                      asset.sla_stage === 'Breach' ? 'bg-red-100 text-red-700' :
-                      'bg-blue-100 text-blue-700'
-                    }`}>
-                      {asset.status}
-                    </span>
-                  </div>
-                </div>
-              ))}
+          <CardContent>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-white/20">
+                    <th className="text-left py-3 text-sm font-medium text-white/80">Asset</th>
+                    <th className="text-left py-3 text-sm font-medium text-white/80">User</th>
+                    <th className="text-left py-3 text-sm font-medium text-white/80">Status</th>
+                    <th className="text-left py-3 text-sm font-medium text-white/80">Days</th>
+                    <th className="text-left py-3 text-sm font-medium text-white/80">Trend</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {allMockAssets.slice(0, 5).map((asset, index) => (
+                    <tr key={asset.id} className="border-b border-white/10 hover:bg-white/5 transition-colors">
+                      <td className="py-3">
+                        <div>
+                          <p className="text-sm font-medium text-white">{asset.asset_tag}</p>
+                          <p className="text-xs text-white/60">{asset.asset_type}</p>
+                        </div>
+                      </td>
+                      <td className="py-3 text-sm text-white">{asset.user_name}</td>
+                      <td className="py-3">
+                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                          asset.status === 'Completed' ? 'bg-green-500/20 text-green-300' :
+                          asset.sla_stage === 'Breach' ? 'bg-red-500/20 text-red-300' :
+                          'bg-blue-500/20 text-blue-300'
+                        }`}>
+                          {asset.status}
+                        </span>
+                      </td>
+                      <td className="py-3 text-sm text-white">{asset.recovery_age}d</td>
+                      <td className="py-3">
+                        {asset.recovery_age > 30 ? (
+                          <TrendingUp className="h-4 w-4 text-red-400" />
+                        ) : asset.recovery_age > 14 ? (
+                          <TrendingDown className="h-4 w-4 text-yellow-400" />
+                        ) : (
+                          <TrendingDown className="h-4 w-4 text-green-400" />
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </CardContent>
         </Card>
 
-        {/* Quick Access - macOS style */}
-        <Card className="chart-container">
-          <CardHeader className="pb-4">
-            <CardTitle className="text-lg font-poppins font-semibold text-gray-900 flex items-center">
-              <Zap className="mr-2 h-5 w-5 text-recovery-accent" />
-              Quick Access
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex-1">
-            <div className="space-y-3">
-              <Button className="macos-button w-full justify-start text-left p-4 h-auto">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center text-white shadow-soft mr-3">
-                  <Upload className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="font-medium text-gray-900">New Request</p>
-                  <p className="text-xs text-gray-500">Submit asset return</p>
-                </div>
-              </Button>
+        {/* SLA Compliance Card */}
+        <SlaComplianceDonut />
+      </div>
 
-              <Button className="macos-button w-full justify-start text-left p-4 h-auto">
-                <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center text-white shadow-soft mr-3">
-                  <AlertTriangle className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="font-medium text-gray-900">SLA Breach Tracker</p>
-                  <p className="text-xs text-gray-500">Monitor overdue items</p>
-                </div>
-              </Button>
-
-              <Button className="macos-button w-full justify-start text-left p-4 h-auto">
-                <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center text-white shadow-soft mr-3">
-                  <BarChart3 className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="font-medium text-gray-900">Reports</p>
-                  <p className="text-xs text-gray-500">Analytics & insights</p>
-                </div>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+      {/* Submit Recovery Request Section */}
+      <div className="mt-8">
+        <SubmitRecoveryRequest />
       </div>
     </div>
   );
