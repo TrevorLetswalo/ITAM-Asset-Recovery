@@ -193,6 +193,44 @@ function ReportCard({ report }: { report: ReportCard }) {
 
 export function Reports() {
   const [selectedCategory, setSelectedCategory] = useState('all');
+
+  const handleRefreshAll = () => {
+    alert('🔄 Refreshing all reports...\n\nThis would trigger data refresh from the backend in a full application.');
+  };
+
+  const handleBulkExport = () => {
+    const filteredReports = selectedCategory === 'all'
+      ? mockReports
+      : mockReports.filter(report => report.category === selectedCategory);
+
+    const reportData = filteredReports.map(report => ({
+      'Report Name': report.name,
+      'Category': report.category,
+      'Type': report.type,
+      'Description': report.description,
+      'Last Updated': report.lastUpdated,
+      'Download Formats': report.downloadFormats.join(', ')
+    }));
+
+    const csvRows = [];
+    const headers = Object.keys(reportData[0]);
+    csvRows.push(headers.join(","));
+
+    for (const row of reportData) {
+      const values = headers.map(header => `"${(row as any)[header] ?? ''}"`);
+      csvRows.push(values.join(","));
+    }
+
+    const csvContent = csvRows.join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `reports_bulk_export_${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
   const [dateRange, setDateRange] = useState('30d');
 
   const filteredReports = mockReports.filter(report => 
