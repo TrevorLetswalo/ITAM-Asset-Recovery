@@ -297,6 +297,42 @@ function EmailTemplateCard({ template }: { template: EmailTemplate }) {
           </div>
         )}
       </div>
+
+      {/* Preview Modal */}
+      {showPreview && (
+        <Dialog open={showPreview} onOpenChange={setShowPreview}>
+          <DialogContent className="max-w-2xl" style={{
+            background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
+            border: '1px solid rgba(255, 255, 255, 0.4)',
+            backdropFilter: 'blur(20px)',
+            boxShadow: '0 12px 40px rgba(114, 241, 220, 0.2)'
+          }}>
+            <DialogHeader>
+              <DialogTitle className="text-xl font-semibold text-[#1D1D2C]">Email Preview - {template.name}</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4">
+              <div>
+                <label className="text-sm font-medium text-[#2C8780]">Subject:</label>
+                <p className="text-[#1D1D2C] font-medium">{template.subject}</p>
+              </div>
+              <div>
+                <label className="text-sm font-medium text-[#2C8780]">Content:</label>
+                <div className="mt-2 p-4 bg-white/20 backdrop-blur-lg rounded-lg border border-white/30">
+                  <div className="text-[#1D1D2C] whitespace-pre-wrap">{editedContent}</div>
+                </div>
+              </div>
+              <div className="flex justify-end space-x-2">
+                <Button onClick={() => setShowPreview(false)} variant="outline" className="macos-button text-[#2C8780]">
+                  Close
+                </Button>
+                <Button onClick={sendTestEmail} disabled={isSending} className="bg-gradient-to-r from-[#2C8780] to-[#72F1DC] text-white">
+                  {isSending ? 'Sending...' : 'Send Test'}
+                </Button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
     </Glass3DContainer>
   );
 }
