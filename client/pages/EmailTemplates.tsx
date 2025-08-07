@@ -17,13 +17,47 @@ import {
   CheckCircle,
   AlertCircle
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { cn } from '@/lib/utils';
 import { TestEmailRequest, TestEmailResponse } from '@shared/email-api';
+
+// Enhanced 3D Glass Container Component
+interface Glass3DContainerProps {
+  children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+function Glass3DContainer({ children, className = "", style = {} }: Glass3DContainerProps) {
+  return (
+    <div 
+      className={`p-6 rounded-2xl transition-all duration-500 ease-out cursor-pointer ${className}`}
+      style={{
+        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
+        border: '1px solid rgba(255, 255, 255, 0.4)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.6)',
+        borderLeft: '1px solid rgba(255, 255, 255, 0.6)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        boxShadow: '0 8px 32px rgba(114, 241, 220, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+        ...style
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-4px) scale(1.01)';
+        e.currentTarget.style.boxShadow = '0 16px 48px rgba(114, 241, 220, 0.2), 0 4px 16px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.4)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'translateY(0) scale(1)';
+        e.currentTarget.style.boxShadow = '0 8px 32px rgba(114, 241, 220, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
 interface EmailTemplate {
   id: string;
@@ -98,354 +132,79 @@ IT Asset Management Team`,
 
 This is an urgent notice regarding the overdue return of company asset {{asset_tag}}.
 
-Asset Details:
-- Asset Tag: {{asset_tag}}
-- Serial Number: {{serial_number}}
-- Asset Type: {{asset_type}}
-- Days Overdue: {{recovery_age}}
-- Original Due Date: {{sla_due_date}}
+The asset is now {{recovery_age}} days overdue and this matter has been escalated to management.
 
-This matter has now been escalated to your direct manager ({{manager_name}}) and the IT Security team. Immediate action is required to return this asset.
-
-Please contact {{assigned_to}} immediately at {{support_email}} to arrange for the return of this asset.
-
-This is a formal notice that failure to comply may result in:
-- Policy violation proceedings
-- Security access review
-- Potential replacement cost charges
+Please contact IT support immediately to arrange return of this asset.
 
 Best regards,
-IT Asset Management Team
-CC: {{manager_name}}, IT Security Team`,
-    variables: ['user_name', 'asset_tag', 'serial_number', 'asset_type', 'recovery_age', 'sla_due_date', 'manager_name', 'assigned_to', 'support_email'],
+IT Asset Management Team`,
+    variables: ['user_name', 'asset_tag', 'recovery_age'],
     lastModified: '2024-02-25',
     isActive: true
-  },
-  {
-    id: 'tmpl-004',
-    name: 'Final Warning Notice',
-    type: 'Final Warning',
-    subject: 'FINAL NOTICE: Asset Recovery Required - {{asset_tag}}',
-    content: `Dear {{user_name}},
-
-This is a FINAL NOTICE regarding the overdue return of company asset {{asset_tag}}.
-
-Asset Details:
-- Asset Tag: {{asset_tag}}
-- Serial Number: {{serial_number}}
-- Asset Type: {{asset_type}}
-- Days Overdue: {{recovery_age}}
-- Estimated Value: {{asset_value}}
-
-Despite previous communications, this asset remains unreturned. This matter has been escalated to:
-- Your Manager: {{manager_name}}
-- IT Security: {{security_contact}}
-- HR Department: {{hr_contact}}
-
-IMMEDIATE ACTION REQUIRED:
-You have 48 hours from the receipt of this notice to return the asset or contact {{assigned_to}} at {{support_phone}} to arrange return.
-
-Failure to comply within 48 hours will result in:
-- Formal policy violation proceedings
-- Potential charges for asset replacement cost ({{asset_value}})
-- Security access suspension
-- HR disciplinary action
-
-This is your final opportunity to resolve this matter before formal proceedings begin.
-
-Urgent Contact: {{assigned_to}} - {{support_phone}}
-
-IT Asset Management Team`,
-    variables: ['user_name', 'asset_tag', 'serial_number', 'asset_type', 'recovery_age', 'asset_value', 'manager_name', 'security_contact', 'hr_contact', 'assigned_to', 'support_phone'],
-    lastModified: '2024-02-20',
-    isActive: true
-  },
-  {
-    id: 'tmpl-005',
-    name: 'Risk Alert Notification',
-    type: 'Risk Alert',
-    subject: 'SECURITY ALERT: High-Risk Asset Recovery - {{asset_tag}}',
-    content: `SECURITY ALERT - IMMEDIATE ATTENTION REQUIRED
-
-Asset: {{asset_tag}} ({{asset_type}})
-User: {{user_name}} ({{user_email}})
-Risk Level: HIGH
-Days Overdue: {{recovery_age}}
-
-This high-value/sensitive asset has exceeded our security threshold for recovery time.
-
-SECURITY IMPLICATIONS:
-- Potential data exposure risk
-- Policy compliance violation
-- Asset value: {{asset_value}}
-
-IMMEDIATE ACTIONS TAKEN:
-- Security team notified
-- Access reviews initiated
-- Manager escalation: {{manager_name}}
-
-REQUIRED ACTIONS:
-1. Immediate asset recovery coordination
-2. Security assessment upon return
-3. User access review
-
-Contact {{assigned_to}} immediately for urgent recovery coordination.
-
-IT Security Team
-Asset Management Division`,
-    variables: ['asset_tag', 'asset_type', 'user_name', 'user_email', 'recovery_age', 'asset_value', 'manager_name', 'assigned_to'],
-    lastModified: '2024-02-15',
-    isActive: false
   }
 ];
 
-const availableVariables = [
-  'user_name', 'user_email', 'asset_tag', 'serial_number', 'asset_type', 
-  'recovery_type', 'recovery_age', 'sla_due_date', 'status', 'manager_name',
-  'assigned_to', 'support_email', 'support_phone', 'asset_value', 
-  'security_contact', 'hr_contact', 'location', 'priority'
-];
-
-function TemplateEditor({ template, onSave, onCancel }: { 
-  template: EmailTemplate | null; 
-  onSave: (template: EmailTemplate) => void;
-  onCancel: () => void;
-}) {
-  const [editedTemplate, setEditedTemplate] = useState<EmailTemplate>(
-    template || {
-      id: '',
-      name: '',
-      type: 'Initial',
-      subject: '',
-      content: '',
-      variables: [],
-      lastModified: new Date().toISOString().split('T')[0],
-      isActive: true
-    }
-  );
-
-  const insertVariable = (variable: string) => {
-    setEditedTemplate(prev => ({
-      ...prev,
-      content: prev.content + `{{${variable}}}`
-    }));
-  };
-
-  const previewWithSampleData = (text: string) => {
-    const sampleData: Record<string, string> = {
-      user_name: 'John Smith',
-      user_email: 'john.smith@company.com',
-      asset_tag: 'LAP-001234',
-      serial_number: 'SN789456123',
-      asset_type: 'MacBook Pro 16"',
-      recovery_type: 'Exit',
-      recovery_age: '15',
-      sla_due_date: '2024-02-28',
-      status: 'Overdue',
-      manager_name: 'Sarah Johnson',
-      assigned_to: 'Mike Rodriguez',
-      support_email: 'it-support@company.com',
-      support_phone: '(555) 123-4567',
-      asset_value: '$2,500',
-      security_contact: 'security@company.com',
-      hr_contact: 'hr@company.com',
-      location: 'New York Office',
-      priority: 'High'
-    };
-
-    return text.replace(/\{\{(\w+)\}\}/g, (match, variable) => {
-      return sampleData[variable] || match;
-    });
-  };
-
-  return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Template Name</label>
-          <input
-            type="text"
-            value={editedTemplate.name}
-            onChange={(e) => setEditedTemplate(prev => ({ ...prev, name: e.target.value }))}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-            placeholder="Enter template name"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Template Type</label>
-          <select
-            value={editedTemplate.type}
-            onChange={(e) => setEditedTemplate(prev => ({ ...prev, type: e.target.value as EmailTemplate['type'] }))}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-          >
-            <option value="Initial">Initial</option>
-            <option value="Follow-Up">Follow-Up</option>
-            <option value="Escalation">Escalation</option>
-            <option value="Final Warning">Final Warning</option>
-            <option value="Risk Alert">Risk Alert</option>
-          </select>
-        </div>
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">Email Subject</label>
-        <input
-          type="text"
-          value={editedTemplate.subject}
-          onChange={(e) => setEditedTemplate(prev => ({ ...prev, subject: e.target.value }))}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent"
-          placeholder="Enter email subject line"
-        />
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Content Editor */}
-        <div className="lg:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-2">Email Content</label>
-          <textarea
-            value={editedTemplate.content}
-            onChange={(e) => setEditedTemplate(prev => ({ ...prev, content: e.target.value }))}
-            className="w-full h-96 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-recovery-accent focus:border-transparent font-mono text-sm"
-            placeholder="Enter email content..."
-          />
-        </div>
-
-        {/* Variables Panel */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Available Variables</label>
-          <div className="border border-gray-300 rounded-lg p-4 h-96 overflow-y-auto">
-            <div className="space-y-2">
-              {availableVariables.map((variable) => (
-                <Button
-                  key={variable}
-                  variant="outline"
-                  size="sm"
-                  onClick={() => insertVariable(variable)}
-                  className="w-full text-left justify-start text-xs"
-                >
-                  <Code className="mr-2 h-3 w-3" />
-                  {variable}
-                </Button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Preview */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">Preview (with sample data)</label>
-        <div className="border border-gray-300 rounded-lg p-4 bg-gray-50 h-64 overflow-y-auto">
-          <div className="space-y-2">
-            <div><strong>Subject:</strong> {previewWithSampleData(editedTemplate.subject)}</div>
-            <hr />
-            <div className="whitespace-pre-wrap text-sm">{previewWithSampleData(editedTemplate.content)}</div>
-          </div>
-        </div>
-      </div>
-
-      {/* Actions */}
-      <div className="flex justify-end space-x-4">
-        <Button variant="outline" onClick={onCancel}>Cancel</Button>
-        <Button onClick={() => onSave(editedTemplate)} className="bg-recovery-accent hover:bg-recovery-accent/90">
-          <Save className="mr-2 h-4 w-4" />
-          Save Template
-        </Button>
-      </div>
-    </div>
-  );
-}
-
-export function EmailTemplates() {
-  const [templates, setTemplates] = useState<EmailTemplate[]>(mockTemplates);
-  const [selectedTemplate, setSelectedTemplate] = useState<EmailTemplate | null>(null);
+function EmailTemplateCard({ template }: { template: EmailTemplate }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [activeTab, setActiveTab] = useState<string>('all');
-  const [sendingTestEmail, setSendingTestEmail] = useState<string | null>(null);
-  const [testEmailStatus, setTestEmailStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [editedContent, setEditedContent] = useState(template.content);
+  const [isSending, setIsSending] = useState(false);
+  const [sendResult, setSendResult] = useState<string | null>(null);
 
   const getTypeColor = (type: string) => {
     switch (type) {
       case 'Initial':
-        return 'bg-green-100 text-green-800';
+        return 'bg-blue-100/50 text-blue-700 border-blue-200/50';
       case 'Follow-Up':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-yellow-100/50 text-yellow-700 border-yellow-200/50';
       case 'Escalation':
-        return 'bg-orange-100 text-orange-800';
+        return 'bg-orange-100/50 text-orange-700 border-orange-200/50';
       case 'Final Warning':
-        return 'bg-red-100 text-red-800';
+        return 'bg-red-100/50 text-red-700 border-red-200/50';
       case 'Risk Alert':
-        return 'bg-purple-100 text-purple-800';
+        return 'bg-purple-100/50 text-purple-700 border-purple-200/50';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-gray-100/50 text-gray-700 border-gray-200/50';
     }
   };
 
-  const filteredTemplates = templates.filter(template => 
-    activeTab === 'all' || template.type === activeTab
-  );
-
-  const copyTemplate = (template: EmailTemplate) => {
-    navigator.clipboard.writeText(template.content);
-    // You could add a toast notification here
-  };
-
-  const handleSaveTemplate = (template: EmailTemplate) => {
-    if (template.id) {
-      setTemplates(prev => prev.map(t => t.id === template.id ? template : t));
-    } else {
-      const newTemplate = { ...template, id: `tmpl-${Date.now()}` };
-      setTemplates(prev => [...prev, newTemplate]);
-    }
-    setIsEditing(false);
-    setSelectedTemplate(null);
-  };
-
-  const deleteTemplate = (templateId: string) => {
-    setTemplates(prev => prev.filter(t => t.id !== templateId));
-  };
-
-  const sendTestEmail = async (template: EmailTemplate) => {
-    setSendingTestEmail(template.id);
-    setTestEmailStatus(null);
-
+  const sendTestEmail = async () => {
+    setIsSending(true);
+    setSendResult(null);
+    
     try {
-      // Replace variables with sample data for test email
-      const sampleData: Record<string, string> = {
-        user_name: 'Trevor Letswalo',
-        user_email: 'trevdadodon@gmail.com',
-        asset_tag: 'LAP-TEST001',
-        serial_number: 'SN123456789',
-        asset_type: 'MacBook Pro 16"',
-        recovery_type: 'Exit',
-        recovery_age: '15',
-        sla_due_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-        status: 'Overdue',
-        manager_name: 'System Administrator',
-        assigned_to: 'IT Support Team',
-        support_email: 'it-support@company.com',
-        support_phone: '(555) 123-4567',
-        asset_value: '$2,500',
-        security_contact: 'security@company.com',
-        hr_contact: 'hr@company.com',
-        location: 'Remote',
-        priority: 'High'
-      };
-
-      const processedSubject = template.subject.replace(/\{\{(\w+)\}\}/g, (match, variable) => {
-        return sampleData[variable] || match;
-      });
-
-      const processedContent = template.content.replace(/\{\{(\w+)\}\}/g, (match, variable) => {
-        return sampleData[variable] || match;
-      });
-
-      const testEmailRequest: TestEmailRequest = {
-        templateName: template.name,
-        subject: processedSubject,
-        content: processedContent,
-        recipientEmail: 'trevdadodon@gmail.com',
-        templateType: template.type
+      const testRequest: TestEmailRequest = {
+        to: 'trevdadodon@gmail.com',
+        subject: template.subject.replace(/\{\{(\w+)\}\}/g, (match, key) => {
+          const sampleData: Record<string, string> = {
+            user_name: 'Trevor Letswalo',
+            asset_tag: 'LAP-001234',
+            serial_number: 'SN123456789',
+            asset_type: 'MacBook Pro 16"',
+            recovery_type: 'Exit',
+            recovery_age: '15',
+            sla_due_date: '2024-03-15',
+            status: 'Pending',
+            support_email: 'it-support@company.com',
+            support_phone: '(555) 123-4567'
+          };
+          return sampleData[key] || match;
+        }),
+        content: editedContent.replace(/\{\{(\w+)\}\}/g, (match, key) => {
+          const sampleData: Record<string, string> = {
+            user_name: 'Trevor Letswalo',
+            asset_tag: 'LAP-001234',
+            serial_number: 'SN123456789',
+            asset_type: 'MacBook Pro 16"',
+            recovery_type: 'Exit',
+            recovery_age: '15',
+            sla_due_date: 'March 15, 2024',
+            status: 'Pending',
+            support_email: 'it-support@company.com',
+            support_phone: '(555) 123-4567'
+          };
+          return sampleData[key] || match;
+        }),
+        templateId: template.id
       };
 
       const response = await fetch('/api/email/test', {
@@ -453,226 +212,218 @@ export function EmailTemplates() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(testEmailRequest),
+        body: JSON.stringify(testRequest),
       });
 
       const result: TestEmailResponse = await response.json();
-
-      if (result.success) {
-        setTestEmailStatus({
-          type: 'success',
-          message: `Test email sent successfully to trevdadodon@gmail.com! Email ID: ${result.emailId}`
-        });
-      } else {
-        setTestEmailStatus({
-          type: 'error',
-          message: result.message || 'Failed to send test email'
-        });
-      }
+      setSendResult(result.success ? 'Email sent successfully!' : `Failed to send: ${result.error}`);
     } catch (error) {
-      console.error('Error sending test email:', error);
-      setTestEmailStatus({
-        type: 'error',
-        message: 'Network error: Could not connect to email service'
-      });
+      setSendResult('Error sending email. Please try again.');
     } finally {
-      setSendingTestEmail(null);
-
-      // Clear status message after 5 seconds
-      setTimeout(() => {
-        setTestEmailStatus(null);
-      }, 5000);
+      setIsSending(false);
     }
   };
 
   return (
-    <div className="p-6">
-      <div className="mb-8">
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Email Templates</h1>
-            <p className="text-gray-600">Manage and customize automated email templates for asset recovery communications</p>
+    <Glass3DContainer>
+      <div className="flex items-start justify-between mb-4">
+        <div>
+          <h3 className="text-lg font-medium text-[#1D1D2C]">{template.name}</h3>
+          <div className="flex items-center space-x-2 mt-1">
+            <Badge className={`${getTypeColor(template.type)} backdrop-blur-lg border`}>
+              {template.type}
+            </Badge>
+            <Badge className={template.isActive ? 'bg-green-100/50 text-green-700 border-green-200/50' : 'bg-gray-100/50 text-gray-700 border-gray-200/50'}>
+              {template.isActive ? 'Active' : 'Inactive'}
+            </Badge>
           </div>
-          <Button 
-            onClick={() => {
-              setSelectedTemplate(null);
-              setIsEditing(true);
-            }}
-            className="bg-recovery-accent hover:bg-recovery-accent/90"
-          >
+        </div>
+        <div className="flex space-x-2">
+          <Button size="sm" className="macos-button text-[#2C8780]">
+            <Eye className="h-3 w-3 mr-1" />
+            Preview
+          </Button>
+          <Button size="sm" className="macos-button text-[#2C8780]" onClick={() => setIsEditing(!isEditing)}>
+            <Edit3 className="h-3 w-3 mr-1" />
+            Edit
+          </Button>
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <div>
+          <label className="text-sm font-medium text-[#2C8780]">Subject Line</label>
+          <p className="text-sm text-[#1D1D2C] p-3 rounded-lg border border-white/20 bg-white/20 backdrop-blur-lg mt-1">
+            {template.subject}
+          </p>
+        </div>
+
+        <div>
+          <label className="text-sm font-medium text-[#2C8780]">Content</label>
+          {isEditing ? (
+            <textarea
+              value={editedContent}
+              onChange={(e) => setEditedContent(e.target.value)}
+              className="w-full h-40 p-3 text-sm text-[#1D1D2C] rounded-lg border border-white/30 transition-all duration-300 resize-none mt-1"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                backdropFilter: 'blur(15px)',
+                boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
+              }}
+            />
+          ) : (
+            <div className="text-sm text-[#1D1D2C] p-3 rounded-lg border border-white/20 bg-white/20 backdrop-blur-lg whitespace-pre-wrap max-h-40 overflow-y-auto mt-1">
+              {template.content}
+            </div>
+          )}
+        </div>
+
+        <div>
+          <label className="text-sm font-medium text-[#2C8780]">Available Variables</label>
+          <div className="flex flex-wrap gap-2 mt-2">
+            {template.variables.map((variable) => (
+              <code key={variable} className="px-2 py-1 text-xs bg-white/30 text-[#1D1D2C] rounded border border-white/30 backdrop-blur-lg">
+                {`{{${variable}}}`}
+              </code>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex justify-between items-center pt-4 border-t border-white/20">
+          <div className="text-xs text-[#2C8780]">
+            Last modified: {template.lastModified}
+          </div>
+          <div className="flex space-x-2">
+            {isEditing && (
+              <Button size="sm" className="macos-button text-[#2C8780]">
+                <Save className="h-3 w-3 mr-1" />
+                Save Changes
+              </Button>
+            )}
+            <Button 
+              size="sm" 
+              onClick={sendTestEmail}
+              disabled={isSending}
+              className="bg-gradient-to-r from-[#2C8780] to-[#72F1DC] text-white hover:scale-105 transition-all duration-300"
+              style={{
+                boxShadow: '0 4px 12px rgba(44, 135, 128, 0.3)'
+              }}
+            >
+              {isSending ? (
+                <Loader2 className="h-3 w-3 mr-1 animate-spin" />
+              ) : (
+                <Send className="h-3 w-3 mr-1" />
+              )}
+              {isSending ? 'Sending...' : 'Test Email'}
+            </Button>
+          </div>
+        </div>
+
+        {sendResult && (
+          <div className={`flex items-center space-x-2 p-3 rounded-lg text-sm ${
+            sendResult.includes('successfully') 
+              ? 'bg-green-100/50 text-green-700 border border-green-200/50' 
+              : 'bg-red-100/50 text-red-700 border border-red-200/50'
+          } backdrop-blur-lg`}>
+            {sendResult.includes('successfully') ? (
+              <CheckCircle className="h-4 w-4" />
+            ) : (
+              <AlertCircle className="h-4 w-4" />
+            )}
+            <span>{sendResult}</span>
+          </div>
+        )}
+      </div>
+    </Glass3DContainer>
+  );
+}
+
+export function EmailTemplates() {
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredTemplates = mockTemplates.filter(template => {
+    const matchesCategory = selectedCategory === 'all' || template.type === selectedCategory;
+    const matchesSearch = searchTerm === '' || 
+      template.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      template.subject.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-3xl font-light text-[#1D1D2C] mb-2">Email Templates</h1>
+          <p className="text-[#2C8780]">Manage and customize automated communication templates</p>
+        </div>
+        <div className="flex space-x-3">
+          <Button className="macos-button text-[#1D1D2C]">
+            <Download className="mr-2 h-4 w-4" />
+            Export Templates
+          </Button>
+          <Button className="bg-gradient-to-r from-[#2C8780] to-[#72F1DC] text-white hover:scale-105 transition-all duration-300" style={{
+            boxShadow: '0 4px 12px rgba(44, 135, 128, 0.3)'
+          }}>
             <Plus className="mr-2 h-4 w-4" />
             New Template
           </Button>
         </div>
       </div>
 
-      {/* Test Email Status */}
-      {testEmailStatus && (
-        <Card className={`mb-6 border-l-4 ${testEmailStatus.type === 'success' ? 'border-l-green-500 bg-green-50' : 'border-l-red-500 bg-red-50'}`}>
-          <CardContent className="p-4">
-            <div className="flex items-center">
-              {testEmailStatus.type === 'success' ? (
-                <CheckCircle className="h-5 w-5 text-green-600 mr-3" />
-              ) : (
-                <AlertCircle className="h-5 w-5 text-red-600 mr-3" />
-              )}
-              <p className={`text-sm font-medium ${testEmailStatus.type === 'success' ? 'text-green-800' : 'text-red-800'}`}>
-                {testEmailStatus.message}
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {isEditing ? (
-        <Card>
-          <CardHeader>
-            <CardTitle>
-              {selectedTemplate ? 'Edit Template' : 'Create New Template'}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <TemplateEditor
-              template={selectedTemplate}
-              onSave={handleSaveTemplate}
-              onCancel={() => {
-                setIsEditing(false);
-                setSelectedTemplate(null);
+      {/* Filters */}
+      <Glass3DContainer>
+        <div className="flex flex-col lg:flex-row gap-4">
+          <div className="flex-1">
+            <input
+              type="text"
+              placeholder="Search templates..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full px-4 py-2 text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-lg transition-all duration-300"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.4)',
+                backdropFilter: 'blur(15px)',
+                boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
               }}
             />
-          </CardContent>
-        </Card>
-      ) : (
-        <>
-          {/* Tabs */}
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
-            <TabsList className="grid w-full grid-cols-6">
-              <TabsTrigger value="all">All Templates</TabsTrigger>
-              <TabsTrigger value="Initial">Initial</TabsTrigger>
-              <TabsTrigger value="Follow-Up">Follow-Up</TabsTrigger>
-              <TabsTrigger value="Escalation">Escalation</TabsTrigger>
-              <TabsTrigger value="Final Warning">Final Warning</TabsTrigger>
-              <TabsTrigger value="Risk Alert">Risk Alert</TabsTrigger>
-            </TabsList>
-          </Tabs>
-
-          {/* Templates Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {filteredTemplates.map((template) => (
-              <Card key={template.id} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <CardTitle className="text-lg">{template.name}</CardTitle>
-                      <div className="flex items-center space-x-2 mt-2">
-                        <Badge className={getTypeColor(template.type)}>
-                          {template.type}
-                        </Badge>
-                        <Badge variant={template.isActive ? "default" : "secondary"}>
-                          {template.isActive ? "Active" : "Inactive"}
-                        </Badge>
-                      </div>
-                    </div>
-                    <div className="flex space-x-2">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => copyTemplate(template)}
-                      >
-                        <Copy className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => {
-                          setSelectedTemplate(template);
-                          setIsEditing(true);
-                        }}
-                      >
-                        <Edit3 className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => deleteTemplate(template.id)}
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div>
-                      <label className="text-sm font-medium text-gray-600">Subject:</label>
-                      <p className="text-sm text-gray-900 truncate">{template.subject}</p>
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-gray-600">Variables:</label>
-                      <div className="flex flex-wrap gap-1 mt-1">
-                        {template.variables.slice(0, 4).map((variable) => (
-                          <Badge key={variable} variant="outline" className="text-xs">
-                            {variable}
-                          </Badge>
-                        ))}
-                        {template.variables.length > 4 && (
-                          <Badge variant="outline" className="text-xs">
-                            +{template.variables.length - 4} more
-                          </Badge>
-                        )}
-                      </div>
-                    </div>
-                    <div className="text-xs text-gray-500">
-                      Last modified: {template.lastModified}
-                    </div>
-                  </div>
-                  
-                  <div className="flex space-x-2 mt-4">
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button variant="outline" size="sm" className="flex-1">
-                          <Eye className="mr-2 h-4 w-4" />
-                          Preview
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                        <DialogHeader>
-                          <DialogTitle>Preview: {template.name}</DialogTitle>
-                        </DialogHeader>
-                        <div className="space-y-4">
-                          <div>
-                            <label className="font-semibold">Subject:</label>
-                            <p className="mt-1 p-3 bg-gray-50 rounded border">{template.subject}</p>
-                          </div>
-                          <div>
-                            <label className="font-semibold">Content:</label>
-                            <div className="mt-1 p-4 bg-gray-50 rounded border whitespace-pre-wrap text-sm">
-                              {template.content}
-                            </div>
-                          </div>
-                        </div>
-                      </DialogContent>
-                    </Dialog>
-                    
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => sendTestEmail(template)}
-                      disabled={sendingTestEmail === template.id}
-                    >
-                      {sendingTestEmail === template.id ? (
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      ) : (
-                        <Send className="mr-2 h-4 w-4" />
-                      )}
-                      {sendingTestEmail === template.id ? 'Sending...' : 'Test Send'}
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
           </div>
-        </>
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="px-4 py-2 text-[#1D1D2C] focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-lg transition-all duration-300"
+            style={{
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+              border: '1px solid rgba(255, 255, 255, 0.4)',
+              backdropFilter: 'blur(15px)',
+              boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
+            }}
+          >
+            <option value="all">All Categories</option>
+            <option value="Initial">Initial</option>
+            <option value="Follow-Up">Follow-Up</option>
+            <option value="Escalation">Escalation</option>
+            <option value="Final Warning">Final Warning</option>
+            <option value="Risk Alert">Risk Alert</option>
+          </select>
+        </div>
+      </Glass3DContainer>
+
+      {/* Templates Grid */}
+      <div className="space-y-6">
+        {filteredTemplates.map((template) => (
+          <EmailTemplateCard key={template.id} template={template} />
+        ))}
+      </div>
+
+      {filteredTemplates.length === 0 && (
+        <Glass3DContainer className="text-center py-12">
+          <FileText className="mx-auto h-12 w-12 text-[#2C8780] mb-4" />
+          <h3 className="text-lg font-medium text-[#1D1D2C] mb-2">No Templates Found</h3>
+          <p className="text-[#2C8780]">No email templates match the selected filters.</p>
+        </Glass3DContainer>
       )}
     </div>
   );
