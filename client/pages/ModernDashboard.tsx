@@ -346,18 +346,18 @@ function SlaComplianceDonut() {
             </div>
           </div>
 
-          <div className="text-center bg-white/10 rounded-2xl p-4 border border-white/20">
-            <p className="text-sm text-white font-medium">
+          <div className="text-center bg-white/50 rounded-2xl p-4 border border-gray-200">
+            <p className="text-sm text-[#1D1D2C] font-medium">
               {allMockAssets.filter(a => a.sla_stage !== 'Breach').length} of {allMockAssets.length} assets on track
             </p>
             <div className="flex items-center justify-center mt-2 space-x-4 text-xs">
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-green-500 rounded-full mr-1" />
-                <span className="text-white/80">On Track</span>
+                <span className="text-gray-700">On Track</span>
               </div>
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-red-500 rounded-full mr-1" />
-                <span className="text-white/80">Breach</span>
+                <span className="text-gray-700">Breach</span>
               </div>
             </div>
           </div>
