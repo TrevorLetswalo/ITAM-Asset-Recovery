@@ -243,9 +243,9 @@ function AssetTypeChart() {
   const total = data.exit + data.swap + data.loaner;
 
   const chartData = [
-    { name: 'Exit', value: data.exit, color: 'bg-gradient-to-r from-recovery-accent to-recovery-highlight', percentage: Math.round((data.exit / total) * 100) },
-    { name: 'Swap', value: data.swap, color: 'bg-gradient-to-r from-blue-500 to-blue-400', percentage: Math.round((data.swap / total) * 100) },
-    { name: 'Loaner', value: data.loaner, color: 'bg-gradient-to-r from-recovery-secondary to-recovery-secondary/80', percentage: Math.round((data.loaner / total) * 100) },
+    { name: 'Exit', value: data.exit, color: 'bg-gradient-to-r from-[#2C8780] to-[#2C8780]', percentage: Math.round((data.exit / total) * 100) },
+    { name: 'Swap', value: data.swap, color: 'bg-gradient-to-r from-[#72F1DC] to-[#72F1DC]', percentage: Math.round((data.swap / total) * 100) },
+    { name: 'Loaner', value: data.loaner, color: 'bg-gradient-to-r from-[#1D1D2C] to-[#4A4A5A]', percentage: Math.round((data.loaner / total) * 100) },
   ];
 
   return (
