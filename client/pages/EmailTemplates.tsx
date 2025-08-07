@@ -405,6 +405,86 @@ export function EmailTemplates() {
     setTemplates(prev => prev.filter(t => t.id !== templateId));
   };
 
+  const sendTestEmail = async (template: EmailTemplate) => {
+    setSendingTestEmail(template.id);
+    setTestEmailStatus(null);
+
+    try {
+      // Replace variables with sample data for test email
+      const sampleData: Record<string, string> = {
+        user_name: 'Trevor Letswalo',
+        user_email: 'trevdadodon@gmail.com',
+        asset_tag: 'LAP-TEST001',
+        serial_number: 'SN123456789',
+        asset_type: 'MacBook Pro 16"',
+        recovery_type: 'Exit',
+        recovery_age: '15',
+        sla_due_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+        status: 'Overdue',
+        manager_name: 'System Administrator',
+        assigned_to: 'IT Support Team',
+        support_email: 'it-support@company.com',
+        support_phone: '(555) 123-4567',
+        asset_value: '$2,500',
+        security_contact: 'security@company.com',
+        hr_contact: 'hr@company.com',
+        location: 'Remote',
+        priority: 'High'
+      };
+
+      const processedSubject = template.subject.replace(/\{\{(\w+)\}\}/g, (match, variable) => {
+        return sampleData[variable] || match;
+      });
+
+      const processedContent = template.content.replace(/\{\{(\w+)\}\}/g, (match, variable) => {
+        return sampleData[variable] || match;
+      });
+
+      const testEmailRequest: TestEmailRequest = {
+        templateName: template.name,
+        subject: processedSubject,
+        content: processedContent,
+        recipientEmail: 'trevdadodon@gmail.com',
+        templateType: template.type
+      };
+
+      const response = await fetch('/api/email/test', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(testEmailRequest),
+      });
+
+      const result: TestEmailResponse = await response.json();
+
+      if (result.success) {
+        setTestEmailStatus({
+          type: 'success',
+          message: `Test email sent successfully to trevdadodon@gmail.com! Email ID: ${result.emailId}`
+        });
+      } else {
+        setTestEmailStatus({
+          type: 'error',
+          message: result.message || 'Failed to send test email'
+        });
+      }
+    } catch (error) {
+      console.error('Error sending test email:', error);
+      setTestEmailStatus({
+        type: 'error',
+        message: 'Network error: Could not connect to email service'
+      });
+    } finally {
+      setSendingTestEmail(null);
+
+      // Clear status message after 5 seconds
+      setTimeout(() => {
+        setTestEmailStatus(null);
+      }, 5000);
+    }
+  };
+
   return (
     <div className="p-6">
       <div className="mb-8">
