@@ -98,7 +98,7 @@ function RecoveryTypeChart() {
         <CardTitle className="text-lg font-semibold text-gray-900">Assets by Recovery Type</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-4 mb-14">
           {chartData.map((item) => (
             <div key={item.name} className="flex items-center">
               <div className="w-20 text-sm font-medium text-gray-600">
