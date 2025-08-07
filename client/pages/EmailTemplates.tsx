@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Mail, 
-  Eye, 
-  Edit3, 
-  Save, 
-  Copy, 
-  Download, 
+import {
+  Mail,
+  Eye,
+  Edit3,
+  Save,
+  Copy,
+  Download,
   Send,
   Plus,
   Trash2,
   RefreshCw,
   Code,
   Type,
-  FileText
+  FileText,
+  Loader2,
+  CheckCircle,
+  AlertCircle
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -20,6 +23,7 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { cn } from '@/lib/utils';
+import { TestEmailRequest, TestEmailResponse } from '@shared/email-api';
 
 interface EmailTemplate {
   id: string;
