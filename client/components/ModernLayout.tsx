@@ -175,8 +175,8 @@ export function ModernLayout({ children }: LayoutProps) {
               <div className="space-y-3">
                 <div className="glass-card p-3 rounded-lg">
                   <div className="text-xs text-gray-300 text-center">
-                    <span className="block font-medium">v2.0.0</span>
-                    <span className="text-gray-400">Modern UI</span>
+                    <span className="block font-medium">v1.0.0</span>
+                    <span className="text-gray-400">IT Asset Recovery Console</span>
                   </div>
                 </div>
                 <Button
