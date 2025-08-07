@@ -31,9 +31,31 @@ export default function SelfServiceReturnCenter({ className = "" }: SelfServiceR
   };
 
   return (
-    <div className={cn("bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl p-6", className)} style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}}>
+    <div 
+      className={cn("p-6 rounded-2xl transition-all duration-500 ease-out cursor-pointer", className)} 
+      style={{
+        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
+        border: '1px solid rgba(255, 255, 255, 0.4)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.6)',
+        borderLeft: '1px solid rgba(255, 255, 255, 0.6)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        boxShadow: '0 8px 32px rgba(114, 241, 220, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)'
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-4px) scale(1.01)';
+        e.currentTarget.style.boxShadow = '0 16px 48px rgba(114, 241, 220, 0.2), 0 4px 16px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.4)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'translateY(0) scale(1)';
+        e.currentTarget.style.boxShadow = '0 8px 32px rgba(114, 241, 220, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+      }}
+    >
       <div className="flex items-center mb-6">
-        <div className="w-10 h-10 bg-gradient-to-br from-[#2C8780] to-[#72F1DC] rounded-xl flex items-center justify-center mr-4">
+        <div className="w-10 h-10 rounded-xl flex items-center justify-center mr-4" style={{
+          background: 'linear-gradient(135deg, #2C8780 0%, #72F1DC 100%)',
+          boxShadow: '0 4px 16px rgba(44, 135, 128, 0.3)'
+        }}>
           <Package className="w-5 h-5 text-white" />
         </div>
         <div>
@@ -55,8 +77,13 @@ export default function SelfServiceReturnCenter({ className = "" }: SelfServiceR
               value={ticketId}
               onChange={(e) => setTicketId(e.target.value)}
               placeholder="e.g., TKT-12345"
-              className="w-full px-4 py-3 bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent"
-              style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.1)'}}
+              className="w-full px-4 py-3 text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-xl transition-all duration-300"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.4)',
+                backdropFilter: 'blur(15px)',
+                boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+              }}
               required
             />
           </div>
@@ -72,8 +99,13 @@ export default function SelfServiceReturnCenter({ className = "" }: SelfServiceR
               value={serialNumber}
               onChange={(e) => setSerialNumber(e.target.value)}
               placeholder="Device serial number"
-              className="w-full px-4 py-3 bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent"
-              style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.1)'}}
+              className="w-full px-4 py-3 text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-xl transition-all duration-300"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.4)',
+                backdropFilter: 'blur(15px)',
+                boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+              }}
               required
             />
           </div>
@@ -88,8 +120,13 @@ export default function SelfServiceReturnCenter({ className = "" }: SelfServiceR
             id="recoveryType"
             value={recoveryType}
             onChange={(e) => setRecoveryType(e.target.value)}
-            className="w-full px-4 py-3 bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl text-[#1D1D2C] focus:ring-2 focus:ring-[#2C8780] focus:border-transparent"
-            style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.1)'}}
+            className="w-full px-4 py-3 text-[#1D1D2C] focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-xl transition-all duration-300"
+            style={{
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+              border: '1px solid rgba(255, 255, 255, 0.4)',
+              backdropFilter: 'blur(15px)',
+              boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+            }}
             required
           >
             <option value="">Select recovery type</option>
@@ -110,8 +147,13 @@ export default function SelfServiceReturnCenter({ className = "" }: SelfServiceR
             onChange={(e) => setComments(e.target.value)}
             placeholder="Additional notes or instructions..."
             rows={3}
-            className="w-full px-4 py-3 bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent resize-none"
-            style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.1)'}}
+            className="w-full px-4 py-3 text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-xl transition-all duration-300 resize-none"
+            style={{
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+              border: '1px solid rgba(255, 255, 255, 0.4)',
+              backdropFilter: 'blur(15px)',
+              boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+            }}
           />
         </div>
 
@@ -119,13 +161,37 @@ export default function SelfServiceReturnCenter({ className = "" }: SelfServiceR
         <div className="flex items-center space-x-3 py-2">
           <span className="text-sm text-[#2C8780] font-medium">Device type:</span>
           <div className="flex space-x-2">
-            <div className="w-8 h-8 bg-white/30 backdrop-blur-lg rounded-lg flex items-center justify-center">
+            <div 
+              className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer" 
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.4)',
+                backdropFilter: 'blur(15px)',
+                boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
+              }}
+            >
               <Laptop className="w-4 h-4 text-[#2C8780]" />
             </div>
-            <div className="w-8 h-8 bg-white/30 backdrop-blur-lg rounded-lg flex items-center justify-center">
+            <div 
+              className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer" 
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.4)',
+                backdropFilter: 'blur(15px)',
+                boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
+              }}
+            >
               <Smartphone className="w-4 h-4 text-[#2C8780]" />
             </div>
-            <div className="w-8 h-8 bg-white/30 backdrop-blur-lg rounded-lg flex items-center justify-center">
+            <div 
+              className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer" 
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.4)',
+                backdropFilter: 'blur(15px)',
+                boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
+              }}
+            >
               <Monitor className="w-4 h-4 text-[#2C8780]" />
             </div>
           </div>
@@ -135,8 +201,11 @@ export default function SelfServiceReturnCenter({ className = "" }: SelfServiceR
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full md:w-auto bg-gradient-to-r from-[#2C8780] to-[#72F1DC] text-white font-semibold rounded-xl px-6 py-3 hover:from-[#2C8780]/90 hover:to-[#72F1DC]/90 transition-all duration-200 disabled:opacity-50"
-          style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.3)'}}
+          className="w-full md:w-auto text-white font-semibold rounded-xl px-6 py-3 transition-all duration-300 disabled:opacity-50 hover:scale-105"
+          style={{
+            background: 'linear-gradient(135deg, #2C8780 0%, #72F1DC 100%)',
+            boxShadow: '0 8px 24px rgba(114, 241, 220, 0.3), 0 4px 12px rgba(44, 135, 128, 0.2)'
+          }}
         >
           {isSubmitting ? (
             <>
