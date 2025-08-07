@@ -172,7 +172,7 @@ function BreachAlertCard({
 
         <div className="flex justify-between items-center pt-4 border-t border-white/20">
           <div className="flex space-x-2">
-            <Button size="sm" className="macos-button text-[#2C8780] text-xs">
+            <Button size="sm" onClick={() => onSendReminder(asset)} className="macos-button text-[#2C8780] text-xs">
               <Mail className="mr-1 h-3 w-3" />
               Send Reminder
             </Button>
