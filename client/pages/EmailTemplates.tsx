@@ -175,10 +175,10 @@ function EmailTemplateCard({ template }: { template: EmailTemplate }) {
     try {
       // Use EmailJS to send test email to trevorleb@live.com
       await sendEmailJSTest('trevorleb@live.com');
-      setSendResult('Test email sent successfully to trevorleb@live.com!');
+      setSendResult('✅ Test email sent successfully to trevorleb@live.com! (Check console for mock details)');
     } catch (error) {
       console.error('Error sending test email:', error);
-      setSendResult('Error sending test email. Please try again.');
+      setSendResult('❌ Error sending test email. Please try again.');
     } finally {
       setIsSending(false);
     }
