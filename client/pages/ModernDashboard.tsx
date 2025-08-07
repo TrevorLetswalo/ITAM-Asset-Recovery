@@ -453,8 +453,8 @@ export function ModernDashboard() {
         {/* Recent Activity Section */}
         <Card className="glass-card lg:col-span-2">
           <CardHeader className="pb-4">
-            <CardTitle className="text-lg font-poppins font-semibold text-white flex items-center">
-              <Clock className="mr-2 h-5 w-5 text-[#72F1DC]" />
+            <CardTitle className="text-lg font-poppins font-semibold text-[#1D1D2C] flex items-center">
+              <Clock className="mr-2 h-5 w-5 text-[#2C8780]" />
               Recent Activity
             </CardTitle>
           </CardHeader>
