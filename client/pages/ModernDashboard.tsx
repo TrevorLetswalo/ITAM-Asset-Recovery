@@ -18,11 +18,10 @@ import {
   Upload
 } from 'lucide-react';
 import { getDashboardStats, getRecoveryByType, getSlaComplianceRate, allMockAssets } from '@shared/mock-assets';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Sparkline } from '@/components/ui/sparkline';
 import { SubmitRecoveryRequest } from '@/components/SubmitRecoveryRequest';
+import SelfServiceReturnCenter from '@/components/SelfServiceReturnCenter';
 import { cn } from '@/lib/utils';
 
 // Enhanced Animated counter component
@@ -94,28 +93,28 @@ function CompactKpiCard({
     if (colorClass.includes('blue')) return 'bg-gradient-to-br from-blue-50 to-blue-100 text-blue-600';
     if (colorClass.includes('red')) return 'bg-gradient-to-br from-red-50 to-red-100 text-red-600';
     if (colorClass.includes('green')) return 'bg-gradient-to-br from-green-50 to-green-100 text-green-600';
-    return 'bg-gradient-to-br from-recovery-accent/10 to-recovery-accent/20 text-recovery-accent';
+    return 'bg-gradient-to-br from-[#2C8780]/10 to-[#2C8780]/20 text-[#2C8780]';
   };
 
   return (
-    <Card className="compact-kpi group relative overflow-hidden">
-      <CardContent className="p-6">
+    <div className="bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl p-6 group relative overflow-hidden hover:shadow-[0_8px_40px_rgba(114,241,220,0.4)] transition-all duration-300" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}}>
+      <div>
         {/* Header with Icon and Trend */}
         <div className="flex items-start justify-between mb-4">
           <div className={cn(
-            "w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-soft",
+            "w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110",
             getIconBg()
-          )}>
+          )} style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.1)'}}>
             <Icon className="h-6 w-6" />
           </div>
 
           {trend && trendValue && (
             <div className={cn(
-              "flex items-center space-x-1 px-3 py-1.5 rounded-full text-xs font-semibold shadow-soft",
+              "flex items-center space-x-1 px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-lg",
               trend === 'up'
-                ? 'bg-gradient-to-r from-green-50 to-green-100 text-green-700 border border-green-200'
-                : 'bg-gradient-to-r from-red-50 to-red-100 text-red-700 border border-red-200'
-            )}>
+                ? 'bg-green-100/50 text-green-700 border border-green-200/50'
+                : 'bg-red-100/50 text-red-700 border border-red-200/50'
+            )} style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.1)'}}>
               {trend === 'up' ? (
                 <TrendingUp className="h-3 w-3" />
               ) : (
@@ -129,7 +128,7 @@ function CompactKpiCard({
         {/* Title and Value */}
         <div className="space-y-2 mb-4">
           <p className="text-sm font-medium text-[#2C8780]">{title}</p>
-          <p className="text-3xl font-bold font-poppins text-[#1D1D2C] tracking-tight">
+          <p className="text-3xl font-light text-[#1D1D2C] tracking-tight">
             <AnimatedCounter value={value} />
           </p>
         </div>
@@ -143,17 +142,17 @@ function CompactKpiCard({
               </div>
             )}
             {description && (
-              <p className="text-xs text-gray-500">{description}</p>
+              <p className="text-xs text-[#2C8780]">{description}</p>
             )}
           </div>
 
           {statusTag && (
             <div className={cn(
-              "px-2 py-1 rounded-lg text-xs font-medium",
-              statusTag === 'Improving' ? 'bg-green-100 text-green-700' :
-              statusTag === 'In Breach' ? 'bg-red-100 text-red-700' :
-              statusTag === 'Stable' ? 'bg-blue-100 text-blue-700' :
-              'bg-gray-100 text-gray-700'
+              "px-2 py-1 rounded-lg text-xs font-medium backdrop-blur-lg",
+              statusTag === 'Improving' ? 'bg-green-100/50 text-green-700' :
+              statusTag === 'In Breach' ? 'bg-red-100/50 text-red-700' :
+              statusTag === 'Stable' ? 'bg-blue-100/50 text-blue-700' :
+              'bg-gray-100/50 text-gray-700'
             )}>
               {statusTag}
             </div>
@@ -164,8 +163,8 @@ function CompactKpiCard({
         <div className="absolute top-0 right-0 w-32 h-32 opacity-5 pointer-events-none">
           <Icon className="w-full h-full" />
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
 
@@ -184,17 +183,17 @@ function RecoveryProgressChart() {
   const maxValue = Math.max(...progressData.map(d => d.recovered + d.pending));
 
   return (
-    <Card className="chart-container">
-      <CardHeader className="pb-4">
+    <div className="bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl p-6 hover:shadow-[0_8px_40px_rgba(114,241,220,0.4)] transition-all duration-300" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)', minHeight: '320px', height: '320px'}}>
+      <div className="pb-4">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-lg font-poppins font-semibold text-[#1D1D2C] flex items-center">
+          <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
             <BarChart3 className="mr-2 h-5 w-5 text-[#2C8780]" />
             Recovery Progress
-          </CardTitle>
-          <Badge variant="outline" className="text-xs text-gray-700 border-gray-300 bg-white/50">Last 7 Days</Badge>
+          </h3>
+          <div className="text-xs text-[#2C8780] border border-white/30 bg-white/20 backdrop-blur-lg px-2 py-1 rounded-lg">Last 7 Days</div>
         </div>
-      </CardHeader>
-      <CardContent className="flex-1 flex flex-col">
+      </div>
+      <div className="flex-1 flex flex-col">
         <div className="flex-1 flex items-end justify-between space-x-3 mb-4" style={{ minHeight: '180px' }}>
           {progressData.map((data, index) => (
             <div key={data.day} className="flex flex-col items-center flex-1 group">
@@ -217,24 +216,24 @@ function RecoveryProgressChart() {
                 />
               </div>
               <div className="text-center">
-                <span className="text-xs text-gray-600 font-medium">{data.day}</span>
-                <span className="block text-xs text-gray-400">{data.date}</span>
+                <span className="text-xs text-[#1D1D2C] font-medium">{data.day}</span>
+                <span className="block text-xs text-[#2C8780]">{data.date}</span>
               </div>
             </div>
           ))}
         </div>
-        <div className="flex justify-center space-x-6 pt-4 border-t border-gray-200">
+        <div className="flex justify-center space-x-6 pt-4 border-t border-white/20">
           <div className="flex items-center">
-            <div className="w-3 h-3 bg-gradient-to-r from-[#2C8780] to-[#72F1DC] rounded-full mr-2 shadow-soft" />
-            <span className="text-sm text-gray-700 font-medium">Recovered</span>
+            <div className="w-3 h-3 bg-gradient-to-r from-[#2C8780] to-[#72F1DC] rounded-full mr-2" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}} />
+            <span className="text-sm text-[#1D1D2C] font-medium">Recovered</span>
           </div>
           <div className="flex items-center">
-            <div className="w-3 h-3 bg-gradient-to-r from-[#B2CAC9] to-[#E8F2FD] rounded-full mr-2 shadow-soft" />
-            <span className="text-sm text-gray-700 font-medium">Pending</span>
+            <div className="w-3 h-3 bg-gradient-to-r from-[#B2CAC9] to-[#E8F2FD] rounded-full mr-2" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}} />
+            <span className="text-sm text-[#1D1D2C] font-medium">Pending</span>
           </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
 
@@ -250,14 +249,14 @@ function AssetTypeChart() {
   ];
 
   return (
-    <Card className="chart-container">
-      <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-poppins font-semibold text-[#1D1D2C] flex items-center">
+    <div className="bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl p-6 hover:shadow-[0_8px_40px_rgba(114,241,220,0.4)] transition-all duration-300" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)', minHeight: '320px', height: '320px'}}>
+      <div className="pb-4">
+        <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
           <PieChart className="mr-2 h-5 w-5 text-[#2C8780]" />
           Assets by Type
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="flex-1 flex flex-col justify-center">
+        </h3>
+      </div>
+      <div className="flex-1 flex flex-col justify-center">
         <div className="space-y-6">
           {chartData.map((item, index) => (
             <div key={item.name} className="group">
@@ -265,14 +264,14 @@ function AssetTypeChart() {
                 <span className="text-sm font-medium text-[#1D1D2C]">{item.name}</span>
                 <div className="flex items-center space-x-2">
                   <span className="text-sm font-semibold text-[#1D1D2C]">{item.value}</span>
-                  <span className="text-xs text-[#2C8780] bg-white/50 px-2 py-1 rounded-full">
+                  <span className="text-xs text-[#2C8780] bg-white/50 backdrop-blur-lg px-2 py-1 rounded-full">
                     {item.percentage}%
                   </span>
                 </div>
               </div>
-              <div className="w-full bg-gray-100 rounded-full h-4 overflow-hidden shadow-soft">
+              <div className="w-full bg-white/30 backdrop-blur-lg rounded-full h-4 overflow-hidden" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.1)'}}>
                 <div
-                  className={`h-4 rounded-full ${item.color} transition-all duration-1000 ease-out group-hover:scale-x-105 transform-gpu shadow-inner`}
+                  className={`h-4 rounded-full ${item.color} transition-all duration-1000 ease-out group-hover:scale-x-105 transform-gpu`}
                   style={{
                     width: `${item.percentage}%`,
                     animationDelay: `${index * 200}ms`,
@@ -282,8 +281,8 @@ function AssetTypeChart() {
             </div>
           ))}
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
 
@@ -295,14 +294,14 @@ function SlaComplianceDonut() {
   const strokeDashoffset = circumference - (compliance / 100) * circumference;
 
   return (
-    <Card className="chart-container">
-      <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-poppins font-semibold text-[#1D1D2C] flex items-center">
+    <div className="bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl p-6 hover:shadow-[0_8px_40px_rgba(114,241,220,0.4)] transition-all duration-300" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)', minHeight: '320px', height: '320px'}}>
+      <div className="pb-4">
+        <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
           <CheckCircle className="mr-2 h-5 w-5 text-[#2C8780]" />
           SLA Compliance
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="flex-1 flex flex-col items-center justify-center">
+        </h3>
+      </div>
+      <div className="flex-1 flex flex-col items-center justify-center">
         <div className="relative">
           <div className="relative w-36 h-36 mb-4">
             <svg className="w-36 h-36 transform -rotate-90 drop-shadow-lg" viewBox="0 0 100 100">
@@ -314,7 +313,7 @@ function SlaComplianceDonut() {
                 stroke="currentColor"
                 strokeWidth="6"
                 fill="transparent"
-                className="text-gray-200"
+                className="text-white/20"
               />
               {/* Progress circle */}
               <circle
@@ -338,7 +337,7 @@ function SlaComplianceDonut() {
             </svg>
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center">
-                <span className="text-3xl font-bold font-poppins text-[#1D1D2C]">
+                <span className="text-3xl font-light text-[#1D1D2C]">
                   <AnimatedCounter value={compliance} suffix="%" />
                 </span>
                 <p className="text-xs text-[#2C8780] font-medium">Compliant</p>
@@ -346,24 +345,24 @@ function SlaComplianceDonut() {
             </div>
           </div>
 
-          <div className="text-center bg-white/50 rounded-2xl p-4 border border-gray-200">
+          <div className="text-center bg-white/50 backdrop-blur-lg rounded-2xl p-4 border border-white/30" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.1)'}}>
             <p className="text-sm text-[#1D1D2C] font-medium">
               {allMockAssets.filter(a => a.sla_stage !== 'Breach').length} of {allMockAssets.length} assets on track
             </p>
             <div className="flex items-center justify-center mt-2 space-x-4 text-xs">
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-green-500 rounded-full mr-1" />
-                <span className="text-gray-700">On Track</span>
+                <span className="text-[#1D1D2C]">On Track</span>
               </div>
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-red-500 rounded-full mr-1" />
-                <span className="text-gray-700">Breach</span>
+                <span className="text-[#1D1D2C]">Breach</span>
               </div>
             </div>
           </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
 
@@ -373,21 +372,21 @@ export function ModernDashboard() {
   const slaCompliance = getSlaComplianceRate();
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="space-y-6">
       {/* Enhanced Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-poppins font-bold text-[#1D1D2C] mb-2">
+          <h1 className="text-3xl font-light text-[#1D1D2C] mb-2">
             IT Asset Recovery Dashboard
           </h1>
-          <p className="text-gray-700">Monitor and manage asset recovery operations with real-time insights</p>
+          <p className="text-[#2C8780]">Monitor and manage asset recovery operations with real-time insights</p>
         </div>
         <div className="flex space-x-3">
-          <Button variant="outline" size="sm" className="bg-white/30 border-gray-300 text-gray-700 hover:bg-white/50">
+          <Button variant="outline" size="sm" className="bg-white/20 backdrop-blur-lg border border-white/30 text-[#1D1D2C] hover:bg-white/30" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}}>
             <Calendar className="mr-2 h-4 w-4" />
             Last 30 Days
           </Button>
-          <Button variant="outline" size="sm" className="bg-white/30 border-gray-300 text-gray-700 hover:bg-white/50">
+          <Button variant="outline" size="sm" className="bg-white/20 backdrop-blur-lg border border-white/30 text-[#1D1D2C] hover:bg-white/30" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}}>
             <RefreshCw className="mr-2 h-4 w-4" />
             Refresh
           </Button>
@@ -451,18 +450,18 @@ export function ModernDashboard() {
       {/* Recent Activity and SLA Compliance Row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Recent Activity Section */}
-        <Card className="glass-card lg:col-span-2">
-          <CardHeader className="pb-4">
-            <CardTitle className="text-lg font-poppins font-semibold text-[#1D1D2C] flex items-center">
+        <div className="bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl p-6 lg:col-span-2 hover:shadow-[0_8px_40px_rgba(114,241,220,0.4)] transition-all duration-300" style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}}>
+          <div className="pb-4">
+            <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
               <Clock className="mr-2 h-5 w-5 text-[#2C8780]" />
               Recent Activity
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
+            </h3>
+          </div>
+          <div>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-gray-200">
+                  <tr className="border-b border-white/20">
                     <th className="text-left py-3 text-sm font-medium text-[#2C8780]">Asset</th>
                     <th className="text-left py-3 text-sm font-medium text-[#2C8780]">User</th>
                     <th className="text-left py-3 text-sm font-medium text-[#2C8780]">Status</th>
@@ -472,19 +471,19 @@ export function ModernDashboard() {
                 </thead>
                 <tbody>
                   {allMockAssets.slice(0, 5).map((asset, index) => (
-                    <tr key={asset.id} className="border-b border-gray-100 hover:bg-white/30 transition-colors">
+                    <tr key={asset.id} className="border-b border-white/10 hover:bg-white/20 transition-colors">
                       <td className="py-3">
                         <div>
                           <p className="text-sm font-medium text-[#1D1D2C]">{asset.asset_tag}</p>
-                          <p className="text-xs text-gray-600">{asset.asset_type}</p>
+                          <p className="text-xs text-[#2C8780]">{asset.asset_type}</p>
                         </div>
                       </td>
                       <td className="py-3 text-sm text-[#1D1D2C]">{asset.user_name}</td>
                       <td className="py-3">
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          asset.status === 'Completed' ? 'bg-green-500/20 text-green-300' :
-                          asset.sla_stage === 'Breach' ? 'bg-red-500/20 text-red-300' :
-                          'bg-blue-500/20 text-blue-300'
+                        <span className={`px-2 py-1 rounded-full text-xs font-medium backdrop-blur-lg ${
+                          asset.status === 'Completed' ? 'bg-green-100/50 text-green-700' :
+                          asset.sla_stage === 'Breach' ? 'bg-red-100/50 text-red-700' :
+                          'bg-blue-100/50 text-blue-700'
                         }`}>
                           {asset.status}
                         </span>
@@ -504,12 +503,15 @@ export function ModernDashboard() {
                 </tbody>
               </table>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
         {/* SLA Compliance Card */}
         <SlaComplianceDonut />
       </div>
+
+      {/* Self-Service Return Center */}
+      <SelfServiceReturnCenter />
 
       {/* Submit Recovery Request Section */}
       <div className="mt-8">
