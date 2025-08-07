@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import { Send, Upload, Package, Laptop, Smartphone, Monitor } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Send, Upload, Package, Laptop, Smartphone, Monitor, CheckCircle } from 'lucide-react';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
+import { submitRecoveryTicket } from '@/lib/firebase';
+import { sendRecoveryConfirmation, initEmailJS } from '@/lib/emailjs';
 
 interface SelfServiceReturnCenterProps {
   className?: string;
