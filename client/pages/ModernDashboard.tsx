@@ -432,6 +432,20 @@ export function ModernDashboard() {
   const stats = getDashboardStats();
   const slaCompliance = getSlaComplianceRate();
 
+  const handleDateRangeChange = () => {
+    const options = ['Last 7 Days', 'Last 30 Days', 'Last 90 Days', 'Last Year'];
+    const selectedOption = prompt(`Select date range:\n\n${options.map((opt, idx) => `${idx + 1}. ${opt}`).join('\n')}\n\nEnter number (1-4):`);
+
+    if (selectedOption && selectedOption >= '1' && selectedOption <= '4') {
+      const selected = options[parseInt(selectedOption) - 1];
+      alert(`📅 Date range changed to: ${selected}\n\nDashboard data would be refreshed with the new time period.`);
+    }
+  };
+
+  const handleRefreshDashboard = () => {
+    alert('🔄 Refreshing dashboard data...\n\nThis would fetch the latest metrics from the backend and update all KPI cards and charts.');
+  };
+
   return (
     <div className="space-y-6">
       {/* Enhanced Header without background */}
