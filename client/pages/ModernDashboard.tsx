@@ -228,16 +228,16 @@ function RecoveryProgressChart() {
         </div>
         <div className="flex justify-center space-x-6 pt-4 border-t border-white/20">
           <div className="flex items-center">
-            <div className="w-3 h-3 bg-gradient-to-r from-[#2C8780] to-[#72F1DC] rounded-full mr-2" style={{
-              boxShadow: '0 2px 8px rgba(44, 135, 128, 0.3)'
+            <div className="w-3 h-3 bg-gradient-to-r from-[#4CA1A3] to-[#85D1DB] rounded-full mr-2" style={{
+              boxShadow: '0 2px 8px rgba(76, 161, 163, 0.3)'
             }} />
-            <span className="text-sm text-[#1D1D2C] font-medium">Recovered</span>
+            <span className="text-sm font-medium" style={{ color: '#05445E' }}>Recovered</span>
           </div>
           <div className="flex items-center">
-            <div className="w-3 h-3 bg-gradient-to-r from-[#B2CAC9] to-[#E8F2FD] rounded-full mr-2" style={{
-              boxShadow: '0 2px 8px rgba(178, 202, 201, 0.3)'
+            <div className="w-3 h-3 bg-gradient-to-r from-[#F0E4D7] to-[#EAF4F4] rounded-full mr-2" style={{
+              boxShadow: '0 2px 8px rgba(240, 228, 215, 0.3)'
             }} />
-            <span className="text-sm text-[#1D1D2C] font-medium">Pending</span>
+            <span className="text-sm font-medium" style={{ color: '#05445E' }}>Pending</span>
           </div>
         </div>
       </div>
