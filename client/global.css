@@ -121,18 +121,9 @@
 
   body {
     @apply text-foreground font-inter antialiased;
-    /* Charming seaside gradient background */
-    background:
-      radial-gradient(circle at 20% 80%, rgba(133, 209, 219, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(76, 161, 163, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 40% 40%, rgba(255, 111, 97, 0.05) 0%, transparent 50%),
-      linear-gradient(135deg, #F9FBFC 0%, #EAF4F4 25%, #F0E4D7 50%, #E8F2F4 75%, #F9FBFC 100%);
+    /* Clean seaside background */
+    background: #EAF4F4; /* Very light pale blue */
     min-height: 100vh;
-    background-attachment: fixed;
-    /* Add subtle water ripple texture */
-    background-image:
-      radial-gradient(circle at 25% 25%, rgba(133, 209, 219, 0.03) 0%, transparent 50%),
-      radial-gradient(circle at 75% 75%, rgba(76, 161, 163, 0.02) 0%, transparent 50%);
   }
 
   /* Seaside Typography - Calming & Readable */
