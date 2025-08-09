@@ -135,10 +135,10 @@
       radial-gradient(circle at 75% 75%, rgba(76, 161, 163, 0.02) 0%, transparent 50%);
   }
 
-  /* macOS 2026 Typography - Light & Readable */
+  /* Seaside Typography - Calming & Readable */
   h1, h2, h3, h4, h5, h6 {
     @apply font-inter font-medium;
-    color: #1D1D2C;
+    color: #05445E; /* Soft navy */
   }
 
   h1 { @apply text-3xl lg:text-4xl tracking-tight font-light; }
@@ -150,12 +150,12 @@
 
   /* Body text for excellent readability */
   p, span, div {
-    color: #1D1D2C;
+    color: #05445E; /* Soft navy */
   }
 
   /* Secondary text labels */
   .text-secondary {
-    color: #2C8780;
+    color: #4CA1A3; /* Soft teal */
   }
 }
 
