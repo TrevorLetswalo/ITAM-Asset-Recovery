@@ -129,25 +129,76 @@ function ReportCard({ report }: { report: ReportCard }) {
   const Icon = report.icon;
 
   const handleViewReport = () => {
-    if (!report || !report.name) {
+    if (!report || !report.title) {
       alert('❌ Report data not available');
       return;
     }
-    alert(`📊 Opening report: "${report.name}"\n\nThis would display the full report data in a detailed view.`);
+
+    // Enhanced report viewer with mock data
+    const reportViewData = {
+      name: report.title,
+      type: report.type,
+      category: report.category,
+      lastUpdated: report.lastUpdated,
+      description: report.description,
+      sampleData: generateMockReportData(report.type),
+      metrics: generateMockMetrics(report.category)
+    };
+
+    alert(`📊 Opening Report: "${report.title}"\n\n` +
+          `📈 Type: ${report.type.charAt(0).toUpperCase() + report.type.slice(1)}\n` +
+          `📁 Category: ${report.category}\n` +
+          `📅 Last Updated: ${report.lastUpdated}\n\n` +
+          `📝 Description: ${report.description}\n\n` +
+          `💡 Sample Insights:\n${reportViewData.sampleData}\n\n` +
+          `📊 Key Metrics:\n${reportViewData.metrics}`);
+  };
+
+  const generateMockReportData = (type: string) => {
+    switch (type) {
+      case 'chart':
+        return '• Recovery rate increased 15% this quarter\n• Average response time: 2.3 days\n• Peak activity: Mondays & Fridays';
+      case 'table':
+        return '• 85% compliance rate across all departments\n• 12 assets currently in breach\n• Finance dept leads in compliance (96%)';
+      case 'summary':
+        return '• 147 active recovery requests\n• $2.3M in assets under recovery\n• 23% improvement in user response rate';
+      default:
+        return '• Comprehensive data analysis available\n• Multiple visualization options\n• Exportable in various formats';
+    }
+  };
+
+  const generateMockMetrics = (category: string) => {
+    switch (category) {
+      case 'Operations':
+        return '• Efficiency Score: 94%\n• Processing Time: -18%\n• User Satisfaction: 4.7/5';
+      case 'Compliance':
+        return '• SLA Compliance: 88%\n• Policy Adherence: 92%\n• Audit Score: A-';
+      case 'Financial':
+        return '• Asset Value Recovered: $1.8M\n• Cost Savings: 22%\n• ROI: 340%';
+      case 'Performance':
+        return '• Success Rate: 91%\n• Time to Resolution: 2.1 days\n• Quality Score: 96%';
+      default:
+        return '• Overall Performance: Excellent\n• Trend: Improving\n• Status: On Track';
+    }
   };
 
   const handleExportReport = () => {
-    if (!report || !report.name) {
+    if (!report || !report.title) {
       alert('❌ Report data not available for export');
       return;
     }
 
-    // Mock report data export
+    // Enhanced mock report data export
     const reportContent = {
-      'Report Name': report.name || 'Unknown Report',
-      'Category': report.category || 'Unknown Category',
+      'Report Name': report.title,
+      'Category': report.category,
+      'Type': report.type,
+      'Last Updated': report.lastUpdated,
+      'Description': report.description,
       'Generated': new Date().toLocaleString(),
-      'Data': 'Sample report data would be exported here...'
+      'Sample Data': generateMockReportData(report.type),
+      'Key Metrics': generateMockMetrics(report.category),
+      'Available Formats': report.downloadFormats.join(', ')
     };
 
     const csvRows = [];
@@ -162,7 +213,7 @@ function ReportCard({ report }: { report: ReportCard }) {
 
     const link = document.createElement("a");
     link.href = url;
-    const safeName = (report.name || 'report').toLowerCase().replace(/\s+/g, '_');
+    const safeName = report.title.toLowerCase().replace(/\s+/g, '_');
     link.download = `${safeName}_${new Date().toISOString().split('T')[0]}.csv`;
     link.click();
     URL.revokeObjectURL(url);
