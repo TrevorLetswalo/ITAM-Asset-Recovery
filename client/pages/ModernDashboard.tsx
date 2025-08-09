@@ -268,7 +268,7 @@ function RecoveryProgressChart() {
   const maxValue = Math.max(...progressData.map(d => d.recovered + d.pending));
 
   return (
-    <Glass3DCard style={{ minHeight: '320px', height: '320px' }}>
+    <VibrantCard style={{ minHeight: '320px', height: '320px' }}>
       <div className="pb-4">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
@@ -328,7 +328,7 @@ function RecoveryProgressChart() {
           </div>
         </div>
       </div>
-    </Glass3DCard>
+    </VibrantCard>
   );
 }
 
@@ -344,7 +344,7 @@ function AssetTypeChart() {
   ];
 
   return (
-    <Glass3DCard style={{ minHeight: '320px', height: '320px' }}>
+    <VibrantCard style={{ minHeight: '320px', height: '320px' }}>
       <div className="pb-4">
         <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
           <PieChart className="mr-2 h-5 w-5 text-[#2C8780]" />
@@ -380,7 +380,7 @@ function AssetTypeChart() {
           ))}
         </div>
       </div>
-    </Glass3DCard>
+    </VibrantCard>
   );
 }
 
@@ -392,7 +392,7 @@ function SlaComplianceDonut() {
   const strokeDashoffset = circumference - (compliance / 100) * circumference;
 
   return (
-    <Glass3DCard style={{ minHeight: '320px', height: '320px' }}>
+    <VibrantCard style={{ minHeight: '320px', height: '320px' }}>
       <div className="pb-4">
         <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
           <CheckCircle className="mr-2 h-5 w-5 text-[#2C8780]" />
@@ -467,7 +467,7 @@ function SlaComplianceDonut() {
           </div>
         </div>
       </div>
-    </Glass3DCard>
+    </VibrantCard>
   );
 }
 
@@ -575,7 +575,7 @@ export function ModernDashboard() {
       {/* Recent Activity and SLA Compliance Row - Fixed alignment and sizing */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Enhanced Recent Activity Section */}
-        <Glass3DCard className="flex flex-col h-[420px]">
+        <VibrantCard className="flex flex-col h-[420px]">
           <div className="flex-shrink-0 pb-4 border-b border-white/10">
             <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
               <Clock className="mr-2 h-5 w-5 text-[#2C8780]" />
@@ -619,10 +619,10 @@ export function ModernDashboard() {
               </table>
             </div>
           </div>
-        </Glass3DCard>
+        </VibrantCard>
 
         {/* SLA Compliance Card - Fixed layout */}
-        <Glass3DCard className="flex flex-col h-[420px]">
+        <VibrantCard className="flex flex-col h-[420px]">
           <div className="flex-shrink-0 pb-4 border-b border-white/10">
             <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
               <CheckCircle className="mr-2 h-5 w-5 text-[#2C8780]" />
@@ -717,7 +717,7 @@ export function ModernDashboard() {
               </div>
             </div>
           </div>
-        </Glass3DCard>
+        </VibrantCard>
       </div>
 
       {/* Self-Service Return Center */}
