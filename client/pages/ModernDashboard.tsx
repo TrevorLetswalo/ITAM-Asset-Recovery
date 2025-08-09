@@ -107,23 +107,18 @@ function CompactKpiCard({
   };
 
   return (
-    <div className="seaside-kpi-card h-32 group relative overflow-hidden cursor-pointer rounded-2xl">
+    <div className="seaside-kpi-card h-32 group relative overflow-hidden cursor-pointer">
       {/* Ocean Wave Top Accent */}
       <div
-        className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl"
+        className="absolute top-0 left-0 right-0 h-1"
         style={{
           background: `linear-gradient(90deg, ${getSeaColor()}, #85D1DB, ${getSeaColor()})`,
           boxShadow: '0 1px 2px rgba(5, 68, 94, 0.2)'
         }}
       ></div>
 
-      {/* Clean Ocean-Style Icon */}
-      <div className="flex items-center justify-between mb-3 mt-2">
-        <div className="seaside-icon w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110">
-          <Icon className="h-5 w-5 md:h-6 md:w-6" />
-        </div>
-
-        {/* Seaside Trend Indicator */}
+      {/* Trend Indicator Only */}
+      <div className="flex justify-end mb-3 mt-2">
         {trend && trendValue && (
           <div className={`seaside-status flex items-center space-x-1 px-1.5 py-1 md:px-2 rounded-lg text-xs font-semibold transition-all duration-300 group-hover:scale-105 ${
             trend === 'up'
@@ -152,15 +147,6 @@ function CompactKpiCard({
         }}>
           <AnimatedCounter value={value} />
         </p>
-      </div>
-
-      {/* Subtle Background Pattern */}
-      <div className="absolute bottom-3 right-3 opacity-[0.08] group-hover:opacity-[0.12] transition-opacity pointer-events-none" style={{
-        color: getSeaColor()
-      }}>
-        <Icon className="h-6 w-6 md:h-8 md:w-8" style={{
-          filter: 'drop-shadow(0 1px 1px rgba(255, 255, 255, 0.8))'
-        }} />
       </div>
     </div>
   );
