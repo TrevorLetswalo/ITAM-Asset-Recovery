@@ -160,54 +160,52 @@
 }
 
 @layer components {
-  /* Skeuomorphic Leather/Paper Effects */
+  /* Seaside Glass Effects */
   .glass {
-    background: linear-gradient(145deg, #F5DEB3 0%, #DEB887 100%);
-    border: 3px solid #8B4513;
-    border-top: 3px solid #CD853F;
-    border-left: 3px solid #CD853F;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(133, 209, 219, 0.1) 100%);
+    border: 2px solid rgba(76, 161, 163, 0.3);
+    border-top: 2px solid rgba(133, 209, 219, 0.5);
+    border-left: 2px solid rgba(133, 209, 219, 0.5);
     box-shadow:
-      0 12px 24px rgba(139, 69, 19, 0.3),
-      0 6px 12px rgba(160, 82, 45, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3),
-      inset 0 -1px 0 rgba(139, 69, 19, 0.1);
+      0 8px 24px rgba(5, 68, 94, 0.1),
+      0 4px 12px rgba(76, 161, 163, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      inset 0 -1px 0 rgba(76, 161, 163, 0.1);
   }
 
   .glass-card {
-    @apply rounded-xl p-8;
-    /* Leather-like texture */
+    @apply rounded-2xl p-8;
+    /* Ocean wave-like texture */
     background:
-      radial-gradient(circle at 30% 40%, rgba(160, 82, 45, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 70% 60%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
-      linear-gradient(145deg, #F4A460 0%, #DEB887 50%, #D2691E 100%);
-    border: 4px solid #8B4513;
-    border-top: 4px solid #CD853F;
-    border-left: 4px solid #CD853F;
-    border-bottom: 4px solid #654321;
-    border-right: 4px solid #654321;
+      radial-gradient(circle at 30% 40%, rgba(133, 209, 219, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 70% 60%, rgba(76, 161, 163, 0.06) 0%, transparent 50%),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 228, 215, 0.3) 50%, rgba(255, 255, 255, 0.9) 100%);
+    border: 2px solid rgba(76, 161, 163, 0.2);
+    border-top: 2px solid rgba(133, 209, 219, 0.4);
+    border-left: 2px solid rgba(133, 209, 219, 0.4);
     box-shadow:
-      0 16px 32px rgba(139, 69, 19, 0.4),
-      0 8px 16px rgba(160, 82, 45, 0.3),
-      0 4px 8px rgba(139, 69, 19, 0.2),
-      inset 0 2px 0 rgba(255, 255, 255, 0.2),
-      inset 0 -2px 0 rgba(139, 69, 19, 0.2);
+      0 12px 28px rgba(5, 68, 94, 0.12),
+      0 6px 14px rgba(76, 161, 163, 0.1),
+      0 3px 7px rgba(133, 209, 219, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(76, 161, 163, 0.1);
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    /* Add leather texture */
+    /* Add subtle water ripple texture */
     background-image:
-      repeating-radial-gradient(circle at 0 0, transparent 0, rgba(139, 69, 19, 0.05) 1px, transparent 2px),
-      repeating-linear-gradient(45deg, transparent, transparent 1px, rgba(160, 82, 45, 0.03) 1px, rgba(160, 82, 45, 0.03) 2px);
+      radial-gradient(circle at 25% 25%, rgba(133, 209, 219, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(76, 161, 163, 0.02) 0%, transparent 50%);
   }
 
   .glass-card:hover {
-    transform: translateY(-6px) scale(1.02);
+    transform: translateY(-8px) scale(1.02);
     box-shadow:
-      0 20px 40px rgba(139, 69, 19, 0.5),
-      0 12px 24px rgba(160, 82, 45, 0.4),
-      0 6px 12px rgba(139, 69, 19, 0.3),
-      inset 0 3px 0 rgba(255, 255, 255, 0.3),
-      inset 0 -3px 0 rgba(139, 69, 19, 0.3);
-    border-top: 4px solid #DEB887;
-    border-left: 4px solid #DEB887;
+      0 16px 36px rgba(5, 68, 94, 0.15),
+      0 8px 18px rgba(76, 161, 163, 0.12),
+      0 4px 9px rgba(133, 209, 219, 0.1),
+      inset 0 2px 0 rgba(255, 255, 255, 0.95),
+      inset 0 -2px 0 rgba(76, 161, 163, 0.15);
+    border-top: 2px solid rgba(133, 209, 219, 0.6);
+    border-left: 2px solid rgba(133, 209, 219, 0.6);
   }
 
   .glass-nav {
