@@ -155,7 +155,7 @@ function VibrantCard({ children, className = "", style = {}, variant = 'default'
   );
 }
 
-// Modern Compact KPI Card component with enhanced 3D effects
+// Clean Modern Glassmorphism KPI Card
 interface CompactKpiCardProps {
   title: string;
   value: number;
@@ -163,9 +163,6 @@ interface CompactKpiCardProps {
   trend?: 'up' | 'down';
   trendValue?: string;
   colorClass?: string;
-  description?: string;
-  sparklineData?: number[];
-  statusTag?: string;
 }
 
 function CompactKpiCard({
@@ -174,82 +171,56 @@ function CompactKpiCard({
   icon: Icon,
   trend,
   trendValue,
-  colorClass = "text-recovery-accent",
-  description,
-  sparklineData = [20, 25, 18, 30, 28, 35, 32],
-  statusTag
+  colorClass = "text-recovery-accent"
 }: CompactKpiCardProps) {
-  const getIconBg = () => {
-    if (colorClass.includes('blue')) return 'from-blue-400/20 to-blue-600/20 text-blue-600';
-    if (colorClass.includes('red')) return 'from-red-400/20 to-red-600/20 text-red-600';
-    if (colorClass.includes('green')) return 'from-green-400/20 to-green-600/20 text-green-600';
-    return 'from-[#2C8780]/20 to-[#72F1DC]/20 text-[#2C8780]';
+  const getIconColor = () => {
+    if (colorClass.includes('blue')) return 'text-blue-600';
+    if (colorClass.includes('red')) return 'text-red-600';
+    if (colorClass.includes('green')) return 'text-green-600';
+    return 'text-[#2C8780]';
   };
 
   return (
-    <VibrantCard variant="default" className="group relative overflow-hidden">
-      {/* Header with Icon and Trend */}
-      <div className="flex items-start justify-between mb-6">
-        <div className="w-16 h-16 rounded-3xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 bg-gradient-to-br from-teal-400 to-cyan-500 text-white shadow-lg">
-          <Icon className="h-8 w-8" />
+    <div className="glass-card h-32 group relative overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-strong">
+      {/* Clean Icon */}
+      <div className="flex items-center justify-between mb-4">
+        <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${getIconColor()} bg-white/50 backdrop-blur-sm border border-white/60 shadow-soft transition-all duration-300 group-hover:scale-110`}>
+          <Icon className="h-6 w-6" />
         </div>
 
+        {/* Minimalist Trend Indicator */}
         {trend && trendValue && (
-          <div className={cn(
-            "flex items-center space-x-2 px-4 py-2 rounded-2xl text-sm font-semibold backdrop-blur-lg border-2 shadow-lg",
+          <div className={`flex items-center space-x-1 px-2 py-1 rounded-lg text-xs font-medium ${
             trend === 'up'
-              ? 'bg-green-50/90 text-green-700 border-green-200'
-              : 'bg-red-50/90 text-red-700 border-red-200'
-          )}>
+              ? 'text-green-700 bg-green-50/80'
+              : 'text-red-700 bg-red-50/80'
+          }`}>
             {trend === 'up' ? (
-              <TrendingUp className="h-4 w-4" />
+              <ArrowUp className="h-3 w-3" />
             ) : (
-              <TrendingDown className="h-4 w-4" />
+              <ArrowDown className="h-3 w-3" />
             )}
             <span>{trendValue}</span>
           </div>
         )}
       </div>
 
-      {/* Title and Value */}
-      <div className="space-y-3 mb-6">
-        <p className="text-base font-semibold text-teal-600">{title}</p>
-        <p className="text-4xl font-light text-gray-800 tracking-tight">
+      {/* Essential Information Only */}
+      <div>
+        <p className="text-sm font-medium text-gray-600 mb-1">{title}</p>
+        <p className="text-2xl font-light text-[#1D1D2C] tracking-tight">
           <AnimatedCounter value={value} />
         </p>
       </div>
 
-      {/* Sparkline and Status */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          {sparklineData && sparklineData.length > 1 && (
-            <div className="opacity-80 group-hover:opacity-100 transition-opacity">
-              <Sparkline data={sparklineData} trend={trend} />
-            </div>
-          )}
-          {description && (
-            <p className="text-sm text-gray-600 font-medium">{description}</p>
-          )}
-        </div>
+      {/* Subtle Glass Border Effect */}
+      <div className="absolute inset-0 rounded-2xl border border-white/40 pointer-events-none"></div>
 
-        {statusTag && (
-          <div className={cn(
-            "px-3 py-1.5 rounded-xl text-sm font-semibold backdrop-blur-lg border-2 shadow-md",
-            statusTag === 'Improving' ? 'bg-green-50/90 text-green-700 border-green-200' :
-            statusTag === 'In Breach' ? 'bg-red-50/90 text-red-700 border-red-200' :
-            statusTag === 'Stable' ? 'bg-blue-50/90 text-blue-700 border-blue-200' :
-            'bg-gray-50/90 text-gray-700 border-gray-200'
-          )}>
-            {statusTag}
-          </div>
-        )}
+      {/* Minimal Background Pattern */}
+      <div className="absolute bottom-2 right-2 opacity-[0.08] pointer-events-none">
+        <Icon className="h-8 w-8 text-gray-400" />
       </div>
-
-      {/* Enhanced background pattern */}
-      <div className="absolute top-0 right-0 w-32 h-32 opacity-[0.05] pointer-events-none">
-        <Icon className="w-full h-full text-teal-400" />
-      </div>
-    </VibrantCard>
+    </div>
   );
 }
 
