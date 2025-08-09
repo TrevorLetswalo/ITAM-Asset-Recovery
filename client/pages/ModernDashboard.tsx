@@ -65,38 +65,89 @@ function AnimatedCounter({
   return <span>{prefix}{count}{suffix}</span>;
 }
 
-// Enhanced 3D Glass Card Component
-interface Glass3DCardProps {
+// Vibrant Pastel Card Component
+interface VibrantCardProps {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
+  variant?: 'pink' | 'blue' | 'green' | 'orange' | 'purple' | 'default';
 }
 
-function Glass3DCard({ children, className = "", style = {} }: Glass3DCardProps) {
+function VibrantCard({ children, className = "", style = {}, variant = 'default' }: VibrantCardProps) {
+  const getVariantStyles = () => {
+    const baseStyle = {
+      background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%)',
+      border: '2px solid rgba(255, 255, 255, 0.8)',
+      borderTop: '2px solid rgba(255, 255, 255, 0.95)',
+      borderLeft: '2px solid rgba(255, 255, 255, 0.95)',
+      backdropFilter: 'blur(25px)',
+      WebkitBackdropFilter: 'blur(25px)',
+      boxShadow: '0 25px 80px rgba(99, 102, 241, 0.12), 0 10px 40px rgba(236, 72, 153, 0.08), 0 5px 20px rgba(34, 197, 94, 0.06), inset 0 2px 0 rgba(255, 255, 255, 0.6)',
+    };
+
+    const variantStyles = {
+      pink: {
+        ...baseStyle,
+        background: 'linear-gradient(135deg, rgba(255, 182, 193, 0.15) 0%, rgba(255, 240, 245, 0.8) 100%)',
+        borderLeftColor: '#FF6B9D',
+        borderLeftWidth: '4px',
+        boxShadow: '0 25px 80px rgba(255, 107, 157, 0.15), 0 10px 40px rgba(255, 107, 157, 0.1), 0 5px 20px rgba(255, 107, 157, 0.08), inset 0 2px 0 rgba(255, 255, 255, 0.6)',
+      },
+      blue: {
+        ...baseStyle,
+        background: 'linear-gradient(135deg, rgba(66, 153, 225, 0.15) 0%, rgba(235, 248, 255, 0.8) 100%)',
+        borderLeftColor: '#4299E1',
+        borderLeftWidth: '4px',
+        boxShadow: '0 25px 80px rgba(66, 153, 225, 0.15), 0 10px 40px rgba(66, 153, 225, 0.1), 0 5px 20px rgba(66, 153, 225, 0.08), inset 0 2px 0 rgba(255, 255, 255, 0.6)',
+      },
+      green: {
+        ...baseStyle,
+        background: 'linear-gradient(135deg, rgba(72, 187, 120, 0.15) 0%, rgba(240, 253, 244, 0.8) 100%)',
+        borderLeftColor: '#48BB78',
+        borderLeftWidth: '4px',
+        boxShadow: '0 25px 80px rgba(72, 187, 120, 0.15), 0 10px 40px rgba(72, 187, 120, 0.1), 0 5px 20px rgba(72, 187, 120, 0.08), inset 0 2px 0 rgba(255, 255, 255, 0.6)',
+      },
+      orange: {
+        ...baseStyle,
+        background: 'linear-gradient(135deg, rgba(246, 173, 85, 0.15) 0%, rgba(255, 250, 240, 0.8) 100%)',
+        borderLeftColor: '#F6AD55',
+        borderLeftWidth: '4px',
+        boxShadow: '0 25px 80px rgba(246, 173, 85, 0.15), 0 10px 40px rgba(246, 173, 85, 0.1), 0 5px 20px rgba(246, 173, 85, 0.08), inset 0 2px 0 rgba(255, 255, 255, 0.6)',
+      },
+      purple: {
+        ...baseStyle,
+        background: 'linear-gradient(135deg, rgba(159, 122, 234, 0.15) 0%, rgba(250, 245, 255, 0.8) 100%)',
+        borderLeftColor: '#9F7AEA',
+        borderLeftWidth: '4px',
+        boxShadow: '0 25px 80px rgba(159, 122, 234, 0.15), 0 10px 40px rgba(159, 122, 234, 0.1), 0 5px 20px rgba(159, 122, 234, 0.08), inset 0 2px 0 rgba(255, 255, 255, 0.6)',
+      },
+      default: baseStyle,
+    };
+
+    return variantStyles[variant];
+  };
+
   return (
-    <div 
-      className={`p-6 rounded-2xl transition-all duration-500 ease-out cursor-pointer ${className}`}
+    <div
+      className={`p-8 rounded-2xl transition-all duration-500 ease-out cursor-pointer ${className}`}
       style={{
-        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
-        border: '1px solid rgba(255, 255, 255, 0.4)',
-        borderTop: '1px solid rgba(255, 255, 255, 0.6)',
-        borderLeft: '1px solid rgba(255, 255, 255, 0.6)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        boxShadow: '0 8px 32px rgba(114, 241, 220, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+        ...getVariantStyles(),
         ...style
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-8px) scale(1.02)';
-        e.currentTarget.style.boxShadow = '0 20px 60px rgba(114, 241, 220, 0.25), 0 8px 24px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.4)';
-        e.currentTarget.style.borderTop = '1px solid rgba(255, 255, 255, 0.8)';
-        e.currentTarget.style.borderLeft = '1px solid rgba(255, 255, 255, 0.8)';
+        e.currentTarget.style.transform = 'translateY(-12px) scale(1.03)';
+        e.currentTarget.style.boxShadow = '0 35px 100px rgba(99, 102, 241, 0.18), 0 15px 50px rgba(236, 72, 153, 0.12), 0 8px 30px rgba(34, 197, 94, 0.1), inset 0 2px 0 rgba(255, 255, 255, 0.7)';
+        e.currentTarget.style.border = '2px solid rgba(255, 255, 255, 0.9)';
+        e.currentTarget.style.borderTop = '2px solid rgba(255, 255, 255, 1)';
+        e.currentTarget.style.borderLeft = '2px solid rgba(255, 255, 255, 1)';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.transform = 'translateY(0) scale(1)';
-        e.currentTarget.style.boxShadow = '0 8px 32px rgba(114, 241, 220, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
-        e.currentTarget.style.borderTop = '1px solid rgba(255, 255, 255, 0.6)';
-        e.currentTarget.style.borderLeft = '1px solid rgba(255, 255, 255, 0.6)';
+        const originalStyles = getVariantStyles();
+        e.currentTarget.style.boxShadow = originalStyles.boxShadow;
+        e.currentTarget.style.border = originalStyles.border;
+        e.currentTarget.style.borderTop = originalStyles.borderTop;
+        e.currentTarget.style.borderLeft = originalStyles.borderLeft;
       }}
     >
       {children}
