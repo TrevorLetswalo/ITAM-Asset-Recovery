@@ -99,35 +99,36 @@ function CompactKpiCard({
     return 'text-[#2C8780]';
   };
 
-  const getGradientBg = () => {
-    if (colorClass.includes('blue')) return 'from-blue-500/20 via-blue-400/15 to-blue-300/10';
-    if (colorClass.includes('red')) return 'from-red-500/20 via-red-400/15 to-red-300/10';
-    if (colorClass.includes('green')) return 'from-green-500/20 via-green-400/15 to-green-300/10';
-    return 'from-teal-500/20 via-teal-400/15 to-teal-300/10';
+  const getMetalColor = () => {
+    if (colorClass.includes('blue')) return '#4169E1'; // Royal Blue
+    if (colorClass.includes('red')) return '#DC143C'; // Crimson
+    if (colorClass.includes('green')) return '#228B22'; // Forest Green
+    return '#2C8780'; // Teal
   };
 
   return (
-    <div className={`glass-card h-32 group relative overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-strong bg-gradient-to-br ${getGradientBg()}`}>
-      {/* Vibrant Top Border */}
-      <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${
-        colorClass.includes('blue') ? 'from-blue-500 to-blue-400' :
-        colorClass.includes('red') ? 'from-red-500 to-red-400' :
-        colorClass.includes('green') ? 'from-green-500 to-green-400' :
-        'from-teal-500 to-teal-400'
-      } opacity-80 group-hover:opacity-100 transition-opacity`}></div>
+    <div className="skeu-kpi-card h-32 group relative overflow-hidden cursor-pointer rounded-lg">
+      {/* Leather/Metal Binding Edge */}
+      <div
+        className="absolute top-0 left-0 right-0 h-2 rounded-t-lg"
+        style={{
+          background: `linear-gradient(90deg, ${getMetalColor()}, #8B4513, ${getMetalColor()})`,
+          boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.3)'
+        }}
+      ></div>
 
-      {/* Clean Icon */}
-      <div className="flex items-center justify-between mb-3">
-        <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center ${getIconColor()} bg-white/60 backdrop-blur-sm border border-white/70 shadow-soft transition-all duration-300 group-hover:scale-110 group-hover:shadow-medium`}>
+      {/* Physical Calculator-Style Icon */}
+      <div className="flex items-center justify-between mb-3 mt-1">
+        <div className="skeu-icon w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center transition-all duration-200 group-hover:scale-110">
           <Icon className="h-5 w-5 md:h-6 md:w-6" />
         </div>
 
-        {/* Vibrant Trend Indicator */}
+        {/* Physical Embossed Trend Indicator */}
         {trend && trendValue && (
-          <div className={`flex items-center space-x-1 px-1.5 py-1 md:px-2 rounded-lg text-xs font-semibold shadow-sm transition-all duration-300 group-hover:scale-105 ${
+          <div className={`skeu-status flex items-center space-x-1 px-1.5 py-1 md:px-2 rounded-md text-xs font-bold transition-all duration-200 group-hover:scale-105 ${
             trend === 'up'
-              ? 'text-green-700 bg-gradient-to-r from-green-100/90 to-green-50/80 border border-green-200/60'
-              : 'text-red-700 bg-gradient-to-r from-red-100/90 to-red-50/80 border border-red-200/60'
+              ? 'text-green-800'
+              : 'text-red-800'
           }`}>
             {trend === 'up' ? (
               <ArrowUp className="h-3 w-3" />
@@ -139,29 +140,30 @@ function CompactKpiCard({
         )}
       </div>
 
-      {/* Essential Information Only */}
+      {/* Engraved Information Display */}
       <div>
-        <p className="text-xs md:text-sm font-medium text-gray-700 mb-1 truncate">{title}</p>
-        <p className="text-xl md:text-2xl font-light text-[#1D1D2C] tracking-tight">
+        <p className="text-xs md:text-sm font-semibold text-amber-900 mb-1 truncate" style={{
+          textShadow: '0 1px 1px rgba(255, 255, 255, 0.5)'
+        }}>{title}</p>
+        <p className="text-xl md:text-2xl font-bold text-amber-950 tracking-tight" style={{
+          textShadow: '0 1px 2px rgba(255, 255, 255, 0.3)'
+        }}>
           <AnimatedCounter value={value} />
         </p>
       </div>
 
-      {/* Enhanced Glass Border Effect */}
-      <div className="absolute inset-0 rounded-2xl border border-white/50 group-hover:border-white/70 transition-all duration-300 pointer-events-none"></div>
-
-      {/* Subtle Background Pattern with Color */}
-      <div className={`absolute bottom-2 right-2 opacity-[0.12] group-hover:opacity-[0.15] transition-opacity pointer-events-none ${getIconColor()}`}>
-        <Icon className="h-6 w-6 md:h-8 md:w-8" />
+      {/* Embossed Background Pattern */}
+      <div className="absolute bottom-3 right-3 opacity-[0.15] group-hover:opacity-[0.25] transition-opacity pointer-events-none text-amber-800">
+        <Icon className="h-6 w-6 md:h-8 md:w-8" style={{
+          filter: 'drop-shadow(0 1px 1px rgba(255, 255, 255, 0.5))'
+        }} />
       </div>
 
-      {/* Glow Effect on Hover */}
-      <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none bg-gradient-to-br ${
-        colorClass.includes('blue') ? 'from-blue-400/30 to-transparent' :
-        colorClass.includes('red') ? 'from-red-400/30 to-transparent' :
-        colorClass.includes('green') ? 'from-green-400/30 to-transparent' :
-        'from-teal-400/30 to-transparent'
-      }`}></div>
+      {/* Corner Rivets/Studs */}
+      <div className="absolute top-2 left-2 w-2 h-2 rounded-full bg-gradient-radial from-zinc-400 to-zinc-600 border border-zinc-700 shadow-inner"></div>
+      <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-gradient-radial from-zinc-400 to-zinc-600 border border-zinc-700 shadow-inner"></div>
+      <div className="absolute bottom-2 left-2 w-2 h-2 rounded-full bg-gradient-radial from-zinc-400 to-zinc-600 border border-zinc-700 shadow-inner"></div>
+      <div className="absolute bottom-2 right-2 w-2 h-2 rounded-full bg-gradient-radial from-zinc-400 to-zinc-600 border border-zinc-700 shadow-inner"></div>
     </div>
   );
 }
