@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { 
-  LayoutDashboard, 
-  List, 
-  AlertTriangle, 
-  Mail, 
-  BarChart3, 
+import {
+  LayoutDashboard,
+  List,
+  AlertTriangle,
+  Mail,
+  BarChart3,
   Settings,
   Search,
   Bell,
   User,
   Menu,
   X,
-  HeadphonesIcon
+  HeadphonesIcon,
+  RefreshCw
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
