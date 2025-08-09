@@ -406,20 +406,41 @@ export function ModernDashboard() {
 
   return (
     <div className="space-y-6">
-      {/* Enhanced Header without background */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-light text-[#1D1D2C] mb-2">
-            IT Asset Recovery Dashboard
-          </h1>
-          <p className="text-[#2C8780]">Monitor and manage asset recovery operations with real-time insights</p>
+      {/* Skeuomorphic Brass Nameplate Header */}
+      <div className="flex justify-between items-center mb-8">
+        <div className="relative">
+          {/* Brass nameplate effect */}
+          <div className="bg-gradient-to-br from-yellow-600 via-yellow-500 to-yellow-700 p-6 rounded-lg border-4 border-yellow-800 shadow-lg" style={{
+            borderTop: '4px solid #DAA520',
+            borderLeft: '4px solid #DAA520',
+            borderBottom: '4px solid #B8860B',
+            borderRight: '4px solid #B8860B',
+            boxShadow: '0 8px 16px rgba(184, 134, 11, 0.4), inset 0 2px 0 rgba(255, 215, 0, 0.3), inset 0 -2px 0 rgba(184, 134, 11, 0.3)'
+          }}>
+            <h1 className="text-2xl md:text-3xl font-bold text-yellow-900 mb-2" style={{
+              textShadow: '0 1px 2px rgba(255, 215, 0, 0.5), 0 2px 4px rgba(184, 134, 11, 0.3)',
+              fontFamily: 'serif'
+            }}>
+              IT Asset Recovery Dashboard
+            </h1>
+            <p className="text-yellow-800 font-semibold" style={{
+              textShadow: '0 1px 1px rgba(255, 215, 0, 0.5)'
+            }}>Monitor and manage asset recovery operations with real-time insights</p>
+
+            {/* Decorative corner elements */}
+            <div className="absolute top-1 left-1 w-3 h-3 bg-gradient-radial from-yellow-300 to-yellow-600 rounded-full border border-yellow-800"></div>
+            <div className="absolute top-1 right-1 w-3 h-3 bg-gradient-radial from-yellow-300 to-yellow-600 rounded-full border border-yellow-800"></div>
+            <div className="absolute bottom-1 left-1 w-3 h-3 bg-gradient-radial from-yellow-300 to-yellow-600 rounded-full border border-yellow-800"></div>
+            <div className="absolute bottom-1 right-1 w-3 h-3 bg-gradient-radial from-yellow-300 to-yellow-600 rounded-full border border-yellow-800"></div>
+          </div>
         </div>
+
         <div className="flex space-x-3">
-          <Button variant="outline" size="sm" onClick={handleDateRangeChange} className="macos-button text-[#1D1D2C]">
+          <Button variant="outline" size="sm" onClick={handleDateRangeChange} className="macos-button">
             <Calendar className="mr-2 h-4 w-4" />
             Last 30 Days
           </Button>
-          <Button variant="outline" size="sm" onClick={handleRefreshDashboard} className="macos-button text-[#1D1D2C]">
+          <Button variant="outline" size="sm" onClick={handleRefreshDashboard} className="macos-button">
             <RefreshCw className="mr-2 h-4 w-4" />
             Refresh
           </Button>
