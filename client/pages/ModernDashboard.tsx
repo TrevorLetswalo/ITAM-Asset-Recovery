@@ -187,32 +187,24 @@ function CompactKpiCard({
   };
 
   return (
-    <Glass3DCard className="group relative overflow-hidden">
+    <VibrantCard variant="default" className="group relative overflow-hidden">
       {/* Header with Icon and Trend */}
-      <div className="flex items-start justify-between mb-4">
-        <div className={cn(
-          "w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 bg-gradient-to-br border border-white/30",
-          getIconBg()
-        )} style={{
-          backdropFilter: 'blur(10px)',
-          boxShadow: '0 4px 16px rgba(114, 241, 220, 0.1)'
-        }}>
-          <Icon className="h-6 w-6" />
+      <div className="flex items-start justify-between mb-6">
+        <div className="w-16 h-16 rounded-3xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 bg-gradient-to-br from-teal-400 to-cyan-500 text-white shadow-lg">
+          <Icon className="h-8 w-8" />
         </div>
 
         {trend && trendValue && (
           <div className={cn(
-            "flex items-center space-x-1 px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-lg border",
+            "flex items-center space-x-2 px-4 py-2 rounded-2xl text-sm font-semibold backdrop-blur-lg border-2 shadow-lg",
             trend === 'up'
-              ? 'bg-green-100/50 text-green-700 border-green-200/50'
-              : 'bg-red-100/50 text-red-700 border-red-200/50'
-          )} style={{
-            boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
-          }}>
+              ? 'bg-green-50/90 text-green-700 border-green-200'
+              : 'bg-red-50/90 text-red-700 border-red-200'
+          )}>
             {trend === 'up' ? (
-              <TrendingUp className="h-3 w-3" />
+              <TrendingUp className="h-4 w-4" />
             ) : (
-              <TrendingDown className="h-3 w-3" />
+              <TrendingDown className="h-4 w-4" />
             )}
             <span>{trendValue}</span>
           </div>
@@ -220,44 +212,44 @@ function CompactKpiCard({
       </div>
 
       {/* Title and Value */}
-      <div className="space-y-2 mb-4">
-        <p className="text-sm font-medium text-[#2C8780]">{title}</p>
-        <p className="text-3xl font-light text-[#1D1D2C] tracking-tight">
+      <div className="space-y-3 mb-6">
+        <p className="text-base font-semibold text-teal-600">{title}</p>
+        <p className="text-4xl font-light text-gray-800 tracking-tight">
           <AnimatedCounter value={value} />
         </p>
       </div>
 
       {/* Sparkline and Status */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-4">
           {sparklineData && sparklineData.length > 1 && (
             <div className="opacity-80 group-hover:opacity-100 transition-opacity">
               <Sparkline data={sparklineData} trend={trend} />
             </div>
           )}
           {description && (
-            <p className="text-xs text-[#2C8780]">{description}</p>
+            <p className="text-sm text-gray-600 font-medium">{description}</p>
           )}
         </div>
 
         {statusTag && (
           <div className={cn(
-            "px-2 py-1 rounded-lg text-xs font-medium backdrop-blur-lg border",
-            statusTag === 'Improving' ? 'bg-green-100/50 text-green-700 border-green-200/30' :
-            statusTag === 'In Breach' ? 'bg-red-100/50 text-red-700 border-red-200/30' :
-            statusTag === 'Stable' ? 'bg-blue-100/50 text-blue-700 border-blue-200/30' :
-            'bg-gray-100/50 text-gray-700 border-gray-200/30'
+            "px-3 py-1.5 rounded-xl text-sm font-semibold backdrop-blur-lg border-2 shadow-md",
+            statusTag === 'Improving' ? 'bg-green-50/90 text-green-700 border-green-200' :
+            statusTag === 'In Breach' ? 'bg-red-50/90 text-red-700 border-red-200' :
+            statusTag === 'Stable' ? 'bg-blue-50/90 text-blue-700 border-blue-200' :
+            'bg-gray-50/90 text-gray-700 border-gray-200'
           )}>
             {statusTag}
           </div>
         )}
       </div>
 
-      {/* Enhanced 3D background pattern */}
-      <div className="absolute top-0 right-0 w-32 h-32 opacity-[0.03] pointer-events-none">
-        <Icon className="w-full h-full" />
+      {/* Enhanced background pattern */}
+      <div className="absolute top-0 right-0 w-32 h-32 opacity-[0.05] pointer-events-none">
+        <Icon className="w-full h-full text-teal-400" />
       </div>
-    </Glass3DCard>
+    </VibrantCard>
   );
 }
 
