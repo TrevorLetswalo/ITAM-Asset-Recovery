@@ -12,11 +12,7 @@ import {
   User,
   Menu,
   X,
-  HeadphonesIcon,
-  ChevronDown,
-  LogOut,
-  Moon,
-  Sun
+  HeadphonesIcon
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
@@ -77,33 +73,14 @@ const sidebarItems = [
 export function ModernLayout({ children }: LayoutProps) {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.documentElement.classList.toggle('dark');
-  };
 
   const handleNotifications = () => {
     alert('🔔 Notifications Center\n\nRecent notifications:\n\n• 3 SLA breaches require attention\n• New asset recovery request submitted\n• System backup completed\n• 2 pending approvals');
   };
 
-  const handleProfileMenu = () => {
-    const options = ['View Profile', 'Account Settings', 'Change Password', 'Sign Out'];
-    const selectedOption = prompt(`Profile Menu:\n\n${options.map((opt, idx) => `${idx + 1}. ${opt}`).join('\n')}\n\nEnter number (1-4):`);
-
-    if (selectedOption && selectedOption >= '1' && selectedOption <= '4') {
-      const selected = options[parseInt(selectedOption) - 1];
-      if (selected === 'Sign Out') {
-        const confirmed = confirm('Are you sure you want to sign out?');
-        if (confirmed) {
-          alert('✅ Successfully signed out!');
-        }
-      } else {
-        alert(`📝 Opening: ${selected}\n\nThis would navigate to the ${selected.toLowerCase()} page.`);
-      }
-    }
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert('🔍 Search functionality would be implemented here');
   };
 
   return (
@@ -116,32 +93,34 @@ export function ModernLayout({ children }: LayoutProps) {
         />
       )}
 
-      {/* Enhanced Sidebar - Sticky */}
+      {/* Left Vertical Navigation Bar */}
       <div className={cn(
         "fixed inset-y-0 left-0 z-50 transform transition-all duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0",
-        "glass-nav border-r border-glass-border lg:sticky lg:top-0 lg:h-screen",
-        sidebarOpen ? "translate-x-0" : "-translate-x-full",
-        sidebarCollapsed ? "w-20" : "w-72"
-      )}>
+        "w-72 lg:sticky lg:top-0 lg:h-screen",
+        sidebarOpen ? "translate-x-0" : "-translate-x-full"
+      )}
+      style={{ backgroundColor: '#F0E4D7' }} // Sandy beige background
+      >
         <div className="flex h-full flex-col">
-          {/* Logo Section */}
-          <div className="flex h-20 items-center px-6 border-b border-glass-border">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-recovery-accent to-recovery-highlight rounded-xl flex items-center justify-center shadow-medium">
-                <LayoutDashboard className="w-6 h-6 text-white" />
+          {/* User Info Section - Teal background */}
+          <div 
+            className="flex items-center px-6 py-6 border-b border-white/20"
+            style={{ backgroundColor: '#4CA1A3' }}
+          >
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg border border-white/30">
+                <User className="w-6 h-6 text-white" />
               </div>
-              {!sidebarCollapsed && (
-                <div>
-                  <h1 className="text-white font-poppins font-semibold text-lg tracking-tight">
-                    Asset Recovery
-                  </h1>
-                  <p className="text-gray-200 text-xs">IT Management Console</p>
-                </div>
-              )}
+              <div>
+                <h2 className="text-white font-semibold text-lg">
+                  Trevor Letswalo
+                </h2>
+                <p className="text-white/80 text-sm">Administrator</p>
+              </div>
             </div>
           </div>
 
-          {/* Navigation */}
+          {/* Navigation Menu */}
           <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
             {sidebarItems.map((item) => {
               const isActive = location.pathname === item.path;
@@ -154,153 +133,136 @@ export function ModernLayout({ children }: LayoutProps) {
                   onClick={() => setSidebarOpen(false)}
                   className={cn(
                     "group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200",
-                    "hover:bg-white/10 hover:backdrop-blur-lg hover:scale-[1.02]",
+                    "hover:scale-[1.02]",
                     isActive
-                      ? "bg-gradient-to-r from-recovery-accent to-recovery-highlight text-white shadow-medium scale-[1.02]"
-                      : "text-white hover:text-gray-100",
-                    item.highlight && !isActive ? "bg-recovery-highlight/20 border border-recovery-highlight/30" : ""
+                      ? "shadow-lg scale-[1.02]"
+                      : "hover:shadow-md",
+                    item.highlight && !isActive ? "border-2 border-opacity-30" : ""
                   )}
+                  style={{
+                    backgroundColor: isActive ? '#FF6F61' : 'transparent',
+                    color: '#05445E', // Navy text
+                    borderColor: item.highlight && !isActive ? '#FF6F61' : 'transparent'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive) {
+                      e.currentTarget.style.backgroundColor = '#FF6F61';
+                      e.currentTarget.style.color = 'white';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive) {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.color = '#05445E';
+                    }
+                  }}
                 >
                   <Icon className={cn(
                     "flex-shrink-0 h-5 w-5 transition-colors",
-                    isActive ? "text-white" : "text-gray-200 group-hover:text-white"
+                    isActive ? "text-white" : ""
                   )} />
                   
-                  {!sidebarCollapsed && (
-                    <>
-                      <div className="ml-3 flex-1">
-                        <div className="flex items-center justify-between">
-                          <span className="font-medium text-white">{item.name}</span>
-                          {item.badge && (
-                            <Badge className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
-                              {item.badge}
-                            </Badge>
-                          )}
-                        </div>
-                        <p className={cn(
-                          "text-xs mt-0.5 transition-colors",
-                          isActive ? "text-white/80" : "text-gray-200 group-hover:text-gray-100"
-                        )}>
-                          {item.description}
-                        </p>
-                      </div>
-                    </>
-                  )}
+                  <div className="ml-3 flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className={cn(
+                        "font-medium",
+                        isActive ? "text-white" : ""
+                      )}>{item.name}</span>
+                      {item.badge && (
+                        <Badge 
+                          className="text-white text-xs px-2 py-0.5 rounded-full"
+                          style={{ backgroundColor: '#FF6F61' }}
+                        >
+                          {item.badge}
+                        </Badge>
+                      )}
+                    </div>
+                    <p className={cn(
+                      "text-xs mt-0.5 transition-colors opacity-70",
+                      isActive ? "text-white" : ""
+                    )}>
+                      {item.description}
+                    </p>
+                  </div>
                 </Link>
               );
             })}
           </nav>
 
           {/* Sidebar Footer */}
-          <div className="px-4 py-4 border-t border-glass-border">
-            {!sidebarCollapsed ? (
-              <div className="space-y-3">
-                <div className="glass-card p-3 rounded-lg">
-                  <div className="text-xs text-white text-center">
-                    <span className="block font-medium">v1.0.0</span>
-                    <span className="text-gray-200">IT Asset Recovery Console</span>
-                  </div>
-                </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setSidebarCollapsed(true)}
-                  className="w-full text-white hover:text-gray-100 hover:bg-white/10"
-                >
-                  <Menu className="h-4 w-4 mr-2" />
-                  Collapse
-                </Button>
+          <div className="px-4 py-4 border-t border-white/20">
+            <div className="bg-white/10 backdrop-blur-sm p-3 rounded-lg border border-white/20">
+              <div className="text-xs text-center" style={{ color: '#05445E' }}>
+                <span className="block font-medium">v1.0.0</span>
+                <span className="opacity-70">IT Asset Recovery Console</span>
               </div>
-            ) : (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setSidebarCollapsed(false)}
-                className="w-full text-white hover:text-gray-100 hover:bg-white/10"
-              >
-                <Menu className="h-4 w-4" />
-              </Button>
-            )}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Main content */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Enhanced Top Navigation */}
-        <header className="h-20 flex items-center justify-between px-6">
-          {/* Left Section */}
-          <div className="flex items-center space-x-4">
-            {/* Mobile menu button */}
-            <Button
-              variant="ghost"
-              size="sm"
-              className="lg:hidden text-gray-600 hover:text-gray-900"
-              onClick={() => setSidebarOpen(true)}
-            >
-              <Menu className="h-5 w-5" />
-            </Button>
+        {/* Top Header with Full Background Color */}
+        <header 
+          className="h-16 flex items-center px-6"
+          style={{ 
+            backgroundColor: '#85D1DB', // Full background color corner to corner
+            borderBottom: '1px solid rgba(76, 161, 163, 0.2)'
+          }}
+        >
+          {/* Mobile menu button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            className="lg:hidden text-white hover:text-white/80 mr-4"
+            onClick={() => setSidebarOpen(true)}
+          >
+            <Menu className="h-5 w-5" />
+          </Button>
 
-            {/* Enhanced Search with permanent glassmorphism */}
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#2C8780]" />
+          {/* Title - Left aligned, white, smaller font */}
+          <h1 className="text-white font-medium text-lg mr-8">
+            IT Asset Recovery Dashboard
+          </h1>
+
+          {/* Search bar - Immediately to the right of title, horizontally centered */}
+          <div className="flex-1 flex justify-center max-w-md">
+            <form onSubmit={handleSearch} className="relative w-full">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
               <input
                 type="text"
                 placeholder="Search tickets, users, asset tags..."
-                className="w-80 pl-12 pr-4 py-3 bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent transition-all duration-200"
-                style={{boxShadow: '0 4px 30px rgba(114, 241, 220, 0.2)'}}
+                className="w-full pl-12 pr-4 py-2 bg-white/90 backdrop-blur-sm border border-white/50 rounded-xl text-gray-700 placeholder-gray-500 focus:ring-2 focus:ring-white/50 focus:border-white focus:outline-none transition-all duration-200"
+                style={{
+                  boxShadow: '0 2px 8px rgba(5, 68, 94, 0.1)'
+                }}
               />
-            </div>
+            </form>
           </div>
 
-          {/* Right Section */}
-          <div className="flex items-center space-x-4">
-            {/* Dark Mode Toggle */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleDarkMode}
-              className="relative text-[#2C8780] hover:text-[#1D1D2C] bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl"
-            >
-              {darkMode ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )}
-            </Button>
-
-            {/* Notifications */}
+          {/* Notification icon - Far right */}
+          <div className="ml-auto">
             <Button
               variant="ghost"
               size="sm"
               onClick={handleNotifications}
-              className="relative text-[#2C8780] hover:text-[#1D1D2C] bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl"
+              className="relative text-white hover:text-white/80 hover:bg-white/10 rounded-xl"
             >
               <Bell className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs rounded-full flex items-center justify-center shadow-medium">
+              <span 
+                className="absolute -top-1 -right-1 w-5 h-5 text-white text-xs rounded-full flex items-center justify-center shadow-lg"
+                style={{ backgroundColor: '#FF6F61' }}
+              >
                 3
               </span>
             </Button>
-
-            {/* Profile Dropdown */}
-            <div className="relative">
-              <Button variant="ghost" size="sm" onClick={handleProfileMenu} className="flex items-center space-x-2 text-[#1D1D2C] hover:text-[#2C8780] bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl">
-                <div className="w-8 h-8 bg-gradient-to-br from-recovery-accent to-recovery-highlight rounded-xl flex items-center justify-center shadow-soft">
-                  <User className="h-4 w-4 text-white" />
-                </div>
-                <div className="hidden md:block text-left">
-                  <span className="text-sm font-medium text-[#1D1D2C]">Trevor Letswalo</span>
-                  <span className="text-xs text-[#2C8780] block">Administrator</span>
-                </div>
-                <ChevronDown className="h-4 w-4 text-[#2C8780]" />
-              </Button>
-            </div>
           </div>
         </header>
 
-        {/* Page content with macOS 2026 container constraints */}
-        <main className="flex-1 overflow-auto">
-          <div className="macos-container min-h-full">
+        {/* Page content */}
+        <main className="flex-1 overflow-auto bg-gradient-to-br from-blue-50/30 to-blue-100/20">
+          <div className="p-6 min-h-full">
             {children}
           </div>
         </main>
