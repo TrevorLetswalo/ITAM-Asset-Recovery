@@ -117,14 +117,19 @@ function CompactKpiCard({
         }}
       ></div>
 
-      {/* Trend Indicator Only */}
-      <div className="flex justify-end mb-3 mt-2">
+      {/* Header with Title and Trend */}
+      <div className="flex justify-between items-start mt-3 mb-4">
+        {/* Title - Top Left */}
+        <p className="text-xs md:text-sm font-medium truncate" style={{
+          color: '#4A6A7B', // Muted teal-gray
+          textShadow: '0 1px 1px rgba(255, 255, 255, 0.8)'
+        }}>{title}</p>
+
+        {/* Trend Indicator - Top Right, no background/border */}
         {trend && trendValue && (
-          <div className={`seaside-status flex items-center space-x-1 px-1.5 py-1 md:px-2 rounded-lg text-xs font-semibold transition-all duration-300 group-hover:scale-105 ${
-            trend === 'up'
-              ? 'seaside-status-coral'
-              : 'seaside-status-coral'
-          }`}>
+          <div className="flex items-center space-x-1 text-xs font-semibold transition-all duration-300 group-hover:scale-105" style={{
+            color: '#FF6F61' // Coral color
+          }}>
             {trend === 'up' ? (
               <ArrowUp className="h-3 w-3" />
             ) : (
@@ -135,13 +140,9 @@ function CompactKpiCard({
         )}
       </div>
 
-      {/* Clear Information Display */}
+      {/* Large Number Display */}
       <div>
-        <p className="text-xs md:text-sm font-medium mb-1 truncate" style={{
-          color: '#4A6A7B', // Muted teal-gray
-          textShadow: '0 1px 1px rgba(255, 255, 255, 0.8)'
-        }}>{title}</p>
-        <p className="text-xl md:text-2xl font-bold tracking-tight" style={{
+        <p className="text-3xl md:text-4xl font-bold tracking-tight" style={{
           color: '#05445E', // Soft navy
           textShadow: '0 1px 2px rgba(255, 255, 255, 0.5)'
         }}>
