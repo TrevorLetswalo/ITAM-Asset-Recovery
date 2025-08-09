@@ -226,14 +226,14 @@ export function ModernLayout({ children }: LayoutProps) {
             IT Asset Recovery Dashboard
           </h1>
 
-          {/* Search bar - Immediately to the right of title, horizontally centered */}
-          <div className="flex-1 flex justify-center max-w-md">
+          {/* Search bar - Decreased size */}
+          <div className="flex-1 flex justify-center max-w-xs">
             <form onSubmit={handleSearch} className="relative w-full">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
               <input
                 type="text"
-                placeholder="Search tickets, users, asset tags..."
-                className="w-full pl-12 pr-4 py-2 bg-white/90 backdrop-blur-sm border border-white/50 rounded-xl text-gray-700 placeholder-gray-500 focus:ring-2 focus:ring-white/50 focus:border-white focus:outline-none transition-all duration-200"
+                placeholder="Search..."
+                className="w-full pl-10 pr-3 py-2 bg-white/90 backdrop-blur-sm border border-white/50 rounded-xl text-gray-700 placeholder-gray-500 focus:ring-2 focus:ring-white/50 focus:border-white focus:outline-none transition-all duration-200"
                 style={{
                   boxShadow: '0 2px 8px rgba(5, 68, 94, 0.1)'
                 }}
@@ -241,8 +241,17 @@ export function ModernLayout({ children }: LayoutProps) {
             </form>
           </div>
 
-          {/* Notification icon - Far right */}
-          <div className="ml-auto">
+          {/* Refresh and Notification - Far right */}
+          <div className="ml-auto flex items-center space-x-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => alert('🔄 Refreshing dashboard data...')}
+              className="text-white hover:text-white/80 hover:bg-white/10 rounded-xl"
+            >
+              <RefreshCw className="h-5 w-5" />
+            </Button>
+
             <Button
               variant="ghost"
               size="sm"
@@ -250,7 +259,7 @@ export function ModernLayout({ children }: LayoutProps) {
               className="relative text-white hover:text-white/80 hover:bg-white/10 rounded-xl"
             >
               <Bell className="h-5 w-5" />
-              <span 
+              <span
                 className="absolute -top-1 -right-1 w-5 h-5 text-white text-xs rounded-full flex items-center justify-center shadow-lg"
                 style={{ backgroundColor: '#FF6F61' }}
               >
