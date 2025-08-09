@@ -404,32 +404,31 @@ export function ModernDashboard() {
 
   return (
     <div className="space-y-6">
-      {/* Skeuomorphic Brass Nameplate Header */}
+      {/* Seaside Ocean Header */}
       <div className="flex justify-between items-center mb-8">
         <div className="relative">
-          {/* Brass nameplate effect */}
-          <div className="bg-gradient-to-br from-yellow-600 via-yellow-500 to-yellow-700 p-6 rounded-lg border-4 border-yellow-800 shadow-lg" style={{
-            borderTop: '4px solid #DAA520',
-            borderLeft: '4px solid #DAA520',
-            borderBottom: '4px solid #B8860B',
-            borderRight: '4px solid #B8860B',
-            boxShadow: '0 8px 16px rgba(184, 134, 11, 0.4), inset 0 2px 0 rgba(255, 215, 0, 0.3), inset 0 -2px 0 rgba(184, 134, 11, 0.3)'
+          {/* Ocean-inspired header panel */}
+          <div className="p-6 rounded-2xl shadow-lg" style={{
+            background: 'linear-gradient(135deg, #85D1DB 0%, #4CA1A3 100%)',
+            border: '2px solid rgba(255, 255, 255, 0.3)',
+            borderTop: '2px solid rgba(255, 255, 255, 0.5)',
+            borderLeft: '2px solid rgba(255, 255, 255, 0.5)',
+            boxShadow: '0 12px 28px rgba(5, 68, 94, 0.2), inset 0 2px 0 rgba(255, 255, 255, 0.3), inset 0 -2px 0 rgba(76, 161, 163, 0.2)'
           }}>
-            <h1 className="text-2xl md:text-3xl font-bold text-yellow-900 mb-2" style={{
-              textShadow: '0 1px 2px rgba(255, 215, 0, 0.5), 0 2px 4px rgba(184, 134, 11, 0.3)',
-              fontFamily: 'serif'
+            <h1 className="text-2xl md:text-3xl font-bold text-white mb-2" style={{
+              textShadow: '0 2px 4px rgba(5, 68, 94, 0.4)'
             }}>
               IT Asset Recovery Dashboard
             </h1>
-            <p className="text-yellow-800 font-semibold" style={{
-              textShadow: '0 1px 1px rgba(255, 215, 0, 0.5)'
+            <p className="text-white font-medium opacity-90" style={{
+              textShadow: '0 1px 2px rgba(5, 68, 94, 0.3)'
             }}>Monitor and manage asset recovery operations with real-time insights</p>
 
-            {/* Decorative corner elements */}
-            <div className="absolute top-1 left-1 w-3 h-3 bg-gradient-radial from-yellow-300 to-yellow-600 rounded-full border border-yellow-800"></div>
-            <div className="absolute top-1 right-1 w-3 h-3 bg-gradient-radial from-yellow-300 to-yellow-600 rounded-full border border-yellow-800"></div>
-            <div className="absolute bottom-1 left-1 w-3 h-3 bg-gradient-radial from-yellow-300 to-yellow-600 rounded-full border border-yellow-800"></div>
-            <div className="absolute bottom-1 right-1 w-3 h-3 bg-gradient-radial from-yellow-300 to-yellow-600 rounded-full border border-yellow-800"></div>
+            {/* Wave decorative elements */}
+            <div className="absolute top-2 right-2 w-8 h-1 rounded-full bg-gradient-to-r from-transparent via-white to-transparent opacity-30"></div>
+            <div className="absolute top-4 right-4 w-6 h-1 rounded-full bg-gradient-to-r from-transparent via-white to-transparent opacity-20"></div>
+            <div className="absolute bottom-2 left-2 w-8 h-1 rounded-full bg-gradient-to-r from-transparent via-white to-transparent opacity-30"></div>
+            <div className="absolute bottom-4 left-4 w-6 h-1 rounded-full bg-gradient-to-r from-transparent via-white to-transparent opacity-20"></div>
           </div>
         </div>
 
