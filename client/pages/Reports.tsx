@@ -295,7 +295,7 @@ export function Reports() {
       : mockReports.filter(report => report.category === selectedCategory);
 
     const reportData = filteredReports.map(report => ({
-      'Report Name': report.name,
+      'Report Name': report.title,
       'Category': report.category,
       'Type': report.type,
       'Description': report.description,
