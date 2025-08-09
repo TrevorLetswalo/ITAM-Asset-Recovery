@@ -158,7 +158,7 @@ function RecoveryProgressChart() {
   const maxValue = Math.max(...progressData.map(d => d.recovered + d.pending));
 
   return (
-    <VibrantCard variant="green" style={{ minHeight: '400px', height: '400px' }}>
+    <GlassCard className="chart-container">
       <div className="pb-4">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
@@ -175,7 +175,7 @@ function RecoveryProgressChart() {
           {progressData.map((data, index) => (
             <div key={data.day} className="flex flex-col items-center flex-1 group">
               <div className="w-full flex flex-col items-center space-y-1 mb-3">
-                {/* Recovered bar with enhanced 3D effect */}
+                {/* Recovered bar with clean design */}
                 <div
                   className="w-7 rounded-t-xl transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-lg"
                   style={{
@@ -185,7 +185,7 @@ function RecoveryProgressChart() {
                     boxShadow: '0 4px 12px rgba(44, 135, 128, 0.3)',
                   }}
                 />
-                {/* Pending bar with enhanced 3D effect */}
+                {/* Pending bar with clean design */}
                 <div
                   className="w-7 rounded-b-xl transition-all duration-1000 ease-out hover:scale-105"
                   style={{
@@ -218,7 +218,7 @@ function RecoveryProgressChart() {
           </div>
         </div>
       </div>
-    </VibrantCard>
+    </GlassCard>
   );
 }
 
