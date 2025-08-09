@@ -10,54 +10,54 @@
    * Enhanced with glassmorphism, gradients, and premium typography
    */
   :root {
-    /* Modern Color Palette - Light Mode */
-    --background: 208 100% 97%; /* #E8F2FD - Light Ice Blue */
-    --foreground: 220 25% 15%; /* #1D1D2C - Deep Blue-Black */
+    /* Charming Seaside Color Palette */
+    --background: 188 67% 94%; /* #EAF4F4 - Very light pale blue */
+    --foreground: 201 89% 19%; /* #05445E - Soft navy for text */
 
-    --card: 0 0% 100%; /* Pure white with glassmorphism overlay */
-    --card-foreground: 220 25% 15%;
+    --card: 0 0% 100%; /* Pure white */
+    --card-foreground: 201 89% 19%; /* #05445E - Soft navy */
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 25% 15%;
+    --popover-foreground: 201 89% 19%;
 
-    --primary: 220 25% 15%; /* #1D1D2C - Deep Blue-Black */
+    --primary: 188 47% 55%; /* #85D1DB - Soft ocean blue */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 180 20% 70%; /* #B2CAC9 - Soft Sage */
-    --secondary-foreground: 220 25% 15%;
+    --secondary: 33 36% 89%; /* #F0E4D7 - Sandy beige */
+    --secondary-foreground: 201 89% 19%;
 
-    --muted: 208 40% 92%;
-    --muted-foreground: 220 15% 45%;
+    --muted: 188 67% 96%;
+    --muted-foreground: 200 16% 46%; /* #4A6A7B - Muted teal-gray */
 
-    --accent: 174 57% 35%; /* #2C8780 - Modern Teal */
+    --accent: 182 42% 46%; /* #4CA1A3 - Soft teal */
     --accent-foreground: 0 0% 100%;
 
-    --highlight: 174 75% 65%; /* #72F1DC - Electric Mint */
-    --highlight-foreground: 220 25% 15%;
+    --highlight: 6 100% 69%; /* #FF6F61 - Coral accent */
+    --highlight-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 6 100% 69%; /* #FF6F61 - Coral for alerts */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 208 30% 88%;
-    --input: 208 30% 90%;
-    --ring: 174 57% 35%;
+    --border: 188 30% 88%;
+    --input: 188 30% 90%;
+    --ring: 182 42% 46%; /* #4CA1A3 - Soft teal */
 
-    --radius: 1rem; /* xl rounded corners */
+    --radius: 1rem;
 
-    /* Glassmorphism Variables */
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    /* Seaside Glassmorphism Variables */
+    --glass-bg: rgba(133, 209, 219, 0.1); /* Ocean blue tint */
+    --glass-border: rgba(76, 161, 163, 0.2); /* Soft teal border */
+    --glass-shadow: 0 8px 32px rgba(5, 68, 94, 0.1); /* Navy shadow */
 
-    /* Sidebar colors - Enhanced with glassmorphism */
-    --sidebar-background: 220 25% 15%; /* #1D1D2C */
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 174 57% 35%; /* #2C8780 */
+    /* Seaside Sidebar colors */
+    --sidebar-background: 33 36% 89%; /* #F0E4D7 - Sandy beige */
+    --sidebar-foreground: 201 89% 19%; /* #05445E - Soft navy */
+    --sidebar-primary: 182 42% 46%; /* #4CA1A3 - Soft teal */
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 20% 25%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 220 20% 20%;
-    --sidebar-ring: 174 75% 65%; /* #72F1DC */
+    --sidebar-accent: 188 47% 55%; /* #85D1DB - Ocean blue */
+    --sidebar-accent-foreground: 201 89% 19%;
+    --sidebar-border: 33 25% 80%;
+    --sidebar-ring: 6 100% 69%; /* #FF6F61 - Coral */
   }
 
   .dark {
