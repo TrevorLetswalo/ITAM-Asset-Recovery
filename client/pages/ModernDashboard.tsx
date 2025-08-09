@@ -99,46 +99,69 @@ function CompactKpiCard({
     return 'text-[#2C8780]';
   };
 
+  const getGradientBg = () => {
+    if (colorClass.includes('blue')) return 'from-blue-500/20 via-blue-400/15 to-blue-300/10';
+    if (colorClass.includes('red')) return 'from-red-500/20 via-red-400/15 to-red-300/10';
+    if (colorClass.includes('green')) return 'from-green-500/20 via-green-400/15 to-green-300/10';
+    return 'from-teal-500/20 via-teal-400/15 to-teal-300/10';
+  };
+
   return (
-    <div className="glass-card h-32 group relative overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-strong">
+    <div className={`glass-card h-32 group relative overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-strong bg-gradient-to-br ${getGradientBg()}`}>
+      {/* Vibrant Top Border */}
+      <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${
+        colorClass.includes('blue') ? 'from-blue-500 to-blue-400' :
+        colorClass.includes('red') ? 'from-red-500 to-red-400' :
+        colorClass.includes('green') ? 'from-green-500 to-green-400' :
+        'from-teal-500 to-teal-400'
+      } opacity-80 group-hover:opacity-100 transition-opacity`}></div>
+
       {/* Clean Icon */}
-      <div className="flex items-center justify-between mb-4">
-        <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${getIconColor()} bg-white/50 backdrop-blur-sm border border-white/60 shadow-soft transition-all duration-300 group-hover:scale-110`}>
-          <Icon className="h-6 w-6" />
+      <div className="flex items-center justify-between mb-3">
+        <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center ${getIconColor()} bg-white/60 backdrop-blur-sm border border-white/70 shadow-soft transition-all duration-300 group-hover:scale-110 group-hover:shadow-medium`}>
+          <Icon className="h-5 w-5 md:h-6 md:w-6" />
         </div>
 
-        {/* Minimalist Trend Indicator */}
+        {/* Vibrant Trend Indicator */}
         {trend && trendValue && (
-          <div className={`flex items-center space-x-1 px-2 py-1 rounded-lg text-xs font-medium ${
+          <div className={`flex items-center space-x-1 px-1.5 py-1 md:px-2 rounded-lg text-xs font-semibold shadow-sm transition-all duration-300 group-hover:scale-105 ${
             trend === 'up'
-              ? 'text-green-700 bg-green-50/80'
-              : 'text-red-700 bg-red-50/80'
+              ? 'text-green-700 bg-gradient-to-r from-green-100/90 to-green-50/80 border border-green-200/60'
+              : 'text-red-700 bg-gradient-to-r from-red-100/90 to-red-50/80 border border-red-200/60'
           }`}>
             {trend === 'up' ? (
               <ArrowUp className="h-3 w-3" />
             ) : (
               <ArrowDown className="h-3 w-3" />
             )}
-            <span>{trendValue}</span>
+            <span className="hidden sm:inline">{trendValue}</span>
           </div>
         )}
       </div>
 
       {/* Essential Information Only */}
       <div>
-        <p className="text-sm font-medium text-gray-600 mb-1">{title}</p>
-        <p className="text-2xl font-light text-[#1D1D2C] tracking-tight">
+        <p className="text-xs md:text-sm font-medium text-gray-700 mb-1 truncate">{title}</p>
+        <p className="text-xl md:text-2xl font-light text-[#1D1D2C] tracking-tight">
           <AnimatedCounter value={value} />
         </p>
       </div>
 
-      {/* Subtle Glass Border Effect */}
-      <div className="absolute inset-0 rounded-2xl border border-white/40 pointer-events-none"></div>
+      {/* Enhanced Glass Border Effect */}
+      <div className="absolute inset-0 rounded-2xl border border-white/50 group-hover:border-white/70 transition-all duration-300 pointer-events-none"></div>
 
-      {/* Minimal Background Pattern */}
-      <div className="absolute bottom-2 right-2 opacity-[0.08] pointer-events-none">
-        <Icon className="h-8 w-8 text-gray-400" />
+      {/* Subtle Background Pattern with Color */}
+      <div className={`absolute bottom-2 right-2 opacity-[0.12] group-hover:opacity-[0.15] transition-opacity pointer-events-none ${getIconColor()}`}>
+        <Icon className="h-6 w-6 md:h-8 md:w-8" />
       </div>
+
+      {/* Glow Effect on Hover */}
+      <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none bg-gradient-to-br ${
+        colorClass.includes('blue') ? 'from-blue-400/30 to-transparent' :
+        colorClass.includes('red') ? 'from-red-400/30 to-transparent' :
+        colorClass.includes('green') ? 'from-green-400/30 to-transparent' :
+        'from-teal-400/30 to-transparent'
+      }`}></div>
     </div>
   );
 }
