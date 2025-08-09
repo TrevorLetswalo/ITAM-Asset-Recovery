@@ -99,36 +99,36 @@ function CompactKpiCard({
     return 'text-[#2C8780]';
   };
 
-  const getMetalColor = () => {
-    if (colorClass.includes('blue')) return '#4169E1'; // Royal Blue
-    if (colorClass.includes('red')) return '#DC143C'; // Crimson
-    if (colorClass.includes('green')) return '#228B22'; // Forest Green
-    return '#2C8780'; // Teal
+  const getSeaColor = () => {
+    if (colorClass.includes('blue')) return '#85D1DB'; // Ocean blue
+    if (colorClass.includes('red')) return '#FF6F61'; // Coral
+    if (colorClass.includes('green')) return '#4CA1A3'; // Soft teal
+    return '#4CA1A3'; // Default soft teal
   };
 
   return (
-    <div className="skeu-kpi-card h-32 group relative overflow-hidden cursor-pointer rounded-lg">
-      {/* Leather/Metal Binding Edge */}
+    <div className="seaside-kpi-card h-32 group relative overflow-hidden cursor-pointer rounded-2xl">
+      {/* Ocean Wave Top Accent */}
       <div
-        className="absolute top-0 left-0 right-0 h-2 rounded-t-lg"
+        className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl"
         style={{
-          background: `linear-gradient(90deg, ${getMetalColor()}, #8B4513, ${getMetalColor()})`,
-          boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.3)'
+          background: `linear-gradient(90deg, ${getSeaColor()}, #85D1DB, ${getSeaColor()})`,
+          boxShadow: '0 1px 2px rgba(5, 68, 94, 0.2)'
         }}
       ></div>
 
-      {/* Physical Calculator-Style Icon */}
-      <div className="flex items-center justify-between mb-3 mt-1">
-        <div className="skeu-icon w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center transition-all duration-200 group-hover:scale-110">
+      {/* Clean Ocean-Style Icon */}
+      <div className="flex items-center justify-between mb-3 mt-2">
+        <div className="seaside-icon w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110">
           <Icon className="h-5 w-5 md:h-6 md:w-6" />
         </div>
 
-        {/* Physical Embossed Trend Indicator */}
+        {/* Seaside Trend Indicator */}
         {trend && trendValue && (
-          <div className={`skeu-status flex items-center space-x-1 px-1.5 py-1 md:px-2 rounded-md text-xs font-bold transition-all duration-200 group-hover:scale-105 ${
+          <div className={`seaside-status flex items-center space-x-1 px-1.5 py-1 md:px-2 rounded-lg text-xs font-semibold transition-all duration-300 group-hover:scale-105 ${
             trend === 'up'
-              ? 'text-green-800'
-              : 'text-red-800'
+              ? 'seaside-status-coral'
+              : 'seaside-status-coral'
           }`}>
             {trend === 'up' ? (
               <ArrowUp className="h-3 w-3" />
@@ -140,30 +140,28 @@ function CompactKpiCard({
         )}
       </div>
 
-      {/* Engraved Information Display */}
+      {/* Clear Information Display */}
       <div>
-        <p className="text-xs md:text-sm font-semibold text-amber-900 mb-1 truncate" style={{
-          textShadow: '0 1px 1px rgba(255, 255, 255, 0.5)'
+        <p className="text-xs md:text-sm font-medium mb-1 truncate" style={{
+          color: '#4A6A7B', // Muted teal-gray
+          textShadow: '0 1px 1px rgba(255, 255, 255, 0.8)'
         }}>{title}</p>
-        <p className="text-xl md:text-2xl font-bold text-amber-950 tracking-tight" style={{
-          textShadow: '0 1px 2px rgba(255, 255, 255, 0.3)'
+        <p className="text-xl md:text-2xl font-bold tracking-tight" style={{
+          color: '#05445E', // Soft navy
+          textShadow: '0 1px 2px rgba(255, 255, 255, 0.5)'
         }}>
           <AnimatedCounter value={value} />
         </p>
       </div>
 
-      {/* Embossed Background Pattern */}
-      <div className="absolute bottom-3 right-3 opacity-[0.15] group-hover:opacity-[0.25] transition-opacity pointer-events-none text-amber-800">
+      {/* Subtle Background Pattern */}
+      <div className="absolute bottom-3 right-3 opacity-[0.08] group-hover:opacity-[0.12] transition-opacity pointer-events-none" style={{
+        color: getSeaColor()
+      }}>
         <Icon className="h-6 w-6 md:h-8 md:w-8" style={{
-          filter: 'drop-shadow(0 1px 1px rgba(255, 255, 255, 0.5))'
+          filter: 'drop-shadow(0 1px 1px rgba(255, 255, 255, 0.8))'
         }} />
       </div>
-
-      {/* Corner Rivets/Studs */}
-      <div className="absolute top-2 left-2 w-2 h-2 rounded-full bg-gradient-radial from-zinc-400 to-zinc-600 border border-zinc-700 shadow-inner"></div>
-      <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-gradient-radial from-zinc-400 to-zinc-600 border border-zinc-700 shadow-inner"></div>
-      <div className="absolute bottom-2 left-2 w-2 h-2 rounded-full bg-gradient-radial from-zinc-400 to-zinc-600 border border-zinc-700 shadow-inner"></div>
-      <div className="absolute bottom-2 right-2 w-2 h-2 rounded-full bg-gradient-radial from-zinc-400 to-zinc-600 border border-zinc-700 shadow-inner"></div>
     </div>
   );
 }
