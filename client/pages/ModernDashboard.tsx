@@ -404,45 +404,6 @@ export function ModernDashboard() {
 
   return (
     <div className="space-y-6">
-      {/* Seaside Ocean Header */}
-      <div className="flex justify-between items-center mb-8">
-        <div className="relative">
-          {/* Ocean-inspired header panel */}
-          <div className="p-6 rounded-2xl shadow-lg" style={{
-            background: 'linear-gradient(135deg, #85D1DB 0%, #4CA1A3 100%)',
-            border: '2px solid rgba(255, 255, 255, 0.3)',
-            borderTop: '2px solid rgba(255, 255, 255, 0.5)',
-            borderLeft: '2px solid rgba(255, 255, 255, 0.5)',
-            boxShadow: '0 12px 28px rgba(5, 68, 94, 0.2), inset 0 2px 0 rgba(255, 255, 255, 0.3), inset 0 -2px 0 rgba(76, 161, 163, 0.2)'
-          }}>
-            <h1 className="text-2xl md:text-3xl font-bold text-white mb-2" style={{
-              textShadow: '0 2px 4px rgba(5, 68, 94, 0.4)'
-            }}>
-              IT Asset Recovery Dashboard
-            </h1>
-            <p className="text-white font-medium opacity-90" style={{
-              textShadow: '0 1px 2px rgba(5, 68, 94, 0.3)'
-            }}>Monitor and manage asset recovery operations with real-time insights</p>
-
-            {/* Wave decorative elements */}
-            <div className="absolute top-2 right-2 w-8 h-1 rounded-full bg-gradient-to-r from-transparent via-white to-transparent opacity-30"></div>
-            <div className="absolute top-4 right-4 w-6 h-1 rounded-full bg-gradient-to-r from-transparent via-white to-transparent opacity-20"></div>
-            <div className="absolute bottom-2 left-2 w-8 h-1 rounded-full bg-gradient-to-r from-transparent via-white to-transparent opacity-30"></div>
-            <div className="absolute bottom-4 left-4 w-6 h-1 rounded-full bg-gradient-to-r from-transparent via-white to-transparent opacity-20"></div>
-          </div>
-        </div>
-
-        <div className="flex space-x-3">
-          <Button variant="outline" size="sm" onClick={handleDateRangeChange} className="macos-button">
-            <Calendar className="mr-2 h-4 w-4" />
-            Last 30 Days
-          </Button>
-          <Button variant="outline" size="sm" onClick={handleRefreshDashboard} className="macos-button">
-            <RefreshCw className="mr-2 h-4 w-4" />
-            Refresh
-          </Button>
-        </div>
-      </div>
 
       {/* Clean Modern KPI Cards with Glassmorphism - Always 4 in a row */}
       <div className="grid grid-cols-4 gap-3 md:gap-4">
