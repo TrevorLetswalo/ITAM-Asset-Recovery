@@ -249,34 +249,55 @@
     @apply max-w-screen-xl mx-auto p-6;
   }
 
-  /* Enhanced 3D Glassmorphism Components */
+  /* Vibrant Pastel Card Components */
   .compact-card {
-    @apply p-6 rounded-xl;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-top: 1px solid rgba(255, 255, 255, 0.6);
-    border-left: 1px solid rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    @apply p-8 rounded-2xl;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-top: 2px solid rgba(255, 255, 255, 0.95);
+    border-left: 2px solid rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     box-shadow:
-      0 8px 32px rgba(114, 241, 220, 0.15),
-      0 2px 8px rgba(0, 0, 0, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      0 20px 60px rgba(99, 102, 241, 0.1),
+      0 8px 32px rgba(236, 72, 153, 0.08),
+      0 4px 16px rgba(34, 197, 94, 0.06),
+      inset 0 2px 0 rgba(255, 255, 255, 0.6);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .compact-kpi {
     @apply compact-card;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .compact-kpi::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #FF6B9D 0%, #4299E1 25%, #48BB78 50%, #F6AD55 75%, #9F7AEA 100%);
+    opacity: 0.8;
   }
 
   .compact-kpi:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-12px) scale(1.03);
     box-shadow:
-      0 20px 60px rgba(114, 241, 220, 0.25),
-      0 8px 24px rgba(0, 0, 0, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    border-top: 1px solid rgba(255, 255, 255, 0.8);
-    border-left: 1px solid rgba(255, 255, 255, 0.8);
+      0 30px 80px rgba(99, 102, 241, 0.15),
+      0 12px 40px rgba(236, 72, 153, 0.12),
+      0 6px 20px rgba(34, 197, 94, 0.1),
+      inset 0 2px 0 rgba(255, 255, 255, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    border-top: 2px solid rgba(255, 255, 255, 1);
+    border-left: 2px solid rgba(255, 255, 255, 1);
+  }
+
+  .compact-kpi:hover::before {
+    opacity: 1;
+    height: 4px;
   }
 
   /* Sparkline styles */
