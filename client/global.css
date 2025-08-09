@@ -366,53 +366,56 @@
     border-left: 3px solid #8B4513;
   }
 
-  /* Vibrant Chart Container */
+  /* Realistic Office Clipboard/Folder Chart Container */
   .chart-container {
-    @apply p-8 rounded-2xl;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    border-top: 2px solid rgba(255, 255, 255, 0.95);
-    border-left: 2px solid rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    @apply p-8 rounded-xl;
+    /* Paper/parchment texture */
+    background:
+      radial-gradient(circle at 25% 25%, rgba(245, 222, 179, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(222, 184, 135, 0.1) 0%, transparent 50%),
+      linear-gradient(145deg, #FFFAF0 0%, #F5DEB3 100%);
+    border: 4px solid #8B4513;
+    border-top: 4px solid #CD853F;
+    border-left: 4px solid #CD853F;
+    border-bottom: 4px solid #654321;
+    border-right: 4px solid #654321;
     box-shadow:
-      0 25px 80px rgba(99, 102, 241, 0.12),
-      0 10px 40px rgba(236, 72, 153, 0.08),
-      0 5px 20px rgba(34, 197, 94, 0.06),
-      inset 0 2px 0 rgba(255, 255, 255, 0.6);
+      0 16px 32px rgba(139, 69, 19, 0.4),
+      0 8px 16px rgba(160, 82, 45, 0.3),
+      inset 0 2px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -2px 0 rgba(139, 69, 19, 0.2);
     min-height: 400px;
     height: 400px;
-    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     overflow: hidden;
+    /* Add paper texture */
+    background-image:
+      repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(139, 69, 19, 0.03) 20px, rgba(139, 69, 19, 0.03) 21px),
+      repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(160, 82, 45, 0.02) 20px, rgba(160, 82, 45, 0.02) 21px);
   }
 
   .chart-container::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #FF6B9D 0%, #4299E1 25%, #48BB78 50%, #F6AD55 75%, #9F7AEA 100%);
-    opacity: 0.8;
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    height: 6px;
+    background: linear-gradient(90deg, #8B4513 0%, #A0522D 50%, #CD853F 100%);
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(139, 69, 19, 0.3);
   }
 
   .chart-container:hover {
-    transform: translateY(-12px) scale(1.03);
+    transform: translateY(-6px) scale(1.02);
     box-shadow:
-      0 35px 100px rgba(99, 102, 241, 0.18),
-      0 15px 50px rgba(236, 72, 153, 0.12),
-      0 8px 30px rgba(34, 197, 94, 0.1),
-      inset 0 2px 0 rgba(255, 255, 255, 0.7);
-    border: 2px solid rgba(255, 255, 255, 0.9);
-    border-top: 2px solid rgba(255, 255, 255, 1);
-    border-left: 2px solid rgba(255, 255, 255, 1);
-  }
-
-  .chart-container:hover::before {
-    opacity: 1;
-    height: 5px;
+      0 20px 40px rgba(139, 69, 19, 0.5),
+      0 12px 24px rgba(160, 82, 45, 0.4),
+      inset 0 3px 0 rgba(255, 255, 255, 0.4),
+      inset 0 -3px 0 rgba(139, 69, 19, 0.3);
+    border-top: 4px solid #DEB887;
+    border-left: 4px solid #DEB887;
   }
 
   /* Colorful Card Variants */
