@@ -222,7 +222,7 @@ function RecoveryProgressChart() {
   );
 }
 
-// Enhanced Asset Type Chart
+// Clean Asset Type Chart
 function AssetTypeChart() {
   const data = getRecoveryByType();
   const total = data.exit + data.swap + data.loaner;
@@ -234,7 +234,7 @@ function AssetTypeChart() {
   ];
 
   return (
-    <VibrantCard variant="green" style={{ minHeight: '400px', height: '400px' }}>
+    <GlassCard className="chart-container">
       <div className="pb-4">
         <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
           <PieChart className="mr-2 h-5 w-5 text-[#2C8780]" />
@@ -270,7 +270,7 @@ function AssetTypeChart() {
           ))}
         </div>
       </div>
-    </VibrantCard>
+    </GlassCard>
   );
 }
 
