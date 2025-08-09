@@ -268,7 +268,7 @@ function RecoveryProgressChart() {
   const maxValue = Math.max(...progressData.map(d => d.recovered + d.pending));
 
   return (
-    <VibrantCard style={{ minHeight: '320px', height: '320px' }}>
+    <VibrantCard variant="green" style={{ minHeight: '400px', height: '400px' }}>
       <div className="pb-4">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
@@ -344,7 +344,7 @@ function AssetTypeChart() {
   ];
 
   return (
-    <VibrantCard style={{ minHeight: '320px', height: '320px' }}>
+    <VibrantCard variant="green" style={{ minHeight: '400px', height: '400px' }}>
       <div className="pb-4">
         <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
           <PieChart className="mr-2 h-5 w-5 text-[#2C8780]" />
@@ -392,7 +392,7 @@ function SlaComplianceDonut() {
   const strokeDashoffset = circumference - (compliance / 100) * circumference;
 
   return (
-    <VibrantCard style={{ minHeight: '320px', height: '320px' }}>
+    <VibrantCard variant="green" style={{ minHeight: '400px', height: '400px' }}>
       <div className="pb-4">
         <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
           <CheckCircle className="mr-2 h-5 w-5 text-[#2C8780]" />
