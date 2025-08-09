@@ -198,24 +198,24 @@ function RecoveryProgressChart() {
           {progressData.map((data, index) => (
             <div key={data.day} className="flex flex-col items-center flex-1 group">
               <div className="w-full flex flex-col items-center space-y-1 mb-3">
-                {/* Recovered bar with clean design */}
+                {/* Recovered bar with seaside colors */}
                 <div
                   className="w-7 rounded-t-xl transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-lg"
                   style={{
-                    background: 'linear-gradient(to top, #2C8780, #72F1DC)',
+                    background: 'linear-gradient(to top, #4CA1A3, #85D1DB)',
                     height: `${(data.recovered / maxValue) * 100}px`,
                     animationDelay: `${index * 150}ms`,
-                    boxShadow: '0 4px 12px rgba(44, 135, 128, 0.3)',
+                    boxShadow: '0 4px 12px rgba(76, 161, 163, 0.3)',
                   }}
                 />
-                {/* Pending bar with clean design */}
+                {/* Pending bar with seaside colors */}
                 <div
                   className="w-7 rounded-b-xl transition-all duration-1000 ease-out hover:scale-105"
                   style={{
-                    background: 'linear-gradient(to top, #B2CAC9, #E8F2FD)',
+                    background: 'linear-gradient(to top, #F0E4D7, #EAF4F4)',
                     height: `${(data.pending / maxValue) * 60}px`,
                     animationDelay: `${index * 150}ms`,
-                    boxShadow: '0 4px 12px rgba(178, 202, 201, 0.3)',
+                    boxShadow: '0 4px 12px rgba(240, 228, 215, 0.3)',
                   }}
                 />
               </div>
