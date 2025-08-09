@@ -344,32 +344,79 @@
     border-left: 1px solid rgba(255, 255, 255, 0.8);
   }
 
-  /* Enhanced 3D Chart container */
+  /* Vibrant Chart Container */
   .chart-container {
-    @apply p-6 rounded-xl;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-top: 1px solid rgba(255, 255, 255, 0.6);
-    border-left: 1px solid rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    @apply p-8 rounded-2xl;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-top: 2px solid rgba(255, 255, 255, 0.95);
+    border-left: 2px solid rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     box-shadow:
-      0 8px 32px rgba(114, 241, 220, 0.15),
-      0 2px 8px rgba(0, 0, 0, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    min-height: 320px;
-    height: 320px;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      0 25px 80px rgba(99, 102, 241, 0.12),
+      0 10px 40px rgba(236, 72, 153, 0.08),
+      0 5px 20px rgba(34, 197, 94, 0.06),
+      inset 0 2px 0 rgba(255, 255, 255, 0.6);
+    min-height: 400px;
+    height: 400px;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chart-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #FF6B9D 0%, #4299E1 25%, #48BB78 50%, #F6AD55 75%, #9F7AEA 100%);
+    opacity: 0.8;
   }
 
   .chart-container:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-12px) scale(1.03);
     box-shadow:
-      0 20px 60px rgba(114, 241, 220, 0.25),
-      0 8px 24px rgba(0, 0, 0, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    border-top: 1px solid rgba(255, 255, 255, 0.8);
-    border-left: 1px solid rgba(255, 255, 255, 0.8);
+      0 35px 100px rgba(99, 102, 241, 0.18),
+      0 15px 50px rgba(236, 72, 153, 0.12),
+      0 8px 30px rgba(34, 197, 94, 0.1),
+      inset 0 2px 0 rgba(255, 255, 255, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    border-top: 2px solid rgba(255, 255, 255, 1);
+    border-left: 2px solid rgba(255, 255, 255, 1);
+  }
+
+  .chart-container:hover::before {
+    opacity: 1;
+    height: 5px;
+  }
+
+  /* Colorful Card Variants */
+  .card-pink {
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.15) 0%, rgba(255, 240, 245, 0.8) 100%);
+    border-left: 4px solid #FF6B9D;
+  }
+
+  .card-blue {
+    background: linear-gradient(135deg, rgba(66, 153, 225, 0.15) 0%, rgba(235, 248, 255, 0.8) 100%);
+    border-left: 4px solid #4299E1;
+  }
+
+  .card-green {
+    background: linear-gradient(135deg, rgba(72, 187, 120, 0.15) 0%, rgba(240, 253, 244, 0.8) 100%);
+    border-left: 4px solid #48BB78;
+  }
+
+  .card-orange {
+    background: linear-gradient(135deg, rgba(246, 173, 85, 0.15) 0%, rgba(255, 250, 240, 0.8) 100%);
+    border-left: 4px solid #F6AD55;
+  }
+
+  .card-purple {
+    background: linear-gradient(135deg, rgba(159, 122, 234, 0.15) 0%, rgba(250, 245, 255, 0.8) 100%);
+    border-left: 4px solid #9F7AEA;
   }
 
   /* Custom scrollbar - macOS style */
