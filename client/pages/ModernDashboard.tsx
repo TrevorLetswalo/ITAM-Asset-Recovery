@@ -107,7 +107,7 @@ function CompactKpiCard({
   };
 
   return (
-    <div className="seaside-kpi-card h-32 group relative overflow-hidden cursor-pointer">
+    <div className="seaside-kpi-card h-36 group relative overflow-hidden cursor-pointer">
       {/* Ocean Wave Top Accent */}
       <div
         className="absolute top-0 left-0 right-0 h-1"
@@ -117,37 +117,37 @@ function CompactKpiCard({
         }}
       ></div>
 
-      {/* Header with Title and Trend */}
-      <div className="flex justify-between items-start mt-3 mb-4">
-        {/* Title - Top Left */}
-        <p className="text-xs md:text-sm font-medium truncate" style={{
+      {/* Content Container - Shifted Right */}
+      <div className="ml-4 mr-2 mt-4 mb-3">
+        {/* Title */}
+        <p className="text-xs md:text-sm font-medium truncate mb-3" style={{
           color: '#4A6A7B', // Muted teal-gray
           textShadow: '0 1px 1px rgba(255, 255, 255, 0.8)'
         }}>{title}</p>
 
-        {/* Trend Indicator - Top Right, no background/border */}
-        {trend && trendValue && (
-          <div className="flex items-center space-x-1 text-xs font-semibold transition-all duration-300 group-hover:scale-105" style={{
-            color: '#FF6F61' // Coral color
+        {/* Number and Percentage Row */}
+        <div className="flex items-baseline space-x-3">
+          <p className="text-3xl md:text-4xl font-bold tracking-tight" style={{
+            color: '#05445E', // Soft navy
+            textShadow: '0 1px 2px rgba(255, 255, 255, 0.5)'
           }}>
-            {trend === 'up' ? (
-              <ArrowUp className="h-3 w-3" />
-            ) : (
-              <ArrowDown className="h-3 w-3" />
-            )}
-            <span className="hidden sm:inline">{trendValue}</span>
-          </div>
-        )}
-      </div>
+            <AnimatedCounter value={value} />
+          </p>
 
-      {/* Large Number Display */}
-      <div>
-        <p className="text-3xl md:text-4xl font-bold tracking-tight" style={{
-          color: '#05445E', // Soft navy
-          textShadow: '0 1px 2px rgba(255, 255, 255, 0.5)'
-        }}>
-          <AnimatedCounter value={value} />
-        </p>
+          {/* Percentage next to number */}
+          {trend && trendValue && (
+            <div className="flex items-center space-x-1 text-sm font-semibold transition-all duration-300 group-hover:scale-105" style={{
+              color: '#FF6F61' // Coral color
+            }}>
+              {trend === 'up' ? (
+                <ArrowUp className="h-4 w-4" />
+              ) : (
+                <ArrowDown className="h-4 w-4" />
+              )}
+              <span>{trendValue}</span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
