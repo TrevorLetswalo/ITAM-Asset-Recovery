@@ -121,18 +121,18 @@
 
   body {
     @apply text-foreground font-inter antialiased;
-    /* Rich wood desk texture background */
+    /* Charming seaside gradient background */
     background:
-      radial-gradient(circle at 20% 80%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(160, 82, 45, 0.1) 0%, transparent 50%),
-      linear-gradient(145deg, #8B4513 0%, #A0522D 25%, #D2691E 50%, #CD853F 75%, #DEB887 100%);
-    background-size: 100% 100%, 100% 100%, 200px 200px;
+      radial-gradient(circle at 20% 80%, rgba(133, 209, 219, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(76, 161, 163, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(255, 111, 97, 0.05) 0%, transparent 50%),
+      linear-gradient(135deg, #F9FBFC 0%, #EAF4F4 25%, #F0E4D7 50%, #E8F2F4 75%, #F9FBFC 100%);
     min-height: 100vh;
     background-attachment: fixed;
-    /* Add wood grain texture */
+    /* Add subtle water ripple texture */
     background-image:
-      repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px),
-      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px);
+      radial-gradient(circle at 25% 25%, rgba(133, 209, 219, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(76, 161, 163, 0.02) 0%, transparent 50%);
   }
 
   /* macOS 2026 Typography - Light & Readable */
