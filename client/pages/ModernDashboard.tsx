@@ -575,7 +575,7 @@ export function ModernDashboard() {
       {/* Recent Activity and SLA Compliance Row - Fixed alignment and sizing */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Enhanced Recent Activity Section */}
-        <VibrantCard className="flex flex-col h-[420px]">
+        <VibrantCard variant="purple" className="flex flex-col h-[420px]">
           <div className="flex-shrink-0 pb-4 border-b border-white/10">
             <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
               <Clock className="mr-2 h-5 w-5 text-[#2C8780]" />
@@ -622,7 +622,7 @@ export function ModernDashboard() {
         </VibrantCard>
 
         {/* SLA Compliance Card - Fixed layout */}
-        <VibrantCard className="flex flex-col h-[420px]">
+        <VibrantCard variant="purple" className="flex flex-col h-[420px]">
           <div className="flex-shrink-0 pb-4 border-b border-white/10">
             <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
               <CheckCircle className="mr-2 h-5 w-5 text-[#2C8780]" />
