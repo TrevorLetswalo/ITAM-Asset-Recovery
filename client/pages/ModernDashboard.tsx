@@ -220,8 +220,8 @@ function RecoveryProgressChart() {
                 />
               </div>
               <div className="text-center">
-                <span className="text-xs text-[#1D1D2C] font-medium">{data.day}</span>
-                <span className="block text-xs text-[#2C8780]">{data.date}</span>
+                <span className="text-xs font-medium" style={{ color: '#05445E' }}>{data.day}</span>
+                <span className="block text-xs" style={{ color: '#4CA1A3' }}>{data.date}</span>
               </div>
             </div>
           ))}
