@@ -482,59 +482,40 @@ export function ModernDashboard() {
         </div>
       </div>
 
-      {/* Enhanced KPI Cards with 3D effects - New Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Primary KPI Row */}
-        <div className="grid grid-cols-2 gap-4">
-          <CompactKpiCard
-            title="Total Assets Pending"
-            value={stats.totalPending}
-            icon={FileText}
-            trend="down"
-            trendValue="5.2%"
-            colorClass="text-blue-600"
-            description="Recovery in progress"
-            sparklineData={[45, 42, 48, 44, 40, 38, 35]}
-            statusTag="Improving"
-          />
-          <CompactKpiCard
-            title="SLA Breach Count"
-            value={stats.slaBreaches}
-            icon={AlertTriangle}
-            trend="up"
-            trendValue="12.4%"
-            colorClass="text-red-600"
-            description="Needs attention"
-            sparklineData={[2, 3, 4, 5, 6, 8, 10]}
-            statusTag="In Breach"
-          />
-        </div>
-
-        {/* Secondary KPI Row */}
-        <div className="grid grid-cols-2 gap-4">
-          <CompactKpiCard
-            title="Recovered This Month"
-            value={stats.recoveredThisMonth}
-            icon={CheckCircle}
-            trend="up"
-            trendValue="8.1%"
-            colorClass="text-green-600"
-            description="Successfully returned"
-            sparklineData={[10, 12, 15, 18, 22, 25, 28]}
-            statusTag="Improving"
-          />
-          <CompactKpiCard
-            title="Open Exit Tickets"
-            value={stats.openExitTickets}
-            icon={Activity}
-            trend="down"
-            trendValue="3.6%"
-            colorClass="text-recovery-accent"
-            description="Exit processing"
-            sparklineData={[20, 18, 16, 15, 14, 13, 12]}
-            statusTag="Stable"
-          />
-        </div>
+      {/* Clean Modern KPI Cards with Glassmorphism */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <CompactKpiCard
+          title="Total Assets Pending"
+          value={stats.totalPending}
+          icon={FileText}
+          trend="down"
+          trendValue="5.2%"
+          colorClass="text-blue-600"
+        />
+        <CompactKpiCard
+          title="SLA Breach Count"
+          value={stats.slaBreaches}
+          icon={AlertTriangle}
+          trend="up"
+          trendValue="12.4%"
+          colorClass="text-red-600"
+        />
+        <CompactKpiCard
+          title="Recovered This Month"
+          value={stats.recoveredThisMonth}
+          icon={CheckCircle}
+          trend="up"
+          trendValue="8.1%"
+          colorClass="text-green-600"
+        />
+        <CompactKpiCard
+          title="Open Exit Tickets"
+          value={stats.openExitTickets}
+          icon={Activity}
+          trend="down"
+          trendValue="3.6%"
+          colorClass="text-recovery-accent"
+        />
       </div>
 
       {/* 2-Column Charts Layout with enhanced 3D effects */}
