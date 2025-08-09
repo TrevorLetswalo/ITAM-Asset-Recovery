@@ -404,6 +404,19 @@ export function ModernDashboard() {
 
   return (
     <div className="space-y-6">
+      {/* Dashboard Controls */}
+      <div className="flex justify-end items-center">
+        <div className="flex space-x-3">
+          <Button variant="outline" size="sm" onClick={handleDateRangeChange} className="macos-button">
+            <Calendar className="mr-2 h-4 w-4" />
+            Last 30 Days
+          </Button>
+          <Button variant="outline" size="sm" onClick={handleRefreshDashboard} className="macos-button">
+            <RefreshCw className="mr-2 h-4 w-4" />
+            Refresh
+          </Button>
+        </div>
+      </div>
 
       {/* Clean Modern KPI Cards with Glassmorphism - Always 4 in a row */}
       <div className="grid grid-cols-4 gap-3 md:gap-4">
