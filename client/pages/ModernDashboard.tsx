@@ -642,8 +642,8 @@ export function ModernDashboard() {
         />
       </div>
 
-      {/* Asset Type and SLA Compliance Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {/* Asset Type and SLA Compliance Row - Side by Side */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <AssetTypeChart />
         <SlaComplianceChart />
       </div>
