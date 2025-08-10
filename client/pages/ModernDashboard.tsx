@@ -310,20 +310,20 @@ function AssetTypeChart() {
   const maxValue = Math.max(...chartData.map(d => d.value));
 
   return (
-    <GlassCard className="chart-container">
-      <div className="pb-4">
-        <h3 className="text-lg font-medium flex items-center" style={{ color: '#05445E' }}>
-          <BarChart3 className="mr-2 h-5 w-5" style={{ color: '#4CA1A3' }} />
+    <GlassCard className="chart-container-compact">
+      <div className="pb-2">
+        <h3 className="text-base font-medium flex items-center" style={{ color: '#05445E' }}>
+          <BarChart3 className="mr-2 h-4 w-4" style={{ color: '#4CA1A3' }} />
           Assets by Type
         </h3>
       </div>
       <div className="flex-1 flex flex-col justify-center">
         {/* Column Chart */}
-        <div className="flex items-end justify-center space-x-8 mb-6" style={{ minHeight: '200px' }}>
+        <div className="flex items-end justify-center space-x-4 mb-4" style={{ minHeight: '120px' }}>
           {chartData.map((item, index) => (
             <div key={item.name} className="flex flex-col items-center group">
-              <div className="text-center mb-2">
-                <span className="text-lg font-bold" style={{ color: '#05445E' }}>
+              <div className="text-center mb-1">
+                <span className="text-sm font-bold" style={{ color: '#05445E' }}>
                   {item.value}
                 </span>
                 <span className="block text-xs" style={{ color: '#4A6A7B' }}>
@@ -331,16 +331,16 @@ function AssetTypeChart() {
                 </span>
               </div>
               <div
-                className="w-16 rounded-t-lg transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-lg"
+                className="w-12 rounded-t-lg transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-lg"
                 style={{
                   backgroundColor: item.color,
-                  height: `${(item.value / maxValue) * 150}px`,
+                  height: `${(item.value / maxValue) * 80}px`,
                   animationDelay: `${index * 200}ms`,
-                  boxShadow: `0 4px 12px ${item.color}40`,
+                  boxShadow: `0 3px 8px ${item.color}40`,
                 }}
               />
-              <div className="text-center mt-2">
-                <span className="text-sm font-medium" style={{ color: '#05445E' }}>
+              <div className="text-center mt-1">
+                <span className="text-xs font-medium" style={{ color: '#05445E' }}>
                   {item.name}
                 </span>
               </div>
@@ -349,17 +349,17 @@ function AssetTypeChart() {
         </div>
 
         {/* Legend */}
-        <div className="flex justify-center space-x-6 pt-4 border-t border-white/20">
+        <div className="flex justify-center space-x-3 pt-2 border-t border-white/20">
           {chartData.map((item) => (
             <div key={item.name} className="flex items-center">
               <div
-                className="w-3 h-3 rounded-full mr-2"
+                className="w-2 h-2 rounded-full mr-1"
                 style={{
                   backgroundColor: item.color,
-                  boxShadow: `0 2px 8px ${item.color}40`,
+                  boxShadow: `0 1px 4px ${item.color}40`,
                 }}
               />
-              <span className="text-sm font-medium" style={{ color: '#05445E' }}>
+              <span className="text-xs font-medium" style={{ color: '#05445E' }}>
                 {item.name}
               </span>
             </div>
