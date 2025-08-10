@@ -189,8 +189,8 @@ function RecoveryProgressChart() {
     { day: "Sun", recovered: 28, pending: 22, date: "Mar 24" },
   ];
 
-  const maxRecovered = Math.max(...progressData.map(d => d.recovered));
-  const maxPending = Math.max(...progressData.map(d => d.pending));
+  const maxRecovered = Math.max(...progressData.map((d) => d.recovered));
+  const maxPending = Math.max(...progressData.map((d) => d.pending));
   const chartWidth = 400;
   const chartHeight = 100;
   const stepWidth = chartWidth / (progressData.length - 1);
@@ -200,35 +200,41 @@ function RecoveryProgressChart() {
     .map((data, index) => {
       const x = index * stepWidth;
       const y = chartHeight - (data.recovered / maxRecovered) * chartHeight;
-      return `${index === 0 ? 'M' : 'L'} ${x} ${y}`;
+      return `${index === 0 ? "M" : "L"} ${x} ${y}`;
     })
-    .join(' ');
+    .join(" ");
 
   // Generate path for pending line
   const pendingPath = progressData
     .map((data, index) => {
       const x = index * stepWidth;
       const y = chartHeight - (data.pending / maxPending) * chartHeight;
-      return `${index === 0 ? 'M' : 'L'} ${x} ${y}`;
+      return `${index === 0 ? "M" : "L"} ${x} ${y}`;
     })
-    .join(' ');
+    .join(" ");
 
   return (
     <GlassCard className="chart-container-compact">
       <div className="pb-2">
         <div className="flex items-center justify-between">
-          <h3 className="text-base font-medium flex items-center" style={{ color: '#05445E' }}>
-            <TrendingUp className="mr-2 h-4 w-4" style={{ color: '#4CA1A3' }} />
+          <h3
+            className="text-base font-medium flex items-center"
+            style={{ color: "#05445E" }}
+          >
+            <TrendingUp className="mr-2 h-4 w-4" style={{ color: "#4CA1A3" }} />
             Recovery Progress
           </h3>
-          <div className="text-xs border border-white/30 bg-white/20 backdrop-blur-lg px-2 py-1 rounded" style={{ color: '#4CA1A3' }}>
+          <div
+            className="text-xs border border-white/30 bg-white/20 backdrop-blur-lg px-2 py-1 rounded"
+            style={{ color: "#4CA1A3" }}
+          >
             Last 7 Days
           </div>
         </div>
       </div>
       <div className="flex-1 flex flex-col justify-center">
         {/* Line Chart */}
-        <div className="relative mb-4" style={{ height: '100px' }}>
+        <div className="relative mb-4" style={{ height: "100px" }}>
           <svg
             width="100%"
             height="100"
@@ -273,7 +279,8 @@ function RecoveryProgressChart() {
             {/* Data points for recovered */}
             {progressData.map((data, index) => {
               const x = index * stepWidth;
-              const y = chartHeight - (data.recovered / maxRecovered) * chartHeight;
+              const y =
+                chartHeight - (data.recovered / maxRecovered) * chartHeight;
               return (
                 <circle
                   key={`recovered-${index}`}
@@ -310,7 +317,11 @@ function RecoveryProgressChart() {
           {/* X-axis labels */}
           <div className="flex justify-between absolute -bottom-5 left-0 right-0">
             {progressData.map((data, index) => (
-              <div key={data.day} className="text-xs text-center" style={{ color: '#4A6A7B' }}>
+              <div
+                key={data.day}
+                className="text-xs text-center"
+                style={{ color: "#4A6A7B" }}
+              >
                 {data.day}
               </div>
             ))}
@@ -321,13 +332,13 @@ function RecoveryProgressChart() {
         <div className="flex justify-center space-x-4 pt-2 border-t border-white/20">
           <div className="flex items-center">
             <div className="w-3 h-0.5 bg-[#4CA1A3] rounded mr-2" />
-            <span className="text-xs font-medium" style={{ color: '#05445E' }}>
+            <span className="text-xs font-medium" style={{ color: "#05445E" }}>
               Recovered
             </span>
           </div>
           <div className="flex items-center">
             <div className="w-3 h-0.5 bg-[#FF6F61] rounded mr-2" />
-            <span className="text-xs font-medium" style={{ color: '#05445E' }}>
+            <span className="text-xs font-medium" style={{ color: "#05445E" }}>
               Pending
             </span>
           </div>
@@ -363,26 +374,35 @@ function AssetTypeChart() {
     },
   ];
 
-  const maxValue = Math.max(...chartData.map(d => d.value));
+  const maxValue = Math.max(...chartData.map((d) => d.value));
 
   return (
     <GlassCard className="chart-container-compact">
       <div className="pb-2">
-        <h3 className="text-base font-medium flex items-center" style={{ color: '#05445E' }}>
-          <BarChart3 className="mr-2 h-4 w-4" style={{ color: '#4CA1A3' }} />
+        <h3
+          className="text-base font-medium flex items-center"
+          style={{ color: "#05445E" }}
+        >
+          <BarChart3 className="mr-2 h-4 w-4" style={{ color: "#4CA1A3" }} />
           Assets by Type
         </h3>
       </div>
       <div className="flex-1 flex flex-col justify-center">
         {/* Column Chart */}
-        <div className="flex items-end justify-center space-x-4 mb-4" style={{ minHeight: '120px' }}>
+        <div
+          className="flex items-end justify-center space-x-4 mb-4"
+          style={{ minHeight: "120px" }}
+        >
           {chartData.map((item, index) => (
             <div key={item.name} className="flex flex-col items-center group">
               <div className="text-center mb-1">
-                <span className="text-sm font-bold" style={{ color: '#05445E' }}>
+                <span
+                  className="text-sm font-bold"
+                  style={{ color: "#05445E" }}
+                >
                   {item.value}
                 </span>
-                <span className="block text-xs" style={{ color: '#4A6A7B' }}>
+                <span className="block text-xs" style={{ color: "#4A6A7B" }}>
                   {item.percentage}%
                 </span>
               </div>
@@ -396,7 +416,10 @@ function AssetTypeChart() {
                 }}
               />
               <div className="text-center mt-1">
-                <span className="text-xs font-medium" style={{ color: '#05445E' }}>
+                <span
+                  className="text-xs font-medium"
+                  style={{ color: "#05445E" }}
+                >
                   {item.name}
                 </span>
               </div>
@@ -415,7 +438,10 @@ function AssetTypeChart() {
                   boxShadow: `0 1px 4px ${item.color}40`,
                 }}
               />
-              <span className="text-xs font-medium" style={{ color: '#05445E' }}>
+              <span
+                className="text-xs font-medium"
+                style={{ color: "#05445E" }}
+              >
                 {item.name}
               </span>
             </div>
@@ -542,8 +568,11 @@ function SlaComplianceChart() {
   return (
     <GlassCard className="chart-container-compact">
       <div className="pb-2">
-        <h3 className="text-base font-medium flex items-center" style={{ color: '#05445E' }}>
-          <CheckCircle className="mr-2 h-4 w-4" style={{ color: '#4CA1A3' }} />
+        <h3
+          className="text-base font-medium flex items-center"
+          style={{ color: "#05445E" }}
+        >
+          <CheckCircle className="mr-2 h-4 w-4" style={{ color: "#4CA1A3" }} />
           SLA Compliance
         </h3>
       </div>
@@ -551,7 +580,10 @@ function SlaComplianceChart() {
         {/* Main donut chart */}
         <div className="flex flex-col items-center justify-center mb-2">
           <div className="relative w-20 h-20 mb-1">
-            <svg className="w-20 h-20 transform -rotate-90 drop-shadow-lg" viewBox="0 0 100 100">
+            <svg
+              className="w-20 h-20 transform -rotate-90 drop-shadow-lg"
+              viewBox="0 0 100 100"
+            >
               {/* Background circle */}
               <circle
                 cx="50"
@@ -574,15 +606,22 @@ function SlaComplianceChart() {
                 strokeDashoffset={strokeDashoffset}
                 strokeLinecap="round"
                 className="transition-all duration-2000 ease-out drop-shadow-sm"
-                style={{ filter: 'drop-shadow(0 0 6px rgba(76, 161, 163, 0.4))' }}
+                style={{
+                  filter: "drop-shadow(0 0 6px rgba(76, 161, 163, 0.4))",
+                }}
               />
             </svg>
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center">
-                <span className="text-lg font-bold" style={{ color: '#05445E' }}>
+                <span
+                  className="text-lg font-bold"
+                  style={{ color: "#05445E" }}
+                >
                   <AnimatedCounter value={compliance} suffix="%" />
                 </span>
-                <p className="text-xs font-medium" style={{ color: '#4A6A7B' }}>Compliant</p>
+                <p className="text-xs font-medium" style={{ color: "#4A6A7B" }}>
+                  Compliant
+                </p>
               </div>
             </div>
           </div>
@@ -591,17 +630,21 @@ function SlaComplianceChart() {
         {/* Compliance stats */}
         <div className="w-full space-y-1">
           <div className="bg-white/50 backdrop-blur-lg rounded-lg p-1.5 border border-white/30">
-            <p className="text-xs font-medium text-center mb-1" style={{ color: '#05445E' }}>
-              {allMockAssets.filter(a => a.sla_stage !== 'Breach').length}/{allMockAssets.length} on track
+            <p
+              className="text-xs font-medium text-center mb-1"
+              style={{ color: "#05445E" }}
+            >
+              {allMockAssets.filter((a) => a.sla_stage !== "Breach").length}/
+              {allMockAssets.length} on track
             </p>
             <div className="flex items-center justify-center space-x-3 text-xs">
               <div className="flex items-center">
                 <div className="w-1.5 h-1.5 bg-green-500 rounded-full mr-1" />
-                <span style={{ color: '#05445E' }}>Track</span>
+                <span style={{ color: "#05445E" }}>Track</span>
               </div>
               <div className="flex items-center">
                 <div className="w-1.5 h-1.5 bg-red-500 rounded-full mr-1" />
-                <span style={{ color: '#05445E' }}>Breach</span>
+                <span style={{ color: "#05445E" }}>Breach</span>
               </div>
             </div>
           </div>
@@ -609,16 +652,25 @@ function SlaComplianceChart() {
           {/* Additional metrics */}
           <div className="grid grid-cols-2 gap-1">
             <div className="bg-white/30 backdrop-blur-lg rounded p-1.5 border border-white/20 text-center">
-              <div className="text-xs font-bold" style={{ color: '#05445E' }}>
-                {Math.round((allMockAssets.filter(a => a.recovery_age <= 14).length / allMockAssets.length) * 100)}%
+              <div className="text-xs font-bold" style={{ color: "#05445E" }}>
+                {Math.round(
+                  (allMockAssets.filter((a) => a.recovery_age <= 14).length /
+                    allMockAssets.length) *
+                    100,
+                )}
+                %
               </div>
-              <div className="text-xs" style={{ color: '#4A6A7B' }}>≤14d</div>
+              <div className="text-xs" style={{ color: "#4A6A7B" }}>
+                ≤14d
+              </div>
             </div>
             <div className="bg-white/30 backdrop-blur-lg rounded p-1.5 border border-white/20 text-center">
-              <div className="text-xs font-bold" style={{ color: '#05445E' }}>
-                {allMockAssets.filter(a => a.sla_stage === 'Breach').length}
+              <div className="text-xs font-bold" style={{ color: "#05445E" }}>
+                {allMockAssets.filter((a) => a.sla_stage === "Breach").length}
               </div>
-              <div className="text-xs" style={{ color: '#4A6A7B' }}>Breach</div>
+              <div className="text-xs" style={{ color: "#4A6A7B" }}>
+                Breach
+              </div>
             </div>
           </div>
         </div>
