@@ -543,14 +543,19 @@ export function ModernDashboard() {
         />
       </div>
 
-      {/* 2-Column Charts Layout with enhanced 3D effects */}
+      {/* Asset Type and SLA Compliance Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <AssetTypeChart />
+        <SlaComplianceChart />
+      </div>
+
+      {/* Recovery Progress Chart - Full Width */}
+      <div>
         <RecoveryProgressChart />
       </div>
 
-      {/* Recent Activity and SLA Compliance Row - Fixed alignment and sizing */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {/* Recent Activity Section */}
+      <div>
         {/* Clean Recent Activity Section */}
         <GlassCard className="flex flex-col h-[420px]">
           <div className="flex-shrink-0 pb-4 border-b border-white/10">
