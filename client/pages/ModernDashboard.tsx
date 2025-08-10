@@ -177,7 +177,7 @@ function CompactKpiCard({
   );
 }
 
-// Enhanced Recovery Progress Chart (7 days)
+// Compact Line Chart for Recovery Progress
 function RecoveryProgressChart() {
   const progressData = [
     { day: "Mon", recovered: 8, pending: 42, date: "Mar 18" },
@@ -189,89 +189,145 @@ function RecoveryProgressChart() {
     { day: "Sun", recovered: 28, pending: 22, date: "Mar 24" },
   ];
 
-  const maxValue = Math.max(
-    ...progressData.map((d) => d.recovered + d.pending),
-  );
+  const maxRecovered = Math.max(...progressData.map(d => d.recovered));
+  const maxPending = Math.max(...progressData.map(d => d.pending));
+  const chartWidth = 400;
+  const chartHeight = 100;
+  const stepWidth = chartWidth / (progressData.length - 1);
+
+  // Generate path for recovered line
+  const recoveredPath = progressData
+    .map((data, index) => {
+      const x = index * stepWidth;
+      const y = chartHeight - (data.recovered / maxRecovered) * chartHeight;
+      return `${index === 0 ? 'M' : 'L'} ${x} ${y}`;
+    })
+    .join(' ');
+
+  // Generate path for pending line
+  const pendingPath = progressData
+    .map((data, index) => {
+      const x = index * stepWidth;
+      const y = chartHeight - (data.pending / maxPending) * chartHeight;
+      return `${index === 0 ? 'M' : 'L'} ${x} ${y}`;
+    })
+    .join(' ');
 
   return (
-    <GlassCard className="chart-container">
-      <div className="pb-4">
+    <GlassCard className="chart-container-compact">
+      <div className="pb-2">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
-            <BarChart3 className="mr-2 h-5 w-5 text-[#2C8780]" />
+          <h3 className="text-base font-medium flex items-center" style={{ color: '#05445E' }}>
+            <TrendingUp className="mr-2 h-4 w-4" style={{ color: '#4CA1A3' }} />
             Recovery Progress
           </h3>
-          <div className="text-xs text-[#2C8780] border border-white/30 bg-white/20 backdrop-blur-lg px-2 py-1 rounded-lg">
+          <div className="text-xs border border-white/30 bg-white/20 backdrop-blur-lg px-2 py-1 rounded" style={{ color: '#4CA1A3' }}>
             Last 7 Days
           </div>
         </div>
       </div>
-      <div className="flex-1 flex flex-col">
-        <div
-          className="flex-1 flex items-end justify-between space-x-3 mb-4"
-          style={{ minHeight: "180px" }}
-        >
-          {progressData.map((data, index) => (
-            <div
-              key={data.day}
-              className="flex flex-col items-center flex-1 group"
-            >
-              <div className="w-full flex flex-col items-center space-y-1 mb-3">
-                {/* Recovered bar with seaside colors */}
-                <div
-                  className="w-7 rounded-t-xl transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-lg"
-                  style={{
-                    background: "linear-gradient(to top, #4CA1A3, #85D1DB)",
-                    height: `${(data.recovered / maxValue) * 100}px`,
-                    animationDelay: `${index * 150}ms`,
-                    boxShadow: "0 4px 12px rgba(76, 161, 163, 0.3)",
-                  }}
-                />
-                {/* Pending bar with seaside colors */}
-                <div
-                  className="w-7 rounded-b-xl transition-all duration-1000 ease-out hover:scale-105"
-                  style={{
-                    background: "linear-gradient(to top, #F0E4D7, #EAF4F4)",
-                    height: `${(data.pending / maxValue) * 60}px`,
-                    animationDelay: `${index * 150}ms`,
-                    boxShadow: "0 4px 12px rgba(240, 228, 215, 0.3)",
-                  }}
-                />
-              </div>
-              <div className="text-center">
-                <span
-                  className="text-xs font-medium"
-                  style={{ color: "#05445E" }}
-                >
-                  {data.day}
-                </span>
-                <span className="block text-xs" style={{ color: "#4CA1A3" }}>
-                  {data.date}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-center space-x-6 pt-4 border-t border-white/20">
-          <div className="flex items-center">
-            <div
-              className="w-3 h-3 bg-gradient-to-r from-[#4CA1A3] to-[#85D1DB] rounded-full mr-2"
-              style={{
-                boxShadow: "0 2px 8px rgba(76, 161, 163, 0.3)",
-              }}
+      <div className="flex-1 flex flex-col justify-center">
+        {/* Line Chart */}
+        <div className="relative mb-4" style={{ height: '100px' }}>
+          <svg
+            width="100%"
+            height="100"
+            viewBox={`0 0 ${chartWidth} ${chartHeight}`}
+            className="overflow-visible"
+          >
+            {/* Grid lines */}
+            {[0, 0.25, 0.5, 0.75, 1].map((ratio, index) => (
+              <line
+                key={index}
+                x1="0"
+                y1={chartHeight * ratio}
+                x2={chartWidth}
+                y2={chartHeight * ratio}
+                stroke="rgba(76, 161, 163, 0.1)"
+                strokeWidth="1"
+              />
+            ))}
+
+            {/* Recovered line */}
+            <path
+              d={recoveredPath}
+              fill="none"
+              stroke="#4CA1A3"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="drop-shadow-sm"
             />
-            <span className="text-sm font-medium" style={{ color: "#05445E" }}>
+
+            {/* Pending line */}
+            <path
+              d={pendingPath}
+              fill="none"
+              stroke="#FF6F61"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="drop-shadow-sm"
+            />
+
+            {/* Data points for recovered */}
+            {progressData.map((data, index) => {
+              const x = index * stepWidth;
+              const y = chartHeight - (data.recovered / maxRecovered) * chartHeight;
+              return (
+                <circle
+                  key={`recovered-${index}`}
+                  cx={x}
+                  cy={y}
+                  r="3"
+                  fill="#4CA1A3"
+                  stroke="white"
+                  strokeWidth="2"
+                  className="drop-shadow-sm"
+                />
+              );
+            })}
+
+            {/* Data points for pending */}
+            {progressData.map((data, index) => {
+              const x = index * stepWidth;
+              const y = chartHeight - (data.pending / maxPending) * chartHeight;
+              return (
+                <circle
+                  key={`pending-${index}`}
+                  cx={x}
+                  cy={y}
+                  r="3"
+                  fill="#FF6F61"
+                  stroke="white"
+                  strokeWidth="2"
+                  className="drop-shadow-sm"
+                />
+              );
+            })}
+          </svg>
+
+          {/* X-axis labels */}
+          <div className="flex justify-between absolute -bottom-5 left-0 right-0">
+            {progressData.map((data, index) => (
+              <div key={data.day} className="text-xs text-center" style={{ color: '#4A6A7B' }}>
+                {data.day}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Legend */}
+        <div className="flex justify-center space-x-4 pt-2 border-t border-white/20">
+          <div className="flex items-center">
+            <div className="w-3 h-0.5 bg-[#4CA1A3] rounded mr-2" />
+            <span className="text-xs font-medium" style={{ color: '#05445E' }}>
               Recovered
             </span>
           </div>
           <div className="flex items-center">
-            <div
-              className="w-3 h-3 bg-gradient-to-r from-[#F0E4D7] to-[#EAF4F4] rounded-full mr-2"
-              style={{
-                boxShadow: "0 2px 8px rgba(240, 228, 215, 0.3)",
-              }}
-            />
-            <span className="text-sm font-medium" style={{ color: "#05445E" }}>
+            <div className="w-3 h-0.5 bg-[#FF6F61] rounded mr-2" />
+            <span className="text-xs font-medium" style={{ color: '#05445E' }}>
               Pending
             </span>
           </div>
