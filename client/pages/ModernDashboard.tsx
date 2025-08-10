@@ -493,9 +493,9 @@ function SlaComplianceChart() {
       </div>
       <div className="flex-1 flex flex-col items-center justify-center">
         {/* Main donut chart */}
-        <div className="flex flex-col items-center justify-center mb-3">
-          <div className="relative w-24 h-24 mb-2">
-            <svg className="w-24 h-24 transform -rotate-90 drop-shadow-lg" viewBox="0 0 100 100">
+        <div className="flex flex-col items-center justify-center mb-2">
+          <div className="relative w-20 h-20 mb-1">
+            <svg className="w-20 h-20 transform -rotate-90 drop-shadow-lg" viewBox="0 0 100 100">
               {/* Background circle */}
               <circle
                 cx="50"
@@ -523,7 +523,7 @@ function SlaComplianceChart() {
             </svg>
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center">
-                <span className="text-xl font-bold" style={{ color: '#05445E' }}>
+                <span className="text-lg font-bold" style={{ color: '#05445E' }}>
                   <AnimatedCounter value={compliance} suffix="%" />
                 </span>
                 <p className="text-xs font-medium" style={{ color: '#4A6A7B' }}>Compliant</p>
@@ -533,40 +533,36 @@ function SlaComplianceChart() {
         </div>
 
         {/* Compliance stats */}
-        <div className="w-full space-y-2">
-          <div className="bg-white/50 backdrop-blur-lg rounded-lg p-2 border border-white/30">
-            <p className="text-xs font-medium text-center mb-2" style={{ color: '#05445E' }}>
-              {allMockAssets.filter(a => a.sla_stage !== 'Breach').length} of {allMockAssets.length} assets on track
+        <div className="w-full space-y-1">
+          <div className="bg-white/50 backdrop-blur-lg rounded-lg p-1.5 border border-white/30">
+            <p className="text-xs font-medium text-center mb-1" style={{ color: '#05445E' }}>
+              {allMockAssets.filter(a => a.sla_stage !== 'Breach').length}/{allMockAssets.length} on track
             </p>
-            <div className="flex items-center justify-center space-x-4 text-xs">
+            <div className="flex items-center justify-center space-x-3 text-xs">
               <div className="flex items-center">
-                <div className="w-2 h-2 bg-green-500 rounded-full mr-1" style={{
-                  boxShadow: '0 0 3px rgba(34, 197, 94, 0.5)'
-                }} />
-                <span style={{ color: '#05445E' }}>On Track</span>
+                <div className="w-1.5 h-1.5 bg-green-500 rounded-full mr-1" />
+                <span style={{ color: '#05445E' }}>Track</span>
               </div>
               <div className="flex items-center">
-                <div className="w-2 h-2 bg-red-500 rounded-full mr-1" style={{
-                  boxShadow: '0 0 3px rgba(239, 68, 68, 0.5)'
-                }} />
+                <div className="w-1.5 h-1.5 bg-red-500 rounded-full mr-1" />
                 <span style={{ color: '#05445E' }}>Breach</span>
               </div>
             </div>
           </div>
 
           {/* Additional metrics */}
-          <div className="grid grid-cols-2 gap-2">
-            <div className="bg-white/30 backdrop-blur-lg rounded-lg p-2 border border-white/20 text-center">
-              <div className="text-sm font-bold" style={{ color: '#05445E' }}>
+          <div className="grid grid-cols-2 gap-1">
+            <div className="bg-white/30 backdrop-blur-lg rounded p-1.5 border border-white/20 text-center">
+              <div className="text-xs font-bold" style={{ color: '#05445E' }}>
                 {Math.round((allMockAssets.filter(a => a.recovery_age <= 14).length / allMockAssets.length) * 100)}%
               </div>
-              <div className="text-xs" style={{ color: '#4A6A7B' }}>≤ 14 Days</div>
+              <div className="text-xs" style={{ color: '#4A6A7B' }}>≤14d</div>
             </div>
-            <div className="bg-white/30 backdrop-blur-lg rounded-lg p-2 border border-white/20 text-center">
-              <div className="text-sm font-bold" style={{ color: '#05445E' }}>
+            <div className="bg-white/30 backdrop-blur-lg rounded p-1.5 border border-white/20 text-center">
+              <div className="text-xs font-bold" style={{ color: '#05445E' }}>
                 {allMockAssets.filter(a => a.sla_stage === 'Breach').length}
               </div>
-              <div className="text-xs" style={{ color: '#4A6A7B' }}>In Breach</div>
+              <div className="text-xs" style={{ color: '#4A6A7B' }}>Breach</div>
             </div>
           </div>
         </div>
