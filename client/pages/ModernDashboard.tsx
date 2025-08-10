@@ -281,7 +281,7 @@ function RecoveryProgressChart() {
   );
 }
 
-// Clean Asset Type Chart
+// Clustered Column Chart for Assets by Type
 function AssetTypeChart() {
   const data = getRecoveryByType();
   const total = data.exit + data.swap + data.loaner;
@@ -290,64 +290,78 @@ function AssetTypeChart() {
     {
       name: "Exit",
       value: data.exit,
-      color: "from-[#2C8780] to-[#2C8780]",
+      color: "#4CA1A3",
       percentage: Math.round((data.exit / total) * 100),
     },
     {
       name: "Swap",
       value: data.swap,
-      color: "from-[#72F1DC] to-[#72F1DC]",
+      color: "#85D1DB",
       percentage: Math.round((data.swap / total) * 100),
     },
     {
       name: "Loaner",
       value: data.loaner,
-      color: "from-[#1D1D2C] to-[#4A4A5A]",
+      color: "#FF6F61",
       percentage: Math.round((data.loaner / total) * 100),
     },
   ];
 
+  const maxValue = Math.max(...chartData.map(d => d.value));
+
   return (
     <GlassCard className="chart-container">
       <div className="pb-4">
-        <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
-          <PieChart className="mr-2 h-5 w-5 text-[#2C8780]" />
+        <h3 className="text-lg font-medium flex items-center" style={{ color: '#05445E' }}>
+          <BarChart3 className="mr-2 h-5 w-5" style={{ color: '#4CA1A3' }} />
           Assets by Type
         </h3>
       </div>
       <div className="flex-1 flex flex-col justify-center">
-        <div className="space-y-6">
+        {/* Column Chart */}
+        <div className="flex items-end justify-center space-x-8 mb-6" style={{ minHeight: '200px' }}>
           {chartData.map((item, index) => (
-            <div key={item.name} className="group">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-medium text-[#1D1D2C]">
-                  {item.name}
+            <div key={item.name} className="flex flex-col items-center group">
+              <div className="text-center mb-2">
+                <span className="text-lg font-bold" style={{ color: '#05445E' }}>
+                  {item.value}
                 </span>
-                <div className="flex items-center space-x-2">
-                  <span className="text-sm font-semibold text-[#1D1D2C]">
-                    {item.value}
-                  </span>
-                  <span className="text-xs text-[#2C8780] bg-white/50 backdrop-blur-lg px-2 py-1 rounded-full border border-white/30">
-                    {item.percentage}%
-                  </span>
-                </div>
+                <span className="block text-xs" style={{ color: '#4A6A7B' }}>
+                  {item.percentage}%
+                </span>
               </div>
               <div
-                className="w-full bg-white/30 backdrop-blur-lg rounded-full h-4 overflow-hidden border border-white/20"
+                className="w-16 rounded-t-lg transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-lg"
                 style={{
-                  boxShadow:
-                    "0 2px 8px rgba(114, 241, 220, 0.1), inset 0 2px 4px rgba(255, 255, 255, 0.1)",
+                  backgroundColor: item.color,
+                  height: `${(item.value / maxValue) * 150}px`,
+                  animationDelay: `${index * 200}ms`,
+                  boxShadow: `0 4px 12px ${item.color}40`,
                 }}
-              >
-                <div
-                  className={`h-4 rounded-full bg-gradient-to-r ${item.color} transition-all duration-1000 ease-out group-hover:scale-x-105 transform-gpu`}
-                  style={{
-                    width: `${item.percentage}%`,
-                    animationDelay: `${index * 200}ms`,
-                    boxShadow: "0 2px 6px rgba(44, 135, 128, 0.3)",
-                  }}
-                />
+              />
+              <div className="text-center mt-2">
+                <span className="text-sm font-medium" style={{ color: '#05445E' }}>
+                  {item.name}
+                </span>
               </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Legend */}
+        <div className="flex justify-center space-x-6 pt-4 border-t border-white/20">
+          {chartData.map((item) => (
+            <div key={item.name} className="flex items-center">
+              <div
+                className="w-3 h-3 rounded-full mr-2"
+                style={{
+                  backgroundColor: item.color,
+                  boxShadow: `0 2px 8px ${item.color}40`,
+                }}
+              />
+              <span className="text-sm font-medium" style={{ color: '#05445E' }}>
+                {item.name}
+              </span>
             </div>
           ))}
         </div>
