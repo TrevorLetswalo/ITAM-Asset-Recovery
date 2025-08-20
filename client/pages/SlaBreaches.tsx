@@ -456,7 +456,7 @@ export function SlaBreaches() {
       </div>
 
       {/* KPI Summary */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Glass3DContainer>
           <div className="flex items-center">
             <AlertTriangle className="h-8 w-8 text-red-600 mr-3" />
