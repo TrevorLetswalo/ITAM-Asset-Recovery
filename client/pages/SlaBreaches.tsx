@@ -513,7 +513,7 @@ export function SlaBreaches() {
       </div>
 
       {/* Filters and Trends */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Filters */}
         <Glass3DContainer>
           <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">Filters</h3>
