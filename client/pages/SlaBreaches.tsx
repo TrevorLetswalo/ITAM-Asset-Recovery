@@ -205,7 +205,7 @@ function BreachAlertCard({
           <div>
             <p className="text-xs text-[#2C8780] font-medium">Asset Value</p>
             <p className="text-lg font-semibold text-[#1D1D2C]">
-              ${alert.estimatedValue.toLocaleString()}
+              R{(alert.estimatedValue * 18.5).toLocaleString()}
             </p>
           </div>
           <div>
