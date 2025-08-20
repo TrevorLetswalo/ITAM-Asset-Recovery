@@ -200,7 +200,7 @@ export function ModernLayout({ children }: LayoutProps) {
           {/* Sidebar Footer */}
           <div className="px-4 py-4 border-t" style={{ borderTopColor: "var(--color-3)" }}>
             <div
-              className="backdrop-blur-sm p-3 rounded-lg border"
+              className="p-3 rounded-lg border"
               style={{
                 backgroundColor: "var(--color-2)",
                 borderColor: "var(--color-3)"
