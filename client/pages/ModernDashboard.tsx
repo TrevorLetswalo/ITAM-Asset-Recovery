@@ -76,15 +76,15 @@ function AnimatedCounter({
   );
 }
 
-// Glass Card Component for Charts
-function GlassCard({
+// Minimal Card Component for Charts
+function MinimalCard({
   children,
   className = "",
 }: {
   children: React.ReactNode;
   className?: string;
 }) {
-  return <div className={`glass-card ${className}`}>{children}</div>;
+  return <div className={`minimal-card ${className}`}>{children}</div>;
 }
 
 // Clean Modern Glassmorphism KPI Card
