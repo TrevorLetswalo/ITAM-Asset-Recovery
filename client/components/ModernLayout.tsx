@@ -251,12 +251,11 @@ export function ModernLayout({ children }: LayoutProps) {
               <input
                 type="text"
                 placeholder="Search..."
-                className="w-full pl-10 pr-3 py-2 backdrop-blur-sm border rounded-xl focus:ring-2 focus:outline-none transition-all duration-200"
+                className="w-full pl-10 pr-3 py-2 border rounded-lg focus:ring-2 focus:outline-none transition-colors duration-200"
                 style={{
                   backgroundColor: "var(--color-5)",
                   borderColor: "var(--color-4)",
                   color: "var(--color-1)",
-                  boxShadow: "0 2px 8px rgba(29, 31, 32, 0.1)",
                 }}
               />
             </form>
