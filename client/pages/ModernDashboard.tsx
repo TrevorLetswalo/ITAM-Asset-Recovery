@@ -214,20 +214,20 @@ function RecoveryProgressChart() {
       </div>
       <div className="flex-1 flex flex-col justify-center">
         {/* Bar Chart */}
-        <div className="relative mb-3" style={{ height: "140px" }}>
-          <div className="flex items-end justify-center space-x-2 h-full">
+        <div className="relative mb-3" style={{ height: "120px" }}>
+          <div className="flex items-end justify-center space-x-1 h-full">
             {progressData.map((data, index) => (
               <div key={data.day} className="flex flex-col items-center group">
                 {/* Value labels */}
-                <div className="flex space-x-1 mb-1 text-xs font-medium">
+                <div className="flex space-x-0.5 mb-1 text-xs font-medium">
                   <div
-                    className="text-center"
+                    className="text-center text-xs"
                     style={{ color: "#4CA1A3" }}
                   >
                     {data.recovered}
                   </div>
                   <div
-                    className="text-center"
+                    className="text-center text-xs"
                     style={{ color: "#FF6F61" }}
                   >
                     {data.pending}
@@ -235,23 +235,23 @@ function RecoveryProgressChart() {
                 </div>
 
                 {/* Bars */}
-                <div className="flex space-x-1 items-end">
+                <div className="flex space-x-0.5 items-end">
                   {/* Recovered bar */}
                   <div
-                    className="w-4 rounded-t transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-lg"
+                    className="w-3 rounded-t transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-lg"
                     style={{
                       backgroundColor: "#4CA1A3",
-                      height: `${(data.recovered / maxValue) * 100}px`,
+                      height: `${(data.recovered / maxValue) * 80}px`,
                       animationDelay: `${index * 100}ms`,
                       boxShadow: "0 2px 6px rgba(76, 161, 163, 0.3)",
                     }}
                   />
                   {/* Pending bar */}
                   <div
-                    className="w-4 rounded-t transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-lg"
+                    className="w-3 rounded-t transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-lg"
                     style={{
                       backgroundColor: "#FF6F61",
-                      height: `${(data.pending / maxValue) * 100}px`,
+                      height: `${(data.pending / maxValue) * 80}px`,
                       animationDelay: `${index * 100 + 50}ms`,
                       boxShadow: "0 2px 6px rgba(255, 111, 97, 0.3)",
                     }}
@@ -260,7 +260,7 @@ function RecoveryProgressChart() {
 
                 {/* Day label */}
                 <div
-                  className="text-xs text-center mt-2 font-medium"
+                  className="text-xs text-center mt-1.5 font-medium"
                   style={{ color: "#4A6A7B" }}
                 >
                   {data.day}
