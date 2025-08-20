@@ -471,12 +471,12 @@ export function SlaBreaches() {
           </div>
         </Glass3DContainer>
 
-        <Glass3DContainer>
+        <Glass3DContainer className="p-4">
           <div className="flex items-center">
-            <XCircle className="h-8 w-8 text-red-700 mr-3" />
+            <XCircle className="h-6 w-6 text-red-700 mr-3" />
             <div>
-              <p className="text-sm text-[#2C8780] font-medium">Extreme Risk</p>
-              <p className="text-2xl font-light text-[#1D1D2C]">
+              <p className="text-xs text-[#2C8780] font-medium">Extreme Risk</p>
+              <p className="text-xl font-light text-[#1D1D2C]">
                 {stats.extreme}
               </p>
             </div>
