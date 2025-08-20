@@ -6,106 +6,106 @@
 
 @layer base {
   /**
-   * Modern IT Asset Recovery Design System
-   * Enhanced with glassmorphism, gradients, and premium typography
+   * Midnight Hues Design System - Minimal Look
+   * Features: Shark, Mako, Shuttle Gray, Cadet Blue, Mischka
    */
   :root {
-    /* Charming Seaside Color Palette */
-    --background: 188 67% 94%; /* #EAF4F4 - Very light pale blue */
-    --foreground: 201 89% 19%; /* #05445E - Soft navy for text */
+    /* Midnight Hues Color Palette */
+    --color-1: #1d1f20; /* Shark - Deep dark */
+    --color-2: #3f4750; /* Mako - Dark gray */
+    --color-3: #606d80; /* Shuttle Gray - Medium gray */
+    --color-4: #a0b2c5; /* Cadet Blue - Light blue-gray */
+    --color-5: #d2d4da; /* Mischka - Very light gray */
+
+    /* Shadcn Color Variables */
+    --background: 210 11% 96%; /* #f0f1f2 - Very light mischka */
+    --foreground: 220 9% 12%; /* #1d1f20 - Shark */
 
     --card: 0 0% 100%; /* Pure white */
-    --card-foreground: 201 89% 19%; /* #05445E - Soft navy */
+    --card-foreground: 220 9% 12%; /* Shark */
 
     --popover: 0 0% 100%;
-    --popover-foreground: 201 89% 19%;
+    --popover-foreground: 220 9% 12%;
 
-    --primary: 188 47% 55%; /* #85D1DB - Soft ocean blue */
-    --primary-foreground: 0 0% 100%;
+    --primary: 210 11% 13%; /* #1d1f20 - Shark */
+    --primary-foreground: 210 11% 96%; /* Mischka */
 
-    --secondary: 33 36% 89%; /* #F0E4D7 - Sandy beige */
-    --secondary-foreground: 201 89% 19%;
+    --secondary: 215 16% 47%; /* #606d80 - Shuttle Gray */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 188 67% 96%;
-    --muted-foreground: 200 16% 46%; /* #4A6A7B - Muted teal-gray */
+    --muted: 210 11% 93%; /* #e8e9ea - Light mischka */
+    --muted-foreground: 215 16% 47%; /* Shuttle Gray */
 
-    --accent: 182 42% 46%; /* #4CA1A3 - Soft teal */
+    --accent: 215 16% 47%; /* #606d80 - Shuttle Gray */
     --accent-foreground: 0 0% 100%;
 
-    --highlight: 6 100% 69%; /* #FF6F61 - Coral accent */
-    --highlight-foreground: 0 0% 100%;
-
-    --destructive: 6 100% 69%; /* #FF6F61 - Coral for alerts */
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 188 30% 88%;
-    --input: 188 30% 90%;
-    --ring: 182 42% 46%; /* #4CA1A3 - Soft teal */
+    --border: 220 13% 91%; /* #e5e6e7 - Light border */
+    --input: 220 13% 91%;
+    --ring: 215 16% 47%; /* Shuttle Gray */
 
-    --radius: 1rem;
+    --radius: 0.75rem;
 
-    /* Seaside Glassmorphism Variables */
-    --glass-bg: rgba(133, 209, 219, 0.1); /* Ocean blue tint */
-    --glass-border: rgba(76, 161, 163, 0.2); /* Soft teal border */
-    --glass-shadow: 0 8px 32px rgba(5, 68, 94, 0.1); /* Navy shadow */
+    /* Midnight Glassmorphism Variables */
+    --glass-bg: rgba(29, 31, 32, 0.1);
+    --glass-border: rgba(96, 109, 128, 0.2);
+    --glass-shadow: 0 8px 32px rgba(29, 31, 32, 0.1);
 
-    /* Seaside Sidebar colors */
-    --sidebar-background: 33 36% 89%; /* #F0E4D7 - Sandy beige */
-    --sidebar-foreground: 201 89% 19%; /* #05445E - Soft navy */
-    --sidebar-primary: 182 42% 46%; /* #4CA1A3 - Soft teal */
+    /* Sidebar colors */
+    --sidebar-background: 220 9% 12%; /* Shark */
+    --sidebar-foreground: 210 11% 96%; /* Mischka */
+    --sidebar-primary: 215 16% 47%; /* Shuttle Gray */
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 188 47% 55%; /* #85D1DB - Ocean blue */
-    --sidebar-accent-foreground: 201 89% 19%;
-    --sidebar-border: 33 25% 80%;
-    --sidebar-ring: 6 100% 69%; /* #FF6F61 - Coral */
+    --sidebar-accent: 218 11% 25%; /* Mako */
+    --sidebar-accent-foreground: 210 11% 96%;
+    --sidebar-border: 218 11% 25%;
+    --sidebar-ring: 215 16% 47%;
   }
 
   .dark {
-    /* Modern Dark Mode - Enhanced */
-    --background: 220 25% 6%; /* Deep dark background */
-    --foreground: 0 0% 95%;
+    /* Dark Mode - Midnight Enhanced */
+    --background: 220 9% 12%; /* Shark */
+    --foreground: 210 11% 96%; /* Mischka */
 
-    --card: 220 25% 10%; /* Dark glass cards */
-    --card-foreground: 0 0% 95%;
+    --card: 218 11% 25%; /* Mako */
+    --card-foreground: 210 11% 96%;
 
-    --popover: 220 25% 8%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 218 11% 25%;
+    --popover-foreground: 210 11% 96%;
 
-    --primary: 174 75% 65%; /* #72F1DC Electric Mint */
-    --primary-foreground: 220 25% 15%;
+    --primary: 210 11% 96%; /* Mischka */
+    --primary-foreground: 220 9% 12%; /* Shark */
 
-    --secondary: 220 20% 18%;
-    --secondary-foreground: 0 0% 90%;
+    --secondary: 218 11% 25%; /* Mako */
+    --secondary-foreground: 210 11% 96%;
 
-    --muted: 220 20% 12%;
-    --muted-foreground: 220 10% 65%;
+    --muted: 218 11% 25%; /* Mako */
+    --muted-foreground: 216 12% 84%; /* Light mischka */
 
-    --accent: 174 57% 35%; /* #2C8780 Modern Teal */
+    --accent: 215 16% 47%; /* Shuttle Gray */
     --accent-foreground: 0 0% 100%;
-
-    --highlight: 174 75% 65%; /* #72F1DC Electric Mint */
-    --highlight-foreground: 220 25% 15%;
 
     --destructive: 0 75% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 18%;
-    --input: 220 20% 15%;
-    --ring: 174 75% 65%;
+    --border: 218 11% 25%; /* Mako */
+    --input: 218 11% 25%;
+    --ring: 215 16% 47%;
 
-    /* Dark mode glassmorphism */
-    --glass-bg: rgba(0, 0, 0, 0.2);
+    --glass-bg: rgba(29, 31, 32, 0.2);
     --glass-border: rgba(255, 255, 255, 0.1);
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 
-    --sidebar-background: 220 25% 8%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 174 57% 35%;
+    --sidebar-background: 220 9% 12%;
+    --sidebar-foreground: 210 11% 96%;
+    --sidebar-primary: 215 16% 47%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 20% 20%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 220 20% 15%;
-    --sidebar-ring: 174 75% 65%;
+    --sidebar-accent: 218 11% 25%;
+    --sidebar-accent-foreground: 210 11% 96%;
+    --sidebar-border: 218 11% 25%;
+    --sidebar-ring: 215 16% 47%;
   }
 }
 
@@ -120,494 +120,162 @@
   }
 
   body {
-    @apply text-foreground font-inter antialiased;
-    /* Clean seaside background */
-    background: #eaf4f4; /* Very light pale blue */
+    @apply bg-background text-foreground font-inter antialiased;
+    background: var(--color-5); /* Mischka background */
     min-height: 100vh;
   }
 
-  /* Seaside Typography - Calming & Readable */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  /* Minimal Typography */
+  h1, h2, h3, h4, h5, h6 {
     @apply font-inter font-medium;
-    color: #05445e; /* Soft navy */
+    color: var(--color-1); /* Shark */
   }
 
-  h1 {
-    @apply text-3xl lg:text-4xl tracking-tight font-light;
-  }
-  h2 {
-    @apply text-2xl lg:text-3xl tracking-tight font-light;
-  }
-  h3 {
-    @apply text-xl lg:text-2xl font-normal;
-  }
-  h4 {
-    @apply text-lg lg:text-xl font-normal;
-  }
-  h5 {
-    @apply text-base lg:text-lg font-medium;
-  }
-  h6 {
-    @apply text-sm lg:text-base font-medium;
+  h1 { @apply text-3xl lg:text-4xl tracking-tight font-light; }
+  h2 { @apply text-2xl lg:text-3xl tracking-tight font-light; }
+  h3 { @apply text-xl lg:text-2xl font-normal; }
+  h4 { @apply text-lg lg:text-xl font-normal; }
+  h5 { @apply text-base lg:text-lg font-medium; }
+  h6 { @apply text-sm lg:text-base font-medium; }
+
+  /* Body text */
+  p, span, div {
+    color: var(--color-1); /* Shark */
   }
 
-  /* Body text for excellent readability */
-  p,
-  span,
-  div {
-    color: #05445e; /* Soft navy */
-  }
-
-  /* Secondary text labels */
+  /* Secondary text */
   .text-secondary {
-    color: #4ca1a3; /* Soft teal */
+    color: var(--color-3); /* Shuttle Gray */
   }
 }
 
 @layer components {
-  /* Seaside Glass Effects */
+  /* Linear Gradient Utility */
+  .linear-gradient {
+    background: linear-gradient(0.25turn, var(--color-1), var(--color-2), var(--color-3), var(--color-4), var(--color-5));
+  }
+
+  /* Minimal Glass Effects */
   .glass {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.9) 0%,
-      rgba(133, 209, 219, 0.1) 100%
-    );
-    border: 2px solid rgba(76, 161, 163, 0.3);
-    border-top: 2px solid rgba(133, 209, 219, 0.5);
-    border-left: 2px solid rgba(133, 209, 219, 0.5);
-    box-shadow:
-      0 8px 24px rgba(5, 68, 94, 0.1),
-      0 4px 12px rgba(76, 161, 163, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.8),
-      inset 0 -1px 0 rgba(76, 161, 163, 0.1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(210, 212, 218, 0.05) 100%);
+    border: 1px solid rgba(160, 178, 197, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 
   .glass-card {
-    @apply rounded-2xl p-8;
-    /* Ocean wave-like texture */
-    background:
-      radial-gradient(
-        circle at 30% 40%,
-        rgba(133, 209, 219, 0.08) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 70% 60%,
-        rgba(76, 161, 163, 0.06) 0%,
-        transparent 50%
-      ),
-      linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.95) 0%,
-        rgba(240, 228, 215, 0.3) 50%,
-        rgba(255, 255, 255, 0.9) 100%
-      );
-    border: 2px solid rgba(76, 161, 163, 0.2);
-    border-top: 2px solid rgba(133, 209, 219, 0.4);
-    border-left: 2px solid rgba(133, 209, 219, 0.4);
-    box-shadow:
-      0 12px 28px rgba(5, 68, 94, 0.12),
-      0 6px 14px rgba(76, 161, 163, 0.1),
-      0 3px 7px rgba(133, 209, 219, 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.9),
-      inset 0 -1px 0 rgba(76, 161, 163, 0.1);
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    /* Add subtle water ripple texture */
-    background-image:
-      radial-gradient(
-        circle at 25% 25%,
-        rgba(133, 209, 219, 0.03) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 75% 75%,
-        rgba(76, 161, 163, 0.02) 0%,
-        transparent 50%
-      );
+    @apply rounded-xl p-6;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(210, 212, 218, 0.4) 100%);
+    border: 1px solid rgba(160, 178, 197, 0.3);
+    box-shadow: 
+      0 4px 16px rgba(29, 31, 32, 0.08),
+      0 2px 8px rgba(96, 109, 128, 0.06);
+    transition: all 0.3s ease;
   }
 
   .glass-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow:
-      0 16px 36px rgba(5, 68, 94, 0.15),
-      0 8px 18px rgba(76, 161, 163, 0.12),
-      0 4px 9px rgba(133, 209, 219, 0.1),
-      inset 0 2px 0 rgba(255, 255, 255, 0.95),
-      inset 0 -2px 0 rgba(76, 161, 163, 0.15);
-    border-top: 2px solid rgba(133, 209, 219, 0.6);
-    border-left: 2px solid rgba(133, 209, 219, 0.6);
-  }
-
-  .glass-nav {
-    @apply glass;
-    background: rgba(29, 29, 44, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  /* macOS-inspired Shadows */
-  .shadow-soft {
-    box-shadow:
-      0 1px 3px rgba(0, 0, 0, 0.08),
-      0 1px 2px rgba(0, 0, 0, 0.04);
-  }
-
-  .shadow-medium {
-    box-shadow:
-      0 4px 16px rgba(0, 0, 0, 0.06),
-      0 2px 8px rgba(0, 0, 0, 0.08),
-      0 1px 1px rgba(255, 255, 255, 0.5) inset;
-  }
-
-  .shadow-strong {
-    box-shadow:
-      0 8px 32px rgba(0, 0, 0, 0.08),
-      0 4px 16px rgba(0, 0, 0, 0.06),
-      0 1px 1px rgba(255, 255, 255, 0.6) inset;
-  }
-
-  .shadow-macos {
-    box-shadow:
-      0 0.3px 0.9px rgba(0, 0, 0, 0.1),
-      0 1.6px 3.6px rgba(0, 0, 0, 0.06),
-      0 8px 16px rgba(0, 0, 0, 0.04);
-  }
-
-  /* Gradient Backgrounds */
-  .bg-gradient-modern {
-    background: linear-gradient(135deg, #e8f2fd 0%, #72f1dc 100%);
-  }
-
-  .bg-gradient-card {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.9) 0%,
-      rgba(255, 255, 255, 0.7) 100%
-    );
-  }
-
-  /* macOS 2026 Container Styles */
-  .macos-container {
-    @apply max-w-screen-xl mx-auto p-6;
-  }
-
-  /* Vibrant Pastel Card Components */
-  .compact-card {
-    @apply p-8 rounded-2xl;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.95) 0%,
-      rgba(248, 250, 252, 0.9) 100%
-    );
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    border-top: 2px solid rgba(255, 255, 255, 0.95);
-    border-left: 2px solid rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    box-shadow:
-      0 20px 60px rgba(99, 102, 241, 0.1),
-      0 8px 32px rgba(236, 72, 153, 0.08),
-      0 4px 16px rgba(34, 197, 94, 0.06),
-      inset 0 2px 0 rgba(255, 255, 255, 0.6);
-    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .compact-kpi {
-    @apply compact-card;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .compact-kpi::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(
-      90deg,
-      #ff6b9d 0%,
-      #4299e1 25%,
-      #48bb78 50%,
-      #f6ad55 75%,
-      #9f7aea 100%
-    );
-    opacity: 0.8;
-  }
-
-  .compact-kpi:hover {
-    transform: translateY(-12px) scale(1.03);
-    box-shadow:
-      0 30px 80px rgba(99, 102, 241, 0.15),
-      0 12px 40px rgba(236, 72, 153, 0.12),
-      0 6px 20px rgba(34, 197, 94, 0.1),
-      inset 0 2px 0 rgba(255, 255, 255, 0.7);
-    border: 2px solid rgba(255, 255, 255, 0.9);
-    border-top: 2px solid rgba(255, 255, 255, 1);
-    border-left: 2px solid rgba(255, 255, 255, 1);
-  }
-
-  .compact-kpi:hover::before {
-    opacity: 1;
-    height: 4px;
-  }
-
-  /* Sparkline styles */
-  .sparkline {
-    height: 20px;
-    width: 60px;
-  }
-
-  .sparkline svg {
-    overflow: visible;
-  }
-
-  .sparkline path {
-    fill: none;
-    stroke-width: 1.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  /* Seaside Refined Buttons */
-  .macos-button {
-    @apply rounded-xl px-4 py-2 font-semibold;
-    background: linear-gradient(135deg, #4ca1a3 0%, #85d1db 100%);
-    border: 2px solid #4ca1a3;
-    border-top: 2px solid #85d1db;
-    border-left: 2px solid #85d1db;
-    color: white;
-    box-shadow:
-      0 4px 12px rgba(5, 68, 94, 0.2),
-      0 2px 6px rgba(76, 161, 163, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3),
-      inset 0 -1px 0 rgba(76, 161, 163, 0.2);
-    transition: all 0.2s ease-in-out;
-    text-shadow: 0 1px 2px rgba(5, 68, 94, 0.3);
-  }
-
-  .macos-button:hover {
-    background: linear-gradient(135deg, #85d1db 0%, #4ca1a3 100%);
-    border-top: 2px solid rgba(255, 255, 255, 0.6);
-    border-left: 2px solid rgba(255, 255, 255, 0.6);
-    box-shadow:
-      0 6px 16px rgba(5, 68, 94, 0.25),
-      0 3px 8px rgba(76, 161, 163, 0.2),
-      inset 0 2px 0 rgba(255, 255, 255, 0.4),
-      inset 0 -2px 0 rgba(76, 161, 163, 0.3);
     transform: translateY(-2px);
+    box-shadow: 
+      0 8px 24px rgba(29, 31, 32, 0.12),
+      0 4px 12px rgba(96, 109, 128, 0.1);
   }
 
-  .macos-button:active {
-    transform: translateY(0px);
-    box-shadow:
-      0 2px 6px rgba(5, 68, 94, 0.3),
-      inset 0 2px 4px rgba(76, 161, 163, 0.2);
-    border-top: 2px solid #4ca1a3;
-    border-left: 2px solid #4ca1a3;
+  /* Minimal Shadows */
+  .shadow-minimal {
+    box-shadow: 0 1px 3px rgba(29, 31, 32, 0.12);
   }
 
-  /* Seaside Chart Container */
+  .shadow-minimal-md {
+    box-shadow: 
+      0 4px 6px rgba(29, 31, 32, 0.1),
+      0 2px 4px rgba(96, 109, 128, 0.06);
+  }
+
+  .shadow-minimal-lg {
+    box-shadow: 
+      0 10px 15px rgba(29, 31, 32, 0.1),
+      0 4px 6px rgba(96, 109, 128, 0.05);
+  }
+
+  /* Minimal Buttons */
+  .btn-minimal {
+    @apply rounded-lg px-4 py-2 font-medium transition-all duration-200;
+    background: var(--color-1); /* Shark */
+    color: var(--color-5); /* Mischka */
+    border: 1px solid var(--color-1);
+  }
+
+  .btn-minimal:hover {
+    background: var(--color-2); /* Mako */
+    border-color: var(--color-2);
+  }
+
+  .btn-minimal-secondary {
+    @apply rounded-lg px-4 py-2 font-medium transition-all duration-200;
+    background: transparent;
+    color: var(--color-1); /* Shark */
+    border: 1px solid var(--color-3); /* Shuttle Gray */
+  }
+
+  .btn-minimal-secondary:hover {
+    background: var(--color-5); /* Mischka */
+    border-color: var(--color-1);
+  }
+
+  /* Minimal Chart Container */
   .chart-container {
-    @apply p-8 rounded-2xl;
-    /* Ocean-inspired clean background */
-    background:
-      radial-gradient(
-        circle at 25% 25%,
-        rgba(133, 209, 219, 0.06) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 75% 75%,
-        rgba(240, 228, 215, 0.08) 0%,
-        transparent 50%
-      ),
-      linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.95) 0%,
-        rgba(240, 228, 215, 0.2) 100%
-      );
-    border: 2px solid rgba(76, 161, 163, 0.2);
-    border-top: 2px solid rgba(133, 209, 219, 0.4);
-    border-left: 2px solid rgba(133, 209, 219, 0.4);
-    box-shadow:
-      0 12px 28px rgba(5, 68, 94, 0.12),
-      0 6px 14px rgba(76, 161, 163, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.9),
-      inset 0 -1px 0 rgba(76, 161, 163, 0.1);
-    min-height: 400px;
-    height: 400px;
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    position: relative;
-    overflow: hidden;
-    /* Add subtle wave pattern */
-    background-image:
-      radial-gradient(
-        circle at 30% 30%,
-        rgba(133, 209, 219, 0.02) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 70% 70%,
-        rgba(76, 161, 163, 0.01) 0%,
-        transparent 50%
-      );
-  }
-
-  .chart-container::before {
-    content: "";
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    right: 16px;
-    height: 4px;
-    background: linear-gradient(90deg, #4ca1a3 0%, #85d1db 50%, #ff6f61 100%);
-    border-radius: 2px;
-    box-shadow: 0 2px 4px rgba(5, 68, 94, 0.2);
+    @apply p-6 rounded-xl;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(210, 212, 218, 0.3) 100%);
+    border: 1px solid rgba(160, 178, 197, 0.2);
+    box-shadow: 0 4px 12px rgba(29, 31, 32, 0.06);
+    min-height: 350px;
+    height: 350px;
+    transition: all 0.3s ease;
   }
 
   .chart-container:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow:
-      0 16px 36px rgba(5, 68, 94, 0.15),
-      0 8px 18px rgba(76, 161, 163, 0.12),
-      inset 0 2px 0 rgba(255, 255, 255, 0.95),
-      inset 0 -2px 0 rgba(76, 161, 163, 0.15);
-    border-top: 2px solid rgba(133, 209, 219, 0.6);
-    border-left: 2px solid rgba(133, 209, 219, 0.6);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(29, 31, 32, 0.1);
   }
 
-  /* Compact Chart Container for Side-by-Side Charts */
   .chart-container-compact {
-    @apply p-4 rounded-xl;
-    /* Ocean-inspired clean background */
-    background:
-      radial-gradient(
-        circle at 25% 25%,
-        rgba(133, 209, 219, 0.06) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 75% 75%,
-        rgba(240, 228, 215, 0.08) 0%,
-        transparent 50%
-      ),
-      linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.95) 0%,
-        rgba(240, 228, 215, 0.2) 100%
-      );
-    border: 2px solid rgba(76, 161, 163, 0.2);
-    border-top: 2px solid rgba(133, 209, 219, 0.4);
-    border-left: 2px solid rgba(133, 209, 219, 0.4);
-    box-shadow:
-      0 8px 20px rgba(5, 68, 94, 0.1),
-      0 4px 10px rgba(76, 161, 163, 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.9),
-      inset 0 -1px 0 rgba(76, 161, 163, 0.1);
-    min-height: 280px;
-    height: 280px;
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    position: relative;
-    overflow: hidden;
-    /* Add subtle wave pattern */
-    background-image:
-      radial-gradient(
-        circle at 30% 30%,
-        rgba(133, 209, 219, 0.02) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 70% 70%,
-        rgba(76, 161, 163, 0.01) 0%,
-        transparent 50%
-      );
-  }
-
-  .chart-container-compact::before {
-    content: "";
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    right: 12px;
-    height: 3px;
-    background: linear-gradient(90deg, #4ca1a3 0%, #85d1db 50%, #ff6f61 100%);
-    border-radius: 2px;
-    box-shadow: 0 2px 4px rgba(5, 68, 94, 0.2);
+    @apply p-4 rounded-lg;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(210, 212, 218, 0.3) 100%);
+    border: 1px solid rgba(160, 178, 197, 0.2);
+    box-shadow: 0 2px 8px rgba(29, 31, 32, 0.06);
+    min-height: 240px;
+    height: 240px;
+    transition: all 0.3s ease;
   }
 
   .chart-container-compact:hover {
-    transform: translateY(-4px) scale(1.01);
-    box-shadow:
-      0 12px 24px rgba(5, 68, 94, 0.12),
-      0 6px 12px rgba(76, 161, 163, 0.1),
-      inset 0 2px 0 rgba(255, 255, 255, 0.95),
-      inset 0 -2px 0 rgba(76, 161, 163, 0.15);
-    border-top: 2px solid rgba(133, 209, 219, 0.6);
-    border-left: 2px solid rgba(133, 209, 219, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(29, 31, 32, 0.1);
   }
 
-  /* Colorful Card Variants */
-  .card-pink {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 182, 193, 0.15) 0%,
-      rgba(255, 240, 245, 0.8) 100%
-    );
-    border-left: 4px solid #ff6b9d;
+  /* Minimal KPI Card */
+  .minimal-kpi-card {
+    @apply rounded-lg p-4;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(210, 212, 218, 0.2) 100%);
+    border: 1px solid rgba(160, 178, 197, 0.3);
+    box-shadow: 0 2px 8px rgba(29, 31, 32, 0.06);
+    transition: all 0.3s ease;
   }
 
-  .card-blue {
-    background: linear-gradient(
-      135deg,
-      rgba(66, 153, 225, 0.15) 0%,
-      rgba(235, 248, 255, 0.8) 100%
-    );
-    border-left: 4px solid #4299e1;
+  .minimal-kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(29, 31, 32, 0.1);
+    border-color: rgba(96, 109, 128, 0.4);
   }
 
-  .card-green {
-    background: linear-gradient(
-      135deg,
-      rgba(72, 187, 120, 0.15) 0%,
-      rgba(240, 253, 244, 0.8) 100%
-    );
-    border-left: 4px solid #48bb78;
-  }
-
-  .card-orange {
-    background: linear-gradient(
-      135deg,
-      rgba(246, 173, 85, 0.15) 0%,
-      rgba(255, 250, 240, 0.8) 100%
-    );
-    border-left: 4px solid #f6ad55;
-  }
-
-  .card-purple {
-    background: linear-gradient(
-      135deg,
-      rgba(159, 122, 234, 0.15) 0%,
-      rgba(250, 245, 255, 0.8) 100%
-    );
-    border-left: 4px solid #9f7aea;
-  }
-
-  /* Custom scrollbar - macOS style */
+  /* Custom scrollbar - minimal style */
   .custom-scrollbar {
     scrollbar-width: thin;
-    scrollbar-color: rgba(156, 163, 175, 0.3) transparent;
+    scrollbar-color: rgba(96, 109, 128, 0.3) transparent;
   }
 
   .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
@@ -615,128 +283,45 @@
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: rgba(156, 163, 175, 0.3);
-    border-radius: 3px;
-    border: none;
+    background-color: rgba(96, 109, 128, 0.3);
+    border-radius: 2px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(156, 163, 175, 0.5);
+    background-color: rgba(96, 109, 128, 0.5);
   }
 
-  /* Skeuomorphic text selection */
+  /* Minimal focus effects */
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(96, 109, 128, 0.3);
+    border-color: var(--color-3);
+  }
+
+  /* Text selection */
   ::selection {
-    background-color: rgba(139, 69, 19, 0.3);
+    background-color: rgba(96, 109, 128, 0.2);
     color: inherit;
   }
+}
 
-  /* Realistic focus effects */
-  input:focus,
-  textarea:focus,
-  select:focus {
-    outline: none;
-    box-shadow:
-      0 0 0 3px rgba(139, 69, 19, 0.2),
-      inset 0 2px 4px rgba(139, 69, 19, 0.1);
-    border-color: #8b4513;
-  }
-
-  /* Seaside KPI Card Styles */
-  .seaside-kpi-card {
-    background:
-      radial-gradient(
-        circle at 30% 40%,
-        rgba(133, 209, 219, 0.08) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 70% 60%,
-        rgba(240, 228, 215, 0.1) 0%,
-        transparent 50%
-      ),
-      linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.95) 0%,
-        rgba(240, 228, 215, 0.3) 100%
-      );
-    box-shadow:
-      0 6px 16px rgba(5, 68, 94, 0.1),
-      0 3px 8px rgba(76, 161, 163, 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.8),
-      inset 0 -1px 0 rgba(76, 161, 163, 0.1);
-    transition: all 0.3s ease-in-out;
-    /* Subtle wave texture */
-    background-image: radial-gradient(
-      circle at 25% 25%,
-      rgba(133, 209, 219, 0.02) 0%,
-      transparent 50%
-    );
-  }
-
-  .seaside-kpi-card:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow:
-      0 8px 24px rgba(5, 68, 94, 0.15),
-      0 4px 12px rgba(76, 161, 163, 0.12),
-      inset 0 2px 0 rgba(255, 255, 255, 0.9),
-      inset 0 -2px 0 rgba(76, 161, 163, 0.15);
-    border-top: 2px solid rgba(133, 209, 219, 0.6);
-    border-left: 2px solid rgba(133, 209, 219, 0.6);
-  }
-
-  /* Ocean-inspired Icons */
-  .seaside-icon {
-    background: linear-gradient(135deg, #4ca1a3 0%, #85d1db 100%);
-    border: 2px solid #4ca1a3;
-    border-top: 2px solid #85d1db;
-    border-left: 2px solid #85d1db;
-    box-shadow:
-      0 4px 8px rgba(5, 68, 94, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.4),
-      inset 0 -1px 0 rgba(76, 161, 163, 0.2);
-    color: white;
-    text-shadow: 0 1px 2px rgba(5, 68, 94, 0.3);
-  }
-
-  .seaside-icon:hover {
-    background: linear-gradient(135deg, #85d1db 0%, #4ca1a3 100%);
-    border-top: 2px solid rgba(255, 255, 255, 0.6);
-    border-left: 2px solid rgba(255, 255, 255, 0.6);
-    box-shadow:
-      0 6px 12px rgba(5, 68, 94, 0.25),
-      inset 0 2px 0 rgba(255, 255, 255, 0.5),
-      inset 0 -2px 0 rgba(76, 161, 163, 0.3);
-  }
-
-  /* Coral Status Tags */
-  .seaside-status {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.9) 0%,
-      rgba(240, 228, 215, 0.8) 100%
-    );
-    border: 2px solid rgba(76, 161, 163, 0.3);
-    border-top: 2px solid rgba(133, 209, 219, 0.5);
-    border-left: 2px solid rgba(133, 209, 219, 0.5);
-    box-shadow:
-      0 2px 6px rgba(5, 68, 94, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.8);
-    color: #05445e;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
-  }
-
-  .seaside-status-coral {
-    color: #ff6f61;
-    border-color: rgba(255, 111, 97, 0.3);
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.9) 0%,
-      rgba(255, 111, 97, 0.1) 100%
-    );
-  }
-
-  /* Radial gradient utility for rivets */
-  .bg-gradient-radial {
-    background: radial-gradient(circle, var(--tw-gradient-stops));
-  }
+/* Utility Classes */
+@layer utilities {
+  .text-shark { color: var(--color-1); }
+  .text-mako { color: var(--color-2); }
+  .text-shuttle { color: var(--color-3); }
+  .text-cadet { color: var(--color-4); }
+  .text-mischka { color: var(--color-5); }
+  
+  .bg-shark { background-color: var(--color-1); }
+  .bg-mako { background-color: var(--color-2); }
+  .bg-shuttle { background-color: var(--color-3); }
+  .bg-cadet { background-color: var(--color-4); }
+  .bg-mischka { background-color: var(--color-5); }
+  
+  .border-shark { border-color: var(--color-1); }
+  .border-mako { border-color: var(--color-2); }
+  .border-shuttle { border-color: var(--color-3); }
+  .border-cadet { border-color: var(--color-4); }
+  .border-mischka { border-color: var(--color-5); }
 }
