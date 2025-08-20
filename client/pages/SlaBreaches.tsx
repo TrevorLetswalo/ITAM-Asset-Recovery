@@ -505,7 +505,7 @@ export function SlaBreaches() {
                 Asset Value at Risk
               </p>
               <p className="text-2xl font-light text-[#1D1D2C]">
-                ${(stats.totalValue / 1000).toFixed(0)}K
+                R{((stats.totalValue * 18.5) / 1000).toFixed(0)}K
               </p>
             </div>
           </div>
