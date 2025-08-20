@@ -250,8 +250,8 @@ export function ModernLayout({ children }: LayoutProps) {
             <Menu className="h-5 w-5" />
           </Button>
 
-          {/* Title - Left aligned, white, smaller font */}
-          <h1 className="text-white font-medium text-lg mr-8">
+          {/* Title - Left aligned, smaller font */}
+          <h1 className="font-medium text-lg mr-8" style={{ color: "var(--color-5)" }}>
             IT Asset Recovery Dashboard
           </h1>
 
