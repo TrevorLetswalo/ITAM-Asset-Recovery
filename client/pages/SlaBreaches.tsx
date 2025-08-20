@@ -483,14 +483,14 @@ export function SlaBreaches() {
           </div>
         </Glass3DContainer>
 
-        <Glass3DContainer>
+        <Glass3DContainer className="p-4">
           <div className="flex items-center">
-            <Clock className="h-8 w-8 text-orange-600 mr-3" />
+            <Clock className="h-6 w-6 text-orange-600 mr-3" />
             <div>
-              <p className="text-sm text-[#2C8780] font-medium">
+              <p className="text-xs text-[#2C8780] font-medium">
                 Avg Days Overdue
               </p>
-              <p className="text-2xl font-light text-[#1D1D2C]">
+              <p className="text-xl font-light text-[#1D1D2C]">
                 {stats.avgAge}
               </p>
             </div>
