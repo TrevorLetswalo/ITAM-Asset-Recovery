@@ -120,24 +120,22 @@ function CompactKpiCard({
   };
 
   return (
-    <div className="seaside-kpi-card h-32 group relative overflow-hidden cursor-pointer">
-      {/* Ocean Wave Top Accent */}
+    <div className="minimal-kpi-card h-32 group relative overflow-hidden cursor-pointer">
+      {/* Minimal Top Accent */}
       <div
         className="absolute top-0 left-0 right-0 h-1"
         style={{
-          background: `linear-gradient(90deg, ${getSeaColor()}, #85D1DB, ${getSeaColor()})`,
-          boxShadow: "0 1px 2px rgba(5, 68, 94, 0.2)",
+          backgroundColor: "var(--color-3)", // Shuttle Gray
         }}
       ></div>
 
-      {/* Content Container - Shifted Right */}
+      {/* Content Container */}
       <div className="ml-4 mr-2 mt-4 mb-3">
         {/* Title */}
         <p
           className="text-xs md:text-sm font-medium truncate mb-3"
           style={{
-            color: "#4A6A7B", // Muted teal-gray
-            textShadow: "0 1px 1px rgba(255, 255, 255, 0.8)",
+            color: "var(--color-3)", // Shuttle Gray
           }}
         >
           {title}
@@ -148,8 +146,7 @@ function CompactKpiCard({
           <p
             className="text-3xl md:text-4xl font-bold tracking-tight"
             style={{
-              color: "#05445E", // Soft navy
-              textShadow: "0 1px 2px rgba(255, 255, 255, 0.5)",
+              color: "var(--color-1)", // Shark
             }}
           >
             <AnimatedCounter value={value} />
@@ -160,7 +157,7 @@ function CompactKpiCard({
             <div
               className="flex items-center space-x-1 text-sm font-semibold transition-all duration-300 group-hover:scale-105"
               style={{
-                color: "#FF6F61", // Coral color
+                color: "var(--color-2)", // Mako
               }}
             >
               {trend === "up" ? (
