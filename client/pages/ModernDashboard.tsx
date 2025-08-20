@@ -272,16 +272,22 @@ function RecoveryProgressChart() {
         </div>
 
         {/* Legend */}
-        <div className="flex justify-center space-x-4 pt-2 border-t border-white/20">
+        <div className="flex justify-center space-x-4 pt-2 border-t" style={{ borderTopColor: "var(--color-4)" }}>
           <div className="flex items-center">
-            <div className="w-3 h-3 bg-[#4CA1A3] rounded mr-2" />
-            <span className="text-xs font-medium" style={{ color: "#05445E" }}>
+            <div
+              className="w-3 h-3 rounded mr-2"
+              style={{ backgroundColor: "var(--color-3)" }}
+            />
+            <span className="text-xs font-medium" style={{ color: "var(--color-1)" }}>
               Recovered
             </span>
           </div>
           <div className="flex items-center">
-            <div className="w-3 h-3 bg-[#FF6F61] rounded mr-2" />
-            <span className="text-xs font-medium" style={{ color: "#05445E" }}>
+            <div
+              className="w-3 h-3 rounded mr-2"
+              style={{ backgroundColor: "var(--color-2)" }}
+            />
+            <span className="text-xs font-medium" style={{ color: "var(--color-1)" }}>
               Pending
             </span>
           </div>
