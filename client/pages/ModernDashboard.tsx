@@ -651,9 +651,9 @@ export function ModernDashboard() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Clean Modern KPI Cards with Glassmorphism - Always 4 in a row */}
-      <div className="grid grid-cols-4 gap-3 md:gap-4">
+      <div className="grid grid-cols-4 gap-3">
         <CompactKpiCard
           title="Total Assets Pending"
           value={stats.totalPending}
@@ -688,24 +688,31 @@ export function ModernDashboard() {
         />
       </div>
 
-      {/* Asset Type and SLA Compliance Row - Side by Side */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <AssetTypeChart />
-        <SlaComplianceChart />
-      </div>
+      {/* Charts Section - Optimized Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        {/* Asset Type Chart */}
+        <div className="lg:col-span-1">
+          <AssetTypeChart />
+        </div>
 
-      {/* Recovery Progress Chart - Full Width */}
-      <div>
-        <RecoveryProgressChart />
+        {/* SLA Compliance Chart */}
+        <div className="lg:col-span-1">
+          <SlaComplianceChart />
+        </div>
+
+        {/* Recovery Progress Chart */}
+        <div className="lg:col-span-1">
+          <RecoveryProgressChart />
+        </div>
       </div>
 
       {/* Recent Activity Section */}
       <div>
         {/* Clean Recent Activity Section */}
-        <GlassCard className="flex flex-col h-[420px]">
-          <div className="flex-shrink-0 pb-4 border-b border-white/10">
-            <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
-              <Clock className="mr-2 h-5 w-5 text-[#2C8780]" />
+        <GlassCard className="flex flex-col h-[350px]">
+          <div className="flex-shrink-0 pb-3 border-b border-white/10">
+            <h3 className="text-base font-medium text-[#1D1D2C] flex items-center">
+              <Clock className="mr-2 h-4 w-4 text-[#2C8780]" />
               Recent Activity
             </h3>
           </div>
@@ -714,29 +721,29 @@ export function ModernDashboard() {
               <table className="w-full">
                 <thead className="sticky top-0 z-10">
                   <tr className="border-b border-white/20 bg-white/10 backdrop-blur-lg">
-                    <th className="text-left py-2 text-xs font-medium text-[#2C8780]">
+                    <th className="text-left py-1.5 text-xs font-medium text-[#2C8780]">
                       Asset
                     </th>
-                    <th className="text-left py-2 text-xs font-medium text-[#2C8780]">
+                    <th className="text-left py-1.5 text-xs font-medium text-[#2C8780]">
                       User
                     </th>
-                    <th className="text-left py-2 text-xs font-medium text-[#2C8780]">
+                    <th className="text-left py-1.5 text-xs font-medium text-[#2C8780]">
                       Status
                     </th>
-                    <th className="text-left py-2 text-xs font-medium text-[#2C8780]">
+                    <th className="text-left py-1.5 text-xs font-medium text-[#2C8780]">
                       Days
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {allMockAssets.slice(0, 6).map((asset, index) => (
+                  {allMockAssets.slice(0, 8).map((asset, index) => (
                     <tr
                       key={asset.id}
                       className="border-b border-white/5 hover:bg-white/5 transition-colors"
                     >
-                      <td className="py-2.5">
+                      <td className="py-2">
                         <div>
-                          <p className="text-sm font-medium text-[#1D1D2C] truncate">
+                          <p className="text-xs font-medium text-[#1D1D2C] truncate">
                             {asset.asset_tag}
                           </p>
                           <p className="text-xs text-[#2C8780] truncate">
@@ -744,10 +751,10 @@ export function ModernDashboard() {
                           </p>
                         </div>
                       </td>
-                      <td className="py-2.5 text-sm text-[#1D1D2C] truncate max-w-[80px]">
+                      <td className="py-2 text-xs text-[#1D1D2C] truncate max-w-[80px]">
                         {asset.user_name}
                       </td>
-                      <td className="py-2.5">
+                      <td className="py-2">
                         <span
                           className={`px-2 py-1 rounded-lg text-xs font-medium backdrop-blur-lg border ${
                             asset.status === "Completed"
@@ -760,7 +767,7 @@ export function ModernDashboard() {
                           {asset.status}
                         </span>
                       </td>
-                      <td className="py-2.5 text-sm text-[#1D1D2C]">
+                      <td className="py-2 text-xs text-[#1D1D2C]">
                         {asset.recovery_age}d
                       </td>
                     </tr>
@@ -776,7 +783,7 @@ export function ModernDashboard() {
       <SelfServiceReturnCenter />
 
       {/* Submit Recovery Request Section */}
-      <div className="mt-8">
+      <div>
         <SubmitRecoveryRequest />
       </div>
     </div>
