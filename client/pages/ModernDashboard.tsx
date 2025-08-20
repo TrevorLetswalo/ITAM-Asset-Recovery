@@ -190,7 +190,7 @@ function RecoveryProgressChart() {
   ];
 
   const maxValue = Math.max(
-    ...progressData.map((d) => Math.max(d.recovered, d.pending))
+    ...progressData.map((d) => Math.max(d.recovered, d.pending)),
   );
 
   return (
