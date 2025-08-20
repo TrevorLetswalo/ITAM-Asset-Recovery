@@ -145,11 +145,9 @@ export function ModernLayout({ children }: LayoutProps) {
                   to={item.path}
                   onClick={() => setSidebarOpen(false)}
                   className={cn(
-                    "group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200",
-                    "hover:scale-[1.02]",
-                    isActive ? "shadow-lg scale-[1.02]" : "hover:shadow-md",
+                    "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors duration-200",
                     item.highlight && !isActive
-                      ? "border-2 border-opacity-30"
+                      ? "border border-opacity-30"
                       : "",
                   )}
                   style={{
@@ -157,18 +155,6 @@ export function ModernLayout({ children }: LayoutProps) {
                     color: isActive ? "var(--color-5)" : "var(--color-4)",
                     borderColor:
                       item.highlight && !isActive ? "var(--color-3)" : "transparent",
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.backgroundColor = "var(--color-3)";
-                      e.currentTarget.style.color = "var(--color-5)";
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.backgroundColor = "transparent";
-                      e.currentTarget.style.color = "var(--color-4)";
-                    }
                   }}
                 >
                   <Icon
