@@ -116,7 +116,7 @@ export function ModernLayout({ children }: LayoutProps) {
           >
             <div className="flex items-center space-x-4">
               <div
-                className="w-12 h-12 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg border"
+                className="w-12 h-12 rounded-lg flex items-center justify-center border"
                 style={{
                   backgroundColor: "var(--color-3)",
                   borderColor: "var(--color-4)"
