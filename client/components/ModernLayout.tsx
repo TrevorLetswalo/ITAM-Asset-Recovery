@@ -298,7 +298,7 @@ export function ModernLayout({ children }: LayoutProps) {
               <Bell className="h-5 w-5" />
               <span
                 className="absolute -top-1 -right-1 w-5 h-5 text-white text-xs rounded-full flex items-center justify-center shadow-lg"
-                style={{ backgroundColor: "#FF6F61" }}
+                style={{ backgroundColor: "var(--color-3)" }}
               >
                 3
               </span>
@@ -307,7 +307,10 @@ export function ModernLayout({ children }: LayoutProps) {
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-auto bg-gradient-to-br from-blue-50/30 to-blue-100/20">
+        <main
+          className="flex-1 overflow-auto"
+          style={{ backgroundColor: "var(--color-5)" }}
+        >
           <div className="p-6 min-h-full">{children}</div>
         </main>
       </div>
