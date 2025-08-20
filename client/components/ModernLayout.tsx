@@ -212,9 +212,15 @@ export function ModernLayout({ children }: LayoutProps) {
           </nav>
 
           {/* Sidebar Footer */}
-          <div className="px-4 py-4 border-t border-white/20">
-            <div className="bg-white/10 backdrop-blur-sm p-3 rounded-lg border border-white/20">
-              <div className="text-xs text-center" style={{ color: "#05445E" }}>
+          <div className="px-4 py-4 border-t" style={{ borderTopColor: "var(--color-3)" }}>
+            <div
+              className="backdrop-blur-sm p-3 rounded-lg border"
+              style={{
+                backgroundColor: "var(--color-2)",
+                borderColor: "var(--color-3)"
+              }}
+            >
+              <div className="text-xs text-center" style={{ color: "var(--color-4)" }}>
                 <span className="block font-medium">v1.0.0</span>
                 <span className="opacity-70">IT Asset Recovery Console</span>
               </div>
