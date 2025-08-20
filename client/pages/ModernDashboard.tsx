@@ -177,7 +177,7 @@ function CompactKpiCard({
   );
 }
 
-// Compact Line Chart for Recovery Progress
+// Grouped Bar Chart for Recovery Progress
 function RecoveryProgressChart() {
   const progressData = [
     { day: "Mon", recovered: 8, pending: 42, date: "Mar 18" },
@@ -189,29 +189,9 @@ function RecoveryProgressChart() {
     { day: "Sun", recovered: 28, pending: 22, date: "Mar 24" },
   ];
 
-  const maxRecovered = Math.max(...progressData.map((d) => d.recovered));
-  const maxPending = Math.max(...progressData.map((d) => d.pending));
-  const chartWidth = 400;
-  const chartHeight = 100;
-  const stepWidth = chartWidth / (progressData.length - 1);
-
-  // Generate path for recovered line
-  const recoveredPath = progressData
-    .map((data, index) => {
-      const x = index * stepWidth;
-      const y = chartHeight - (data.recovered / maxRecovered) * chartHeight;
-      return `${index === 0 ? "M" : "L"} ${x} ${y}`;
-    })
-    .join(" ");
-
-  // Generate path for pending line
-  const pendingPath = progressData
-    .map((data, index) => {
-      const x = index * stepWidth;
-      const y = chartHeight - (data.pending / maxPending) * chartHeight;
-      return `${index === 0 ? "M" : "L"} ${x} ${y}`;
-    })
-    .join(" ");
+  const maxValue = Math.max(
+    ...progressData.map((d) => Math.max(d.recovered, d.pending))
+  );
 
   return (
     <GlassCard className="chart-container-compact">
@@ -221,7 +201,7 @@ function RecoveryProgressChart() {
             className="text-base font-medium flex items-center"
             style={{ color: "#05445E" }}
           >
-            <TrendingUp className="mr-2 h-4 w-4" style={{ color: "#4CA1A3" }} />
+            <BarChart3 className="mr-2 h-4 w-4" style={{ color: "#4CA1A3" }} />
             Recovery Progress
           </h3>
           <div
@@ -233,96 +213,58 @@ function RecoveryProgressChart() {
         </div>
       </div>
       <div className="flex-1 flex flex-col justify-center">
-        {/* Line Chart */}
-        <div className="relative mb-4" style={{ height: "100px" }}>
-          <svg
-            width="100%"
-            height="100"
-            viewBox={`0 0 ${chartWidth} ${chartHeight}`}
-            className="overflow-visible"
-          >
-            {/* Grid lines */}
-            {[0, 0.25, 0.5, 0.75, 1].map((ratio, index) => (
-              <line
-                key={index}
-                x1="0"
-                y1={chartHeight * ratio}
-                x2={chartWidth}
-                y2={chartHeight * ratio}
-                stroke="rgba(76, 161, 163, 0.1)"
-                strokeWidth="1"
-              />
-            ))}
-
-            {/* Recovered line */}
-            <path
-              d={recoveredPath}
-              fill="none"
-              stroke="#4CA1A3"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="drop-shadow-sm"
-            />
-
-            {/* Pending line */}
-            <path
-              d={pendingPath}
-              fill="none"
-              stroke="#FF6F61"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="drop-shadow-sm"
-            />
-
-            {/* Data points for recovered */}
-            {progressData.map((data, index) => {
-              const x = index * stepWidth;
-              const y =
-                chartHeight - (data.recovered / maxRecovered) * chartHeight;
-              return (
-                <circle
-                  key={`recovered-${index}`}
-                  cx={x}
-                  cy={y}
-                  r="3"
-                  fill="#4CA1A3"
-                  stroke="white"
-                  strokeWidth="2"
-                  className="drop-shadow-sm"
-                />
-              );
-            })}
-
-            {/* Data points for pending */}
-            {progressData.map((data, index) => {
-              const x = index * stepWidth;
-              const y = chartHeight - (data.pending / maxPending) * chartHeight;
-              return (
-                <circle
-                  key={`pending-${index}`}
-                  cx={x}
-                  cy={y}
-                  r="3"
-                  fill="#FF6F61"
-                  stroke="white"
-                  strokeWidth="2"
-                  className="drop-shadow-sm"
-                />
-              );
-            })}
-          </svg>
-
-          {/* X-axis labels */}
-          <div className="flex justify-between absolute -bottom-5 left-0 right-0">
+        {/* Bar Chart */}
+        <div className="relative mb-3" style={{ height: "140px" }}>
+          <div className="flex items-end justify-center space-x-2 h-full">
             {progressData.map((data, index) => (
-              <div
-                key={data.day}
-                className="text-xs text-center"
-                style={{ color: "#4A6A7B" }}
-              >
-                {data.day}
+              <div key={data.day} className="flex flex-col items-center group">
+                {/* Value labels */}
+                <div className="flex space-x-1 mb-1 text-xs font-medium">
+                  <div
+                    className="text-center"
+                    style={{ color: "#4CA1A3" }}
+                  >
+                    {data.recovered}
+                  </div>
+                  <div
+                    className="text-center"
+                    style={{ color: "#FF6F61" }}
+                  >
+                    {data.pending}
+                  </div>
+                </div>
+
+                {/* Bars */}
+                <div className="flex space-x-1 items-end">
+                  {/* Recovered bar */}
+                  <div
+                    className="w-4 rounded-t transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-lg"
+                    style={{
+                      backgroundColor: "#4CA1A3",
+                      height: `${(data.recovered / maxValue) * 100}px`,
+                      animationDelay: `${index * 100}ms`,
+                      boxShadow: "0 2px 6px rgba(76, 161, 163, 0.3)",
+                    }}
+                  />
+                  {/* Pending bar */}
+                  <div
+                    className="w-4 rounded-t transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-lg"
+                    style={{
+                      backgroundColor: "#FF6F61",
+                      height: `${(data.pending / maxValue) * 100}px`,
+                      animationDelay: `${index * 100 + 50}ms`,
+                      boxShadow: "0 2px 6px rgba(255, 111, 97, 0.3)",
+                    }}
+                  />
+                </div>
+
+                {/* Day label */}
+                <div
+                  className="text-xs text-center mt-2 font-medium"
+                  style={{ color: "#4A6A7B" }}
+                >
+                  {data.day}
+                </div>
               </div>
             ))}
           </div>
@@ -331,13 +273,13 @@ function RecoveryProgressChart() {
         {/* Legend */}
         <div className="flex justify-center space-x-4 pt-2 border-t border-white/20">
           <div className="flex items-center">
-            <div className="w-3 h-0.5 bg-[#4CA1A3] rounded mr-2" />
+            <div className="w-3 h-3 bg-[#4CA1A3] rounded mr-2" />
             <span className="text-xs font-medium" style={{ color: "#05445E" }}>
               Recovered
             </span>
           </div>
           <div className="flex items-center">
-            <div className="w-3 h-0.5 bg-[#FF6F61] rounded mr-2" />
+            <div className="w-3 h-3 bg-[#FF6F61] rounded mr-2" />
             <span className="text-xs font-medium" style={{ color: "#05445E" }}>
               Pending
             </span>
