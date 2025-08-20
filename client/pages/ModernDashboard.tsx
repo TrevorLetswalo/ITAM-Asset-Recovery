@@ -196,14 +196,18 @@ function RecoveryProgressChart() {
         <div className="flex items-center justify-between">
           <h3
             className="text-base font-medium flex items-center"
-            style={{ color: "#05445E" }}
+            style={{ color: "var(--color-1)" }}
           >
-            <BarChart3 className="mr-2 h-4 w-4" style={{ color: "#4CA1A3" }} />
+            <BarChart3 className="mr-2 h-4 w-4" style={{ color: "var(--color-3)" }} />
             Recovery Progress
           </h3>
           <div
-            className="text-xs border border-white/30 bg-white/20 backdrop-blur-lg px-2 py-1 rounded"
-            style={{ color: "#4CA1A3" }}
+            className="text-xs border px-2 py-1 rounded"
+            style={{
+              color: "var(--color-2)",
+              borderColor: "var(--color-4)",
+              backgroundColor: "var(--color-5)"
+            }}
           >
             Last 7 Days
           </div>
