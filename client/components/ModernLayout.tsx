@@ -108,8 +108,11 @@ export function ModernLayout({ children }: LayoutProps) {
         <div className="flex h-full flex-col">
           {/* User Info Section - Teal background */}
           <div
-            className="flex items-center px-6 py-6 border-b border-white/20"
-            style={{ backgroundColor: "#4CA1A3" }}
+            className="flex items-center px-6 py-6 border-b"
+            style={{
+              backgroundColor: "var(--color-2)",
+              borderBottomColor: "var(--color-3)"
+            }}
           >
             <div className="flex items-center space-x-4">
               <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg border border-white/30">
