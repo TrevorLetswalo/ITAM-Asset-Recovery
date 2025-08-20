@@ -258,13 +258,19 @@ export function ModernLayout({ children }: LayoutProps) {
           {/* Search bar - Decreased size */}
           <div className="flex-1 flex justify-center max-w-xs">
             <form onSubmit={handleSearch} className="relative w-full">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
+              <Search
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4"
+                style={{ color: "var(--color-3)" }}
+              />
               <input
                 type="text"
                 placeholder="Search..."
-                className="w-full pl-10 pr-3 py-2 bg-white/90 backdrop-blur-sm border border-white/50 rounded-xl text-gray-700 placeholder-gray-500 focus:ring-2 focus:ring-white/50 focus:border-white focus:outline-none transition-all duration-200"
+                className="w-full pl-10 pr-3 py-2 backdrop-blur-sm border rounded-xl focus:ring-2 focus:outline-none transition-all duration-200"
                 style={{
-                  boxShadow: "0 2px 8px rgba(5, 68, 94, 0.1)",
+                  backgroundColor: "var(--color-5)",
+                  borderColor: "var(--color-4)",
+                  color: "var(--color-1)",
+                  boxShadow: "0 2px 8px rgba(29, 31, 32, 0.1)",
                 }}
               />
             </form>
