@@ -223,13 +223,13 @@ function RecoveryProgressChart() {
                 <div className="flex space-x-0.5 mb-1 text-xs font-medium">
                   <div
                     className="text-center text-xs"
-                    style={{ color: "#4CA1A3" }}
+                    style={{ color: "var(--color-1)" }}
                   >
                     {data.recovered}
                   </div>
                   <div
                     className="text-center text-xs"
-                    style={{ color: "#FF6F61" }}
+                    style={{ color: "var(--color-2)" }}
                   >
                     {data.pending}
                   </div>
@@ -241,20 +241,20 @@ function RecoveryProgressChart() {
                   <div
                     className="w-3 rounded-t transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-lg"
                     style={{
-                      backgroundColor: "#4CA1A3",
+                      backgroundColor: "var(--color-3)", // Shuttle Gray
                       height: `${(data.recovered / maxValue) * 80}px`,
                       animationDelay: `${index * 100}ms`,
-                      boxShadow: "0 2px 6px rgba(76, 161, 163, 0.3)",
+                      boxShadow: "0 2px 6px rgba(96, 109, 128, 0.3)",
                     }}
                   />
                   {/* Pending bar */}
                   <div
                     className="w-3 rounded-t transition-all duration-1000 ease-out hover:scale-105 group-hover:shadow-lg"
                     style={{
-                      backgroundColor: "#FF6F61",
+                      backgroundColor: "var(--color-2)", // Mako
                       height: `${(data.pending / maxValue) * 80}px`,
                       animationDelay: `${index * 100 + 50}ms`,
-                      boxShadow: "0 2px 6px rgba(255, 111, 97, 0.3)",
+                      boxShadow: "0 2px 6px rgba(63, 71, 80, 0.3)",
                     }}
                   />
                 </div>
@@ -262,7 +262,7 @@ function RecoveryProgressChart() {
                 {/* Day label */}
                 <div
                   className="text-xs text-center mt-1.5 font-medium"
-                  style={{ color: "#4A6A7B" }}
+                  style={{ color: "var(--color-3)" }}
                 >
                   {data.day}
                 </div>
