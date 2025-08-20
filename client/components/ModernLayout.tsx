@@ -153,21 +153,21 @@ export function ModernLayout({ children }: LayoutProps) {
                       : "",
                   )}
                   style={{
-                    backgroundColor: isActive ? "#FF6F61" : "transparent",
-                    color: "#05445E", // Navy text
+                    backgroundColor: isActive ? "var(--color-3)" : "transparent",
+                    color: isActive ? "var(--color-5)" : "var(--color-4)",
                     borderColor:
-                      item.highlight && !isActive ? "#FF6F61" : "transparent",
+                      item.highlight && !isActive ? "var(--color-3)" : "transparent",
                   }}
                   onMouseEnter={(e) => {
                     if (!isActive) {
-                      e.currentTarget.style.backgroundColor = "#FF6F61";
-                      e.currentTarget.style.color = "white";
+                      e.currentTarget.style.backgroundColor = "var(--color-3)";
+                      e.currentTarget.style.color = "var(--color-5)";
                     }
                   }}
                   onMouseLeave={(e) => {
                     if (!isActive) {
                       e.currentTarget.style.backgroundColor = "transparent";
-                      e.currentTarget.style.color = "#05445E";
+                      e.currentTarget.style.color = "var(--color-4)";
                     }
                   }}
                 >
