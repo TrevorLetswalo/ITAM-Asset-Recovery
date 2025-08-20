@@ -497,14 +497,14 @@ export function SlaBreaches() {
           </div>
         </Glass3DContainer>
 
-        <Glass3DContainer>
+        <Glass3DContainer className="p-4">
           <div className="flex items-center">
-            <TrendingUp className="h-8 w-8 text-green-600 mr-3" />
+            <TrendingUp className="h-6 w-6 text-green-600 mr-3" />
             <div>
-              <p className="text-sm text-[#2C8780] font-medium">
+              <p className="text-xs text-[#2C8780] font-medium">
                 Asset Value at Risk
               </p>
-              <p className="text-2xl font-light text-[#1D1D2C]">
+              <p className="text-xl font-light text-[#1D1D2C]">
                 R{((stats.totalValue * 18.5) / 1000).toFixed(0)}K
               </p>
             </div>
