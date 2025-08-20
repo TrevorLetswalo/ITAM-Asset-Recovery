@@ -243,7 +243,8 @@ export function ModernLayout({ children }: LayoutProps) {
           <Button
             variant="ghost"
             size="sm"
-            className="lg:hidden text-white hover:text-white/80 mr-4"
+            className="lg:hidden mr-4"
+            style={{ color: "var(--color-5)" }}
             onClick={() => setSidebarOpen(true)}
           >
             <Menu className="h-5 w-5" />
