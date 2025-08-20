@@ -457,14 +457,14 @@ export function SlaBreaches() {
 
       {/* KPI Summary */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Glass3DContainer>
+        <Glass3DContainer className="p-4">
           <div className="flex items-center">
-            <AlertTriangle className="h-8 w-8 text-red-600 mr-3" />
+            <AlertTriangle className="h-6 w-6 text-red-600 mr-3" />
             <div>
-              <p className="text-sm text-[#2C8780] font-medium">
+              <p className="text-xs text-[#2C8780] font-medium">
                 Total Breaches
               </p>
-              <p className="text-2xl font-light text-[#1D1D2C]">
+              <p className="text-xl font-light text-[#1D1D2C]">
                 {stats.total}
               </p>
             </div>
