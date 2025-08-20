@@ -120,7 +120,7 @@ function CompactKpiCard({
   };
 
   return (
-    <div className="seaside-kpi-card h-36 group relative overflow-hidden cursor-pointer">
+    <div className="seaside-kpi-card h-32 group relative overflow-hidden cursor-pointer">
       {/* Ocean Wave Top Accent */}
       <div
         className="absolute top-0 left-0 right-0 h-1"
