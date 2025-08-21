@@ -151,10 +151,10 @@ export function ModernLayout({ children }: LayoutProps) {
                       : "",
                   )}
                   style={{
-                    backgroundColor: isActive ? "var(--color-3)" : "transparent",
-                    color: isActive ? "var(--color-5)" : "var(--color-4)",
+                    backgroundColor: isActive ? "#a6c6ed" : "transparent",
+                    color: isActive ? "#3d4c5c" : "#b4d9d9",
                     borderColor:
-                      item.highlight && !isActive ? "var(--color-3)" : "transparent",
+                      item.highlight && !isActive ? "#a6c6ed" : "transparent",
                   }}
                 >
                   <Icon
