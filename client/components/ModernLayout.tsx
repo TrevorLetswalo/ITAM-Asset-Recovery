@@ -292,7 +292,7 @@ export function ModernLayout({ children }: LayoutProps) {
         {/* Page content */}
         <main
           className="flex-1 overflow-auto"
-          style={{ backgroundColor: "var(--color-5)" }}
+          style={{ backgroundColor: "#f8f9fa" }}
         >
           <div className="p-6 min-h-full">{children}</div>
         </main>
