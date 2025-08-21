@@ -750,10 +750,10 @@ export function ModernDashboard() {
                     >
                       <td className="py-2">
                         <div>
-                          <p className="text-xs font-medium text-[#1D1D2C] truncate">
+                          <p className="text-xs font-medium truncate" style={{ color: "var(--color-1)" }}>
                             {asset.asset_tag}
                           </p>
-                          <p className="text-xs text-[#2C8780] truncate">
+                          <p className="text-xs truncate" style={{ color: "var(--color-3)" }}>
                             {asset.asset_type}
                           </p>
                         </div>
