@@ -267,8 +267,7 @@ export function ModernLayout({ children }: LayoutProps) {
               variant="ghost"
               size="sm"
               onClick={() => alert("🔄 Refreshing dashboard data...")}
-              className="rounded-xl"
-              style={{ color: "var(--color-5)" }}
+              className="rounded-xl text-white hover:bg-white hover:bg-opacity-20"
             >
               <RefreshCw className="h-5 w-5" />
             </Button>
@@ -277,8 +276,7 @@ export function ModernLayout({ children }: LayoutProps) {
               variant="ghost"
               size="sm"
               onClick={handleNotifications}
-              className="relative rounded-xl"
-              style={{ color: "var(--color-5)" }}
+              className="relative rounded-xl text-white hover:bg-white hover:bg-opacity-20"
             >
               <Bell className="h-5 w-5" />
               <span
