@@ -154,7 +154,7 @@ function BreachAlertCard({
   const Icon = priorityConfig.icon;
 
   return (
-    <Glass3DContainer className="border-l-4 border-l-red-400">
+    <MinimalContainer className="border-l-4 border-l-red-400">
       <div className="pb-3">
         <div className="flex justify-between items-start">
           <div className="flex items-center space-x-3">
@@ -243,7 +243,7 @@ function BreachAlertCard({
           </Button>
         </div>
       </div>
-    </Glass3DContainer>
+    </MinimalContainer>
   );
 }
 
@@ -251,7 +251,7 @@ function BreachTrendsChart() {
   const maxValue = Math.max(...breachTrends.map((d) => d.breaches));
 
   return (
-    <Glass3DContainer style={{ minHeight: "320px" }}>
+    <MinimalContainer style={{ minHeight: "320px" }}>
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
           <BarChart3 className="mr-2 h-5 w-5 text-[#2C8780]" />
@@ -312,7 +312,7 @@ function BreachTrendsChart() {
           <span className="text-sm text-[#1D1D2C] font-medium">Resolved</span>
         </div>
       </div>
-    </Glass3DContainer>
+    </MinimalContainer>
   );
 }
 
@@ -438,7 +438,7 @@ export function SlaBreaches() {
 
       {/* KPI Summary */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Glass3DContainer className="p-4">
+        <MinimalContainer className="p-4">
           <div className="flex items-center">
             <AlertTriangle className="h-6 w-6 text-red-600 mr-3" />
             <div>
@@ -450,9 +450,9 @@ export function SlaBreaches() {
               </p>
             </div>
           </div>
-        </Glass3DContainer>
+        </MinimalContainer>
 
-        <Glass3DContainer className="p-4">
+        <MinimalContainer className="p-4">
           <div className="flex items-center">
             <XCircle className="h-6 w-6 text-red-700 mr-3" />
             <div>
@@ -462,9 +462,9 @@ export function SlaBreaches() {
               </p>
             </div>
           </div>
-        </Glass3DContainer>
+        </MinimalContainer>
 
-        <Glass3DContainer className="p-4">
+        <MinimalContainer className="p-4">
           <div className="flex items-center">
             <Clock className="h-6 w-6 text-orange-600 mr-3" />
             <div>
@@ -476,9 +476,9 @@ export function SlaBreaches() {
               </p>
             </div>
           </div>
-        </Glass3DContainer>
+        </MinimalContainer>
 
-        <Glass3DContainer className="p-4">
+        <MinimalContainer className="p-4">
           <div className="flex items-center">
             <TrendingUp className="h-6 w-6 text-green-600 mr-3" />
             <div>
@@ -490,13 +490,13 @@ export function SlaBreaches() {
               </p>
             </div>
           </div>
-        </Glass3DContainer>
+        </MinimalContainer>
       </div>
 
       {/* Filters and Trends */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Filters */}
-        <Glass3DContainer>
+        <MinimalContainer>
           <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">Filters</h3>
           <div className="space-y-4">
             <div>
@@ -545,7 +545,7 @@ export function SlaBreaches() {
               </select>
             </div>
           </div>
-        </Glass3DContainer>
+        </MinimalContainer>
 
         {/* Breach Trends Chart */}
         <div className="lg:col-span-2">
@@ -579,7 +579,7 @@ export function SlaBreaches() {
         </div>
 
         {filteredAlerts.length === 0 && (
-          <Glass3DContainer className="text-center py-12">
+          <MinimalContainer className="text-center py-12">
             <CheckCircle className="mx-auto h-12 w-12 text-green-500 mb-4" />
             <h3 className="text-lg font-medium text-[#1D1D2C] mb-2">
               No Breaches Found
@@ -587,7 +587,7 @@ export function SlaBreaches() {
             <p className="text-[#2C8780]">
               All assets are within SLA compliance for the selected filters.
             </p>
-          </Glass3DContainer>
+          </MinimalContainer>
         )}
       </div>
     </div>
