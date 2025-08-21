@@ -72,8 +72,8 @@ function AnimatedCounter({
   );
 }
 
-// 90s Cool Toned Minimalism Palette
-const COLORS = ["#a6c6ed", "#5b90b3", "#3d4c5c", "#b4d9d9", "#f8b98b"];
+// 90s Cool Toned Chart Colors
+const chartColors = ['#a6c6ed', '#5b90b3', '#3d4c5c', '#b4d9d9', '#f8b98b'];
 
 export function ModernDashboard() {
   const stats = getDashboardStats();
@@ -108,181 +108,183 @@ export function ModernDashboard() {
   ];
 
   return (
-    <div className="space-y-6">
-      {/* KPI Cards */}
-      <div className="grid grid-cols-4 gap-4">
-        {kpiData.map((kpi, i) => (
-          <Card key={i} className="retro-kpi-card">
-            <CardContent className="p-4">
-              <p className="text-sm font-medium" style={{ color: "#5b90b3" }}>
-                {kpi.title}
-              </p>
-              <h2 className="text-2xl font-bold" style={{ color: "#3d4c5c" }}>
-                <AnimatedCounter value={kpi.value} />
-              </h2>
-            </CardContent>
+    <div className="container-padding">
+      <div className="space-y-6">
+        {/* KPI Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-spacing">
+          {kpiData.map((kpi, i) => (
+            <Card key={i} className="kpi-card">
+              <CardContent className="p-4">
+                <p className="text-sm font-medium text-hippie-blue">
+                  {kpi.title}
+                </p>
+                <h2 className="text-2xl font-bold text-oxford-blue">
+                  <AnimatedCounter value={kpi.value} />
+                </h2>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Charts Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 grid-spacing">
+          {/* Assets by Type - Bar Chart */}
+          <Card className="chart-container">
+            <h3 className="text-lg font-semibold mb-4 text-hippie-blue">
+              Assets by Type
+            </h3>
+            <ResponsiveContainer width="100%" height={200}>
+              <BarChart data={barData}>
+                <XAxis dataKey="name" stroke="#3d4c5c" fontSize={12} />
+                <YAxis stroke="#3d4c5c" fontSize={12} />
+                <Tooltip 
+                  contentStyle={{ 
+                    backgroundColor: 'white', 
+                    border: '1px solid #a6c6ed',
+                    borderRadius: '8px'
+                  }}
+                />
+                <Bar dataKey="value">
+                  {barData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={chartColors[index % chartColors.length]} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
           </Card>
-        ))}
-      </div>
 
-      {/* Charts Section */}
-      <div className="grid grid-cols-3 gap-6">
-        {/* Assets by Type - Bar Chart */}
-        <Card className="retro-chart-container">
-          <h3 className="text-lg font-semibold mb-4" style={{ color: "#3d4c5c" }}>
-            Assets by Type
+          {/* SLA Compliance - Pie Chart */}
+          <Card className="chart-container">
+            <h3 className="text-lg font-semibold mb-4 text-hippie-blue">
+              SLA Compliance
+            </h3>
+            <ResponsiveContainer width="100%" height={200}>
+              <PieChart>
+                <Pie 
+                  data={pieData} 
+                  dataKey="value" 
+                  outerRadius={80} 
+                  label
+                  labelStyle={{ fontSize: '12px', fill: '#3d4c5c' }}
+                >
+                  {pieData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={chartColors[index % chartColors.length]} />
+                  ))}
+                </Pie>
+                <Legend 
+                  wrapperStyle={{ fontSize: '12px', color: '#3d4c5c' }}
+                />
+              </PieChart>
+            </ResponsiveContainer>
+          </Card>
+
+          {/* Recovery Progress - Line Chart */}
+          <Card className="chart-container">
+            <h3 className="text-lg font-semibold mb-4 text-hippie-blue">
+              Recovery Progress
+            </h3>
+            <ResponsiveContainer width="100%" height={200}>
+              <LineChart data={lineData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#a6c6ed" />
+                <XAxis dataKey="name" stroke="#3d4c5c" fontSize={12} />
+                <YAxis stroke="#3d4c5c" fontSize={12} />
+                <Tooltip 
+                  contentStyle={{ 
+                    backgroundColor: 'white', 
+                    border: '1px solid #a6c6ed',
+                    borderRadius: '8px'
+                  }}
+                />
+                <Line 
+                  type="monotone" 
+                  dataKey="value" 
+                  stroke={chartColors[1]} 
+                  strokeWidth={3}
+                  dot={{ fill: chartColors[1], strokeWidth: 2, r: 4 }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </Card>
+        </div>
+
+        {/* Recent Activities Table */}
+        <Card className="clean-card">
+          <h3 className="text-lg font-semibold mb-4 text-hippie-blue">
+            Recent Activities
           </h3>
-          <ResponsiveContainer width="100%" height={200}>
-            <BarChart data={barData}>
-              <XAxis dataKey="name" stroke="#3d4c5c" fontSize={12} />
-              <YAxis stroke="#3d4c5c" fontSize={12} />
-              <Tooltip 
-                contentStyle={{ 
-                  backgroundColor: 'white', 
-                  border: '1px solid #a6c6ed',
-                  borderRadius: '8px'
-                }}
-              />
-              <Bar dataKey="value">
-                {barData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-        </Card>
-
-        {/* SLA Compliance - Pie Chart */}
-        <Card className="retro-chart-container">
-          <h3 className="text-lg font-semibold mb-4" style={{ color: "#3d4c5c" }}>
-            SLA Compliance
-          </h3>
-          <ResponsiveContainer width="100%" height={200}>
-            <PieChart>
-              <Pie 
-                data={pieData} 
-                dataKey="value" 
-                outerRadius={80} 
-                label
-                labelStyle={{ fontSize: '12px', fill: '#3d4c5c' }}
-              >
-                {pieData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-              <Legend 
-                wrapperStyle={{ fontSize: '12px', color: '#3d4c5c' }}
-              />
-            </PieChart>
-          </ResponsiveContainer>
-        </Card>
-
-        {/* Recovery Progress - Line Chart */}
-        <Card className="retro-chart-container">
-          <h3 className="text-lg font-semibold mb-4" style={{ color: "#3d4c5c" }}>
-            Recovery Progress
-          </h3>
-          <ResponsiveContainer width="100%" height={200}>
-            <LineChart data={lineData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#a6c6ed" />
-              <XAxis dataKey="name" stroke="#3d4c5c" fontSize={12} />
-              <YAxis stroke="#3d4c5c" fontSize={12} />
-              <Tooltip 
-                contentStyle={{ 
-                  backgroundColor: 'white', 
-                  border: '1px solid #a6c6ed',
-                  borderRadius: '8px'
-                }}
-              />
-              <Line 
-                type="monotone" 
-                dataKey="value" 
-                stroke={COLORS[1]} 
-                strokeWidth={3}
-                dot={{ fill: COLORS[1], strokeWidth: 2, r: 4 }}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </Card>
-      </div>
-
-      {/* Recent Activities Table */}
-      <Card className="retro-card">
-        <h3 className="text-lg font-semibold mb-4" style={{ color: "#3d4c5c" }}>
-          Recent Activities
-        </h3>
-        <table className="retro-table">
-          <thead style={{ backgroundColor: "#a6c6ed" }}>
-            <tr>
-              <th className="p-2">Asset</th>
-              <th className="p-2">User</th>
-              <th className="p-2">Status</th>
-              <th className="p-2">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {allMockAssets.slice(0, 6).map((asset, index) => (
-              <tr key={asset.id} className="hover:bg-light-blue hover:bg-opacity-10">
-                <td className="p-2">
-                  <div>
-                    <p className="font-medium" style={{ color: "#3d4c5c" }}>
-                      {asset.asset_tag}
-                    </p>
-                    <p className="text-xs" style={{ color: "#5b90b3" }}>
-                      {asset.asset_type}
-                    </p>
-                  </div>
-                </td>
-                <td className="p-2" style={{ color: "#3d4c5c" }}>
-                  {asset.user_name}
-                </td>
-                <td className="p-2">
-                  <span 
-                    className={`px-2 py-1 rounded text-xs font-medium ${
-                      asset.status === "Completed"
-                        ? "bg-green-100 text-green-700"
-                        : asset.sla_stage === "Breach"
-                          ? "bg-red-100 text-red-700"
-                          : "bg-blue-100 text-blue-700"
-                    }`}
-                  >
-                    {asset.status}
-                  </span>
-                </td>
-                <td className="p-2" style={{ color: "#5b90b3" }}>
-                  {new Date().toLocaleDateString()}
-                </td>
+          <table className="clean-table">
+            <thead className="bg-cornflower">
+              <tr>
+                <th className="p-2">Asset</th>
+                <th className="p-2">User</th>
+                <th className="p-2">Status</th>
+                <th className="p-2">Date</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </Card>
-
-      {/* Self-Service & Requests */}
-      <div className="grid grid-cols-2 gap-6">
-        <Card className="retro-card retro-card-teal">
-          <h3 className="text-xl font-semibold mb-2" style={{ color: "#3d4c5c" }}>
-            Self-Service Return Center
-          </h3>
-          <p className="mb-4" style={{ color: "#3d4c5c" }}>
-            Easily return your assigned assets using our guided process.
-          </p>
-          <Button className="retro-btn">
-            Start Return
-          </Button>
+            </thead>
+            <tbody>
+              {allMockAssets.slice(0, 6).map((asset, index) => (
+                <tr key={asset.id} className="hover:bg-cornflower hover:bg-opacity-10">
+                  <td className="p-2">
+                    <div>
+                      <p className="font-medium text-oxford-blue">
+                        {asset.asset_tag}
+                      </p>
+                      <p className="text-xs text-hippie-blue">
+                        {asset.asset_type}
+                      </p>
+                    </div>
+                  </td>
+                  <td className="p-2 text-oxford-blue">
+                    {asset.user_name}
+                  </td>
+                  <td className="p-2">
+                    <span 
+                      className={`status-badge ${
+                        asset.status === "Completed"
+                          ? "status-badge-success"
+                          : asset.sla_stage === "Breach"
+                            ? "status-badge-danger"
+                            : "status-badge-info"
+                      }`}
+                    >
+                      {asset.status}
+                    </span>
+                  </td>
+                  <td className="p-2 text-hippie-blue">
+                    {new Date().toLocaleDateString()}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </Card>
 
-        <Card className="retro-card retro-card-peach">
-          <h3 className="text-xl font-semibold mb-2" style={{ color: "#3d4c5c" }}>
-            Submit Recovery Request
-          </h3>
-          <p className="mb-4" style={{ color: "#3d4c5c" }}>
-            Log a request to recover an asset quickly and efficiently.
-          </p>
-          <Button className="retro-btn">
-            Submit Request
-          </Button>
-        </Card>
+        {/* Self-Service & Requests */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 grid-spacing">
+          <Card className="clean-card bg-jungle-mist">
+            <h3 className="text-xl font-semibold mb-2 text-oxford-blue">
+              Self-Service Return Center
+            </h3>
+            <p className="mb-4 text-oxford-blue">
+              Easily return your assigned assets using our guided process.
+            </p>
+            <Button className="btn-primary">
+              Start Return
+            </Button>
+          </Card>
+
+          <Card className="clean-card bg-manhattan">
+            <h3 className="text-xl font-semibold mb-2 text-oxford-blue">
+              Submit Recovery Request
+            </h3>
+            <p className="mb-4 text-oxford-blue">
+              Log a request to recover an asset quickly and efficiently.
+            </p>
+            <Button className="btn-primary">
+              Submit Request
+            </Button>
+          </Card>
+        </div>
       </div>
     </div>
   );
