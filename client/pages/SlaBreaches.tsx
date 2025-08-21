@@ -33,21 +33,21 @@ import { cn } from "@/lib/utils";
 import { exportSLABreaches } from "@/lib/exportUtils";
 import { sendReminderEmail, sendBulkEmails, initEmailJS } from "@/lib/emailjs";
 
-// Minimal Container Component
-interface MinimalContainerProps {
+// Clean Container Component
+interface CleanContainerProps {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
 }
 
-function MinimalContainer({
+function CleanContainer({
   children,
   className = "",
   style = {},
-}: MinimalContainerProps) {
+}: CleanContainerProps) {
   return (
     <div
-      className={`minimal-card ${className}`}
+      className={`clean-card ${className}`}
       style={{
         ...style,
       }}
