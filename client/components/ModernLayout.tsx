@@ -118,17 +118,17 @@ export function ModernLayout({ children }: LayoutProps) {
               <div
                 className="w-12 h-12 rounded-lg flex items-center justify-center border"
                 style={{
-                  backgroundColor: "var(--color-3)",
-                  borderColor: "var(--color-4)"
+                  backgroundColor: "#a6c6ed",
+                  borderColor: "#ffffff"
                 }}
               >
-                <User className="w-6 h-6" style={{ color: "var(--color-5)" }} />
+                <User className="w-6 h-6" style={{ color: "#3d4c5c" }} />
               </div>
               <div>
-                <h2 className="font-semibold text-lg" style={{ color: "var(--color-5)" }}>
+                <h2 className="font-semibold text-lg text-white">
                   Trevor Letswalo
                 </h2>
-                <p className="text-sm" style={{ color: "var(--color-4)" }}>Administrator</p>
+                <p className="text-sm" style={{ color: "#a6c6ed" }}>Administrator</p>
               </div>
             </div>
           </div>
