@@ -246,16 +246,16 @@ export function ModernLayout({ children }: LayoutProps) {
             <form onSubmit={handleSearch} className="relative w-full">
               <Search
                 className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4"
-                style={{ color: "var(--color-3)" }}
+                style={{ color: "#5b90b3" }}
               />
               <input
                 type="text"
                 placeholder="Search..."
                 className="w-full pl-10 pr-3 py-2 border rounded-lg focus:ring-2 focus:outline-none transition-colors duration-200"
                 style={{
-                  backgroundColor: "var(--color-5)",
-                  borderColor: "var(--color-4)",
-                  color: "var(--color-1)",
+                  backgroundColor: "white",
+                  borderColor: "#a6c6ed",
+                  color: "#3d4c5c",
                 }}
               />
             </form>
