@@ -221,8 +221,8 @@ export function ModernLayout({ children }: LayoutProps) {
         <header
           className="h-16 flex items-center px-6"
           style={{
-            backgroundColor: "var(--color-2)", // Mako
-            borderBottom: "1px solid var(--color-3)",
+            backgroundColor: "#5b90b3", // 90s medium blue
+            borderBottom: "1px solid #a6c6ed",
           }}
         >
           {/* Mobile menu button */}
