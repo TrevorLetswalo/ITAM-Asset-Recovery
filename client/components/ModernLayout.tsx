@@ -111,20 +111,14 @@ export function ModernLayout({ children }: LayoutProps) {
             className="flex items-center px-6 py-6 border-b bg-hippie-blue border-cornflower"
           >
             <div className="flex items-center space-x-4">
-              <div
-                className="w-12 h-12 rounded-lg flex items-center justify-center border"
-                style={{
-                  backgroundColor: "#a6c6ed",
-                  borderColor: "#ffffff"
-                }}
-              >
-                <User className="w-6 h-6" style={{ color: "#3d4c5c" }} />
+              <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-cornflower border border-white">
+                <User className="w-6 h-6 text-oxford-blue" />
               </div>
               <div>
                 <h2 className="font-semibold text-lg text-white">
                   Trevor Letswalo
                 </h2>
-                <p className="text-sm" style={{ color: "#a6c6ed" }}>Administrator</p>
+                <p className="text-sm text-cornflower">Administrator</p>
               </div>
             </div>
           </div>
