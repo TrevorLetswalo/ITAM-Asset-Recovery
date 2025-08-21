@@ -758,23 +758,23 @@ export function ModernDashboard() {
                           </p>
                         </div>
                       </td>
-                      <td className="py-2 text-xs text-[#1D1D2C] truncate max-w-[80px]">
+                      <td className="py-2 text-xs truncate max-w-[80px]" style={{ color: "var(--color-1)" }}>
                         {asset.user_name}
                       </td>
                       <td className="py-2">
                         <span
-                          className={`px-2 py-1 rounded-lg text-xs font-medium backdrop-blur-lg border ${
+                          className={`minimal-badge text-xs font-medium ${
                             asset.status === "Completed"
-                              ? "bg-green-100/50 text-green-700 border-green-200/30"
+                              ? "minimal-badge-success"
                               : asset.sla_stage === "Breach"
-                                ? "bg-red-100/50 text-red-700 border-red-200/30"
-                                : "bg-blue-100/50 text-blue-700 border-blue-200/30"
+                                ? "minimal-badge-danger"
+                                : "minimal-badge-secondary"
                           }`}
                         >
                           {asset.status}
                         </span>
                       </td>
-                      <td className="py-2 text-xs text-[#1D1D2C]">
+                      <td className="py-2 text-xs" style={{ color: "var(--color-1)" }}>
                         {asset.recovery_age}d
                       </td>
                     </tr>
