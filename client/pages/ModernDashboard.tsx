@@ -746,7 +746,7 @@ export function ModernDashboard() {
                   {allMockAssets.slice(0, 8).map((asset, index) => (
                     <tr
                       key={asset.id}
-                      className="border-b border-white/5 hover:bg-white/5 transition-colors"
+                      style={{ borderBottomColor: "var(--color-4)" }}
                     >
                       <td className="py-2">
                         <div>
