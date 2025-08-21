@@ -103,7 +103,7 @@ export function ModernLayout({ children }: LayoutProps) {
           "w-72 lg:sticky lg:top-0 lg:h-screen",
           sidebarOpen ? "translate-x-0" : "-translate-x-full",
         )}
-        style={{ backgroundColor: "#3d4c5c" }} // 90s dark blue-gray background
+        className="bg-oxford-blue" // Oxford blue background
       >
         <div className="flex h-full flex-col">
           {/* User Info Section - Teal background */}
