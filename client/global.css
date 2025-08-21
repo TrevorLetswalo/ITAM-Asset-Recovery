@@ -7,102 +7,84 @@
 @layer base {
   /**
    * 90s Cool Toned Minimalism Design System
-   * Clean, nostalgic design with soft blues and warm accents
+   * Clean, minimal design with no glassmorphism effects
    */
   :root {
     /* 90s Cool Toned Palette */
-    --color-1: #a6c6ed; /* Light blue */
-    --color-2: #5b90b3; /* Medium blue */
-    --color-3: #3d4c5c; /* Dark blue-gray */
-    --color-4: #b4d9d9; /* Light teal */
-    --color-5: #f8b98b; /* Light orange/peach */
-
-    /* Additional neutrals for text and backgrounds */
-    --bg-primary: #ffffff; /* White background */
-    --bg-secondary: #f8f9fa; /* Very light gray */
-    --text-primary: #3d4c5c; /* Dark blue-gray for text */
-    --text-secondary: #5b90b3; /* Medium blue for secondary text */
+    --cornflower: #a6c6ed;
+    --hippie-blue: #5b90b3;
+    --oxford-blue: #3d4c5c;
+    --jungle-mist: #b4d9d9;
+    --manhattan: #f8b98b;
 
     /* Shadcn Color Variables */
-    --background: 0 0% 98%; /* Almost white */
-    --foreground: 210 20% 35%; /* Dark blue-gray */
+    --background: 0 0% 100%; /* Pure white */
+    --foreground: 210 25% 35%; /* Oxford blue */
 
     --card: 0 0% 100%; /* Pure white */
-    --card-foreground: 210 20% 35%; /* Dark blue-gray */
+    --card-foreground: 210 25% 35%; /* Oxford blue */
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 20% 35%;
+    --popover-foreground: 210 25% 35%;
 
-    --primary: 205 60% 75%; /* Light blue */
-    --primary-foreground: 210 20% 35%;
+    --primary: 205 40% 65%; /* Hippie blue */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 180 25% 80%; /* Light teal */
-    --secondary-foreground: 210 20% 35%;
+    --secondary: 22 65% 75%; /* Manhattan */
+    --secondary-foreground: 210 25% 35%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 205 20% 55%;
+    --muted: 180 25% 85%; /* Light jungle mist */
+    --muted-foreground: 205 25% 55%;
 
-    --accent: 205 60% 75%; /* Light blue */
-    --accent-foreground: 210 20% 35%;
+    --accent: 205 60% 75%; /* Cornflower */
+    --accent-foreground: 210 25% 35%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 205 30% 90%;
-    --input: 205 30% 90%;
-    --ring: 205 60% 75%;
+    --border: 205 60% 75%; /* Cornflower border */
+    --input: 205 60% 75%;
+    --ring: 205 40% 65%; /* Hippie blue */
 
     --radius: 1rem;
 
-    /* Sidebar colors */
-    --sidebar-background: 210 20% 35%; /* Dark blue-gray */
-    --sidebar-foreground: 0 0% 100%; /* White */
-    --sidebar-primary: 205 60% 75%; /* Light blue */
-    --sidebar-primary-foreground: 210 20% 35%;
-    --sidebar-accent: 205 40% 65%; /* Medium blue */
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 205 20% 45%;
-    --sidebar-ring: 205 60% 75%;
+    /* Chart colors array */
+    --chart-1: #a6c6ed; /* cornflower */
+    --chart-2: #5b90b3; /* hippie-blue */
+    --chart-3: #3d4c5c; /* oxford-blue */
+    --chart-4: #b4d9d9; /* jungle-mist */
+    --chart-5: #f8b98b; /* manhattan */
   }
 
   .dark {
-    /* Dark Mode - 90s Enhanced */
-    --background: 210 20% 15%;
+    /* Dark mode variant */
+    --background: 210 25% 10%;
     --foreground: 0 0% 95%;
 
-    --card: 210 20% 20%;
+    --card: 210 25% 15%;
     --card-foreground: 0 0% 95%;
 
-    --popover: 210 20% 20%;
+    --popover: 210 25% 15%;
     --popover-foreground: 0 0% 95%;
 
     --primary: 205 60% 75%;
-    --primary-foreground: 210 20% 15%;
+    --primary-foreground: 210 25% 10%;
 
-    --secondary: 210 20% 25%;
+    --secondary: 210 25% 20%;
     --secondary-foreground: 0 0% 90%;
 
-    --muted: 210 20% 25%;
-    --muted-foreground: 205 20% 70%;
+    --muted: 210 25% 20%;
+    --muted-foreground: 205 25% 70%;
 
     --accent: 205 60% 75%;
-    --accent-foreground: 210 20% 15%;
+    --accent-foreground: 210 25% 10%;
 
     --destructive: 0 75% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 25%;
-    --input: 210 20% 25%;
+    --border: 210 25% 20%;
+    --input: 210 25% 20%;
     --ring: 205 60% 75%;
-
-    --sidebar-background: 210 20% 15%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 205 60% 75%;
-    --sidebar-primary-foreground: 210 20% 15%;
-    --sidebar-accent: 210 20% 25%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 210 20% 25%;
-    --sidebar-ring: 205 60% 75%;
   }
 }
 
@@ -118,14 +100,14 @@
 
   body {
     @apply bg-background text-foreground font-inter antialiased;
-    background: var(--bg-secondary); /* Very light gray background */
+    background: white; /* Solid white background */
     min-height: 100vh;
   }
 
-  /* Clean, 90s-inspired Typography */
+  /* Typography - 90s Cool Toned */
   h1, h2, h3, h4, h5, h6 {
     @apply font-inter font-semibold;
-    color: var(--text-primary); /* Dark blue-gray */
+    color: var(--hippie-blue); /* Headings in hippie blue */
   }
 
   h1 { @apply text-3xl lg:text-4xl tracking-tight; }
@@ -135,123 +117,125 @@
   h5 { @apply text-base lg:text-lg font-medium; }
   h6 { @apply text-sm lg:text-base font-medium; }
 
-  /* Body text */
+  /* Body text - oxford blue */
   p, span, div {
-    color: var(--text-primary); /* Dark blue-gray */
+    color: var(--oxford-blue);
   }
 
-  /* Secondary text */
-  .text-secondary {
-    color: var(--text-secondary); /* Medium blue */
+  /* Highlights - manhattan */
+  .text-highlight {
+    color: var(--manhattan);
   }
 }
 
 @layer components {
-  /* 90s Cool Toned Card Design */
-  .retro-card {
-    @apply rounded-2xl p-6 bg-white shadow-md border-none;
-    box-shadow: 0 4px 16px rgba(166, 198, 237, 0.15);
+  /* Remove all glassmorphism effects */
+  * {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 
-  .retro-card:hover {
-    box-shadow: 0 8px 24px rgba(166, 198, 237, 0.25);
-    transform: translateY(-2px);
-    transition: all 0.3s ease;
+  /* Clean Card Design - No Glass Effects */
+  .clean-card {
+    @apply bg-white rounded-2xl border shadow-md;
+    border-color: var(--cornflower);
+    padding: 1.5rem; /* p-6 */
+  }
+
+  .clean-card:hover {
+    box-shadow: 0 8px 24px rgba(166, 198, 237, 0.15);
   }
 
   /* KPI Card Styling */
-  .retro-kpi-card {
-    @apply rounded-2xl p-4 bg-white shadow-md border-none;
-    box-shadow: 0 4px 16px rgba(166, 198, 237, 0.15);
-    transition: all 0.3s ease;
+  .kpi-card {
+    @apply bg-white rounded-2xl border shadow-md;
+    border-color: var(--cornflower);
+    padding: 1rem;
   }
 
-  .retro-kpi-card:hover {
-    box-shadow: 0 8px 24px rgba(166, 198, 237, 0.25);
-    transform: translateY(-2px);
+  .kpi-card:hover {
+    box-shadow: 0 8px 24px rgba(166, 198, 237, 0.15);
   }
 
   /* Chart Container */
-  .retro-chart-container {
-    @apply rounded-2xl p-4 bg-white shadow-md border-none;
-    box-shadow: 0 4px 16px rgba(166, 198, 237, 0.15);
+  .chart-container {
+    @apply bg-white rounded-2xl border shadow-md;
+    border-color: var(--cornflower);
+    padding: 1rem;
     min-height: 280px;
   }
 
-  /* 90s Buttons */
-  .retro-btn {
+  /* Primary Button */
+  .btn-primary {
+    @apply rounded-xl px-6 py-3 font-medium transition-all duration-200 text-white;
+    background-color: var(--hippie-blue);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--oxford-blue);
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
     @apply rounded-xl px-6 py-3 font-medium transition-all duration-200;
-    background: var(--color-3); /* Dark blue-gray */
-    color: white;
+    background-color: var(--manhattan);
+    color: var(--oxford-blue);
   }
 
-  .retro-btn:hover {
-    background: var(--color-2); /* Medium blue */
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(91, 144, 179, 0.3);
+  .btn-secondary:hover {
+    background-color: var(--cornflower);
+    color: var(--oxford-blue);
   }
 
-  .retro-btn-secondary {
-    @apply rounded-xl px-6 py-3 font-medium transition-all duration-200;
-    background: var(--color-1); /* Light blue */
-    color: var(--color-3); /* Dark blue-gray */
-  }
-
-  .retro-btn-secondary:hover {
-    background: var(--color-2); /* Medium blue */
-    color: white;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(91, 144, 179, 0.3);
-  }
-
-  /* Table Styles */
-  .retro-table {
+  /* Clean Table Styles */
+  .clean-table {
     @apply w-full text-sm;
   }
 
-  .retro-table thead {
-    background: var(--color-1); /* Light blue */
+  .clean-table thead {
+    background-color: var(--cornflower);
   }
 
-  .retro-table th {
+  .clean-table th {
     @apply p-2 text-left font-medium;
-    color: var(--color-3); /* Dark blue-gray */
+    color: var(--oxford-blue);
   }
 
-  .retro-table td {
+  .clean-table td {
     @apply p-2 border-b;
-    color: var(--text-primary);
+    color: var(--oxford-blue);
     border-color: rgba(166, 198, 237, 0.3);
   }
 
-  .retro-table tr:hover {
+  .clean-table tr:hover {
     background-color: rgba(166, 198, 237, 0.1);
   }
 
-  /* Special Action Cards */
-  .retro-card-teal {
-    background: var(--color-4); /* Light teal */
-    color: var(--text-primary);
+  /* Sidebar Styling */
+  .sidebar {
+    background-color: var(--oxford-blue);
+    color: white;
   }
 
-  .retro-card-peach {
-    background: var(--color-5); /* Light orange/peach */
-    color: var(--text-primary);
+  .sidebar-nav-item {
+    @apply flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors duration-200;
+    color: var(--jungle-mist);
   }
 
-  /* Clean Shadows */
-  .shadow-retro {
-    box-shadow: 0 4px 16px rgba(166, 198, 237, 0.15);
+  .sidebar-nav-item:hover {
+    background-color: var(--hippie-blue);
+    color: white;
   }
 
-  .shadow-retro-lg {
-    box-shadow: 0 8px 24px rgba(166, 198, 237, 0.25);
+  .sidebar-nav-item.active {
+    background-color: var(--cornflower);
+    color: var(--oxford-blue);
   }
 
-  /* Focus effects */
+  /* Focus effects - clean and minimal */
   input:focus, textarea:focus, select:focus {
     outline: none;
-    border-color: var(--color-2);
+    border-color: var(--hippie-blue);
     box-shadow: 0 0 0 2px rgba(91, 144, 179, 0.2);
   }
 
@@ -283,25 +267,64 @@
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background-color: rgba(91, 144, 179, 0.5);
   }
+
+  /* Layout utilities */
+  .main-container {
+    padding: 1.5rem; /* p-6 */
+  }
+
+  .grid-gap {
+    gap: 1.5rem; /* gap-6 */
+  }
+
+  /* Status badges */
+  .status-badge {
+    @apply px-2 py-1 rounded text-xs font-medium;
+  }
+
+  .status-badge-success {
+    background-color: #10b981;
+    color: white;
+  }
+
+  .status-badge-warning {
+    background-color: var(--manhattan);
+    color: var(--oxford-blue);
+  }
+
+  .status-badge-danger {
+    background-color: #ef4444;
+    color: white;
+  }
+
+  .status-badge-info {
+    background-color: var(--cornflower);
+    color: var(--oxford-blue);
+  }
 }
 
 /* Utility Classes */
 @layer utilities {
-  .text-light-blue { color: var(--color-1); }
-  .text-medium-blue { color: var(--color-2); }
-  .text-dark-blue { color: var(--color-3); }
-  .text-light-teal { color: var(--color-4); }
-  .text-peach { color: var(--color-5); }
+  /* Color utilities */
+  .text-cornflower { color: var(--cornflower); }
+  .text-hippie-blue { color: var(--hippie-blue); }
+  .text-oxford-blue { color: var(--oxford-blue); }
+  .text-jungle-mist { color: var(--jungle-mist); }
+  .text-manhattan { color: var(--manhattan); }
   
-  .bg-light-blue { background-color: var(--color-1); }
-  .bg-medium-blue { background-color: var(--color-2); }
-  .bg-dark-blue { background-color: var(--color-3); }
-  .bg-light-teal { background-color: var(--color-4); }
-  .bg-peach { background-color: var(--color-5); }
+  .bg-cornflower { background-color: var(--cornflower); }
+  .bg-hippie-blue { background-color: var(--hippie-blue); }
+  .bg-oxford-blue { background-color: var(--oxford-blue); }
+  .bg-jungle-mist { background-color: var(--jungle-mist); }
+  .bg-manhattan { background-color: var(--manhattan); }
   
-  .border-light-blue { border-color: var(--color-1); }
-  .border-medium-blue { border-color: var(--color-2); }
-  .border-dark-blue { border-color: var(--color-3); }
-  .border-light-teal { border-color: var(--color-4); }
-  .border-peach { border-color: var(--color-5); }
+  .border-cornflower { border-color: var(--cornflower); }
+  .border-hippie-blue { border-color: var(--hippie-blue); }
+  .border-oxford-blue { border-color: var(--oxford-blue); }
+  .border-jungle-mist { border-color: var(--jungle-mist); }
+  .border-manhattan { border-color: var(--manhattan); }
+
+  /* Layout utilities */
+  .container-padding { padding: 1.5rem; } /* p-6 */
+  .grid-spacing { gap: 1.5rem; } /* gap-6 */
 }
