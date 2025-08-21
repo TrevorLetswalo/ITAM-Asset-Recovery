@@ -716,10 +716,10 @@ export function ModernDashboard() {
       {/* Recent Activity Section */}
       <div>
         {/* Clean Recent Activity Section */}
-        <div className="flex flex-col h-[350px]">
-          <div className="flex-shrink-0 pb-3 border-b border-white/10">
-            <h3 className="text-base font-medium text-[#1D1D2C] flex items-center">
-              <Clock className="mr-2 h-4 w-4 text-[#2C8780]" />
+        <div className="minimal-table flex flex-col h-[350px]">
+          <div className="flex-shrink-0 pb-3 border-b" style={{ borderBottomColor: "var(--color-4)" }}>
+            <h3 className="text-base font-medium flex items-center" style={{ color: "var(--color-1)" }}>
+              <Clock className="mr-2 h-4 w-4" style={{ color: "var(--color-3)" }} />
               Recent Activity
             </h3>
           </div>
