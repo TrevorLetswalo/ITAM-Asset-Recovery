@@ -191,7 +191,7 @@ function RecoveryProgressChart() {
   );
 
   return (
-    <GlassCard className="chart-container-compact">
+    <div className="chart-container-compact">
       <div className="pb-2">
         <div className="flex items-center justify-between">
           <h3
@@ -293,7 +293,7 @@ function RecoveryProgressChart() {
           </div>
         </div>
       </div>
-    </GlassCard>
+    </div>
   );
 }
 
@@ -326,7 +326,7 @@ function AssetTypeChart() {
   const maxValue = Math.max(...chartData.map((d) => d.value));
 
   return (
-    <GlassCard className="chart-container-compact">
+    <div className="chart-container-compact">
       <div className="pb-2">
         <h3
           className="text-base font-medium flex items-center"
@@ -397,7 +397,7 @@ function AssetTypeChart() {
           ))}
         </div>
       </div>
-    </GlassCard>
+    </div>
   );
 }
 
@@ -515,7 +515,7 @@ function SlaComplianceChart() {
   const strokeDashoffset = circumference - (compliance / 100) * circumference;
 
   return (
-    <GlassCard className="chart-container-compact">
+    <div className="chart-container-compact">
       <div className="pb-2">
         <h3
           className="text-base font-medium flex items-center"
@@ -624,7 +624,7 @@ function SlaComplianceChart() {
           </div>
         </div>
       </div>
-    </GlassCard>
+    </div>
   );
 }
 
@@ -716,7 +716,7 @@ export function ModernDashboard() {
       {/* Recent Activity Section */}
       <div>
         {/* Clean Recent Activity Section */}
-        <GlassCard className="flex flex-col h-[350px]">
+        <div className="flex flex-col h-[350px]">
           <div className="flex-shrink-0 pb-3 border-b border-white/10">
             <h3 className="text-base font-medium text-[#1D1D2C] flex items-center">
               <Clock className="mr-2 h-4 w-4 text-[#2C8780]" />
@@ -783,7 +783,7 @@ export function ModernDashboard() {
               </table>
             </div>
           </div>
-        </GlassCard>
+        </div>
       </div>
 
       {/* Self-Service Return Center */}
