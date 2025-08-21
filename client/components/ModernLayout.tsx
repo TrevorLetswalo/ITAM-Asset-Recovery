@@ -135,17 +135,12 @@ export function ModernLayout({ children }: LayoutProps) {
                   to={item.path}
                   onClick={() => setSidebarOpen(false)}
                   className={cn(
-                    "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors duration-200",
+                    "sidebar-nav-item",
+                    isActive ? "active" : "",
                     item.highlight && !isActive
-                      ? "border border-opacity-30"
+                      ? "border border-cornflower border-opacity-30"
                       : "",
                   )}
-                  style={{
-                    backgroundColor: isActive ? "#a6c6ed" : "transparent",
-                    color: isActive ? "#3d4c5c" : "#b4d9d9",
-                    borderColor:
-                      item.highlight && !isActive ? "#a6c6ed" : "transparent",
-                  }}
                 >
                   <Icon
                     className={cn(
