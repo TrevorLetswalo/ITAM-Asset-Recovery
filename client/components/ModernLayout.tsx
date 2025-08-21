@@ -237,7 +237,7 @@ export function ModernLayout({ children }: LayoutProps) {
           </Button>
 
           {/* Title - Left aligned, smaller font */}
-          <h1 className="font-medium text-lg mr-8" style={{ color: "var(--color-5)" }}>
+          <h1 className="font-medium text-lg mr-8 text-white">
             IT Asset Recovery Dashboard
           </h1>
 
