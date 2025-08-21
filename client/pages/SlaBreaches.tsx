@@ -154,16 +154,16 @@ function BreachAlertCard({
   const Icon = priorityConfig.icon;
 
   return (
-    <MinimalContainer className="border-l-4 border-l-red-400">
+    <MinimalContainer className="border-l-4" style={{ borderLeftColor: "var(--color-2)" }}>
       <div className="pb-3">
         <div className="flex justify-between items-start">
           <div className="flex items-center space-x-3">
-            <Icon className="h-5 w-5 text-red-600" />
+            <Icon className="h-5 w-5" style={{ color: "var(--color-1)" }} />
             <div>
-              <h3 className="text-lg font-medium text-[#1D1D2C]">
+              <h3 className="text-lg font-medium" style={{ color: "var(--color-1)" }}>
                 {asset.asset_tag}
               </h3>
-              <p className="text-sm text-[#2C8780]">
+              <p className="text-sm" style={{ color: "var(--color-3)" }}>
                 {asset.user_name} • {asset.location}
               </p>
             </div>
