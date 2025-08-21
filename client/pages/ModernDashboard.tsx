@@ -727,17 +727,17 @@ export function ModernDashboard() {
             <div className="h-full overflow-y-auto">
               <table className="w-full">
                 <thead className="sticky top-0 z-10">
-                  <tr className="border-b border-white/20 bg-white/10 backdrop-blur-lg">
-                    <th className="text-left py-1.5 text-xs font-medium text-[#2C8780]">
+                  <tr style={{ borderBottomColor: "var(--color-4)", backgroundColor: "var(--color-5)" }}>
+                    <th className="text-left py-1.5 text-xs font-medium" style={{ color: "var(--color-2)" }}>
                       Asset
                     </th>
-                    <th className="text-left py-1.5 text-xs font-medium text-[#2C8780]">
+                    <th className="text-left py-1.5 text-xs font-medium" style={{ color: "var(--color-2)" }}>
                       User
                     </th>
-                    <th className="text-left py-1.5 text-xs font-medium text-[#2C8780]">
+                    <th className="text-left py-1.5 text-xs font-medium" style={{ color: "var(--color-2)" }}>
                       Status
                     </th>
-                    <th className="text-left py-1.5 text-xs font-medium text-[#2C8780]">
+                    <th className="text-left py-1.5 text-xs font-medium" style={{ color: "var(--color-2)" }}>
                       Days
                     </th>
                   </tr>
