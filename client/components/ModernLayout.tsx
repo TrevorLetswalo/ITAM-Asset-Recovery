@@ -197,13 +197,7 @@ export function ModernLayout({ children }: LayoutProps) {
       {/* Main content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Header with Full Background Color */}
-        <header
-          className="h-16 flex items-center px-6"
-          style={{
-            backgroundColor: "#5b90b3", // 90s medium blue
-            borderBottom: "1px solid #a6c6ed",
-          }}
-        >
+        <header className="h-16 flex items-center px-6 bg-hippie-blue border-b border-cornflower">
           {/* Mobile menu button */}
           <Button
             variant="ghost"
