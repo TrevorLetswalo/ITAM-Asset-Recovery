@@ -494,10 +494,10 @@ export function SlaBreaches() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Filters */}
         <CleanContainer>
-          <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">Filters</h3>
+          <h3 className="text-lg font-medium text-oxford-blue mb-4">Filters</h3>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-[#2C8780] mb-2">
+              <label className="block text-sm font-medium text-hippie-blue mb-2">
                 Severity Level
               </label>
               <select
@@ -519,7 +519,7 @@ export function SlaBreaches() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-[#2C8780] mb-2">
+              <label className="block text-sm font-medium text-hippie-blue mb-2">
                 Risk Level
               </label>
               <select
