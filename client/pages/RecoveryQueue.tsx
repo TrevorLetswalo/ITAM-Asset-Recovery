@@ -226,11 +226,11 @@ export function RecoveryQueue() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="main-container space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-light text-[#1D1D2C] mb-2">Recovery Queue</h1>
-        <p className="text-[#2C8780]">Manage and track all asset recovery operations</p>
+        <h1 className="text-3xl font-light text-hippie-blue mb-2">Recovery Queue</h1>
+        <p className="text-oxford-blue">Manage and track all asset recovery operations</p>
       </div>
 
       {/* Search and Filters */}
