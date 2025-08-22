@@ -539,10 +539,10 @@ export function SlaBreaches() {
       {/* Breach Alerts */}
       <div>
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-medium text-[#1D1D2C]">
+          <h2 className="text-xl font-medium text-oxford-blue">
             Active Breach Alerts
           </h2>
-          <p className="text-[#2C8780]">
+          <p className="text-hippie-blue">
             Showing {filteredAlerts.length} of {breachAlerts.length} breaches
           </p>
         </div>
@@ -564,10 +564,10 @@ export function SlaBreaches() {
         {filteredAlerts.length === 0 && (
           <CleanContainer className="text-center py-12">
             <CheckCircle className="mx-auto h-12 w-12 text-green-500 mb-4" />
-            <h3 className="text-lg font-medium text-[#1D1D2C] mb-2">
+            <h3 className="text-lg font-medium text-oxford-blue mb-2">
               No Breaches Found
             </h3>
-            <p className="text-[#2C8780]">
+            <p className="text-hippie-blue">
               All assets are within SLA compliance for the selected filters.
             </p>
           </CleanContainer>
