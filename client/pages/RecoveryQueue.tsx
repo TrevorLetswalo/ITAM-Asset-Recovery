@@ -7,34 +7,19 @@ import { Badge } from '@/components/ui/badge';
 import { exportRecoveryQueue } from '@/lib/exportUtils';
 import { sendReminderEmail, initEmailJS } from '@/lib/emailjs';
 
-// Enhanced 3D Glass Container Component
-interface Glass3DContainerProps {
+// Clean Container Component
+interface CleanContainerProps {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
 }
 
-function Glass3DContainer({ children, className = "", style = {} }: Glass3DContainerProps) {
+function CleanContainer({ children, className = "", style = {} }: CleanContainerProps) {
   return (
-    <div 
-      className={`p-6 rounded-2xl transition-all duration-500 ease-out cursor-pointer ${className}`}
+    <div
+      className={`clean-card ${className}`}
       style={{
-        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
-        border: '1px solid rgba(255, 255, 255, 0.4)',
-        borderTop: '1px solid rgba(255, 255, 255, 0.6)',
-        borderLeft: '1px solid rgba(255, 255, 255, 0.6)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        boxShadow: '0 8px 32px rgba(114, 241, 220, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
         ...style
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-4px) scale(1.01)';
-        e.currentTarget.style.boxShadow = '0 16px 48px rgba(114, 241, 220, 0.2), 0 4px 16px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.4)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'translateY(0) scale(1)';
-        e.currentTarget.style.boxShadow = '0 8px 32px rgba(114, 241, 220, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
       }}
     >
       {children}
