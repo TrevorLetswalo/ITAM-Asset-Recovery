@@ -67,13 +67,7 @@ function GeneralSettings() {
               <select
                 value={settings.timezone}
                 onChange={(e) => setSettings({ ...settings, timezone: e.target.value })}
-                className="w-full px-4 py-2 text-[#1D1D2C] focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-lg transition-all duration-300"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
-                  border: '1px solid rgba(255, 255, 255, 0.4)',
-                  backdropFilter: 'blur(15px)',
-                  boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
-                }}
+                className="w-full px-4 py-2 bg-white text-oxford-blue border border-cornflower focus:ring-2 focus:ring-hippie-blue focus:border-transparent rounded-lg transition-all duration-300"
               >
                 <option value="UTC-05:00 (Eastern Time)">UTC-05:00 (Eastern Time)</option>
                 <option value="UTC-06:00 (Central Time)">UTC-06:00 (Central Time)</option>
