@@ -184,25 +184,25 @@ function BreachAlertCard({
       <div className="space-y-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div>
-            <p className="text-xs text-[#2C8780] font-medium">Asset Value</p>
-            <p className="text-lg font-semibold text-[#1D1D2C]">
+            <p className="text-xs text-hippie-blue font-medium">Asset Value</p>
+            <p className="text-lg font-semibold text-oxford-blue">
               R{(alert.estimatedValue * 18.5).toLocaleString()}
             </p>
           </div>
           <div>
-            <p className="text-xs text-[#2C8780] font-medium">
+            <p className="text-xs text-hippie-blue font-medium">
               Escalation Level
             </p>
-            <p className="text-lg font-semibold text-[#1D1D2C]">
+            <p className="text-lg font-semibold text-oxford-blue">
               Level {alert.escalationLevel}
             </p>
           </div>
           <div>
-            <p className="text-xs text-[#2C8780] font-medium">Last Action</p>
-            <p className="text-sm text-[#1D1D2C]">{alert.lastAction}</p>
+            <p className="text-xs text-hippie-blue font-medium">Last Action</p>
+            <p className="text-sm text-oxford-blue">{alert.lastAction}</p>
           </div>
           <div>
-            <p className="text-xs text-[#2C8780] font-medium">Notifications</p>
+            <p className="text-xs text-hippie-blue font-medium">Notifications</p>
             <div className="flex space-x-1">
               {alert.managerNotified && (
                 <CheckCircle className="h-4 w-4 text-green-600" />
@@ -253,8 +253,8 @@ function BreachTrendsChart() {
   return (
     <CleanContainer style={{ minHeight: "320px" }}>
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-medium text-[#1D1D2C] flex items-center">
-          <BarChart3 className="mr-2 h-5 w-5 text-[#2C8780]" />
+        <h3 className="text-lg font-medium text-oxford-blue flex items-center">
+          <BarChart3 className="mr-2 h-5 w-5 text-hippie-blue" />
           Breach Trends
         </h3>
         <Badge className="bg-white/50 text-[#2C8780] border-white/30">
