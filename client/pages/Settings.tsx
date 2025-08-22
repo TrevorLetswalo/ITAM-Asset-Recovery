@@ -155,7 +155,7 @@ function NotificationSettings() {
               <button
                 onClick={() => setNotifications({ ...notifications, [item.key]: !notifications[item.key as keyof typeof notifications] })}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  notifications[item.key as keyof typeof notifications] ? 'bg-[#2C8780]' : 'bg-white/30'
+                  notifications[item.key as keyof typeof notifications] ? 'bg-hippie-blue' : 'bg-white/30'
                 }`}
                 style={{
                   backdropFilter: 'blur(10px)',
@@ -181,14 +181,14 @@ function SecuritySettings() {
   return (
     <div className="space-y-6">
       <CleanContainer>
-        <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">Authentication & Security</h3>
+        <h3 className="text-lg font-medium text-oxford-blue mb-4">Authentication & Security</h3>
         <div className="space-y-4">
           <div className="flex items-center justify-between p-4 rounded-lg border border-white/20 bg-white/20 backdrop-blur-lg">
             <div className="flex items-center space-x-3">
-              <Key className="h-5 w-5 text-[#2C8780]" />
+              <Key className="h-5 w-5 text-hippie-blue" />
               <div>
-                <p className="text-sm font-medium text-[#1D1D2C]">Two-Factor Authentication</p>
-                <p className="text-xs text-[#2C8780]">Add an extra layer of security</p>
+                <p className="text-sm font-medium text-oxford-blue">Two-Factor Authentication</p>
+                <p className="text-xs text-hippie-blue">Add an extra layer of security</p>
               </div>
             </div>
             <Badge className="bg-green-100/50 text-green-700 border-green-200/50">Enabled</Badge>
@@ -196,7 +196,7 @@ function SecuritySettings() {
 
           <div className="flex items-center justify-between p-4 rounded-lg border border-white/20 bg-white/20 backdrop-blur-lg">
             <div className="flex items-center space-x-3">
-              <Shield className="h-5 w-5 text-[#2C8780]" />
+              <Shield className="h-5 w-5 text-hippie-blue" />
               <div>
                 <p className="text-sm font-medium text-[#1D1D2C]">API Access</p>
                 <p className="text-xs text-[#2C8780]">Manage API keys and permissions</p>
