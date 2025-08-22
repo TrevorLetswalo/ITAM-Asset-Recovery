@@ -374,7 +374,7 @@ export function RecoveryQueue() {
                       <Button
                         size="sm"
                         onClick={() => handleSendEmail(asset)}
-                        className="text-[#2C8780] hover:text-[#1D1D2C] bg-white/30 hover:bg-white/50 border border-white/30 backdrop-blur-lg"
+                        className="btn-primary text-xs px-2 py-1"
                       >
                         <Mail className="mr-1 h-3 w-3" />
                         Email
