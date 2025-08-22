@@ -439,10 +439,10 @@ export function SlaBreaches() {
           <div className="flex items-center">
             <AlertTriangle className="h-6 w-6 text-red-600 mr-3" />
             <div>
-              <p className="text-xs text-[#2C8780] font-medium">
+              <p className="text-xs text-hippie-blue font-medium">
                 Total Breaches
               </p>
-              <p className="text-xl font-light text-[#1D1D2C]">
+              <p className="text-xl font-light text-oxford-blue">
                 {stats.total}
               </p>
             </div>
@@ -453,8 +453,8 @@ export function SlaBreaches() {
           <div className="flex items-center">
             <XCircle className="h-6 w-6 text-red-700 mr-3" />
             <div>
-              <p className="text-xs text-[#2C8780] font-medium">Extreme Risk</p>
-              <p className="text-xl font-light text-[#1D1D2C]">
+              <p className="text-xs text-hippie-blue font-medium">Extreme Risk</p>
+              <p className="text-xl font-light text-oxford-blue">
                 {stats.extreme}
               </p>
             </div>
@@ -465,10 +465,10 @@ export function SlaBreaches() {
           <div className="flex items-center">
             <Clock className="h-6 w-6 text-orange-600 mr-3" />
             <div>
-              <p className="text-xs text-[#2C8780] font-medium">
+              <p className="text-xs text-hippie-blue font-medium">
                 Avg Days Overdue
               </p>
-              <p className="text-xl font-light text-[#1D1D2C]">
+              <p className="text-xl font-light text-oxford-blue">
                 {stats.avgAge}
               </p>
             </div>
@@ -479,10 +479,10 @@ export function SlaBreaches() {
           <div className="flex items-center">
             <TrendingUp className="h-6 w-6 text-green-600 mr-3" />
             <div>
-              <p className="text-xs text-[#2C8780] font-medium">
+              <p className="text-xs text-hippie-blue font-medium">
                 Asset Value at Risk
               </p>
-              <p className="text-xl font-light text-[#1D1D2C]">
+              <p className="text-xl font-light text-oxford-blue">
                 R{((stats.totalValue * 18.5) / 1000).toFixed(0)}K
               </p>
             </div>
