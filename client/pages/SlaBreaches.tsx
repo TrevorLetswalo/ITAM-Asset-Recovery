@@ -154,16 +154,16 @@ function BreachAlertCard({
   const Icon = priorityConfig.icon;
 
   return (
-    <CleanContainer className="border-l-4" style={{ borderLeftColor: "var(--color-2)" }}>
+    <CleanContainer className="border-l-4 border-l-cornflower">
       <div className="pb-3">
         <div className="flex justify-between items-start">
           <div className="flex items-center space-x-3">
-            <Icon className="h-5 w-5" style={{ color: "var(--color-1)" }} />
+            <Icon className="h-5 w-5 text-hippie-blue" />
             <div>
-              <h3 className="text-lg font-medium" style={{ color: "var(--color-1)" }}>
+              <h3 className="text-lg font-medium text-hippie-blue">
                 {asset.asset_tag}
               </h3>
-              <p className="text-sm" style={{ color: "var(--color-3)" }}>
+              <p className="text-sm text-oxford-blue">
                 {asset.user_name} • {asset.location}
               </p>
             </div>
@@ -219,7 +219,7 @@ function BreachAlertCard({
             <Button
               size="sm"
               onClick={() => onSendReminder(asset)}
-              className="macos-button text-[#2C8780] text-xs"
+              className="btn-secondary text-xs"
             >
               <Mail className="mr-1 h-3 w-3" />
               Send Reminder
@@ -227,7 +227,7 @@ function BreachAlertCard({
             <Button
               size="sm"
               onClick={handleCallUser}
-              className="macos-button text-[#2C8780] text-xs"
+              className="btn-secondary text-xs"
             >
               <Phone className="mr-1 h-3 w-3" />
               Call User
