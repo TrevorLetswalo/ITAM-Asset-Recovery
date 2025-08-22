@@ -369,10 +369,7 @@ export function Reports() {
             <RefreshCw className="mr-2 h-4 w-4" />
             Refresh All
           </Button>
-          <Button
-            onClick={handleBulkExport}
-            className="btn-primary"
-          >
+          <Button onClick={handleBulkExport} className="btn-primary">
             <Download className="mr-2 h-4 w-4" />
             Bulk Export
           </Button>

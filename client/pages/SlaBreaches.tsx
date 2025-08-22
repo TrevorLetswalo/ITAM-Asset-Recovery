@@ -202,7 +202,9 @@ function BreachAlertCard({
             <p className="text-sm text-oxford-blue">{alert.lastAction}</p>
           </div>
           <div>
-            <p className="text-xs text-hippie-blue font-medium">Notifications</p>
+            <p className="text-xs text-hippie-blue font-medium">
+              Notifications
+            </p>
             <div className="flex space-x-1">
               {alert.managerNotified && (
                 <CheckCircle className="h-4 w-4 text-green-600" />
@@ -257,9 +259,7 @@ function BreachTrendsChart() {
           <BarChart3 className="mr-2 h-5 w-5 text-hippie-blue" />
           Breach Trends
         </h3>
-        <Badge className="status-badge-info">
-          Last 6 Months
-        </Badge>
+        <Badge className="status-badge-info">Last 6 Months</Badge>
       </div>
 
       <div
@@ -416,17 +416,11 @@ export function SlaBreaches() {
           </p>
         </div>
         <div className="flex space-x-3">
-          <Button
-            onClick={handleExportReport}
-            className="btn-secondary"
-          >
+          <Button onClick={handleExportReport} className="btn-secondary">
             <Download className="mr-2 h-4 w-4" />
             Export Report
           </Button>
-          <Button
-            onClick={handleBulkEscalate}
-            className="btn-primary"
-          >
+          <Button onClick={handleBulkEscalate} className="btn-primary">
             <Send className="mr-2 h-4 w-4" />
             Bulk Escalate
           </Button>
@@ -453,7 +447,9 @@ export function SlaBreaches() {
           <div className="flex items-center">
             <XCircle className="h-6 w-6 text-red-700 mr-3" />
             <div>
-              <p className="text-xs text-hippie-blue font-medium">Extreme Risk</p>
+              <p className="text-xs text-hippie-blue font-medium">
+                Extreme Risk
+              </p>
               <p className="text-xl font-light text-oxford-blue">
                 {stats.extreme}
               </p>
