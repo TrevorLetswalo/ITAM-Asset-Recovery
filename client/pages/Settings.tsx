@@ -49,7 +49,7 @@ function GeneralSettings() {
 
   return (
     <div className="space-y-6">
-      <Glass3DContainer>
+      <CleanContainer>
         <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">Organization Settings</h3>
         <div className="space-y-4">
           <div>
@@ -108,9 +108,9 @@ function GeneralSettings() {
             </div>
           </div>
         </div>
-      </Glass3DContainer>
+      </CleanContainer>
 
-      <Glass3DContainer>
+      <CleanContainer>
         <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">Display Preferences</h3>
         <div className="space-y-4">
           <div className="flex items-center justify-between">
@@ -137,7 +137,7 @@ function GeneralSettings() {
             </button>
           </div>
         </div>
-      </Glass3DContainer>
+      </CleanContainer>
     </div>
   );
 }
@@ -154,7 +154,7 @@ function NotificationSettings() {
 
   return (
     <div className="space-y-6">
-      <Glass3DContainer>
+      <CleanContainer>
         <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">Alert Preferences</h3>
         <div className="space-y-4">
           {[
@@ -190,7 +190,7 @@ function NotificationSettings() {
             </div>
           ))}
         </div>
-      </Glass3DContainer>
+      </CleanContainer>
     </div>
   );
 }
@@ -198,7 +198,7 @@ function NotificationSettings() {
 function SecuritySettings() {
   return (
     <div className="space-y-6">
-      <Glass3DContainer>
+      <CleanContainer>
         <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">Authentication & Security</h3>
         <div className="space-y-4">
           <div className="flex items-center justify-between p-4 rounded-lg border border-white/20 bg-white/20 backdrop-blur-lg">
@@ -238,7 +238,7 @@ function SecuritySettings() {
             </Button>
           </div>
         </div>
-      </Glass3DContainer>
+      </CleanContainer>
     </div>
   );
 }
@@ -287,7 +287,7 @@ export function Settings() {
 
       {/* Settings Tabs */}
       <Tabs defaultValue="general" className="space-y-6">
-        <Glass3DContainer className="p-0">
+        <CleanContainer className="p-0">
           <TabsList className="w-full p-1 grid grid-cols-3" style={{
             background: 'transparent',
             border: 'none'
@@ -326,7 +326,7 @@ export function Settings() {
               Security
             </TabsTrigger>
           </TabsList>
-        </Glass3DContainer>
+        </CleanContainer>
 
         <TabsContent value="general">
           <GeneralSettings />
