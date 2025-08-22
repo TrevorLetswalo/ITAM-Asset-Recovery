@@ -198,24 +198,24 @@ function SecuritySettings() {
             <div className="flex items-center space-x-3">
               <Shield className="h-5 w-5 text-hippie-blue" />
               <div>
-                <p className="text-sm font-medium text-[#1D1D2C]">API Access</p>
-                <p className="text-xs text-[#2C8780]">Manage API keys and permissions</p>
+                <p className="text-sm font-medium text-oxford-blue">API Access</p>
+                <p className="text-xs text-hippie-blue">Manage API keys and permissions</p>
               </div>
             </div>
-            <Button size="sm" onClick={handleManageKeys} className="macos-button text-[#2C8780]">
+            <Button size="sm" onClick={handleManageKeys} className="btn-secondary">
               Manage Keys
             </Button>
           </div>
 
           <div className="flex items-center justify-between p-4 rounded-lg border border-white/20 bg-white/20 backdrop-blur-lg">
             <div className="flex items-center space-x-3">
-              <Users className="h-5 w-5 text-[#2C8780]" />
+              <Users className="h-5 w-5 text-hippie-blue" />
               <div>
-                <p className="text-sm font-medium text-[#1D1D2C]">User Permissions</p>
-                <p className="text-xs text-[#2C8780]">Configure role-based access control</p>
+                <p className="text-sm font-medium text-oxford-blue">User Permissions</p>
+                <p className="text-xs text-hippie-blue">Configure role-based access control</p>
               </div>
             </div>
-            <Button size="sm" onClick={handleManageRoles} className="macos-button text-[#2C8780]">
+            <Button size="sm" onClick={handleManageRoles} className="btn-secondary">
               Manage Roles
             </Button>
           </div>
