@@ -310,17 +310,17 @@ export function RecoveryQueue() {
       {/* Table */}
       <CleanContainer className="p-0">
         <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="border-b border-white/20">
+          <table className="clean-table">
+            <thead className="bg-cornflower border-b border-cornflower">
               <tr>
-                <th className="text-left px-6 py-4 font-medium text-[#2C8780]">Asset Tag</th>
-                <th className="text-left px-6 py-4 font-medium text-[#2C8780]">Serial Number</th>
-                <th className="text-left px-6 py-4 font-medium text-[#2C8780]">Type</th>
-                <th className="text-left px-6 py-4 font-medium text-[#2C8780]">SLA Stage</th>
-                <th className="text-left px-6 py-4 font-medium text-[#2C8780]">Days in Recovery</th>
-                <th className="text-left px-6 py-4 font-medium text-[#2C8780]">Status</th>
-                <th className="text-left px-6 py-4 font-medium text-[#2C8780]">User</th>
-                <th className="text-left px-6 py-4 font-medium text-[#2C8780]">Actions</th>
+                <th className="text-left px-6 py-4 font-medium text-oxford-blue">Asset Tag</th>
+                <th className="text-left px-6 py-4 font-medium text-oxford-blue">Serial Number</th>
+                <th className="text-left px-6 py-4 font-medium text-oxford-blue">Type</th>
+                <th className="text-left px-6 py-4 font-medium text-oxford-blue">SLA Stage</th>
+                <th className="text-left px-6 py-4 font-medium text-oxford-blue">Days in Recovery</th>
+                <th className="text-left px-6 py-4 font-medium text-oxford-blue">Status</th>
+                <th className="text-left px-6 py-4 font-medium text-oxford-blue">User</th>
+                <th className="text-left px-6 py-4 font-medium text-oxford-blue">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/10">
