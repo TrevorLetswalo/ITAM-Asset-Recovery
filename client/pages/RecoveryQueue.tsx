@@ -239,19 +239,13 @@ export function RecoveryQueue() {
           {/* Search */}
           <div className="flex-1">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#2C8780]" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-hippie-blue" />
               <input
                 type="text"
                 placeholder="Search by asset tag, serial number, or user..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 text-[#1D1D2C] placeholder-gray-500 focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-lg transition-all duration-300"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
-                  border: '1px solid rgba(255, 255, 255, 0.4)',
-                  backdropFilter: 'blur(15px)',
-                  boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
-                }}
+                className="w-full pl-10 pr-4 py-2 bg-white text-oxford-blue placeholder-gray-500 border border-cornflower focus:ring-2 focus:ring-hippie-blue focus:border-transparent rounded-lg transition-all duration-300"
               />
             </div>
           </div>
