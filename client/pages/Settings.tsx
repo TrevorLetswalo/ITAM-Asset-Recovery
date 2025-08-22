@@ -50,10 +50,10 @@ function GeneralSettings() {
   return (
     <div className="space-y-6">
       <CleanContainer>
-        <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">Organization Settings</h3>
+        <h3 className="text-lg font-medium text-oxford-blue mb-4">Organization Settings</h3>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-[#2C8780] mb-2">Organization Name</label>
+            <label className="block text-sm font-medium text-hippie-blue mb-2">Organization Name</label>
             <input
               type="text"
               value={settings.organizationName}
@@ -69,7 +69,7 @@ function GeneralSettings() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-[#2C8780] mb-2">Timezone</label>
+              <label className="block text-sm font-medium text-hippie-blue mb-2">Timezone</label>
               <select
                 value={settings.timezone}
                 onChange={(e) => setSettings({ ...settings, timezone: e.target.value })}
@@ -88,7 +88,7 @@ function GeneralSettings() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-[#2C8780] mb-2">Language</label>
+              <label className="block text-sm font-medium text-hippie-blue mb-2">Language</label>
               <select
                 value={settings.language}
                 onChange={(e) => setSettings({ ...settings, language: e.target.value })}
