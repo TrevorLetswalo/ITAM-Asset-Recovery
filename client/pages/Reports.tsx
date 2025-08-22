@@ -233,7 +233,7 @@ function ReportCard({ report }: { report: ReportCard }) {
   };
 
   return (
-    <Glass3DContainer>
+    <CleanContainer>
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center space-x-3">
           <div
@@ -295,7 +295,7 @@ function ReportCard({ report }: { report: ReportCard }) {
           ))}
         </div>
       </div>
-    </Glass3DContainer>
+    </CleanContainer>
   );
 }
 
@@ -383,7 +383,7 @@ export function Reports() {
       </div>
 
       {/* Filters */}
-      <Glass3DContainer>
+      <CleanContainer>
         <div className="flex flex-col lg:flex-row gap-4">
           <div className="flex space-x-4">
             <select
@@ -436,7 +436,7 @@ export function Reports() {
                   : "Last Year"}
           </div>
         </div>
-      </Glass3DContainer>
+      </CleanContainer>
 
       {/* Reports Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -446,7 +446,7 @@ export function Reports() {
       </div>
 
       {filteredReports.length === 0 && (
-        <Glass3DContainer className="text-center py-12">
+        <CleanContainer className="text-center py-12">
           <FileText className="mx-auto h-12 w-12 text-[#2C8780] mb-4" />
           <h3 className="text-lg font-medium text-[#1D1D2C] mb-2">
             No Reports Found
@@ -454,7 +454,7 @@ export function Reports() {
           <p className="text-[#2C8780]">
             No reports match the selected category.
           </p>
-        </Glass3DContainer>
+        </CleanContainer>
       )}
     </div>
   );
