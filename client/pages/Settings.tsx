@@ -93,17 +93,17 @@ function GeneralSettings() {
       </CleanContainer>
 
       <CleanContainer>
-        <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">Display Preferences</h3>
+        <h3 className="text-lg font-medium text-oxford-blue mb-4">Display Preferences</h3>
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <label className="text-sm font-medium text-[#1D1D2C]">Auto-refresh Dashboard</label>
-              <p className="text-xs text-[#2C8780]">Automatically refresh data every 5 minutes</p>
+              <label className="text-sm font-medium text-oxford-blue">Auto-refresh Dashboard</label>
+              <p className="text-xs text-hippie-blue">Automatically refresh data every 5 minutes</p>
             </div>
             <button
               onClick={() => setSettings({ ...settings, autoRefresh: !settings.autoRefresh })}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                settings.autoRefresh ? 'bg-[#2C8780]' : 'bg-white/30'
+                settings.autoRefresh ? 'bg-hippie-blue' : 'bg-white/30'
               }`}
               style={{
                 backdropFilter: 'blur(10px)',
@@ -137,7 +137,7 @@ function NotificationSettings() {
   return (
     <div className="space-y-6">
       <CleanContainer>
-        <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">Alert Preferences</h3>
+        <h3 className="text-lg font-medium text-oxford-blue mb-4">Alert Preferences</h3>
         <div className="space-y-4">
           {[
             { key: 'emailAlerts', label: 'Email Alerts', description: 'Receive email notifications for important events' },
@@ -149,8 +149,8 @@ function NotificationSettings() {
           ].map((item) => (
             <div key={item.key} className="flex items-center justify-between">
               <div>
-                <label className="text-sm font-medium text-[#1D1D2C]">{item.label}</label>
-                <p className="text-xs text-[#2C8780]">{item.description}</p>
+                <label className="text-sm font-medium text-oxford-blue">{item.label}</label>
+                <p className="text-xs text-hippie-blue">{item.description}</p>
               </div>
               <button
                 onClick={() => setNotifications({ ...notifications, [item.key]: !notifications[item.key as keyof typeof notifications] })}
