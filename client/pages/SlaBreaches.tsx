@@ -257,7 +257,7 @@ function BreachTrendsChart() {
           <BarChart3 className="mr-2 h-5 w-5 text-hippie-blue" />
           Breach Trends
         </h3>
-        <Badge className="bg-white/50 text-[#2C8780] border-white/30">
+        <Badge className="status-badge-info">
           Last 6 Months
         </Badge>
       </div>
@@ -294,7 +294,7 @@ function BreachTrendsChart() {
               />
             </div>
             <div className="text-center">
-              <span className="text-xs text-[#1D1D2C] font-medium">
+              <span className="text-xs text-oxford-blue font-medium">
                 {data.month}
               </span>
             </div>
@@ -305,11 +305,11 @@ function BreachTrendsChart() {
       <div className="flex justify-center space-x-6 pt-4 border-t border-white/20">
         <div className="flex items-center">
           <div className="w-3 h-3 bg-gradient-to-r from-red-600 to-red-400 rounded-full mr-2" />
-          <span className="text-sm text-[#1D1D2C] font-medium">Breaches</span>
+          <span className="text-sm text-oxford-blue font-medium">Breaches</span>
         </div>
         <div className="flex items-center">
           <div className="w-3 h-3 bg-gradient-to-r from-green-600 to-green-400 rounded-full mr-2" />
-          <span className="text-sm text-[#1D1D2C] font-medium">Resolved</span>
+          <span className="text-sm text-oxford-blue font-medium">Resolved</span>
         </div>
       </div>
     </CleanContainer>
@@ -408,10 +408,10 @@ export function SlaBreaches() {
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-light text-[#1D1D2C] mb-2">
+          <h1 className="text-3xl font-light text-oxford-blue mb-2">
             SLA Breaches
           </h1>
-          <p className="text-[#2C8780]">
+          <p className="text-hippie-blue">
             Critical alerts and breach management dashboard
           </p>
         </div>
