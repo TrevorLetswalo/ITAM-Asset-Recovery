@@ -323,16 +323,16 @@ export function RecoveryQueue() {
                 <th className="text-left px-6 py-4 font-medium text-oxford-blue">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/10">
+            <tbody className="divide-y divide-cornflower divide-opacity-30">
               {filteredAssets.map((asset) => (
-                <tr key={asset.id} className="hover:bg-white/10 transition-colors">
+                <tr key={asset.id} className="hover:bg-cornflower hover:bg-opacity-10 transition-colors">
                   <td className="px-6 py-4">
-                    <div className="font-medium text-[#1D1D2C]">{asset.asset_tag}</div>
-                    <div className="text-sm text-[#2C8780]">{asset.asset_type}</div>
+                    <div className="font-medium text-oxford-blue">{asset.asset_tag}</div>
+                    <div className="text-sm text-hippie-blue">{asset.asset_type}</div>
                   </td>
-                  <td className="px-6 py-4 text-sm text-[#1D1D2C]">{asset.serial_number}</td>
+                  <td className="px-6 py-4 text-sm text-oxford-blue">{asset.serial_number}</td>
                   <td className="px-6 py-4">
-                    <Badge className="bg-white/50 text-[#1D1D2C] border-white/30">{asset.recovery_type}</Badge>
+                    <Badge className="status-badge-info">{asset.recovery_type}</Badge>
                   </td>
                   <td className="px-6 py-4">
                     <Badge className={`${getSlaStageColor(asset.sla_stage)} backdrop-blur-lg border`}>
