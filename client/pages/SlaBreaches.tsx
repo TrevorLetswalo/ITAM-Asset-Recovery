@@ -418,17 +418,14 @@ export function SlaBreaches() {
         <div className="flex space-x-3">
           <Button
             onClick={handleExportReport}
-            className="macos-button text-[#1D1D2C]"
+            className="btn-secondary"
           >
             <Download className="mr-2 h-4 w-4" />
             Export Report
           </Button>
           <Button
             onClick={handleBulkEscalate}
-            className="bg-gradient-to-r from-[#2C8780] to-[#72F1DC] text-white hover:scale-105 transition-all duration-300"
-            style={{
-              boxShadow: "0 4px 12px rgba(44, 135, 128, 0.3)",
-            }}
+            className="btn-primary"
           >
             <Send className="mr-2 h-4 w-4" />
             Bulk Escalate
