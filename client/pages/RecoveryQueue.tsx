@@ -65,7 +65,7 @@ function AssetDetailModal({ asset }: { asset: AssetRecord }) {
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Asset Information */}
-        <Glass3DContainer>
+        <CleanContainer>
           <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">Asset Information</h3>
           <div className="space-y-3">
             <div className="grid grid-cols-2 gap-4">
@@ -95,10 +95,10 @@ function AssetDetailModal({ asset }: { asset: AssetRecord }) {
               </div>
             </div>
           </div>
-        </Glass3DContainer>
+        </CleanContainer>
 
         {/* User & Status Information */}
-        <Glass3DContainer>
+        <CleanContainer>
           <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">User & Status</h3>
           <div className="space-y-3">
             <div className="grid grid-cols-1 gap-4">
@@ -121,10 +121,10 @@ function AssetDetailModal({ asset }: { asset: AssetRecord }) {
               </div>
             </div>
           </div>
-        </Glass3DContainer>
+        </CleanContainer>
 
         {/* Email History */}
-        <Glass3DContainer className="lg:col-span-2">
+        <CleanContainer className="lg:col-span-2">
           <h3 className="text-lg font-medium text-[#1D1D2C] mb-4">Email Communication History</h3>
           <div className="space-y-3">
             {mockEmailHistory.map((email, index) => (
@@ -139,7 +139,7 @@ function AssetDetailModal({ asset }: { asset: AssetRecord }) {
               </div>
             ))}
           </div>
-        </Glass3DContainer>
+        </CleanContainer>
       </div>
     </DialogContent>
   );
@@ -234,7 +234,7 @@ export function RecoveryQueue() {
       </div>
 
       {/* Search and Filters */}
-      <Glass3DContainer>
+      <CleanContainer>
         <div className="flex flex-col lg:flex-row gap-4">
           {/* Search */}
           <div className="flex-1">
@@ -322,7 +322,7 @@ export function RecoveryQueue() {
             </Button>
           </div>
         </div>
-      </Glass3DContainer>
+      </CleanContainer>
 
       {/* Results Summary */}
       <div>
@@ -332,7 +332,7 @@ export function RecoveryQueue() {
       </div>
 
       {/* Table */}
-      <Glass3DContainer className="p-0">
+      <CleanContainer className="p-0">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="border-b border-white/20">
@@ -410,7 +410,7 @@ export function RecoveryQueue() {
             </tbody>
           </table>
         </div>
-      </Glass3DContainer>
+      </CleanContainer>
     </div>
   );
 }
