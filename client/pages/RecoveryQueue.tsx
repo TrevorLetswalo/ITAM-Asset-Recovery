@@ -361,9 +361,9 @@ export function RecoveryQueue() {
                     <div className="flex space-x-2">
                       <Dialog>
                         <DialogTrigger asChild>
-                          <Button 
-                            size="sm" 
-                            className="text-[#2C8780] hover:text-[#1D1D2C] bg-white/30 hover:bg-white/50 border border-white/30 backdrop-blur-lg"
+                          <Button
+                            size="sm"
+                            className="btn-secondary text-xs px-2 py-1"
                           >
                             <Eye className="mr-1 h-3 w-3" />
                             View
