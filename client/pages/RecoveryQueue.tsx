@@ -291,7 +291,7 @@ export function RecoveryQueue() {
 
             <Button
               onClick={handleExportCSV}
-              className="macos-button text-[#1D1D2C] flex items-center"
+              className="btn-secondary flex items-center"
             >
               <Download className="mr-2 h-4 w-4" />
               Export CSV
@@ -302,7 +302,7 @@ export function RecoveryQueue() {
 
       {/* Results Summary */}
       <div>
-        <p className="text-[#2C8780]">
+        <p className="text-hippie-blue">
           Showing {filteredAssets.length} of {allMockAssets.length} assets
         </p>
       </div>
