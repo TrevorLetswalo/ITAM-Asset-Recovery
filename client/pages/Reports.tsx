@@ -350,14 +350,14 @@ export function Reports() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="main-container space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-light text-[#1D1D2C] mb-2">
+          <h1 className="text-3xl font-light text-hippie-blue mb-2">
             Reports & Analytics
           </h1>
-          <p className="text-[#2C8780]">
+          <p className="text-oxford-blue">
             Comprehensive insights and performance metrics
           </p>
         </div>
