@@ -250,17 +250,15 @@ export function Settings() {
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-light text-[#1D1D2C] mb-2">Settings</h1>
-          <p className="text-[#2C8780]">Configure your IT Asset Recovery Console preferences</p>
+          <h1 className="text-3xl font-light text-oxford-blue mb-2">Settings</h1>
+          <p className="text-hippie-blue">Configure your IT Asset Recovery Console preferences</p>
         </div>
         <div className="flex space-x-3">
-          <Button onClick={handleResetToDefaults} className="macos-button text-[#1D1D2C]">
+          <Button onClick={handleResetToDefaults} className="btn-secondary">
             <RefreshCw className="mr-2 h-4 w-4" />
             Reset to Defaults
           </Button>
-          <Button onClick={handleSaveChanges} className="bg-gradient-to-r from-[#2C8780] to-[#72F1DC] text-white hover:scale-105 transition-all duration-300" style={{
-            boxShadow: '0 4px 12px rgba(44, 135, 128, 0.3)'
-          }}>
+          <Button onClick={handleSaveChanges} className="btn-primary">
             <Save className="mr-2 h-4 w-4" />
             Save Changes
           </Button>
