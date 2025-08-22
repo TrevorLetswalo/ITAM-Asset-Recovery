@@ -255,13 +255,7 @@ export function RecoveryQueue() {
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="px-3 py-2 text-[#1D1D2C] focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-lg transition-all duration-300"
-              style={{
-                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
-                border: '1px solid rgba(255, 255, 255, 0.4)',
-                backdropFilter: 'blur(15px)',
-                boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
-              }}
+              className="px-3 py-2 bg-white text-oxford-blue border border-cornflower focus:ring-2 focus:ring-hippie-blue focus:border-transparent rounded-lg transition-all duration-300"
             >
               <option value="all">All Status</option>
               <option value="Pending">Pending</option>
@@ -274,13 +268,7 @@ export function RecoveryQueue() {
             <select
               value={filterSlaStage}
               onChange={(e) => setFilterSlaStage(e.target.value)}
-              className="px-3 py-2 text-[#1D1D2C] focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-lg transition-all duration-300"
-              style={{
-                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
-                border: '1px solid rgba(255, 255, 255, 0.4)',
-                backdropFilter: 'blur(15px)',
-                boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
-              }}
+              className="px-3 py-2 bg-white text-oxford-blue border border-cornflower focus:ring-2 focus:ring-hippie-blue focus:border-transparent rounded-lg transition-all duration-300"
             >
               <option value="all">All SLA Stages</option>
               <option value="Initial">Initial</option>
@@ -293,13 +281,7 @@ export function RecoveryQueue() {
             <select
               value={filterRecoveryType}
               onChange={(e) => setFilterRecoveryType(e.target.value)}
-              className="px-3 py-2 text-[#1D1D2C] focus:ring-2 focus:ring-[#2C8780] focus:border-transparent rounded-lg transition-all duration-300"
-              style={{
-                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%)',
-                border: '1px solid rgba(255, 255, 255, 0.4)',
-                backdropFilter: 'blur(15px)',
-                boxShadow: '0 2px 8px rgba(114, 241, 220, 0.1)'
-              }}
+              className="px-3 py-2 bg-white text-oxford-blue border border-cornflower focus:ring-2 focus:ring-hippie-blue focus:border-transparent rounded-lg transition-all duration-300"
             >
               <option value="all">All Types</option>
               <option value="Exit">Exit</option>
